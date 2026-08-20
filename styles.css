@@ -218,7 +218,7 @@ img { max-width: 100%; display: block; }
 
 .hero h1 {
   font-size: clamp(2.6rem, 5.4vw, 4rem);
-  margin-bottom: 14px;
+  margin-bottom: 20px;
   letter-spacing: -0.01em;
   color: var(--color-ink);
 }
@@ -230,7 +230,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-accent);
-  margin: 0 0 22px;
+  margin: 0 0 10px;
 }
 
 @supports (background-clip: text) or (-webkit-background-clip: text) {
@@ -248,18 +248,22 @@ img { max-width: 100%; display: block; }
       var(--color-ink) 100%
     );
     background-size: 280% 100%;
-    background-position: 200% 0;
+    background-repeat: repeat;
+    background-position: 0% 0;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    animation: heading-shimmer 9s ease-in-out infinite;
+    animation: heading-shimmer 7s linear infinite;
   }
 }
 
+/* Continuous seamless sweep, modeled on carescout.com's animated hero text:
+   a single linear pass per loop with no easing/pause, looping cleanly because
+   the shift is exactly one full background-size tile. */
 @keyframes heading-shimmer {
-  0%, 30% { background-position: 200% 0; }
-  70%, 100% { background-position: -200% 0; }
+  0% { background-position: 0% 0; }
+  100% { background-position: -280% 0; }
 }
 
 .hero-lede {
