@@ -25,7 +25,8 @@ document.getElementById("year").textContent = new Date().getFullYear();
   const LINE_COLOR = "76, 58, 227";
   const SPARK_COLOR = "76, 58, 227";
   const BRANCH_COLOR = "228, 87, 46";
-  const MAX_PULSES = 4;
+  const MAX_PULSES = 3;
+  const GROW_FRAC = 0.55; // fraction of a bolt's life spent striking outward
 
   function sizeCanvas() {
     const rect = hero.getBoundingClientRect();
@@ -51,16 +52,19 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
   function maybeSpawnPulse(edges, now) {
     if (pulses.length >= MAX_PULSES) return;
-    if (Math.random() > 0.025) return;
+    if (Math.random() > 0.02) return;
     if (!edges.length) return;
     const [i, j, dist] = edges[Math.floor(Math.random() * edges.length)];
-    const duration = 1100 + dist * 3.6;
-    pulses.push({ i, j, t: 0, duration, startedAt: now });
+    // Slow, deliberate strike-hold-fade lifecycle rather than a fast pulse.
+    const duration = 1700 + dist * 5.5;
+    pulses.push({ i, j, duration, startedAt: now });
   }
 
-  // Draw a jittering polyline trail behind the pulse head, like a live spark
-  // traveling down a synapse, rather than a smooth glowing dot.
-  function drawSpark(a, b, tHead) {
+  // Draws the whole bolt from node a up to the current growth point
+  // (lengthFrac of the way to b) as one continuous jagged zigzag, like real
+  // lightning striking across the connection, with occasional forked
+  // branches off the main channel.
+  function drawBolt(a, b, lengthFrac, alpha) {
     const dx = b.x - a.x;
     const dy = b.y - a.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
@@ -68,66 +72,76 @@ document.getElementById("year").textContent = new Date().getFullYear();
     const nx = -dy / dist;
     const ny = dx / dist;
 
-    const segments = 7;
-    const tailSpan = 0.22;
-    const points = [];
-    for (let k = 0; k <= segments; k++) {
-      const tt = tHead - (tailSpan * k) / segments;
-      if (tt < 0) break;
-      const px = a.x + dx * tt;
-      const py = a.y + dy * tt;
-      const edgeFade = Math.min(1, tt * 10, (1 - tt) * 10);
-      const amp = 4.5 * (k / segments) * edgeFade;
+    const segments = Math.max(5, Math.min(16, Math.round((dist * lengthFrac) / 16)));
+    const points = [{ x: a.x, y: a.y }];
+    for (let k = 1; k <= segments; k++) {
+      const t = (lengthFrac * k) / segments;
+      const px = a.x + dx * t;
+      const py = a.y + dy * t;
+      const edgeFade = Math.min(1, t * 9, (1 - t) * 9);
+      const amp = 9 * edgeFade;
       const jitter = (Math.random() - 0.5) * 2 * amp;
       points.push({ x: px + nx * jitter, y: py + ny * jitter });
     }
-    if (points.length < 2) return;
 
-    ctx.lineJoin = "round";
-    ctx.lineCap = "round";
+    ctx.lineJoin = "miter";
+    ctx.lineCap = "butt";
 
-    // outer glow pass
-    ctx.strokeStyle = `rgba(${SPARK_COLOR}, 0.28)`;
-    ctx.lineWidth = 5;
+    // outer glow, thin and sharp
+    ctx.strokeStyle = `rgba(${SPARK_COLOR}, ${0.22 * alpha})`;
+    ctx.lineWidth = 3.2;
     ctx.beginPath();
     ctx.moveTo(points[0].x, points[0].y);
     for (let k = 1; k < points.length; k++) ctx.lineTo(points[k].x, points[k].y);
     ctx.stroke();
 
-    // bright core pass, tapering alpha toward the tail
-    for (let k = 0; k < points.length - 1; k++) {
-      const alpha = 0.95 * (1 - k / points.length);
-      ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-      ctx.lineWidth = 1.6 * (1 - k / points.length) + 0.4;
+    // bright white-hot core
+    ctx.strokeStyle = `rgba(255,255,255,${0.92 * alpha})`;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let k = 1; k < points.length; k++) ctx.lineTo(points[k].x, points[k].y);
+    ctx.stroke();
+
+    // one or two branch forks off random points along the bolt, like real
+    // lightning splintering off the main channel
+    const forkCount = points.length > 4 ? (Math.random() < 0.5 ? 1 : 2) : 1;
+    for (let f = 0; f < forkCount; f++) {
+      if (Math.random() > 0.6) continue;
+      const originIdx = 1 + Math.floor(Math.random() * (points.length - 2));
+      const origin = points[originIdx];
+      const baseAngle = Math.atan2(dy, dx) + (Math.random() - 0.5) * 1.4;
+      const len1 = 10 + Math.random() * 14;
+      const bend = baseAngle + (Math.random() - 0.5) * 0.8;
+      const len2 = 8 + Math.random() * 10;
+      const mx = origin.x + Math.cos(baseAngle) * len1;
+      const my = origin.y + Math.sin(baseAngle) * len1;
+      const ex = mx + Math.cos(bend) * len2;
+      const ey = my + Math.sin(bend) * len2;
+      ctx.strokeStyle = `rgba(${BRANCH_COLOR}, ${0.5 * alpha})`;
+      ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(points[k].x, points[k].y);
-      ctx.lineTo(points[k + 1].x, points[k + 1].y);
+      ctx.moveTo(origin.x, origin.y);
+      ctx.lineTo(mx, my);
+      ctx.lineTo(ex, ey);
       ctx.stroke();
     }
 
-    // hot tip flare
-    const tip = points[0];
-    const flare = ctx.createRadialGradient(tip.x, tip.y, 0, tip.x, tip.y, 9);
-    flare.addColorStop(0, "rgba(255,255,255,0.95)");
-    flare.addColorStop(0.4, `rgba(${SPARK_COLOR}, 0.55)`);
-    flare.addColorStop(1, `rgba(${SPARK_COLOR}, 0)`);
-    ctx.fillStyle = flare;
-    ctx.beginPath();
-    ctx.arc(tip.x, tip.y, 9, 0, Math.PI * 2);
-    ctx.fill();
-
-    // occasional tiny branch fork off the tip, like a spark jumping
-    if (Math.random() < 0.18) {
-      const angle = Math.random() * Math.PI * 2;
-      const len = 6 + Math.random() * 8;
-      const fx = tip.x + Math.cos(angle) * len;
-      const fy = tip.y + Math.sin(angle) * len;
-      ctx.strokeStyle = `rgba(${BRANCH_COLOR}, 0.6)`;
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(tip.x, tip.y);
-      ctx.lineTo(fx, fy);
-      ctx.stroke();
+    // small flash at the leading tip while still growing
+    if (lengthFrac < 1) {
+      const tip = points[points.length - 1];
+      for (let r = 0; r < 3; r++) {
+        const angle = Math.random() * Math.PI * 2;
+        const len = 4 + Math.random() * 4;
+        const ex = tip.x + Math.cos(angle) * len;
+        const ey = tip.y + Math.sin(angle) * len;
+        ctx.strokeStyle = `rgba(255,255,255,${0.7 * alpha})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(tip.x, tip.y);
+        ctx.lineTo(ex, ey);
+        ctx.stroke();
+      }
     }
   }
 
@@ -170,11 +184,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
     maybeSpawnPulse(edges, now);
 
-    pulses = pulses.filter((p) => {
-      const elapsed = now - p.startedAt;
-      p.t = elapsed / p.duration;
-      return p.t < 1 && nodes[p.i] && nodes[p.j];
-    });
+    pulses = pulses.filter((p) => (now - p.startedAt) / p.duration < 1 && nodes[p.i] && nodes[p.j]);
 
     pulses.forEach((p) => {
       const a = nodes[p.i];
@@ -184,7 +194,18 @@ document.getElementById("year").textContent = new Date().getFullYear();
       const dy = b.y - a.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
       if (dist > LINK_DIST * 1.4) return;
-      drawSpark(a, b, p.t);
+
+      const progress = (now - p.startedAt) / p.duration;
+      let lengthFrac, alpha;
+      if (progress < GROW_FRAC) {
+        lengthFrac = progress / GROW_FRAC;
+        alpha = 1;
+      } else {
+        lengthFrac = 1;
+        const fadeT = (progress - GROW_FRAC) / (1 - GROW_FRAC);
+        alpha = 1 - fadeT;
+      }
+      drawBolt(a, b, lengthFrac, alpha);
     });
 
     nodes.forEach((n) => {
