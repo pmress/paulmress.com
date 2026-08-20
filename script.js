@@ -25,7 +25,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
   const LINE_COLOR = "76, 58, 227";
   const SPARK_COLOR = "76, 58, 227";
   const BRANCH_COLOR = "228, 87, 46";
-  const MAX_PULSES = 6;
+  const MAX_PULSES = 4;
 
   function sizeCanvas() {
     const rect = hero.getBoundingClientRect();
@@ -51,10 +51,10 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
   function maybeSpawnPulse(edges, now) {
     if (pulses.length >= MAX_PULSES) return;
-    if (Math.random() > 0.045) return;
+    if (Math.random() > 0.025) return;
     if (!edges.length) return;
     const [i, j, dist] = edges[Math.floor(Math.random() * edges.length)];
-    const duration = 480 + dist * 1.8;
+    const duration = 1100 + dist * 3.6;
     pulses.push({ i, j, t: 0, duration, startedAt: now });
   }
 
