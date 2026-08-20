@@ -158,12 +158,8 @@ document.querySelectorAll(".timeline-item").forEach((el, i) => {
 
 // ---------------------------------------------------------------
 // Contact form -> Web3Forms
-//
-// To activate: sign up (free) at https://web3forms.com with
-// pmress@gmail.com, grab the Access Key it emails you, and paste
-// it below in place of "" so submissions land in your inbox.
 // ---------------------------------------------------------------
-const WEB3FORMS_ACCESS_KEY = "";
+const WEB3FORMS_ACCESS_KEY = "de639a7b-3f57-4f6f-b113-dfadd5346e5d";
 
 const form = document.getElementById("contact-form");
 const status = document.getElementById("form-status");
