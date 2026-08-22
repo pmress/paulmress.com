@@ -343,4 +343,6 @@ code.ds-code {
   .ds-toc::-webkit-scrollbar { display: none; }
 
   .ds-toc a { flex-shrink: 0; }
+
+  .ds-swatch-grid { grid-template-columns: repeat(2, 1fr); }
 }
