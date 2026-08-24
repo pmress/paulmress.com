@@ -148,7 +148,8 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
-  .river-glint ellipse { animation: none; }
+  .timeline-pulse { animation: none; opacity: 0.5; top: 50%; }
+  .frontier-node-glow, .frontier-node-core { animation: none; }
   .hero h1 {
     animation: none;
     background-image: none;
@@ -896,17 +897,10 @@ section { padding: var(--space-11) 0; }
   margin-right: auto;
 }
 
-/* ---------- Timeline background (subtle rising ridgeline) ---------- */
+/* ---------- Timeline background: node-network spine ---------- */
 .timeline-section {
   position: relative;
   overflow: hidden;
-}
-
-.timeline-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
 }
 
 .timeline-section .wrap {
@@ -914,26 +908,51 @@ section { padding: var(--space-11) 0; }
   z-index: 1;
 }
 
-/* Rapids/brisk water: broad torn foam patches, clipped to the river shape */
-.river-glint ellipse {
-  fill: rgba(255,255,255,0.8);
-  filter: url(#glintBlur);
-  animation: glint-fade ease-in-out infinite;
+/* A quiet nod to the hero canvas's node network: a single connecting
+   line down the timeline with small dots drifting along it. */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom,
+    rgba(76,58,227,0) 0%,
+    rgba(76,58,227,0.32) 6%,
+    rgba(76,58,227,0.32) 94%,
+    rgba(76,58,227,0) 100%);
+  z-index: 0;
+  pointer-events: none;
 }
-.river-glint ellipse:nth-of-type(3n)   { animation-delay: -1.4s; }
-.river-glint ellipse:nth-of-type(3n+1) { animation-delay: -2.8s; }
-.river-glint ellipse:nth-of-type(3n+2) { animation-delay: -0.6s; }
 
-.river-glint--fast  ellipse { animation-duration: 4s;   opacity: 0.4; }
-.river-glint--calm  ellipse { animation-duration: 6.5s; opacity: 0.3; }
-.river-glint--delta ellipse { animation-duration: 5.5s; opacity: 0.35; }
+.timeline-pulse {
+  position: absolute;
+  left: 50%;
+  top: -4%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px 2px rgba(76,58,227,0.55), 0 0 2px rgba(76,58,227,0.9);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  animation: timeline-flow 8s linear infinite;
+}
+.timeline-pulse:nth-child(2) { animation-delay: -2.7s; }
+.timeline-pulse:nth-child(3) { animation-delay: -5.4s; }
 
-@keyframes glint-fade {
-  0%, 100% { opacity: 0.15; }
-  50%      { opacity: 0.85; }
+@keyframes timeline-flow {
+  0%   { top: -4%; opacity: 0; }
+  8%   { opacity: 0.85; }
+  92%  { opacity: 0.85; }
+  100% { top: 100%; opacity: 0; }
 }
 
-/* ---------- Frontier (closing illustration + CTA) ---------- */
+/* ---------- Frontier (closing CTA) ---------- */
 .frontier {
   position: relative;
   background: var(--color-dark);
@@ -960,13 +979,36 @@ section { padding: var(--space-11) 0; }
   text-shadow: 0 1px 3px rgba(11, 24, 48, 0.9), 0 2px 18px rgba(11, 24, 48, 0.5);
 }
 
-.sun-mobile { display: none; }
-
 .frontier .section-lede {
   color: rgba(243, 241, 234, 0.7);
   text-shadow: 0 2px 14px rgba(15, 25, 40, 0.4);
   margin-left: auto;
   margin-right: auto;
+}
+
+/* A single unconnected node, pulsing quietly: chapter ten, unwritten. */
+.frontier-node-glow {
+  position: absolute;
+  left: 50%; top: 42%;
+  transform: translate(-50%, -50%);
+  width: 440px; height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(76,58,227,0.32) 0%, rgba(76,58,227,0.10) 45%, rgba(76,58,227,0) 72%);
+  animation: frontier-pulse 4.5s ease-in-out infinite;
+}
+.frontier-node-core {
+  position: absolute;
+  left: 50%; top: 14%;
+  transform: translate(-50%, -50%);
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent-2);
+  box-shadow: 0 0 14px 3px rgba(228, 87, 46, 0.5);
+  animation: frontier-pulse 4.5s ease-in-out infinite;
+}
+@keyframes frontier-pulse {
+  0%, 100% { opacity: 0.65; transform: translate(-50%, -50%) scale(0.94); }
+  50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.06); }
 }
 
 /* ---------- Footer ---------- */
@@ -1045,6 +1087,8 @@ section { padding: var(--space-11) 0; }
   .timeline-year { font-size: 2rem; }
   .timeline-card { padding: var(--space-5); }
 
-  .sun-desktop { display: none; }
-  .sun-mobile { display: block; }
+  .timeline::before { left: 18px; transform: none; }
+  .timeline-pulse { left: 18px; margin-left: -4px; }
+
+  .frontier-node-glow { width: 320px; height: 320px; }
 }
