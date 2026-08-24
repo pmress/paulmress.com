@@ -148,7 +148,7 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
-  .timeline-pulse { animation: none; opacity: 0.5; top: 50%; }
+  .timeline-pulse, .steps-pulse { animation: none; opacity: 0.5; top: 50%; }
   .frontier-node-glow, .frontier-node-core { animation: none; }
   .hero h1 {
     animation: none;
@@ -632,7 +632,7 @@ section { padding: var(--space-11) 0; }
 
 .explore-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-5);
 }
 
@@ -706,7 +706,7 @@ section { padding: var(--space-11) 0; }
   box-shadow: 0 0 0 1px var(--color-accent);
 }
 
-/* Story-chapter specific parts */
+/* Small mono eyebrow label inside a card (story chapters, before/after) */
 .chapter-range {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -715,6 +715,91 @@ section { padding: var(--space-11) 0; }
   letter-spacing: 0.03em;
   margin-bottom: var(--space-1);
 }
+
+/* ---------- Compare grid (2-col, e.g. Before/After on /system/) ---------- */
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+
+/* ---------- Steps (numbered process list w/ flowing spine, e.g. /how-its-built/) ---------- */
+.steps {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+  margin-top: var(--space-2);
+}
+
+/* Spine + pulse reuse the exact visual language of .timeline, just running
+   through the 44px icon column instead of dead-center of an alternating layout. */
+.steps::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom,
+    rgba(76,58,227,0) 0%,
+    rgba(76,58,227,0.32) 6%,
+    rgba(76,58,227,0.32) 94%,
+    rgba(76,58,227,0) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.steps-pulse {
+  position: absolute;
+  left: 22px;
+  top: -4%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px 2px rgba(76,58,227,0.55), 0 0 2px rgba(76,58,227,0.9);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  animation: timeline-flow 6s linear infinite;
+}
+.steps-pulse:nth-child(2) { animation-delay: -2s; }
+.steps-pulse:nth-child(3) { animation-delay: -4s; }
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+
+.step-icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  border: 3px solid var(--color-bg);
+  box-shadow: 0 3px 10px rgba(20, 19, 27, 0.2);
+  flex-shrink: 0;
+}
+
+.step-icon svg { width: 22px; height: 22px; }
+
+.step h3 { font-size: var(--text-xl); margin-bottom: var(--space-2); }
+
+.step p { color: var(--color-ink-soft); font-size: var(--text-base); margin: 0; max-width: 620px; }
+
+.step p a { color: var(--color-accent); font-weight: 600; }
 
 /* ---------- Timeline (alternating milestones, e.g. /story/) ---------- */
 .timeline {
@@ -997,6 +1082,17 @@ section { padding: var(--space-11) 0; }
   margin-right: auto;
 }
 
+/* Reusable node-network background for a plain intro section (e.g. /how-its-built/) */
+.intro-network {
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-network .wrap {
+  position: relative;
+  z-index: 1;
+}
+
 /* ---------- Timeline background: node-network spine ---------- */
 .timeline-section {
   position: relative;
@@ -1141,6 +1237,7 @@ section { padding: var(--space-11) 0; }
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .explore-grid { grid-template-columns: 1fr; }
+  .compare-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 860px) {

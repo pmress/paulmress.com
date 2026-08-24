@@ -155,32 +155,38 @@ function createNodeNetwork(canvas, boundsEl, opts) {
   return { start, stop };
 }
 
-(function initHeroNetwork() {
-  const canvas = document.getElementById("hero-canvas");
-  if (!canvas) return;
-  const hero = canvas.closest(".hero");
+(function initNetworkCanvases() {
+  // Generalized so any section can opt into the same background motif by
+  // giving its canvas the .hero-canvas class — not just the homepage hero.
+  const canvases = document.querySelectorAll(".hero-canvas");
+  if (!canvases.length) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const net = createNodeNetwork(canvas, hero, {
-    linkDist: 140,
-    density: 16000,
-    minCount: 18,
-    maxCount: 56,
-    speed: 0.25,
-  });
+  canvases.forEach((canvas) => {
+    const bounds = canvas.parentElement;
+    if (!bounds) return;
 
-  let resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(net.start, 150);
-  });
+    const net = createNodeNetwork(canvas, bounds, {
+      linkDist: 140,
+      density: 16000,
+      minCount: 18,
+      maxCount: 56,
+      speed: 0.25,
+    });
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) net.stop();
-    else if (!reduceMotion) net.start();
-  });
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(net.start, 150);
+    });
 
-  net.start();
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) net.stop();
+      else if (!reduceMotion) net.start();
+    });
+
+    net.start();
+  });
 })();
 
 // ---------------------------------------------------------------
