@@ -348,7 +348,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Stat tile</p>
+        <p class="ds-group-title">Stat tile &middot; .stats-grid (3-up, used on <a href="/">the homepage</a> and <a href="/how-its-built/">/how-its-built/</a>)</p>
         <div class="ds-frame">
           <div class="stat ds-stat-demo" style="border-radius:var(--radius);">
             <p class="stat-number">4.0</p>
@@ -473,13 +473,73 @@
       </div>
 
       <div class="ds-group">
+        <p class="ds-group-title">Compare grid &middot; .compare-grid (used on <a href="/how-its-built/">/how-its-built/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A plain 2-column grid for setting two <code class="ds-code">.card</code>s side by side &mdash;
+          deliberately kept separate from <code class="ds-code">.explore-grid</code> (3 columns, for promo
+          links) rather than overloading one class for two different column counts. The &ldquo;after&rdquo;
+          side is just a base <code class="ds-code">.card</code> with <code class="ds-code">.card--current</code>
+          added, the same modifier the active story chapter uses.
+        </p>
+        <div class="ds-frame">
+          <div class="compare-grid">
+            <article class="card">
+              <p class="chapter-range">Before</p>
+              <h3>Base .card</h3>
+              <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">No modifier &mdash; just the shared card primitive.</p>
+            </article>
+            <article class="card card--current">
+              <p class="chapter-range">After</p>
+              <h3>.card--current</h3>
+              <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">Same accent outline used to mark the active story chapter.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Process steps &middot; .steps (used on <a href="/how-its-built/">/how-its-built/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A single-column relative of the timeline above: the same gradient spine
+          (<code class="ds-code">.steps::before</code>) and the same <code class="ds-code">timeline-flow</code>
+          keyframes driving three pulses (<code class="ds-code">.steps-pulse</code>), just run through the
+          44px icon column instead of the center of an alternating layout. Markers are solid
+          <code class="ds-code">var(--color-accent)</code> circles with a <code class="ds-code">var(--color-bg)</code>
+          border, so they read as beads threaded on the line rather than icons floating beside it.
+        </p>
+        <div class="ds-frame">
+          <div class="steps" style="margin-top:0;">
+            <span class="steps-pulse" aria-hidden="true"></span>
+            <div class="step">
+              <span class="step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M15 2v5h5"/><path d="M8 12h8M8 16h5"/></svg>
+              </span>
+              <div>
+                <h3>Step one</h3>
+                <p>Same 44px icon-circle token as .promo-icon / .value-icon, just circular instead of rounded-square.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/></svg>
+              </span>
+              <div>
+                <h3>Step two</h3>
+                <p>No per-step modifier needed &mdash; add or remove .step elements and the spine sizes to fit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
         <p class="ds-group-title">Site navigation &middot; hamburger menu</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Every page shares one nav: a fixed logo, a <code class="ds-code">.nav-toggle</code>
           hamburger that morphs into an &times; on open, and a <code class="ds-code">.nav-panel</code>
-          that slides in from the right with just two links, Story and Design System. The panel
-          runs the node network canvas below as its background &mdash; only while it's open, so it
-          costs nothing the rest of the time.
+          that slides in from the right with three links &mdash; Story, How It&rsquo;s Built, Design
+          System. The panel runs the node network canvas below as its background &mdash; only while
+          it's open, so it costs nothing the rest of the time.
         </p>
         <div class="ds-frame">
           <div class="ds-row" style="align-items:flex-start; gap:var(--space-8); flex-wrap:wrap;">
@@ -498,7 +558,8 @@
                   <p class="nav-panel-kicker">Menu</p>
                   <nav class="nav-panel-links" aria-label="Pattern preview">
                     <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">01</span>Story</a>
-                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">02</span>Design System</a>
+                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">02</span>How It&rsquo;s Built</a>
+                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">03</span>Design System</a>
                   </nav>
                 </div>
               </div>
@@ -513,7 +574,10 @@
           One factory function, <code class="ds-code">createNodeNetwork(canvas, boundsEl, opts)</code>
           in <code class="ds-code">script.js</code>, draws a field of drifting dots that link with a
           faint line whenever two fall within range. It's the one JS-driven visual motif on the
-          site &mdash; reused rather than reinvented per section:
+          site &mdash; reused rather than reinvented per section. <code class="ds-code">initNetworkCanvases()</code>
+          finds every <code class="ds-code">.hero-canvas</code> on the page and starts one automatically,
+          so any section can opt into the same background just by giving its canvas that class &mdash;
+          no per-page JS required:
         </p>
         <div class="ds-frame">
           <div class="ds-network-demo-frame">
@@ -523,6 +587,7 @@
         <div class="ds-row" style="margin-top:var(--space-5); gap:var(--space-7); flex-wrap:wrap; font-family:var(--font-mono); font-size:var(--text-2xs); color:var(--color-ink-soft);">
           <span><strong style="color:var(--color-ink);">Hero background</strong> &middot; linkDist 140 &middot; density 16000 &middot; speed 0.25 &middot; runs continuously</span>
           <span><strong style="color:var(--color-ink);">Nav panel background</strong> &middot; linkDist 110 &middot; density 9000 &middot; speed 0.18 &middot; runs only while open</span>
+          <span><strong style="color:var(--color-ink);">Intro background</strong> &middot; same defaults as the hero &middot; used on <a href="/how-its-built/" style="color:var(--color-accent);">/how-its-built/</a></span>
         </div>
       </div>
     </div>
