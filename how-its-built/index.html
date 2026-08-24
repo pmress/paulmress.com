@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It's Built | Dr. Paul Ress, DBA</title>
+<meta name="description" content="paulmress.com used to run on a GoDaddy website and CMS (SaaS). Here's what replaced it: content briefs, AI, a design system, and a real deploy pipeline &mdash; explained end to end.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com/how-its-built/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="How It's Built | Dr. Paul Ress, DBA">
+<meta property="og:description" content="paulmress.com used to run on a GoDaddy website and CMS (SaaS). Here's what replaced it: content briefs, AI, a design system, and a real deploy pipeline.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paulmress.com/how-its-built/">
+<meta property="og:site_name" content="Paul Ress">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paulmress.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How It's Built | Dr. Paul Ress, DBA">
+<meta name="twitter:description" content="paulmress.com used to run on a GoDaddy website and CMS (SaaS). Here's what replaced it &mdash; explained end to end.">
+<meta name="twitter:image" content="https://paulmress.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Favicon -->
+<link rel="icon" href="../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "How paulmress.com Is Built",
+  "about": {
+    "@type": "Person",
+    "name": "Dr. Paul Ress",
+    "honorificSuffix": "DBA",
+    "jobTitle": "Director, Marketing AI Strategy, Enablement & Governance",
+    "url": "https://paulmress.com/",
+    "sameAs": ["https://www.linkedin.com/in/paulress"]
+  }
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true">
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/story/" class="nav-panel-link"><span class="nav-panel-num">01</span>Story</a>
+    <a href="/how-its-built/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">02</span>How It&rsquo;s Built</a>
+    <a href="/design-system/" class="nav-panel-link"><span class="nav-panel-num">03</span>Design System</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- INTRO -->
+  <section class="about-intro intro-network">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="kicker" data-reveal>How It&rsquo;s Built</p>
+      <h1 class="about-title" data-reveal>This domain used to run on a GoDaddy website and CMS.</h1>
+      <p class="section-lede" data-reveal>
+        paulmress.com used to be hosted on GoDaddy&rsquo;s Website Builder &mdash; a SaaS website-and-CMS product
+        with a drag-and-drop editor, no version history, and no way to make a change without editing the
+        live site directly. What replaced it is a system: a content brief becomes a prompt, a prompt becomes
+        a governed, version-controlled page, and a change ships live in about a minute. This is that system,
+        explained.
+      </p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats" data-reveal>
+    <div class="wrap stats-grid">
+      <div class="stat">
+        <p class="stat-number">~1 min</p>
+        <p class="stat-label">from a written brief to a live, deployed page</p>
+      </div>
+      <div class="stat">
+        <p class="stat-number">100%</p>
+        <p class="stat-label">of changes tracked with a real commit history</p>
+      </div>
+      <div class="stat">
+        <p class="stat-number">$0</p>
+        <p class="stat-label">in CMS or website-builder license fees</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="before-after">
+    <div class="wrap">
+      <p class="kicker" data-reveal>Before &amp; After</p>
+      <h2 class="section-title" data-reveal>What actually changed</h2>
+      <p class="section-lede" data-reveal>Not just a redesign &mdash; a different platform, and a different way of making changes at all.</p>
+
+      <div class="compare-grid">
+        <div class="card" data-reveal>
+          <p class="chapter-range">Before</p>
+          <h3>GoDaddy Website &amp; CMS (SaaS)</h3>
+          <p>A hosted website builder with a drag-and-drop editor. Every change was made by hand, directly on
+            the live site &mdash; no version history, no design system, no record of what changed or why.
+            Consistency depended entirely on remembering what the last version looked like.</p>
+        </div>
+        <div class="card card--current" data-reveal>
+          <p class="chapter-range">After</p>
+          <h3>A system I run</h3>
+          <p>A content brief in Google Docs becomes a prompt. AI writes the page. A design system decides what&rsquo;s
+            allowed. GitHub records every change with a real commit history. GitHub Pages deploys it automatically
+            &mdash; live in about a minute, every time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW A CHANGE HAPPENS -->
+  <section class="how-it-works">
+    <div class="wrap">
+      <p class="kicker" data-reveal>How A Change Happens</p>
+      <h2 class="section-title" data-reveal>Five steps, every time</h2>
+      <p class="section-lede" data-reveal>The same process for a typo fix as for a brand-new page &mdash; that&rsquo;s the point.</p>
+
+      <div class="steps">
+        <span class="steps-pulse" aria-hidden="true"></span>
+        <span class="steps-pulse" aria-hidden="true"></span>
+        <span class="steps-pulse" aria-hidden="true"></span>
+
+        <div class="step" data-reveal>
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M15 2v5h5"/><path d="M8 12h8M8 16h5"/></svg>
+          </span>
+          <div>
+            <h3>Write the brief</h3>
+            <p>A content brief lives in Google Docs &mdash; what the page should say, how it&rsquo;s structured, what&rsquo;s changing and why.</p>
+          </div>
+        </div>
+
+        <div class="step" data-reveal>
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2z"/></svg>
+          </span>
+          <div>
+            <h3>Hand it to AI</h3>
+            <p>The brief becomes a prompt. AI writes the actual HTML, CSS, and copy &mdash; not a mockup, the real page.</p>
+          </div>
+        </div>
+
+        <div class="step" data-reveal>
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </span>
+          <div>
+            <h3>The design system governs it</h3>
+            <p>Every new component has to match the tokens and patterns already documented on the <a href="/design-system/">Design System</a> page &mdash; nothing gets built from scratch.</p>
+          </div>
+        </div>
+
+        <div class="step" data-reveal>
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/></svg>
+          </span>
+          <div>
+            <h3>Committed to GitHub</h3>
+            <p>The change ships as a real commit with a real message &mdash; a permanent, reviewable history. Nothing is ever silently overwritten.</p>
+          </div>
+        </div>
+
+        <div class="step" data-reveal>
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6z"/></svg>
+          </span>
+          <div>
+            <h3>Live in about a minute</h3>
+            <p>GitHub Pages rebuilds and deploys automatically. No IT ticket, no agency, no waiting on anyone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section class="values">
+    <div class="wrap">
+      <p class="kicker" data-reveal>Why It Matters</p>
+      <h2 class="section-title" data-reveal>This isn&rsquo;t a chatbot demo</h2>
+      <p class="section-lede" data-reveal>It&rsquo;s a small, production system with the same constraints a marketing org has to solve for at scale.</p>
+
+      <div class="value-grid">
+        <article class="card card--value" data-reveal>
+          <span class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          </span>
+          <h3>Governance you can point to</h3>
+          <p>A design system plus a full commit history isn&rsquo;t paperwork &mdash; it&rsquo;s how AI-driven changes stay consistent and reversible instead of ad hoc.</p>
+        </article>
+        <article class="card card--value" data-reveal>
+          <span class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+          </span>
+          <h3>Proven on myself first</h3>
+          <p>Before asking a team to trust AI with their workflows, I built and shipped a real production system with one, end to end.</p>
+        </article>
+        <article class="card card--value" data-reveal>
+          <span class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><rect x="10" y="10" width="4" height="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+          </span>
+          <h3>What AI-fluent actually looks like</h3>
+          <p>A live system with real constraints: brand consistency, a version history, and a deploy pipeline that just works.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta" data-reveal>
+    <div class="wrap">
+      <h2 class="section-title">See the design system that governs it</h2>
+      <p class="section-lede">Every token, component, and pattern this site runs on &mdash; documented, and still growing.</p>
+      <a class="btn btn-primary" href="/design-system/">View the Design System</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>&copy; <span id="year"></span> Paul Ress. Built by hand, with AI as the pair programmer.</p>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
