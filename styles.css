@@ -148,7 +148,7 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
-  .river-flow { animation: none; }
+  .river-glint ellipse { animation: none; }
   .hero h1 {
     animation: none;
     background-image: none;
@@ -914,13 +914,23 @@ section { padding: var(--space-11) 0; }
   z-index: 1;
 }
 
-.river-flow {
-  animation: river-flow-move 9s linear infinite;
+/* Rapids/brisk water: broad torn foam patches, clipped to the river shape */
+.river-glint ellipse {
+  fill: rgba(255,255,255,0.8);
+  filter: url(#glintBlur);
+  animation: glint-fade ease-in-out infinite;
 }
+.river-glint ellipse:nth-of-type(3n)   { animation-delay: -1.4s; }
+.river-glint ellipse:nth-of-type(3n+1) { animation-delay: -2.8s; }
+.river-glint ellipse:nth-of-type(3n+2) { animation-delay: -0.6s; }
 
-@keyframes river-flow-move {
-  from { stroke-dashoffset: 0; }
-  to { stroke-dashoffset: -90; }
+.river-glint--fast  ellipse { animation-duration: 4s;   opacity: 0.4; }
+.river-glint--calm  ellipse { animation-duration: 6.5s; opacity: 0.3; }
+.river-glint--delta ellipse { animation-duration: 5.5s; opacity: 0.35; }
+
+@keyframes glint-fade {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.85; }
 }
 
 /* ---------- Frontier (closing illustration + CTA) ---------- */
@@ -941,10 +951,20 @@ section { padding: var(--space-11) 0; }
 
 .frontier .wrap { position: relative; z-index: 1; }
 
+.frontier .kicker-dark,
+.frontier .section-title {
+  text-shadow: 0 2px 16px rgba(15, 25, 40, 0.45);
+}
+
+.frontier .kicker-dark {
+  text-shadow: 0 1px 3px rgba(11, 24, 48, 0.9), 0 2px 18px rgba(11, 24, 48, 0.5);
+}
+
 .sun-mobile { display: none; }
 
 .frontier .section-lede {
   color: rgba(243, 241, 234, 0.7);
+  text-shadow: 0 2px 14px rgba(15, 25, 40, 0.4);
   margin-left: auto;
   margin-right: auto;
 }
@@ -1025,7 +1045,6 @@ section { padding: var(--space-11) 0; }
   .timeline-year { font-size: 2rem; }
   .timeline-card { padding: var(--space-5); }
 
-  .frontier-figure { display: none; }
   .sun-desktop { display: none; }
   .sun-mobile { display: block; }
 }
