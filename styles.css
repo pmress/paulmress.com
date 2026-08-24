@@ -148,6 +148,7 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
+  .river-flow { animation: none; }
   .hero h1 {
     animation: none;
     background-image: none;
@@ -614,21 +615,10 @@ section { padding: var(--space-11) 0; }
   margin-bottom: var(--space-1);
 }
 
-/* ---------- Timeline (alternating milestones, e.g. /about/) ---------- */
+/* ---------- Timeline (alternating milestones, e.g. /story/) ---------- */
 .timeline {
   position: relative;
   margin-top: var(--space-9);
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: var(--space-2);
-  bottom: var(--space-2);
-  width: 2px;
-  background: var(--color-line);
-  transform: translateX(-50%);
 }
 
 .timeline-item {
@@ -646,12 +636,51 @@ section { padding: var(--space-11) 0; }
   left: 50%;
   top: var(--space-9);
   transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  background: var(--color-bg);
-  border: 2px solid var(--color-accent);
-  z-index: 1;
+  background: var(--color-ink);
+  border: 3px solid var(--color-bg);
+  color: #fff;
+  z-index: 2;
+  box-shadow: 0 3px 10px rgba(20, 19, 27, 0.25);
+  transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+}
+
+.timeline-marker svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+.timeline-item:hover .timeline-marker {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+/* River-journey landmark colors */
+.marker--gold  { background: #F2A93B; }
+.marker--teal  { background: #2F97A6; }
+.marker--coral { background: #E85C41; }
+.marker--navy  { background: #1B3A5C; }
+.marker--brand { background: var(--color-accent); }
+
+.timeline-item--current .timeline-marker {
+  box-shadow: 0 0 0 6px var(--color-accent-soft), 0 3px 10px rgba(20, 19, 27, 0.25);
+}
+
+.timeline-item--current .timeline-marker::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent-2);
+  border: 2px solid var(--color-bg);
 }
 
 .timeline-year-wrap {
@@ -675,6 +704,32 @@ section { padding: var(--space-11) 0; }
 .timeline-card {
   flex: 1;
   padding: var(--space-6);
+}
+
+.timeline-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.timeline-chapter {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.timeline-duration {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.03em;
+  color: var(--color-ink-soft);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  padding: 1px var(--space-2);
 }
 
 .timeline-card h3 {
@@ -841,6 +896,59 @@ section { padding: var(--space-11) 0; }
   margin-right: auto;
 }
 
+/* ---------- Timeline background (subtle rising ridgeline) ---------- */
+.timeline-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.timeline-section .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.river-flow {
+  animation: river-flow-move 9s linear infinite;
+}
+
+@keyframes river-flow-move {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -90; }
+}
+
+/* ---------- Frontier (closing illustration + CTA) ---------- */
+.frontier {
+  position: relative;
+  background: var(--color-dark);
+  color: var(--color-dark-ink);
+  overflow: hidden;
+  text-align: center;
+}
+
+.frontier-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.frontier .wrap { position: relative; z-index: 1; }
+
+.sun-mobile { display: none; }
+
+.frontier .section-lede {
+  color: rgba(243, 241, 234, 0.7);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   padding: var(--space-7) 0;
@@ -901,7 +1009,6 @@ section { padding: var(--space-11) 0; }
   .site-nav::-webkit-scrollbar { display: none; }
   .site-nav a { flex-shrink: 0; }
 
-  .timeline::before { left: 18px; }
   .timeline-item,
   .timeline-item:nth-child(even) {
     flex-direction: column;
@@ -917,4 +1024,8 @@ section { padding: var(--space-11) 0; }
   }
   .timeline-year { font-size: 2rem; }
   .timeline-card { padding: var(--space-5); }
+
+  .frontier-figure { display: none; }
+  .sun-desktop { display: none; }
+  .sun-mobile { display: block; }
 }
