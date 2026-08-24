@@ -218,6 +218,13 @@ img { max-width: 100%; display: block; }
   transform-origin: left;
 }
 
+.site-nav a[aria-current="page"] { color: var(--color-ink); }
+
+.site-nav a[aria-current="page"] span::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
@@ -607,6 +614,80 @@ section { padding: var(--space-11) 0; }
   margin-bottom: var(--space-1);
 }
 
+/* ---------- Timeline (alternating milestones, e.g. /about/) ---------- */
+.timeline {
+  position: relative;
+  margin-top: var(--space-9);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: var(--space-2);
+  bottom: var(--space-2);
+  width: 2px;
+  background: var(--color-line);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  padding: var(--space-7) 0;
+}
+
+.timeline-item:nth-child(even) { flex-direction: row-reverse; }
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  top: var(--space-9);
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 2px solid var(--color-accent);
+  z-index: 1;
+}
+
+.timeline-year-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.timeline-item:nth-child(odd) .timeline-year-wrap { justify-content: flex-end; text-align: right; }
+.timeline-item:nth-child(even) .timeline-year-wrap { justify-content: flex-start; text-align: left; }
+
+.timeline-year {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.9;
+}
+
+.timeline-card {
+  flex: 1;
+  padding: var(--space-6);
+}
+
+.timeline-card h3 {
+  font-size: var(--text-2xl);
+  margin: var(--space-3) 0 var(--space-3);
+}
+
+.timeline-card p {
+  color: var(--color-ink-soft);
+  font-size: var(--text-base);
+  margin: 0;
+}
+
 /* ---------- Values (rule of three) ---------- */
 .value-grid {
   display: grid;
@@ -745,6 +826,21 @@ section { padding: var(--space-11) 0; }
 .form-status.is-success { color: #7FE0A6; }
 .form-status.is-error { color: #F19A9A; }
 
+/* ---------- About page ---------- */
+.about-intro { padding-bottom: var(--space-9); }
+
+.about-title {
+  font-size: var(--text-hero);
+  max-width: 780px;
+}
+
+.about-cta { text-align: center; }
+
+.about-cta .section-lede {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   padding: var(--space-7) 0;
@@ -784,5 +880,41 @@ section { padding: var(--space-11) 0; }
   section { padding: var(--space-10) 0; }
   .value-grid { grid-template-columns: 1fr; }
   .connect-grid { grid-template-columns: 1fr; }
-  .site-nav { gap: var(--space-4); }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+  }
+
+  .site-nav {
+    gap: var(--space-4);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav a { flex-shrink: 0; }
+
+  .timeline::before { left: 18px; }
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+    padding-left: var(--space-9);
+  }
+  .timeline-marker { left: 18px; top: var(--space-6); }
+  .timeline-item:nth-child(odd) .timeline-year-wrap,
+  .timeline-item:nth-child(even) .timeline-year-wrap {
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .timeline-year { font-size: 2rem; }
+  .timeline-card { padding: var(--space-5); }
 }
