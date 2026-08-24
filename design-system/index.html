@@ -426,6 +426,105 @@
           <p class="kicker kicker-dark" style="margin-bottom:0;">03 &middot; Connect</p>
         </div>
       </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Timeline &middot; .timeline (alternating milestones, used on <a href="/story/">/story/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The spine connecting each chapter is a thin gradient line
+          (<code class="ds-code">.timeline::before</code>) with three small pulses
+          (<code class="ds-code">.timeline-pulse</code>) animating down it on an 8s loop &mdash;
+          a subtle nod to the same node-network language as the hero and nav, without
+          the weight of a full illustration. The final chapter hands off into
+          <code class="ds-code">.frontier</code>, a dark closing section with its own
+          soft pulsing glow (<code class="ds-code">.frontier-node-glow</code> /
+          <code class="ds-code">.frontier-node-core</code>).
+        </p>
+        <div class="ds-frame">
+          <div class="timeline" style="margin-top:0;">
+            <article class="timeline-item is-visible">
+              <div class="timeline-year-wrap"><span class="timeline-year">2005&ndash;10</span></div>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <div class="timeline-card card">
+                <span class="pill">University of Louisville</span>
+                <h3>A degree earned the hard way</h3>
+                <p>Odd rows sit left of the center line, year on the left.</p>
+              </div>
+            </article>
+            <article class="timeline-item is-visible">
+              <div class="timeline-year-wrap"><span class="timeline-year">2014&ndash;16</span></div>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <div class="timeline-card card">
+                <span class="pill">The Learning House</span>
+                <h3>Even rows flip via nth-child(even)</h3>
+                <p>Same markup order, no per-item modifier class needed for the alternation.</p>
+              </div>
+            </article>
+            <article class="timeline-item is-visible">
+              <div class="timeline-year-wrap"><span class="timeline-year">2026&ndash;</span></div>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <div class="timeline-card card card--current">
+                <span class="pill">Marketing AI</span>
+                <h3>.card--current marks the active chapter</h3>
+                <p>Same modifier as the story cards &mdash; applied to the inner .timeline-card only, never the outer &lt;article&gt;.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Site navigation &middot; hamburger menu</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Every page shares one nav: a fixed logo, a <code class="ds-code">.nav-toggle</code>
+          hamburger that morphs into an &times; on open, and a <code class="ds-code">.nav-panel</code>
+          that slides in from the right with just two links, Story and Design System. The panel
+          runs the node network canvas below as its background &mdash; only while it's open, so it
+          costs nothing the rest of the time.
+        </p>
+        <div class="ds-frame">
+          <div class="ds-row" style="align-items:flex-start; gap:var(--space-8); flex-wrap:wrap;">
+            <div>
+              <p class="ds-group-title" style="margin-bottom:var(--space-3);">.nav-toggle &middot; closed / open</p>
+              <div class="ds-row" style="gap:var(--space-6);">
+                <button class="nav-toggle" type="button" aria-expanded="false" tabindex="-1" aria-hidden="true"><span></span><span></span><span></span></button>
+                <button class="nav-toggle" type="button" aria-expanded="true" tabindex="-1" aria-hidden="true"><span></span><span></span><span></span></button>
+              </div>
+            </div>
+            <div style="flex:1; min-width:280px;">
+              <p class="ds-group-title" style="margin-bottom:var(--space-3);">.nav-panel &middot; boxed preview</p>
+              <div class="ds-nav-panel-frame">
+                <div class="nav-panel is-open" aria-hidden="true">
+                  <canvas class="nav-panel-canvas" id="ds-nav-canvas" aria-hidden="true"></canvas>
+                  <p class="nav-panel-kicker">Menu</p>
+                  <nav class="nav-panel-links" aria-label="Pattern preview">
+                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">01</span>Story</a>
+                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">02</span>Design System</a>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group" id="node-network">
+        <p class="ds-group-title">Node network canvas &middot; shared pattern</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          One factory function, <code class="ds-code">createNodeNetwork(canvas, boundsEl, opts)</code>
+          in <code class="ds-code">script.js</code>, draws a field of drifting dots that link with a
+          faint line whenever two fall within range. It's the one JS-driven visual motif on the
+          site &mdash; reused rather than reinvented per section:
+        </p>
+        <div class="ds-frame">
+          <div class="ds-network-demo-frame">
+            <canvas id="ds-network-demo" aria-hidden="true"></canvas>
+          </div>
+        </div>
+        <div class="ds-row" style="margin-top:var(--space-5); gap:var(--space-7); flex-wrap:wrap; font-family:var(--font-mono); font-size:var(--text-2xs); color:var(--color-ink-soft);">
+          <span><strong style="color:var(--color-ink);">Hero background</strong> &middot; linkDist 140 &middot; density 16000 &middot; speed 0.25 &middot; runs continuously</span>
+          <span><strong style="color:var(--color-ink);">Nav panel background</strong> &middot; linkDist 110 &middot; density 9000 &middot; speed 0.18 &middot; runs only while open</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -473,33 +572,34 @@
 <footer class="site-footer">
   <div class="wrap">
     <p>&copy; <span id="ds-year"></span> Paul Ress. Design system built and maintained in collaboration with AI.</p>
-    <p class="footer-links"><a href="/">&larr; Back to paulmress.com</a></p>
   </div>
 </footer>
 
 <script>
   document.getElementById("ds-year").textContent = new Date().getFullYear();
 
-  // Same plain floating-node network as the homepage hero, scoped to this
-  // page's intro banner for visual continuity with the live site.
-  (function initDsNetwork() {
-    const canvas = document.getElementById("ds-canvas");
-    if (!canvas) return;
+  // Local copy of the same createNodeNetwork(canvas, boundsEl, opts) factory
+  // in ../script.js, so this page can demo the pattern without loading the
+  // rest of the homepage's script (contact form, scroll progress, etc).
+  function dsNodeNetwork(canvas, boundsEl, opts) {
+    opts = opts || {};
     const ctx = canvas.getContext("2d");
-    const wrap = canvas.closest(".ds-intro");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const LINK_DIST = opts.linkDist || 140;
+    const COLOR = opts.color || "76, 58, 227";
+    const SPEED = opts.speed || 0.25;
+    const DENSITY = opts.density || 16000;
+    const MIN_COUNT = opts.minCount || 18;
+    const MAX_COUNT = opts.maxCount || 56;
 
     let nodes = [];
     let width = 0, height = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let rafId = null;
 
-    const LINK_DIST = 130;
-    const NODE_COLOR = "76, 58, 227";
-    const LINE_COLOR = "76, 58, 227";
-
     function sizeCanvas() {
-      const rect = wrap.getBoundingClientRect();
+      const rect = boundsEl.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
       canvas.width = width * dpr;
@@ -511,12 +611,12 @@
 
     function makeNodes() {
       const area = width * height;
-      const count = Math.max(14, Math.min(40, Math.round(area / 16000)));
+      const count = Math.max(MIN_COUNT, Math.min(MAX_COUNT, Math.round(area / DENSITY)));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.2,
+        vx: (Math.random() - 0.5) * SPEED,
+        vy: (Math.random() - 0.5) * SPEED,
       }));
     }
 
@@ -533,7 +633,7 @@
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < LINK_DIST) {
-            ctx.strokeStyle = `rgba(${LINE_COLOR}, ${0.14 * (1 - dist / LINK_DIST)})`;
+            ctx.strokeStyle = `rgba(${COLOR}, ${0.16 * (1 - dist / LINK_DIST)})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -543,9 +643,9 @@
         }
       }
       nodes.forEach((n) => {
-        ctx.fillStyle = `rgba(${NODE_COLOR}, 0.4)`;
+        ctx.fillStyle = `rgba(${COLOR}, 0.45)`;
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
+        ctx.arc(n.x, n.y, 1.8, 0, Math.PI * 2);
         ctx.fill();
       });
       if (!reduceMotion) rafId = requestAnimationFrame(step);
@@ -565,6 +665,30 @@
     });
 
     start();
+    return { start };
+  }
+
+  (function initDsNetworks() {
+    const introCanvas = document.getElementById("ds-canvas");
+    if (introCanvas) {
+      dsNodeNetwork(introCanvas, introCanvas.closest(".ds-intro"), {
+        linkDist: 130, density: 16000, minCount: 14, maxCount: 40, speed: 0.2,
+      });
+    }
+
+    const navCanvas = document.getElementById("ds-nav-canvas");
+    if (navCanvas) {
+      dsNodeNetwork(navCanvas, navCanvas.closest(".nav-panel"), {
+        linkDist: 110, density: 9000, minCount: 10, maxCount: 26, speed: 0.18,
+      });
+    }
+
+    const demoCanvas = document.getElementById("ds-network-demo");
+    if (demoCanvas) {
+      dsNodeNetwork(demoCanvas, demoCanvas.closest(".ds-network-demo-frame"), {
+        linkDist: 140, density: 16000, minCount: 18, maxCount: 56, speed: 0.25,
+      });
+    }
   })();
 </script>
 </body>
