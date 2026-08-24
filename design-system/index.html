@@ -31,9 +31,29 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="ds-header">
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true">
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/story/" class="nav-panel-link"><span class="nav-panel-num">01</span>Story</a>
+    <a href="/how-its-built/" class="nav-panel-link"><span class="nav-panel-num">02</span>How It&rsquo;s Built</a>
+    <a href="/design-system/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">03</span>Design System</a>
+  </nav>
+</div>
+
+<div class="ds-header">
   <div class="wrap ds-header-inner">
-    <a href="/" class="ds-back">&larr; Paul Ress</a>
     <nav class="ds-toc" aria-label="Page sections">
       <a href="#foundations">Foundations</a>
       <a href="#atoms">Atoms</a>
@@ -42,7 +62,7 @@
       <a href="#principles">Principles</a>
     </nav>
   </div>
-</header>
+</div>
 
 <main id="main">
 
@@ -50,14 +70,14 @@
   <section class="ds-intro">
     <canvas class="ds-intro-canvas" id="ds-canvas" aria-hidden="true"></canvas>
     <div class="wrap">
-      <p class="kicker">System</p>
-      <h1>Design System</h1>
-      <p class="ds-intro-lede">
+      <p class="kicker" data-reveal>System</p>
+      <h1 data-reveal>Design System</h1>
+      <p class="ds-intro-lede" data-reveal>
         The tokens, components, and principles that hold paulmress.com together —
         documented here and pulled directly from the same stylesheet the live
         site runs on, so this page and the site can never quietly drift apart.
       </p>
-      <span class="ds-meta-note"><span class="dot" aria-hidden="true"></span>Live reference — loads ../styles.css directly, not a copy</span>
+      <span class="ds-meta-note" data-reveal><span class="dot" aria-hidden="true"></span>Live reference — loads ../styles.css directly, not a copy</span>
     </div>
   </section>
 
@@ -636,13 +656,12 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>&copy; <span id="ds-year"></span> Paul Ress. Design system built and maintained in collaboration with AI.</p>
+    <p>&copy; <span id="year"></span> Paul Ress. Design system built and maintained in collaboration with AI.</p>
   </div>
 </footer>
 
+<script src="../script.js"></script>
 <script>
-  document.getElementById("ds-year").textContent = new Date().getFullYear();
-
   // Local copy of the same createNodeNetwork(canvas, boundsEl, opts) factory
   // in ../script.js, so this page can demo the pattern without loading the
   // rest of the homepage's script (contact form, scroll progress, etc).
