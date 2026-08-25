@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask Dr. Paul | Dr. Paul Ress, DBA</title>
+<meta name="description" content="Ask an AI trained on Dr. Paul Ress's career, research, and this website's own build story — about marketing AI, his background, or how this site works.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com/ask-paul/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Ask Dr. Paul | Dr. Paul Ress, DBA">
+<meta property="og:description" content="Ask an AI trained on Dr. Paul Ress's career, research, and this website's own build story.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paulmress.com/ask-paul/">
+<meta property="og:site_name" content="Paul Ress">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paulmress.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Favicon -->
+<link rel="icon" href="../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true">
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/story/" class="nav-panel-link"><span class="nav-panel-num">01</span>Story</a>
+    <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/lab/" class="nav-panel-link"><span class="nav-panel-num">03</span>Lab</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- INTRO -->
+  <section class="about-intro intro-network">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Ask Dr. Paul</p>
+      <h1 class="about-title" data-reveal>Ask me anything about marketing AI, my background, or this site.</h1>
+      <p class="section-lede" data-reveal>
+        This is an AI trained on my career, research, and the case study behind how paulmress.com itself
+        is built &mdash; not a live conversation with me. Good for a quick answer; for a real one,
+        <a href="https://www.linkedin.com/in/paulress" target="_blank" rel="noopener">connect on LinkedIn</a>.
+      </p>
+      <span class="chat-disclosure" data-reveal><span class="dot" aria-hidden="true"></span>AI &middot; trained on Dr. Paul&rsquo;s public background, not a live response from him</span>
+    </div>
+  </section>
+
+  <!-- CHAT -->
+  <section class="chat-section">
+    <div class="wrap" style="max-width: 720px;">
+      <div class="chat-shell" data-reveal>
+        <div class="chat-log" id="chat-log" aria-live="polite">
+          <div class="chat-msg chat-msg--assistant">Hi &mdash; I&rsquo;m an AI built on Dr. Paul&rsquo;s background: his career path, his DBA research, and how this site works. What do you want to know?</div>
+        </div>
+        <div class="chat-suggestions" id="chat-suggestions">
+          <button type="button" class="chat-suggestion">What's your DBA research about?</button>
+          <button type="button" class="chat-suggestion">How did you get into marketing AI?</button>
+          <button type="button" class="chat-suggestion">How was this site built?</button>
+        </div>
+        <form class="chat-form" id="chat-form">
+          <input type="text" class="chat-input" id="chat-input" placeholder="Ask a question&hellip;" maxlength="600" autocomplete="off" aria-label="Your question">
+          <button type="submit" class="btn btn-primary" id="chat-send">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="/design-system/">Design System</a>
+    </div>
+    <p>&copy; <span id="year"></span> Paul Ress. Built by hand, with AI as the pair programmer.</p>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+<script>
+  // ---------------------------------------------------------------
+  // Ask Dr. Paul — page-scoped chat logic. Talks only to the Cloudflare
+  // Worker proxy (never directly to Anthropic — see /ask-paul-backend/
+  // in the project for why). Kept inline here rather than in the shared
+  // script.js since it's specific to this one page, matching how the
+  // Design System page keeps its own demo script local too.
+  // ---------------------------------------------------------------
+  (function initAskPaul() {
+    // TODO: replace with the real deployed Worker URL once it exists
+    // (e.g. "https://ask-paul.<your-subdomain>.workers.dev/chat", or a
+    // custom route like "https://api.paulmress.com/chat").
+    const ENDPOINT = "https://ask-paul.paulmress.workers.dev/chat";
+
+    const log = document.getElementById("chat-log");
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("chat-input");
+    const sendBtn = document.getElementById("chat-send");
+    const suggestions = document.getElementById("chat-suggestions");
+    if (!log || !form || !input) return;
+
+    let history = []; // [{role, content}, ...] sent back for multi-turn context
+    let busy = false;
+
+    function addMessage(role, text) {
+      const el = document.createElement("div");
+      el.className = "chat-msg chat-msg--" + role;
+      el.textContent = text;
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+      return el;
+    }
+
+    function addTyping() {
+      const el = document.createElement("div");
+      el.className = "chat-msg chat-msg--typing";
+      el.innerHTML = "<span></span><span></span><span></span>";
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+      return el;
+    }
+
+    async function send(text) {
+      if (busy || !text.trim()) return;
+      busy = true;
+      sendBtn.disabled = true;
+      if (suggestions) suggestions.style.display = "none";
+
+      addMessage("user", text.trim());
+      const typingEl = addTyping();
+
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text.trim(), history }),
+        });
+        const data = await res.json().catch(() => ({}));
+        typingEl.remove();
+
+        if (!res.ok || !data.reply) {
+          addMessage(
+            "error",
+            data.error ||
+              "Ask Dr. Paul isn't connected yet — the backend hasn't been deployed. Once it is, this will answer for real."
+          );
+          return;
+        }
+
+        addMessage("assistant", data.reply);
+        history.push({ role: "user", content: text.trim() });
+        history.push({ role: "assistant", content: data.reply });
+        history = history.slice(-6);
+      } catch (err) {
+        typingEl.remove();
+        addMessage(
+          "error",
+          "Couldn't reach Ask Dr. Paul — the backend isn't set up yet, or something's offline."
+        );
+      } finally {
+        busy = false;
+        sendBtn.disabled = false;
+      }
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = input.value;
+      input.value = "";
+      send(text);
+    });
+
+    if (suggestions) {
+      suggestions.querySelectorAll(".chat-suggestion").forEach((btn) => {
+        btn.addEventListener("click", () => send(btn.textContent));
+      });
+    }
+  })();
+</script>
+</body>
+</html>
