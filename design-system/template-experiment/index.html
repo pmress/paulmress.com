@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Template: Lab Experiment | Design System | Dr. Paul Ress, DBA</title>
+<meta name="description" content="Starter scaffold for a new Lab experiment page. Not real content.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com/design-system/template-experiment/">
+
+<link rel="icon" href="../../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true">
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/story/" class="nav-panel-link"><span class="nav-panel-num">01</span>Story</a>
+    <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/lab/" class="nav-panel-link"><span class="nav-panel-num">03</span>Lab</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- TEMPLATE NOTICE -->
+  <section style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="lab-hypothesis" style="border-left-color: var(--color-accent-2); font-family: var(--font-mono); font-style: normal; font-size: var(--text-sm); max-width: 100%;">
+        <strong>This is a template, not a real page.</strong> Duplicate this folder to <code class="ds-code" style="background:var(--color-bg);">/lab/experimentN/</code>, replace every bracketed placeholder below with the real experiment, delete this notice block, and update the canonical/OG URLs and the <code class="ds-code" style="background:var(--color-bg);">&lt;title&gt;</code> in &lt;head&gt;. See <a href="/design-system/#templates">Design System &middot; Templates</a>.
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="about-intro intro-network">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; Experiment [00N]</p>
+      <h1 class="about-title" data-reveal>[Experiment title, phrased as a question]</h1>
+      <p class="section-lede" data-reveal>
+        [One or two sentences setting up what this experiment actually is and why it&rsquo;s worth
+        running &mdash; the same job the CMS entry&rsquo;s lede does: orient a stranger fast.]
+      </p>
+      <div class="lab-meta" data-reveal>
+        <span class="pill">[Ongoing / Done / Shelved]</span>
+        <span class="lab-meta-facts">[Tools &middot; used &middot; in &middot; this &middot; one]</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPOTHESIS -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The Hypothesis</p>
+      <blockquote class="lab-hypothesis" data-reveal>
+        [The claim, stated plainly, before the evidence &mdash; one or two sentences, first person, specific enough that it could turn out to be wrong.]
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- THE THING BUILT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The Thing Built</p>
+      <h2 class="section-title" data-reveal>[What actually got built]</h2>
+      <p class="section-lede" data-reveal>
+        [Describe the artifact. Link to a live demo if one exists &mdash; a Lab entry without something
+        to see or try is a blog post wearing a lab coat.]
+      </p>
+
+      <div class="steps" data-reveal>
+        <span class="steps-pulse" aria-hidden="true"></span>
+        <span class="steps-pulse" aria-hidden="true"></span>
+        <span class="steps-pulse" aria-hidden="true"></span>
+
+        <div class="step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
+          </span>
+          <div>
+            <h3>[Step one]</h3>
+            <p>[What happened first.]</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
+          </span>
+          <div>
+            <h3>[Step two]</h3>
+            <p>[What happened next. Add or remove &lt;div class="step"&gt; blocks freely &mdash; the spine resizes automatically.]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECEIPTS -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The Receipts</p>
+      <h2 class="section-title" data-reveal>[N] real exchange[s], unedited</h2>
+      <p class="section-lede" data-reveal>Not summaries of what happened &mdash; what was actually asked, and what actually came back. Real receipts only; never invent a quote or an output.</p>
+
+      <p class="kicker" data-reveal>Receipt 01 &middot; [one-line description]</p>
+      <div data-reveal>
+        <div class="receipt-block receipt--input">
+          <p class="receipt-label"><span aria-hidden="true">&rarr;</span> Input</p>
+          <p>&ldquo;[What was actually typed.]&rdquo;</p>
+        </div>
+        <div class="receipt-block receipt--output">
+          <p class="receipt-label"><span aria-hidden="true">&larr;</span> AI output</p>
+          <p>[What actually came back &mdash; summarized honestly, not dressed up.]</p>
+        </div>
+        <div class="receipt-block receipt--outcome">
+          <p class="receipt-label"><span aria-hidden="true">&#10003;</span> Outcome</p>
+          <p>[What happened next.]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WORKED -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>What Worked, What Didn&rsquo;t</p>
+      <h2 class="section-title" data-reveal>Observations, not conclusions</h2>
+
+      <div class="worked-grid">
+        <div data-reveal>
+          <p class="kicker">Worked well</p>
+          <div class="worked-list">
+            <div class="worked-item is-good">
+              <span class="worked-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <p>[Thing that worked.]</p>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal>
+          <p class="kicker">Needed a human</p>
+          <div class="worked-list">
+            <div class="worked-item is-bad">
+              <span class="worked-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </span>
+              <p>[Judgment call the AI couldn&rsquo;t make.]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HUMAN ADVANTAGE -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The Human Advantage</p>
+      <h2 class="section-title" data-reveal>What still required me</h2>
+      <p class="section-lede" data-reveal>[Which receipt this contrasts, if any.]</p>
+
+      <div class="compare-grid">
+        <article class="card" data-reveal>
+          <p class="chapter-range">[What the plan looked like]</p>
+          <h3>[Default path]</h3>
+          <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">[The obvious or first-pass answer.]</p>
+        </article>
+        <article class="card card--current" data-reveal>
+          <p class="chapter-range">[What actually happened]</p>
+          <h3>[The human call]</h3>
+          <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">[What changed, and why it took a person.]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT CHANGED MY MIND -->
+  <section style="background: var(--color-dark); color: var(--color-dark-ink);">
+    <div class="wrap">
+      <p class="kicker kicker-dark" data-reveal>What Changed My Mind</p>
+      <blockquote class="pull-quote" data-reveal>
+        [The honest, specific thing that surprised you &mdash; not a generic AI take. This is the
+        section that makes an entry worth reading past the receipts.]
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- NEXT EXPERIMENT -->
+  <section class="about-cta" data-reveal>
+    <div class="wrap">
+      <p class="kicker">Next Experiment</p>
+      <h2 class="section-title">[The open question this one raised]</h2>
+      <p class="section-lede">[What&rsquo;s still unresolved, teasing whatever comes next.]</p>
+      <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="/design-system/">Design System</a>
+    </div>
+    <p>&copy; <span id="year"></span> Paul Ress. Built by hand, with AI as the pair programmer.</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>
