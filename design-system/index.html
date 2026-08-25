@@ -652,27 +652,27 @@
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           A native <code class="ds-code">&lt;details&gt;/&lt;summary&gt;</code> disclosure &mdash; no JS,
           keyboard- and screen-reader-accessible for free. Three tiers share one shape and swap only
-          the dot color and tier label: <code class="ds-code">.provenance--human</code> (muted,
-          ink-soft), <code class="ds-code">.provenance--assisted</code> (accent), and
-          <code class="ds-code">.provenance--collaborative</code> (accent-2, since it&rsquo;s the tier
-          that leans on AI the most). The name in the mark, <code class="ds-code">.provenance-author</code>,
-          is a real link to <a href="/about/">/about/</a> on every instance &mdash; a byline a crawler
-          or an LLM can follow to confirm who&rsquo;s accountable, not just a label. See the reasoning
-          inside <a href="/thinking/#human-ai-provenance">Human + AI Provenance</a>.
+          the dot color and pill title: <code class="ds-code">.provenance--human</code> (muted, &ldquo;Human
+          Creation&rdquo;), <code class="ds-code">.provenance--assisted</code> (accent, &ldquo;AI-Assisted
+          Creation&rdquo;), and <code class="ds-code">.provenance--collaborative</code> (accent-2, &ldquo;AI-Collaborative
+          Creation&rdquo;). Expanding a mark reveals one sentence naming who did what, with
+          <code class="ds-code">.provenance-author</code> a real link to <a href="/about/">/about/</a> on
+          every instance &mdash; a byline a crawler or an LLM can follow to confirm who&rsquo;s accountable,
+          not just a label. See the reasoning inside <a href="/thinking/#human-ai-provenance">Human + AI Provenance</a>.
         </p>
         <div class="ds-frame">
           <div class="ds-row" style="gap:var(--space-6); flex-wrap:wrap; align-items:flex-start;">
             <details class="provenance provenance--human">
-              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span><a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a><span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
-              <div class="provenance-detail"><p class="provenance-tier">Human-authored</p><p>Written solo. AI touched nothing worth crediting.</p></div>
+              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span><span class="provenance-tier">Human Creation</span><span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
+              <div class="provenance-detail"><p>Written solo by <a href="/about/" class="provenance-author">Dr. Paul</a>. AI touched nothing worth crediting.</p></div>
             </details>
             <details class="provenance provenance--assisted">
-              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span><a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a><span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
-              <div class="provenance-detail"><p class="provenance-tier">AI-assisted</p><p>The thinking is mine; AI helped edit, research, or draft faster.</p></div>
+              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span><span class="provenance-tier">AI-Assisted Creation</span><span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
+              <div class="provenance-detail"><p>The thinking is by <a href="/about/" class="provenance-author">Dr. Paul</a>. AI helped edit, research, or draft faster.</p></div>
             </details>
             <details class="provenance provenance--collaborative">
-              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span><a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a><span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
-              <div class="provenance-detail"><p class="provenance-tier">AI-collaborative</p><p>AI materially drafted the artifact under my direction and judgment.</p></div>
+              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span><span class="provenance-tier">AI-Collaborative Creation</span><span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
+              <div class="provenance-detail"><p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p></div>
             </details>
           </div>
         </div>
@@ -897,12 +897,11 @@
           <details class="provenance provenance--collaborative footer-provenance">
             <summary class="provenance-mark">
               <span class="provenance-dot" aria-hidden="true"></span>
-              <a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a>
+              <span class="provenance-tier">AI-Collaborative Creation</span>
               <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
             </summary>
             <div class="provenance-detail">
-              <p class="provenance-tier">AI-collaborative</p>
-              <p>Claude drafted this page&rsquo;s language and code from my direction, and I revised it before it went live.</p>
+              <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
             </div>
           </details>
         </div>
@@ -979,12 +978,11 @@
     <details class="provenance provenance--collaborative footer-provenance">
       <summary class="provenance-mark">
         <span class="provenance-dot" aria-hidden="true"></span>
-        <a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a>
+        <span class="provenance-tier">AI-Collaborative Creation</span>
         <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
       </summary>
       <div class="provenance-detail">
-        <p class="provenance-tier">AI-collaborative</p>
-        <p>Claude drafted this page&rsquo;s language and code from my direction, and I revised it before it went live. <a href="/thinking/#human-ai-provenance">Read why that&rsquo;s disclosed on every page</a>.</p>
+        <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
       </div>
     </details>
     <p>&copy; <span id="year"></span> Paul Ress. Design system built and maintained in collaboration with AI.</p>
