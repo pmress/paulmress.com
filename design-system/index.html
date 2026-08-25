@@ -734,24 +734,29 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Footer links &middot; .footer-links (used site-wide)</p>
+        <p class="ds-group-title">Footer links &middot; .footer-links-groups (used site-wide)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
-          A complete site index &mdash; a small, quiet, mono-uppercase row above the copyright
-          line, pipe-separated, out of the hamburger menu. It repeats the three primary-nav pages
-          (Lab, Thinking, About) alongside Story and Design System, which aren&rsquo;t in the
-          hamburger menu at all.
+          A complete site index &mdash; a small, quiet, mono-uppercase pair of rows above the
+          copyright line, out of the hamburger menu. The top row repeats the three primary-nav
+          pages (Lab, Thinking, About) in the same order as the hamburger menu; a hairline divides
+          it from a second, lighter row for Story and Design System, which aren&rsquo;t in the
+          hamburger menu at all. Splitting the rows this way (rather than one flat pipe-separated
+          list) is what lets the row wrap cleanly on narrow phones instead of overflowing.
         </p>
         <div class="ds-frame">
-          <div class="footer-links" style="justify-content:flex-start;">
-            <a href="/lab/">Lab</a>
-            <span class="footer-links-sep" aria-hidden="true">|</span>
-            <a href="/thinking/">Thinking</a>
-            <span class="footer-links-sep" aria-hidden="true">|</span>
-            <a href="/about/">About</a>
-            <span class="footer-links-sep" aria-hidden="true">|</span>
-            <a href="/story/">Story</a>
-            <span class="footer-links-sep" aria-hidden="true">|</span>
-            <a href="/design-system/">Design System</a>
+          <div class="footer-links-groups">
+            <div class="footer-links footer-links--primary" style="justify-content:flex-start;">
+              <a href="/lab/">Lab</a>
+              <span class="footer-links-sep" aria-hidden="true">|</span>
+              <a href="/thinking/">Thinking</a>
+              <span class="footer-links-sep" aria-hidden="true">|</span>
+              <a href="/about/">About</a>
+            </div>
+            <div class="footer-links footer-links--meta" style="justify-content:flex-start;">
+              <a href="/story/">Story</a>
+              <span class="footer-links-sep" aria-hidden="true">|</span>
+              <a href="/design-system/">Design System</a>
+            </div>
           </div>
         </div>
       </div>
@@ -992,16 +997,19 @@
         <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
       </div>
     </details>
-    <div class="footer-links">
-      <a href="/lab/">Lab</a>
-      <span class="footer-links-sep" aria-hidden="true">|</span>
-      <a href="/thinking/">Thinking</a>
-      <span class="footer-links-sep" aria-hidden="true">|</span>
-      <a href="/about/">About</a>
-      <span class="footer-links-sep" aria-hidden="true">|</span>
-      <a href="/story/">Story</a>
-      <span class="footer-links-sep" aria-hidden="true">|</span>
-      <a href="/design-system/" aria-current="page">Design System</a>
+    <div class="footer-links-groups">
+      <div class="footer-links footer-links--primary">
+        <a href="/lab/">Lab</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/thinking/">Thinking</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer-links footer-links--meta">
+        <a href="/story/">Story</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/design-system/" aria-current="page">Design System</a>
+      </div>
     </div>
     <p>&copy; <span id="year"></span> Paul Ress. Design system built and maintained in collaboration with AI.</p>
   </div>
