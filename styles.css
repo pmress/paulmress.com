@@ -1941,12 +1941,16 @@ details.thought-node-card[open] .thought-node-chevron {
   color: var(--color-ink-soft);
 }
 
+.footer-links-groups {
+  margin-bottom: var(--space-3);
+}
+
 .footer-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-3);
+  gap: var(--space-2) var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   text-transform: uppercase;
@@ -1961,6 +1965,22 @@ details.thought-node-card[open] .thought-node-chevron {
 
 .footer-links-sep {
   color: var(--color-line);
+}
+
+.footer-links--meta {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-line);
+  font-size: var(--text-2xs);
+  opacity: 0.75;
+}
+
+@media (max-width: 560px) {
+  .footer-links--meta {
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ---------- Responsive ---------- */
