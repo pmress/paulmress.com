@@ -109,7 +109,7 @@ img { max-width: 100%; display: block; }
   top: var(--space-4);
 }
 
-/* ---------- Kicker (numbered section labels) ---------- */
+/* ---------- Kicker (section labels) ---------- */
 .kicker {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
