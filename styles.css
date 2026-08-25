@@ -1416,7 +1416,9 @@ section { padding: var(--space-11) 0; }
 
 /* ---------- Provenance mark (site-wide authorship disclosure) ---------- */
 /* Native <details>/<summary> — no JS. Three tiers, one shared shape:
-   .provenance--human (solo), .provenance--assisted, .provenance--collaborative. */
+   .provenance--human (solo), .provenance--assisted, .provenance--collaborative.
+   The pill shows the tier's title (.provenance-tier); the expanded detail
+   explains it in one sentence, with "Dr. Paul" linked to /about/. */
 .provenance { font-family: var(--font-mono); }
 
 .provenance-mark {
@@ -1446,9 +1448,10 @@ section { padding: var(--space-11) 0; }
 
 .provenance-chevron { margin-left: var(--space-1); font-size: 0.6rem; opacity: 0.6; }
 
-/* The name inside the mark links to /about/ — a real author byline for
-   people and crawlers alike, not just a label. Inherits the pill's color
-   so it reads as one mark; only underlines to signal it's a link. */
+/* The name inside each tier's explanation links to /about/ — a real author
+   byline for people and crawlers alike, not just a label. Color comes from
+   the more specific .provenance-detail a rule below; this only adds the
+   underline-on-hover signal that it's a link. */
 .provenance-author { color: inherit; text-decoration: none; }
 .provenance-author:hover,
 .provenance-author:focus-visible { text-decoration: underline; }
@@ -1463,16 +1466,12 @@ section { padding: var(--space-11) 0; }
   font-family: var(--font-body);
 }
 
+/* Sits inside .provenance-mark as the pill's title text (e.g. "AI-Collaborative
+   Creation"), replacing what used to be a "Dr. Paul" link. Inherits the pill's
+   color so hover/open states still apply uniformly across dot, title, chevron. */
 .provenance-tier {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-accent);
-  margin: 0 0 var(--space-2);
 }
-.provenance--collaborative .provenance-tier { color: var(--color-accent-2); }
 
 .provenance-detail p:last-child {
   margin: 0;
