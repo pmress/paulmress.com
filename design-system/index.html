@@ -26,6 +26,23 @@
 
 <link rel="stylesheet" href="../styles.css">
 <link rel="stylesheet" href="design-system.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Design System",
+  "url": "https://paulmress.com/design-system/",
+  "description": "The living design system behind paulmress.com — tokens, components, and the principles that hold the site together.",
+  "author": { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+  "creator": [
+    { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+    { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com/", "description": "Claude, the AI pair-programmer that drafted this page's language and code under Dr. Paul Ress's direction." }
+  ],
+  "accountablePerson": { "@type": "Person", "name": "Dr. Paul Ress" },
+  "digitalSourceType": "https://schema.org/CompositeWithTrainedAlgorithmicMediaDigitalSource"
+}
+</script>
 </head>
 <body>
 
@@ -60,6 +77,7 @@
       <a href="#molecules">Molecules</a>
       <a href="#organisms">Organisms</a>
       <a href="#templates">Templates</a>
+      <a href="#structured-data">Structured Data</a>
       <a href="#principles">Principles</a>
     </nav>
   </div>
@@ -801,11 +819,66 @@
     </div>
   </section>
 
+  <!-- STRUCTURED DATA -->
+  <section class="ds-section" id="structured-data">
+    <div class="wrap">
+      <div class="ds-section-head">
+        <p class="kicker">06 &middot; Structured Data</p>
+        <h2 class="section-title">Provenance, machine-readable</h2>
+        <p class="section-lede">The visible <code class="ds-code">.provenance</code> mark tells a person how a page was made. Every page also carries the same disclosure as JSON-LD, so a search engine or AI crawler can read it too &mdash; not just a person clicking the mark.</p>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Footer provenance mark &middot; every page</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The same <code class="ds-code">.provenance</code> component from Molecules, in a
+          <code class="ds-code">.footer-provenance</code> wrapper, centered in the footer of every
+          real page on the site (not the redirect stubs, which have no content of their own to
+          attribute). This closes the drift Paul flagged: the mark used to appear only on pages
+          where it happened to get written in &mdash; now it&rsquo;s a footer-level guarantee, the
+          same way <code class="ds-code">.hero-glow</code> is a top-of-page guarantee.
+        </p>
+        <div class="ds-frame" style="text-align:center;">
+          <details class="provenance provenance--collaborative footer-provenance">
+            <summary class="provenance-mark">
+              <span class="provenance-dot" aria-hidden="true"></span>
+              Dr. Paul X Claude
+              <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
+            </summary>
+            <div class="provenance-detail">
+              <p class="provenance-tier">AI-collaborative</p>
+              <p>Claude drafted this page&rsquo;s language and code from my direction, and I revised it before it went live.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Authorship JSON-LD &middot; every &lt;head&gt;</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Every page&rsquo;s existing <code class="ds-code">application/ld+json</code> block
+          (ProfilePage, CollectionPage, TechArticle, or WebPage, depending on the page) carries four
+          extra properties that mirror the visible mark exactly &mdash; the schema is never allowed
+          to claim something the page itself doesn&rsquo;t say:
+        </p>
+        <ul style="color:var(--color-ink-soft); font-size:var(--text-base); line-height:1.7; margin:0 0 var(--space-5); padding-left: 1.25em;">
+          <li><code class="ds-code">author</code> &mdash; always Dr. Paul Ress. He&rsquo;s the byline, tier notwithstanding.</li>
+          <li><code class="ds-code">creator</code> &mdash; an array: Dr. Paul Ress, plus an <code class="ds-code">Organization</code> entry for Anthropic when Claude materially participated.</li>
+          <li><code class="ds-code">accountablePerson</code> &mdash; always Dr. Paul Ress. Whatever Claude drafted, he&rsquo;s the one who approved it.</li>
+          <li><code class="ds-code">digitalSourceType</code> &mdash; the IPTC digital-source-type code for the page&rsquo;s tier, via schema.org&rsquo;s adopted vocabulary for exactly this: how much of a work is AI-originated. Only set for AI-assisted or AI-collaborative pages; omitted entirely for Human-authored, since the property&rsquo;s own spec treats absence as the human-made default.</li>
+        </ul>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">
+          Today that&rsquo;s <code class="ds-code">CompositeWithTrainedAlgorithmicMediaDigitalSource</code> on every real page, since every page is currently the AI-collaborative tier. The property exists so that changes &mdash; a future Human-authored or AI-assisted page &mdash; without touching this pattern.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- PRINCIPLES -->
   <section class="ds-section" id="principles">
     <div class="wrap">
       <div class="ds-section-head">
-        <p class="kicker">06 &middot; Principles</p>
+        <p class="kicker">07 &middot; Principles</p>
         <h2 class="section-title">How to use this without breaking it</h2>
         <p class="section-lede">Tokens and components only hold consistency together if the decisions around them are also written down.</p>
       </div>
@@ -844,6 +917,17 @@
 
 <footer class="site-footer">
   <div class="wrap">
+    <details class="provenance provenance--collaborative footer-provenance">
+      <summary class="provenance-mark">
+        <span class="provenance-dot" aria-hidden="true"></span>
+        Dr. Paul X Claude
+        <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
+      </summary>
+      <div class="provenance-detail">
+        <p class="provenance-tier">AI-collaborative</p>
+        <p>Claude drafted this page&rsquo;s language and code from my direction, and I revised it before it went live. <a href="/thinking/#the-end-of-anonymous-creation">Read why that&rsquo;s disclosed on every page</a>.</p>
+      </div>
+    </details>
     <p>&copy; <span id="year"></span> Paul Ress. Design system built and maintained in collaboration with AI.</p>
   </div>
 </footer>
