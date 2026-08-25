@@ -66,7 +66,6 @@
     <a href="/story/" class="nav-panel-link"><span class="nav-panel-num">01</span>Story</a>
     <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
     <a href="/lab/" class="nav-panel-link"><span class="nav-panel-num">03</span>Lab</a>
-    <a href="/about/" class="nav-panel-link"><span class="nav-panel-num">04</span>About</a>
   </nav>
 </div>
 
@@ -737,12 +736,14 @@
       <div class="ds-group">
         <p class="ds-group-title">Footer links &middot; .footer-links (used site-wide)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
-          Where Design System lives now that it&rsquo;s out of the primary nav &mdash; a small, quiet,
-          mono-uppercase row above the copyright line. Room for more meta links later without
-          crowding the hamburger menu, which stays reserved for actual content.
+          Where the meta pages live &mdash; a small, quiet, mono-uppercase row above the copyright
+          line, out of the hamburger menu, which stays reserved for actual content. About joined
+          Design System here so the primary nav could stay focused on the three things people
+          actually come to read.
         </p>
         <div class="ds-frame">
           <div class="footer-links" style="justify-content:flex-start;">
+            <a href="/about/">About</a>
             <a href="/design-system/">Design System</a>
           </div>
         </div>
@@ -753,10 +754,10 @@
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Every page shares one nav: a fixed logo, a <code class="ds-code">.nav-toggle</code>
           hamburger that morphs into an &times; on open, and a <code class="ds-code">.nav-panel</code>
-          that slides in from the right with four links &mdash; Story, Thinking, Lab, About. Design
-          System isn&rsquo;t in the primary nav; it's meta-documentation, not content, so it lives as
-          a quiet link in every footer instead. The panel runs the node network canvas below as its
-          background &mdash; only while it's open, so it costs nothing the rest of the time.
+          that slides in from the right with three links &mdash; Story, Thinking, Lab. About and
+          Design System aren&rsquo;t primary content, so they live as a quiet row in every footer
+          instead. The panel runs the node network canvas below as its background &mdash; only
+          while it's open, so it costs nothing the rest of the time.
         </p>
         <div class="ds-frame">
           <div class="ds-row" style="align-items:flex-start; gap:var(--space-8); flex-wrap:wrap;">
@@ -777,7 +778,6 @@
                     <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">01</span>Story</a>
                     <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">02</span>Thinking</a>
                     <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">03</span>Lab</a>
-                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">04</span>About</a>
                   </nav>
                 </div>
               </div>
@@ -985,6 +985,9 @@
         <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
       </div>
     </details>
+    <div class="footer-links">
+      <a href="/about/">About</a>
+    </div>
     <p>&copy; <span id="year"></span> Paul Ress. Design system built and maintained in collaboration with AI.</p>
   </div>
 </footer>
