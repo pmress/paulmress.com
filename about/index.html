@@ -2,22 +2,235 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=/story/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moved: The Story | Dr. Paul Ress, DBA</title>
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://paulmress.com/story/">
+<title>About | Dr. Paul Ress, DBA</title>
+<meta name="description" content="Who's behind paulmress.com — Dr. Paul Ress's background and credentials, plus a straight index of everything on this site with his name on it.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com/about/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="About | Dr. Paul Ress, DBA">
+<meta property="og:description" content="Who's behind paulmress.com — background, credentials, and a straight index of everything on this site with his name on it.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://paulmress.com/about/">
+<meta property="og:site_name" content="Paul Ress">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paulmress.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About | Dr. Paul Ress, DBA">
+<meta name="twitter:description" content="Who's behind paulmress.com — background, credentials, and a straight index of everything on this site with his name on it.">
+<meta name="twitter:image" content="https://paulmress.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Favicon -->
+<link rel="icon" href="../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="../styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": "https://paulmress.com/about/",
+  "about": {
+    "@type": "Person",
+    "name": "Dr. Paul Ress",
+    "honorificSuffix": "DBA",
+    "jobTitle": "Director, Marketing AI Strategy, Enablement & Governance",
+    "url": "https://paulmress.com/",
+    "image": "https://paulmress.com/images/og-image.png",
+    "sameAs": ["https://www.linkedin.com/in/paulress"],
+    "description": "Dr. Paul Ress, DBA. 15+ years in performance marketing, now leading Marketing AI Strategy, Enablement & Governance."
+  },
+  "author": { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+  "creator": [
+    { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+    { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com/", "description": "Claude, the AI pair-programmer that drafted this page's language and code under Dr. Paul Ress's direction." }
+  ],
+  "accountablePerson": { "@type": "Person", "name": "Dr. Paul Ress" },
+  "digitalSourceType": "https://schema.org/CompositeWithTrainedAlgorithmicMediaDigitalSource"
+}
+</script>
 </head>
 <body>
-<div class="wrap" style="padding: var(--space-11) 0; text-align:center;">
-  <p class="kicker" style="justify-content:center;">Moved</p>
-  <h1 class="section-title">This page is now Story.</h1>
-  <p class="section-lede" style="margin-left:auto; margin-right:auto;">
-    /about/ predates the current site structure and has been folded into the current
-    Story page &mdash; the newer, fuller version of this same content. Redirecting you now.
-  </p>
-  <a class="btn btn-primary" href="/story/">Go to Story &rarr;</a>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true">
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/story/" class="nav-panel-link"><span class="nav-panel-num">01</span>Story</a>
+    <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/lab/" class="nav-panel-link"><span class="nav-panel-num">03</span>Lab</a>
+    <a href="/about/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">04</span>About</a>
+  </nav>
 </div>
+
+<main id="main">
+
+  <!-- INTRO -->
+  <section class="about-intro intro-network">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy" data-reveal>
+        <p class="kicker">About</p>
+        <h1 class="about-title">The author behind paulmress.com.</h1>
+        <p class="section-lede">
+          This is the authorship page good practice says a site like this should have: who I am,
+          my credentials, and a straight index of everything here with my name on it &mdash;
+          including exactly how much of each piece is mine versus Claude&rsquo;s, since that&rsquo;s
+          the whole point of the provenance marks. For the full career story, chapter by chapter,
+          see <a href="/story/">Story</a>.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/paulress" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        </div>
+      </div>
+      <div class="hero-media" data-reveal>
+        <div class="hero-photo-ring">
+          <div class="hero-photo-frame">
+            <img src="../images/paul-headshot.png" alt="Portrait of Dr. Paul Ress" class="hero-photo" width="400" height="400">
+            <span class="frame-corner frame-corner-tl" aria-hidden="true"></span>
+            <span class="frame-corner frame-corner-br" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT STRIP -->
+  <section class="stats" data-reveal>
+    <div class="wrap stats-grid">
+      <div class="stat">
+        <p class="stat-number">15+</p>
+        <p class="stat-label">years of performance marketing experience</p>
+      </div>
+      <div class="stat">
+        <p class="stat-number">8-figure</p>
+        <p class="stat-label">omnichannel media budgets managed</p>
+      </div>
+      <div class="stat">
+        <p class="stat-number">4.0</p>
+        <p class="stat-label">GPA across both the MBA &amp; DBA</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Bio</p>
+      <h2 class="section-title" data-reveal>The short version</h2>
+      <p class="section-lede" data-reveal>
+        I&rsquo;m Dr. Paul Ress, DBA &mdash; Director, Marketing AI Strategy, Enablement &amp;
+        Governance, after 15+ years in performance marketing. My doctoral research examined how
+        management and employees actually adopt AI chatbots inside a retail marketing organization
+        &mdash; the same question this site is now a live answer to.
+      </p>
+      <p class="section-lede" data-reveal>
+        I write and build here in the open, with Claude named as a collaborator instead of a hidden
+        one. See <a href="/thinking/">Thinking</a> for why that&rsquo;s the standard, and the footer
+        of every page for the receipts.
+      </p>
+    </div>
+  </section>
+
+  <!-- AUTHORED INDEX -->
+  <section id="authored">
+    <div class="wrap">
+      <p class="kicker" data-reveal>Authored on this site</p>
+      <h2 class="section-title" data-reveal>Where to read more</h2>
+      <p class="section-lede" data-reveal>Every piece here carries its own provenance mark &mdash; click through to see exactly how each one was made.</p>
+
+      <div class="explore-grid">
+        <a class="card card--promo" href="/story/" data-reveal>
+          <span class="promo-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L9 8 L13 15 L16 10 L21 20 Z"/></svg>
+          </span>
+          <h3>The Story</h3>
+          <p>Every stop on the path, from a terrible economy to leading Marketing AI Strategy &mdash; told chapter by chapter.</p>
+          <span class="promo-link">Read the story <span aria-hidden="true">&rarr;</span></span>
+        </a>
+
+        <a class="card card--promo" href="/thinking/#human-ai-provenance" data-reveal>
+          <span class="promo-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.4.3.6.8.6 1.3V16h5.8v-.8c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3z"/></svg>
+          </span>
+          <h3>Human + AI Provenance</h3>
+          <p>AI is a co-creator that needs to be transparently credited &mdash; and why every page here shows its own.</p>
+          <span class="promo-link">Read the thought <span aria-hidden="true">&rarr;</span></span>
+        </a>
+
+        <a class="card card--promo" href="/lab/experiment1/" data-reveal>
+          <span class="promo-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6M10 2v6.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 8.5V2"/><path d="M7.5 14h9"/></svg>
+          </span>
+          <h3>Lab Experiment 1</h3>
+          <p>Can AI replace a CMS? The real receipts from building this site itself.</p>
+          <span class="promo-link">Read the experiment <span aria-hidden="true">&rarr;</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta" data-reveal>
+    <div class="wrap">
+      <p class="kicker">Get in touch</p>
+      <h2 class="section-title">Want the rest of the conversation?</h2>
+      <p class="section-lede">Whether you&rsquo;re passionate about AI, marketing, or just looking for a conversation that sharpens both of us.</p>
+      <a class="btn btn-primary" href="/#connect">Get in touch</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <details class="provenance provenance--collaborative footer-provenance">
+      <summary class="provenance-mark">
+        <span class="provenance-dot" aria-hidden="true"></span>
+        Dr. Paul X Claude
+        <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
+      </summary>
+      <div class="provenance-detail">
+        <p class="provenance-tier">AI-collaborative</p>
+        <p>Claude drafted this page&rsquo;s language and code from my direction, and I revised it before it went live. <a href="/thinking/#human-ai-provenance">Read why that&rsquo;s disclosed on every page</a>.</p>
+      </div>
+    </details>
+    <div class="footer-links">
+      <a href="/design-system/">Design System</a>
+    </div>
+    <p>&copy; <span id="year"></span> Paul Ress. Built by hand, with AI as the pair programmer.</p>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
 </body>
 </html>
