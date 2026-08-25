@@ -47,8 +47,8 @@
   <p class="nav-panel-kicker">Menu</p>
   <nav class="nav-panel-links" aria-label="Primary">
     <a href="/story/" class="nav-panel-link"><span class="nav-panel-num">01</span>Story</a>
-    <a href="/how-its-built/" class="nav-panel-link"><span class="nav-panel-num">02</span>How It&rsquo;s Built</a>
-    <a href="/design-system/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">03</span>Design System</a>
+    <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/lab/" class="nav-panel-link"><span class="nav-panel-num">03</span>Lab</a>
   </nav>
 </div>
 
@@ -59,6 +59,7 @@
       <a href="#atoms">Atoms</a>
       <a href="#molecules">Molecules</a>
       <a href="#organisms">Organisms</a>
+      <a href="#templates">Templates</a>
       <a href="#principles">Principles</a>
     </nav>
   </div>
@@ -69,6 +70,7 @@
   <!-- INTRO -->
   <section class="ds-intro">
     <canvas class="ds-intro-canvas" id="ds-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
     <div class="wrap">
       <p class="kicker" data-reveal>System</p>
       <h1 data-reveal>Design System</h1>
@@ -368,7 +370,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Stat tile &middot; .stats-grid (3-up, used on <a href="/">the homepage</a> and <a href="/how-its-built/">/how-its-built/</a>)</p>
+        <p class="ds-group-title">Stat tile &middot; .stats-grid (3-up, used on <a href="/">the homepage</a>)</p>
         <div class="ds-frame">
           <div class="stat ds-stat-demo" style="border-radius:var(--radius);">
             <p class="stat-number">4.0</p>
@@ -493,7 +495,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Compare grid &middot; .compare-grid (used on <a href="/how-its-built/">/how-its-built/</a>)</p>
+        <p class="ds-group-title">Compare grid &middot; .compare-grid (used on <a href="/lab/experiment1/">/lab/experiment1/</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           A plain 2-column grid for setting two <code class="ds-code">.card</code>s side by side &mdash;
           deliberately kept separate from <code class="ds-code">.explore-grid</code> (3 columns, for promo
@@ -518,7 +520,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Process steps &middot; .steps (used on <a href="/how-its-built/">/how-its-built/</a>)</p>
+        <p class="ds-group-title">Process steps &middot; .steps (used on <a href="/lab/experiment1/">/lab/experiment1/</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           A single-column relative of the timeline above: the same gradient spine
           (<code class="ds-code">.steps::before</code>) and the same <code class="ds-code">timeline-flow</code>
@@ -553,13 +555,154 @@
       </div>
 
       <div class="ds-group">
+        <p class="ds-group-title">Receipts &middot; .receipt-block (used on <a href="/lab/">/lab/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Three variants sharing one base: <code class="ds-code">.receipt--input</code> (neutral,
+          <code class="ds-code">--color-ink-soft</code> border) for what was actually asked,
+          <code class="ds-code">.receipt--output</code> (accent border) for what the AI produced, and
+          <code class="ds-code">.receipt--outcome</code> (accent-2 border, on
+          <code class="ds-code">--color-bg-alt</code>) for what actually happened. The single accent-2
+          border stays within Principle 02 &mdash; a spark on one edge, never a surface.
+        </p>
+        <div class="ds-frame">
+          <div class="receipt-block receipt--input">
+            <p class="receipt-label">Input</p>
+            <p>What was actually typed &mdash; unedited.</p>
+          </div>
+          <div class="receipt-block receipt--output">
+            <p class="receipt-label">AI output</p>
+            <p>What actually came back &mdash; summarized honestly, never invented.</p>
+          </div>
+          <div class="receipt-block receipt--outcome">
+            <p class="receipt-label">Outcome</p>
+            <p>What happened next. This is the block that carries the accent-2 border.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Hypothesis block &middot; .lab-hypothesis (used on <a href="/lab/">/lab/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The light-mode sibling of <code class="ds-code">.pull-quote</code> &mdash; same italic display
+          type and accent left-border, but on <code class="ds-code">--color-bg-alt</code> instead of the
+          dark surface, since a Lab entry opens on a light background.
+        </p>
+        <div class="ds-frame">
+          <blockquote class="lab-hypothesis" style="margin:0;">I think a claim stated plainly, before the evidence, is what makes the evidence mean something.</blockquote>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Worked / didn&rsquo;t &middot; .worked-item (used on <a href="/lab/">/lab/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Two-column honest ledger. <code class="ds-code">.is-good</code> gets a filled accent-soft
+          circle with a check; <code class="ds-code">.is-bad</code> gets a muted bg-alt circle with an
+          &times; &mdash; deliberately quieter than a red &ldquo;error&rdquo; color, since this isn&rsquo;t
+          failure, it&rsquo;s just where a human was still required.
+        </p>
+        <div class="ds-frame">
+          <div class="worked-grid">
+            <div class="worked-list">
+              <div class="worked-item is-good">
+                <span class="worked-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <p>.is-good</p>
+              </div>
+            </div>
+            <div class="worked-list">
+              <div class="worked-item is-bad">
+                <span class="worked-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                <p>.is-bad</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Provenance mark &middot; .provenance (used site-wide)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A native <code class="ds-code">&lt;details&gt;/&lt;summary&gt;</code> disclosure &mdash; no JS,
+          keyboard- and screen-reader-accessible for free. Three tiers share one shape and swap only
+          the dot color and tier label: <code class="ds-code">.provenance--human</code> (muted,
+          ink-soft), <code class="ds-code">.provenance--assisted</code> (accent), and
+          <code class="ds-code">.provenance--collaborative</code> (accent-2, since it&rsquo;s the tier
+          that leans on AI the most). See the reasoning inside the first piece on
+          <a href="/thinking/">Thinking</a>.
+        </p>
+        <div class="ds-frame">
+          <div class="ds-row" style="gap:var(--space-6); flex-wrap:wrap; align-items:flex-start;">
+            <details class="provenance provenance--human">
+              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span>Dr. Paul X Claude<span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
+              <div class="provenance-detail"><p class="provenance-tier">Human-authored</p><p>Written solo. AI touched nothing worth crediting.</p></div>
+            </details>
+            <details class="provenance provenance--assisted">
+              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span>Dr. Paul X Claude<span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
+              <div class="provenance-detail"><p class="provenance-tier">AI-assisted</p><p>The thinking is mine; AI helped edit, research, or draft faster.</p></div>
+            </details>
+            <details class="provenance provenance--collaborative">
+              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span>Dr. Paul X Claude<span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
+              <div class="provenance-detail"><p class="provenance-tier">AI-collaborative</p><p>AI materially drafted the artifact under my direction and judgment.</p></div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Thought card &middot; .thought-card (expandable, used on <a href="/thinking/">/thinking/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Thinking isn&rsquo;t a blog &mdash; it&rsquo;s one page, and each piece is a native
+          <code class="ds-code">&lt;details&gt;/&lt;summary&gt;</code> card that expands in place
+          rather than linking out to its own URL. Same no-JS reasoning as
+          <code class="ds-code">.provenance</code>: keyboard- and screen-reader-accessible for free,
+          no separate page to maintain. The expanded body carries a
+          <code class="ds-code">.provenance</code> mark, then the article copy in
+          <code class="ds-code">.thinking-body</code> below &mdash; the one place on the site set
+          for sustained reading rather than scanning: a narrower 660px measure,
+          <code class="ds-code">--text-lg</code> body copy, and 1.75 line-height.
+        </p>
+        <div class="ds-frame">
+          <details class="thought-card" open>
+            <summary class="thought-summary">
+              <span class="lab-meta-facts">Thinking &middot; Example</span>
+              <h3>Collapsed by default</h3>
+              <p>The summary is the whole card until someone clicks it &mdash; title, dek, and a toggle label that flips between &ldquo;Read the piece&rdquo; and &ldquo;Collapse&rdquo; via <code class="ds-code">[open]</code>, no JS.</p>
+            </summary>
+            <div class="thought-body">
+              <div class="thinking-body" style="padding-top:var(--space-6); font-size:var(--text-base);">
+                <p style="margin:0;">This is what expands &mdash; set narrower and looser than the rest of the site&rsquo;s body copy on purpose, since this is the one place meant to be read start to finish, not scanned.</p>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Footer links &middot; .footer-links (used site-wide)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Where Design System lives now that it&rsquo;s out of the primary nav &mdash; a small, quiet,
+          mono-uppercase row above the copyright line. Room for more meta links later without
+          crowding the hamburger menu, which stays reserved for actual content.
+        </p>
+        <div class="ds-frame">
+          <div class="footer-links" style="justify-content:flex-start;">
+            <a href="/design-system/">Design System</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
         <p class="ds-group-title">Site navigation &middot; hamburger menu</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Every page shares one nav: a fixed logo, a <code class="ds-code">.nav-toggle</code>
           hamburger that morphs into an &times; on open, and a <code class="ds-code">.nav-panel</code>
-          that slides in from the right with three links &mdash; Story, How It&rsquo;s Built, Design
-          System. The panel runs the node network canvas below as its background &mdash; only while
-          it's open, so it costs nothing the rest of the time.
+          that slides in from the right with three links &mdash; Story, Thinking, Lab. Design System
+          isn&rsquo;t in the primary nav; it's meta-documentation, not content, so it lives as a quiet
+          link in every footer instead. The panel runs the node network canvas below as its background
+          &mdash; only while it's open, so it costs nothing the rest of the time.
         </p>
         <div class="ds-frame">
           <div class="ds-row" style="align-items:flex-start; gap:var(--space-8); flex-wrap:wrap;">
@@ -578,12 +721,29 @@
                   <p class="nav-panel-kicker">Menu</p>
                   <nav class="nav-panel-links" aria-label="Pattern preview">
                     <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">01</span>Story</a>
-                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">02</span>How It&rsquo;s Built</a>
-                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">03</span>Design System</a>
+                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">02</span>Thinking</a>
+                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">03</span>Lab</a>
                   </nav>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Intro background wash &middot; .hero-glow (used site-wide)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A single soft radial gradient, top-right, <code class="ds-code">rgba(76, 58, 227, 0.28)</code>
+          fading to transparent &mdash; the quiet color wash every page top should carry. This used to
+          drift: some intros had it, some didn&rsquo;t. It&rsquo;s now standard on every page&rsquo;s
+          intro section (Home, Story, Thinking, Lab index, every Lab entry, Ask Dr. Paul, and this
+          page), independent of whether that page also runs the node-network canvas below.
+        </p>
+        <div class="ds-frame" style="position:relative; overflow:hidden; padding:0;">
+          <div style="position:relative; overflow:hidden; padding:var(--space-8) var(--space-6);">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <p style="position:relative; z-index:1; margin:0; color:var(--color-ink-soft); font-size:var(--text-base);">.hero-glow, on its own, over a plain surface.</p>
           </div>
         </div>
       </div>
@@ -607,7 +767,35 @@
         <div class="ds-row" style="margin-top:var(--space-5); gap:var(--space-7); flex-wrap:wrap; font-family:var(--font-mono); font-size:var(--text-2xs); color:var(--color-ink-soft);">
           <span><strong style="color:var(--color-ink);">Hero background</strong> &middot; linkDist 140 &middot; density 16000 &middot; speed 0.25 &middot; runs continuously</span>
           <span><strong style="color:var(--color-ink);">Nav panel background</strong> &middot; linkDist 110 &middot; density 9000 &middot; speed 0.18 &middot; runs only while open</span>
-          <span><strong style="color:var(--color-ink);">Intro background</strong> &middot; same defaults as the hero &middot; used on <a href="/how-its-built/" style="color:var(--color-accent);">/how-its-built/</a></span>
+          <span><strong style="color:var(--color-ink);">Intro background</strong> &middot; same defaults as the hero &middot; used on <a href="/lab/" style="color:var(--color-accent);">/lab/</a> and <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a></span>
+          <span><strong style="color:var(--color-ink);">Thinking pulse</strong> &middot; a centered, breathing glow layered behind the network on <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a> only &mdash; reuses <code class="ds-code">frontier-pulse</code>, just recentered</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES -->
+  <section class="ds-section" id="templates">
+    <div class="wrap">
+      <div class="ds-section-head">
+        <p class="kicker">05 &middot; Templates</p>
+        <h2 class="section-title">Starter scaffolds, not just documentation</h2>
+        <p class="section-lede">Everything above shows a component. A template is a whole page, pre-assembled from those components with the copy replaced by placeholders &mdash; something to duplicate and fill in, not just read.</p>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Naming &middot; /design-system/template-X/</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Each template lives at its own <code class="ds-code">template-X</code> path under Design
+          System &mdash; visible only from here, not linked in primary nav, and marked
+          <code class="ds-code">noindex</code> since it isn&rsquo;t real content. Copy the page,
+          replace the bracketed placeholders, rename the folder to its real destination.
+        </p>
+        <div class="ds-frame">
+          <div class="ds-row" style="gap: var(--space-4);">
+            <a class="btn btn-ghost" href="/design-system/template-experiment/">template-experiment &rarr;</a>
+          </div>
+          <p style="margin:var(--space-4) 0 0; color:var(--color-ink-soft); font-size:var(--text-sm);">A blank Lab experiment: hypothesis, the thing built, two placeholder receipts, worked/didn&rsquo;t, human advantage, what changed my mind, next experiment. The scaffold for Experiment 002 and beyond.</p>
         </div>
       </div>
     </div>
@@ -617,7 +805,7 @@
   <section class="ds-section" id="principles">
     <div class="wrap">
       <div class="ds-section-head">
-        <p class="kicker">05 &middot; Principles</p>
+        <p class="kicker">06 &middot; Principles</p>
         <h2 class="section-title">How to use this without breaking it</h2>
         <p class="section-lede">Tokens and components only hold consistency together if the decisions around them are also written down.</p>
       </div>
