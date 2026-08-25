@@ -188,7 +188,9 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- Back link (every non-home page, browser-history back) ---------- */
-.page-back-bar { padding: var(--space-4) 0 0; }
+/* Lives inside the page's hero section so it overlays the hero-canvas/hero-glow
+   background instead of sitting in its own strip above it. */
+.page-back-bar { padding: 0; margin: 0 0 var(--space-7); }
 
 .back-link {
   display: inline-flex;
@@ -1261,12 +1263,14 @@ section { padding: var(--space-11) 0; }
 }
 
 /* Reusable node-network background for a plain intro section (e.g. /how-its-built/) */
-.intro-network {
+.intro-network,
+.ds-intro {
   position: relative;
   overflow: hidden;
 }
 
-.intro-network .wrap {
+.intro-network .wrap,
+.ds-intro .wrap {
   position: relative;
   z-index: 1;
 }
