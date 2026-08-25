@@ -86,6 +86,13 @@
 
 <main id="main">
 
+  <div class="wrap page-back-bar">
+    <button type="button" class="back-link" onclick="if (window.history.length > 1) { history.back(); } else { window.location.href = '/'; }">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </button>
+  </div>
+
   <!-- INTRO -->
   <section class="about-intro intro-network">
     <canvas class="hero-canvas" aria-hidden="true"></canvas>
@@ -93,12 +100,11 @@
     <div class="thinking-pulse-glow" aria-hidden="true"></div>
     <div class="wrap">
       <p class="kicker" data-reveal>Thinking</p>
-      <h1 class="about-title" data-reveal>Ideas I&rsquo;m testing in public.</h1>
+      <h1 class="about-title" data-reveal>Thoughts Dr. Paul is Contemplating</h1>
       <p class="section-lede" data-reveal>
         Not the Lab &mdash; nothing here is a build. Short, complete thoughts about AI, marketing,
         and authorship &mdash; each node below is its own idea, not a preview of something longer.
-        Tap one open to read it. One older, longer piece from before this format existed sits at
-        the end of the chain, marked as legacy.
+        Tap one open to read it.
       </p>
     </div>
   </section>
@@ -107,78 +113,10 @@
   <section>
     <div class="wrap">
 
-      <!--
-        MOCKUP NOTE FOR PAUL — the first three nodes below are placeholder
-        scaffolding only, not published thoughts. Per the new house rule, Claude
-        doesn't draft Thinking content going forward — you write the headline +
-        the ~150–300 character quote, and these placeholders get swapped for your
-        real words (or removed if you'd rather start from zero nodes). The fourth
-        node, "Human + AI Provenance," is real — its headline and quote are your
-        exact words, replacing the old ~4,000-word "End of Anonymous Creation"
-        essay, which no longer appears on the page.
-      -->
-
       <div class="thought-nodes">
         <span class="thought-nodes-pulse" aria-hidden="true"></span>
         <span class="thought-nodes-pulse" aria-hidden="true"></span>
         <span class="thought-nodes-pulse" aria-hidden="true"></span>
-
-        <div class="thought-node" data-reveal>
-          <span class="thought-node-marker" aria-hidden="true"><span class="thought-node-dot"></span></span>
-          <details class="thought-node-card">
-            <summary class="thought-node-summary">
-              <span>
-                <span class="thought-node-tag">Placeholder &middot; AI</span>
-                <h3 class="thought-node-headline">[Your headline goes here &mdash; 8&ndash;12 words]</h3>
-              </span>
-              <span class="thought-node-chevron" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-              </span>
-            </summary>
-            <div class="thought-node-body">
-              <p class="thought-node-quote">[Placeholder &mdash; swap in your real thought here, roughly 150&ndash;300 characters. This filler text is only here to show the length and the layout, not to publish as an idea.]</p>
-              <p class="thought-node-meta">Placeholder node &middot; target length 150&ndash;300 characters</p>
-            </div>
-          </details>
-        </div>
-
-        <div class="thought-node" data-reveal>
-          <span class="thought-node-marker" aria-hidden="true"><span class="thought-node-dot"></span></span>
-          <details class="thought-node-card">
-            <summary class="thought-node-summary">
-              <span>
-                <span class="thought-node-tag">Placeholder &middot; Marketing</span>
-                <h3 class="thought-node-headline">[Your headline goes here &mdash; 8&ndash;12 words]</h3>
-              </span>
-              <span class="thought-node-chevron" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-              </span>
-            </summary>
-            <div class="thought-node-body">
-              <p class="thought-node-quote">[Placeholder &mdash; swap in your real thought here, roughly 150&ndash;300 characters. This filler text is only here to show the length and the layout, not to publish as an idea.]</p>
-              <p class="thought-node-meta">Placeholder node &middot; target length 150&ndash;300 characters</p>
-            </div>
-          </details>
-        </div>
-
-        <div class="thought-node" data-reveal>
-          <span class="thought-node-marker" aria-hidden="true"><span class="thought-node-dot"></span></span>
-          <details class="thought-node-card">
-            <summary class="thought-node-summary">
-              <span>
-                <span class="thought-node-tag">Placeholder &middot; Authorship</span>
-                <h3 class="thought-node-headline">[Your headline goes here &mdash; 8&ndash;12 words]</h3>
-              </span>
-              <span class="thought-node-chevron" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-              </span>
-            </summary>
-            <div class="thought-node-body">
-              <p class="thought-node-quote">[Placeholder &mdash; swap in your real thought here, roughly 150&ndash;300 characters. This filler text is only here to show the length and the layout, not to publish as an idea.]</p>
-              <p class="thought-node-meta">Placeholder node &middot; target length 150&ndash;300 characters</p>
-            </div>
-          </details>
-        </div>
 
         <div class="thought-node" data-reveal>
           <span class="thought-node-marker" aria-hidden="true"><span class="thought-node-dot"></span></span>
@@ -193,11 +131,11 @@
               </span>
             </summary>
             <div class="thought-node-body">
-              <p class="thought-node-quote">AI is a co-creator that needs to be transparently credited. In this spirit content on paulmress.com indicates the provenance of the output.</p>
+              <p class="thought-node-quote">AI is a co-creator that needs to be transparently credited. In this spirit, content on paulmress.com indicates the provenance of the output.</p>
               <details class="provenance provenance--human" style="margin-top: var(--space-5);">
                 <summary class="provenance-mark">
                   <span class="provenance-dot" aria-hidden="true"></span>
-                  Dr. Paul X Claude
+                  <a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a>
                   <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
                 </summary>
                 <div class="provenance-detail">
@@ -220,7 +158,7 @@
     <details class="provenance provenance--collaborative footer-provenance">
       <summary class="provenance-mark">
         <span class="provenance-dot" aria-hidden="true"></span>
-        Dr. Paul X Claude
+        <a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a>
         <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
       </summary>
       <div class="provenance-detail">
