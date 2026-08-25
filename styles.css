@@ -1944,7 +1944,8 @@ details.thought-node-card[open] .thought-node-chevron {
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: var(--space-5);
+  align-items: center;
+  gap: var(--space-3);
   margin-bottom: var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -1957,6 +1958,10 @@ details.thought-node-card[open] .thought-node-chevron {
   text-decoration: none;
 }
 .footer-links a:hover { color: var(--color-accent); }
+
+.footer-links-sep {
+  color: var(--color-line);
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
