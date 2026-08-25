@@ -45,6 +45,7 @@
 {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
+  "url": "https://paulmress.com/story/",
   "about": {
     "@type": "Person",
     "name": "Dr. Paul Ress",
@@ -52,7 +53,14 @@
     "jobTitle": "Director, Marketing AI Strategy, Enablement & Governance",
     "url": "https://paulmress.com/",
     "sameAs": ["https://www.linkedin.com/in/paulress"]
-  }
+  },
+  "author": { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+  "creator": [
+    { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+    { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com/", "description": "Claude, the AI pair-programmer that drafted this page's language and code under Dr. Paul Ress's direction." }
+  ],
+  "accountablePerson": { "@type": "Person", "name": "Dr. Paul Ress" },
+  "digitalSourceType": "https://schema.org/CompositeWithTrainedAlgorithmicMediaDigitalSource"
 }
 </script>
 </head>
@@ -281,6 +289,17 @@
 
 <footer class="site-footer">
   <div class="wrap">
+    <details class="provenance provenance--collaborative footer-provenance">
+      <summary class="provenance-mark">
+        <span class="provenance-dot" aria-hidden="true"></span>
+        Dr. Paul X Claude
+        <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
+      </summary>
+      <div class="provenance-detail">
+        <p class="provenance-tier">AI-collaborative</p>
+        <p>Claude drafted this page&rsquo;s language and code from my direction, and I revised it before it went live. <a href="/thinking/#the-end-of-anonymous-creation">Read why that&rsquo;s disclosed on every page</a>.</p>
+      </div>
+    </details>
     <div class="footer-links">
       <a href="/design-system/">Design System</a>
     </div>
