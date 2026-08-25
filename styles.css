@@ -1561,6 +1561,177 @@ section { padding: var(--space-11) 0; }
   z-index: 0;
 }
 
+/* ---------- Thinking node network (short-form thought nodes, /thinking/) ----------
+   Same spine + traveling pulse language as .steps and .timeline (timeline-flow
+   keyframe, reused rather than a new animation), run through a column of small
+   node dots instead of icons. Each node is its own <details> "fortune cookie":
+   a short headline teaser, a strict-length quote when opened, nothing longer. */
+.thought-nodes {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-2);
+}
+
+.thought-nodes::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom,
+    rgba(76,58,227,0) 0%,
+    rgba(76,58,227,0.32) 6%,
+    rgba(76,58,227,0.32) 94%,
+    rgba(76,58,227,0) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.thought-nodes-pulse {
+  position: absolute;
+  left: 22px;
+  top: -4%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px 2px rgba(76,58,227,0.55), 0 0 2px rgba(76,58,227,0.9);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  animation: timeline-flow 6s linear infinite;
+}
+.thought-nodes-pulse:nth-child(2) { animation-delay: -2s; }
+.thought-nodes-pulse:nth-child(3) { animation-delay: -4s; }
+
+.thought-node {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.thought-node-marker {
+  position: relative;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thought-node-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 3px solid var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-line), 0 3px 10px rgba(20, 19, 27, 0.2);
+  transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+}
+
+.thought-node:hover .thought-node-dot,
+.thought-node--open .thought-node-dot {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 6px var(--color-accent-soft), 0 3px 10px rgba(20, 19, 27, 0.25);
+}
+
+details.thought-node-card {
+  display: block;
+  background: var(--color-bg);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--duration-base) ease, box-shadow var(--duration-base) ease;
+}
+
+details.thought-node-card[open] {
+  border-color: var(--color-accent);
+  box-shadow: 0 20px 36px -22px rgba(23, 24, 28, 0.28), 0 0 0 1px rgba(76, 58, 227, 0.15);
+}
+
+.thought-node-summary {
+  cursor: pointer;
+  list-style: none;
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.thought-node-summary::-webkit-details-marker { display: none; }
+
+.thought-node-tag {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+.thought-node-headline {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--color-ink);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.thought-node-chevron {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--color-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  margin-top: 2px;
+  transition: transform var(--duration-base) var(--ease-out), border-color var(--duration-base) ease, background var(--duration-base) ease;
+}
+.thought-node-chevron svg { width: 14px; height: 14px; }
+
+details.thought-node-card[open] .thought-node-chevron {
+  transform: rotate(180deg);
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.thought-node-body {
+  padding: 0 var(--space-6) var(--space-6);
+  border-top: 1px solid var(--color-line);
+}
+
+.thought-node-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin: var(--space-5) 0 0;
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--color-accent);
+}
+
+.thought-node-meta {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--color-ink-soft);
+}
+
 /* ---------- Timeline background: node-network spine ---------- */
 .timeline-section {
   position: relative;
@@ -1763,4 +1934,8 @@ section { padding: var(--space-11) 0; }
 
   .frontier-node-glow { width: 320px; height: 320px; }
   .thinking-pulse-glow { width: 320px; height: 320px; }
+
+  .thought-node-headline { font-size: var(--text-lg); }
+  .thought-node-summary { padding: var(--space-4) var(--space-5); }
+  .thought-node-body { padding: 0 var(--space-5) var(--space-5); }
 }
