@@ -1449,6 +1449,17 @@ section { padding: var(--space-11) 0; }
 
 .provenance-detail a { color: var(--color-accent); }
 
+/* Footer variant: same component, centered under the footer links on every
+   page (see .site-footer below) instead of inline with body content. */
+.footer-provenance {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto var(--space-5);
+  text-align: left;
+}
+.footer-provenance .provenance-detail { margin-left: auto; margin-right: auto; }
+
 /* ---------- Thinking (expandable thought cards, /thinking/) ---------- */
 .thought-list {
   display: flex;
