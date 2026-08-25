@@ -187,6 +187,29 @@ img { max-width: 100%; display: block; }
   color: var(--color-ink);
 }
 
+/* ---------- Back link (every non-home page, browser-history back) ---------- */
+.page-back-bar { padding: var(--space-4) 0 0; }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-ink-soft);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: color var(--duration-fast) ease;
+}
+.back-link:hover,
+.back-link:focus-visible { color: var(--color-accent); }
+.back-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
 /* ---------- Nav toggle (hamburger) + slide-in panel ---------- */
 .nav-toggle {
   position: relative;
@@ -1419,6 +1442,13 @@ section { padding: var(--space-11) 0; }
 
 .provenance-chevron { margin-left: var(--space-1); font-size: 0.6rem; opacity: 0.6; }
 
+/* The name inside the mark links to /about/ — a real author byline for
+   people and crawlers alike, not just a label. Inherits the pill's color
+   so it reads as one mark; only underlines to signal it's a link. */
+.provenance-author { color: inherit; text-decoration: none; }
+.provenance-author:hover,
+.provenance-author:focus-visible { text-decoration: underline; }
+
 .provenance-detail {
   margin-top: var(--space-3);
   padding: var(--space-5);
@@ -1460,89 +1490,7 @@ section { padding: var(--space-11) 0; }
 }
 .footer-provenance .provenance-detail { margin-left: auto; margin-right: auto; }
 
-/* ---------- Thinking (expandable thought cards, /thinking/) ---------- */
-.thought-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-}
-
-/* Native <details>/<summary> again, same reasoning as .provenance: a card
-   that expands in place needs no JS to be accessible and keyboard-operable. */
-.thought-card {
-  display: block;
-  background: var(--color-bg);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: border-color var(--duration-base) ease, box-shadow var(--duration-base) ease;
-}
-.thought-card[open] {
-  border-color: var(--color-accent);
-  box-shadow: 0 20px 36px -22px rgba(23, 24, 28, 0.28);
-}
-
-.thought-summary {
-  cursor: pointer;
-  list-style: none;
-  padding: var(--space-7) var(--space-6) var(--space-6);
-}
-.thought-summary::-webkit-details-marker { display: none; }
-
-.thought-summary .lab-meta-facts { display: block; margin-bottom: var(--space-3); }
-
-.thought-summary h3 { font-size: var(--text-2xl); margin: 0 0 var(--space-3); }
-
-.thought-summary p { color: var(--color-ink-soft); font-size: var(--text-base); margin: 0; }
-
-.thought-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-top: var(--space-5);
-  font-weight: 600;
-  color: var(--color-accent);
-}
-
-.thought-toggle-open { display: none; }
-.thought-card[open] .thought-toggle-closed { display: none; }
-.thought-card[open] .thought-toggle-open { display: inline-flex; align-items: center; gap: var(--space-2); }
-
-.thought-body {
-  padding: 0 var(--space-6) var(--space-8);
-  border-top: 1px solid var(--color-line);
-}
-
-.thought-body .thinking-body { padding-top: var(--space-7); }
-
-.thought-body .provenance { margin-bottom: var(--space-7); }
-
-/* Long-form article body: narrower measure, looser leading, real paragraph rhythm */
-.thinking-body {
-  max-width: 660px;
-  font-size: var(--text-lg);
-  color: var(--color-ink);
-  line-height: 1.75;
-}
-
-.thinking-body p { margin: 0 0 var(--space-6); }
-
-.thinking-body .pull-quote {
-  color: var(--color-ink);
-  border-left-color: var(--color-accent);
-  font-size: var(--text-heading-md);
-  margin: var(--space-8) 0;
-}
-
-.thinking-dek {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: var(--text-xl);
-  color: var(--color-ink-soft);
-  max-width: 660px;
-  margin: var(--space-5) 0 0;
-}
-
+/* ---------- Thinking (node network, /thinking/) ---------- */
 /* Centered pulsing glow layered behind the node network on /thinking/ —
    reuses the existing frontier-pulse keyframe (no new motion pattern),
    just centered and sized to read as a slow, breathing signal rather
