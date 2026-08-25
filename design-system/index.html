@@ -63,9 +63,9 @@
   <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
   <p class="nav-panel-kicker">Menu</p>
   <nav class="nav-panel-links" aria-label="Primary">
-    <a href="/story/" class="nav-panel-link"><span class="nav-panel-num">01</span>Story</a>
+    <a href="/lab/" class="nav-panel-link"><span class="nav-panel-num">01</span>Lab</a>
     <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
-    <a href="/lab/" class="nav-panel-link"><span class="nav-panel-num">03</span>Lab</a>
+    <a href="/about/" class="nav-panel-link"><span class="nav-panel-num">03</span>About</a>
   </nav>
 </div>
 
@@ -394,7 +394,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Stat tile &middot; .stats-grid (3-up, used on <a href="/">the homepage</a>)</p>
+        <p class="ds-group-title">Stat tile &middot; .stats-grid (3-up, used on <a href="/about/">the About page</a>)</p>
         <div class="ds-frame">
           <div class="stat ds-stat-demo" style="border-radius:var(--radius);">
             <p class="stat-number">4.0</p>
@@ -407,8 +407,8 @@
         <p class="ds-group-title">Section header &middot; kicker + title + lede</p>
         <div class="ds-frame">
           <p class="kicker">Values</p>
-          <h3 class="section-title" style="margin-bottom:var(--space-2);">Human operational model</h3>
-          <p class="section-lede" style="margin-bottom:0;">Used identically at the top of every section on the homepage.</p>
+          <h3 class="section-title" style="margin-bottom:var(--space-2);">Human Ops Model</h3>
+          <p class="section-lede" style="margin-bottom:0;">Used identically at the top of every section, site-wide.</p>
         </div>
       </div>
 
@@ -736,14 +736,21 @@
       <div class="ds-group">
         <p class="ds-group-title">Footer links &middot; .footer-links (used site-wide)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
-          Where the meta pages live &mdash; a small, quiet, mono-uppercase row above the copyright
-          line, out of the hamburger menu, which stays reserved for actual content. About joined
-          Design System here so the primary nav could stay focused on the three things people
-          actually come to read.
+          A complete site index &mdash; a small, quiet, mono-uppercase row above the copyright
+          line, pipe-separated, out of the hamburger menu. It repeats the three primary-nav pages
+          (Lab, Thinking, About) alongside Story and Design System, which aren&rsquo;t in the
+          hamburger menu at all.
         </p>
         <div class="ds-frame">
           <div class="footer-links" style="justify-content:flex-start;">
+            <a href="/lab/">Lab</a>
+            <span class="footer-links-sep" aria-hidden="true">|</span>
+            <a href="/thinking/">Thinking</a>
+            <span class="footer-links-sep" aria-hidden="true">|</span>
             <a href="/about/">About</a>
+            <span class="footer-links-sep" aria-hidden="true">|</span>
+            <a href="/story/">Story</a>
+            <span class="footer-links-sep" aria-hidden="true">|</span>
             <a href="/design-system/">Design System</a>
           </div>
         </div>
@@ -754,10 +761,10 @@
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Every page shares one nav: a fixed logo, a <code class="ds-code">.nav-toggle</code>
           hamburger that morphs into an &times; on open, and a <code class="ds-code">.nav-panel</code>
-          that slides in from the right with three links &mdash; Story, Thinking, Lab. About and
-          Design System aren&rsquo;t primary content, so they live as a quiet row in every footer
-          instead. The panel runs the node network canvas below as its background &mdash; only
-          while it's open, so it costs nothing the rest of the time.
+          that slides in from the right with three links &mdash; Lab, Thinking, About. Story and
+          Design System live as a quiet, pipe-separated row in every footer instead. The panel runs
+          the node network canvas below as its background &mdash; only while it's open, so it costs
+          nothing the rest of the time.
         </p>
         <div class="ds-frame">
           <div class="ds-row" style="align-items:flex-start; gap:var(--space-8); flex-wrap:wrap;">
@@ -775,9 +782,9 @@
                   <canvas class="nav-panel-canvas" id="ds-nav-canvas" aria-hidden="true"></canvas>
                   <p class="nav-panel-kicker">Menu</p>
                   <nav class="nav-panel-links" aria-label="Pattern preview">
-                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">01</span>Story</a>
+                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">01</span>Lab</a>
                     <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">02</span>Thinking</a>
-                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">03</span>Lab</a>
+                    <a href="#organisms" class="nav-panel-link" onclick="return false;" tabindex="-1"><span class="nav-panel-num">03</span>About</a>
                   </nav>
                 </div>
               </div>
@@ -986,7 +993,15 @@
       </div>
     </details>
     <div class="footer-links">
+      <a href="/lab/">Lab</a>
+      <span class="footer-links-sep" aria-hidden="true">|</span>
+      <a href="/thinking/">Thinking</a>
+      <span class="footer-links-sep" aria-hidden="true">|</span>
       <a href="/about/">About</a>
+      <span class="footer-links-sep" aria-hidden="true">|</span>
+      <a href="/story/">Story</a>
+      <span class="footer-links-sep" aria-hidden="true">|</span>
+      <a href="/design-system/" aria-current="page">Design System</a>
     </div>
     <p>&copy; <span id="year"></span> Paul Ress. Design system built and maintained in collaboration with AI.</p>
   </div>
