@@ -86,6 +86,13 @@
 
 <main id="main">
 
+  <div class="wrap page-back-bar">
+    <button type="button" class="back-link" onclick="if (window.history.length > 1) { history.back(); } else { window.location.href = '/'; }">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </button>
+  </div>
+
   <!-- INTRO -->
   <section class="ds-intro">
     <canvas class="ds-intro-canvas" id="ds-canvas" aria-hidden="true"></canvas>
@@ -649,21 +656,23 @@
           the dot color and tier label: <code class="ds-code">.provenance--human</code> (muted,
           ink-soft), <code class="ds-code">.provenance--assisted</code> (accent), and
           <code class="ds-code">.provenance--collaborative</code> (accent-2, since it&rsquo;s the tier
-          that leans on AI the most). See the reasoning inside the first piece on
-          <a href="/thinking/">Thinking</a>.
+          that leans on AI the most). The name in the mark, <code class="ds-code">.provenance-author</code>,
+          is a real link to <a href="/about/">/about/</a> on every instance &mdash; a byline a crawler
+          or an LLM can follow to confirm who&rsquo;s accountable, not just a label. See the reasoning
+          inside <a href="/thinking/#human-ai-provenance">Human + AI Provenance</a>.
         </p>
         <div class="ds-frame">
           <div class="ds-row" style="gap:var(--space-6); flex-wrap:wrap; align-items:flex-start;">
             <details class="provenance provenance--human">
-              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span>Dr. Paul X Claude<span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
+              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span><a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a><span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
               <div class="provenance-detail"><p class="provenance-tier">Human-authored</p><p>Written solo. AI touched nothing worth crediting.</p></div>
             </details>
             <details class="provenance provenance--assisted">
-              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span>Dr. Paul X Claude<span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
+              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span><a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a><span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
               <div class="provenance-detail"><p class="provenance-tier">AI-assisted</p><p>The thinking is mine; AI helped edit, research, or draft faster.</p></div>
             </details>
             <details class="provenance provenance--collaborative">
-              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span>Dr. Paul X Claude<span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
+              <summary class="provenance-mark"><span class="provenance-dot" aria-hidden="true"></span><a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a><span class="provenance-chevron" aria-hidden="true">&#9662;</span></summary>
               <div class="provenance-detail"><p class="provenance-tier">AI-collaborative</p><p>AI materially drafted the artifact under my direction and judgment.</p></div>
             </details>
           </div>
@@ -671,31 +680,58 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Thought card &middot; .thought-card (expandable, used on <a href="/thinking/">/thinking/</a>)</p>
+        <p class="ds-group-title">Thought node &middot; .thought-node (fortune-cookie length, used on <a href="/thinking/">/thinking/</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
-          Thinking isn&rsquo;t a blog &mdash; it&rsquo;s one page, and each piece is a native
-          <code class="ds-code">&lt;details&gt;/&lt;summary&gt;</code> card that expands in place
-          rather than linking out to its own URL. Same no-JS reasoning as
-          <code class="ds-code">.provenance</code>: keyboard- and screen-reader-accessible for free,
-          no separate page to maintain. The expanded body carries a
-          <code class="ds-code">.provenance</code> mark, then the article copy in
-          <code class="ds-code">.thinking-body</code> below &mdash; the one place on the site set
-          for sustained reading rather than scanning: a narrower 660px measure,
-          <code class="ds-code">--text-lg</code> body copy, and 1.75 line-height.
+          Replaced the old single long-form <code class="ds-code">.thought-card</code> essay layout:
+          Thinking is now a column of short, complete thoughts strung on the same gradient spine and
+          <code class="ds-code">timeline-flow</code> pulses as <code class="ds-code">.steps</code>
+          above, just run through a small glowing <code class="ds-code">.thought-node-dot</code>
+          instead of an icon circle. Each node is a native <code class="ds-code">&lt;details&gt;</code>
+          card &mdash; a tag, a headline teaser, and on open, a quote capped at roughly 150&ndash;300
+          characters. No preview-of-something-longer: the quote <em>is</em> the whole thought. A small
+          script mirrors each card&rsquo;s <code class="ds-code">[open]</code> state onto its marker
+          (<code class="ds-code">.thought-node--open</code>) so the dot glows brighter while its card
+          is expanded. Per house rule, Claude doesn&rsquo;t draft the words that go in these &mdash;
+          see Principle 07 below.
         </p>
         <div class="ds-frame">
-          <details class="thought-card" open>
-            <summary class="thought-summary">
-              <span class="lab-meta-facts">Thinking &middot; Example</span>
-              <h3>Collapsed by default</h3>
-              <p>The summary is the whole card until someone clicks it &mdash; title, dek, and a toggle label that flips between &ldquo;Read the piece&rdquo; and &ldquo;Collapse&rdquo; via <code class="ds-code">[open]</code>, no JS.</p>
-            </summary>
-            <div class="thought-body">
-              <div class="thinking-body" style="padding-top:var(--space-6); font-size:var(--text-base);">
-                <p style="margin:0;">This is what expands &mdash; set narrower and looser than the rest of the site&rsquo;s body copy on purpose, since this is the one place meant to be read start to finish, not scanned.</p>
-              </div>
+          <div class="thought-nodes" style="margin-top:0;">
+            <span class="thought-nodes-pulse" aria-hidden="true"></span>
+            <div class="thought-node">
+              <span class="thought-node-marker" aria-hidden="true"><span class="thought-node-dot"></span></span>
+              <details class="thought-node-card">
+                <summary class="thought-node-summary">
+                  <span>
+                    <span class="thought-node-tag">Example &middot; Collapsed</span>
+                    <h3 class="thought-node-headline">Collapsed by default</h3>
+                  </span>
+                  <span class="thought-node-chevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                  </span>
+                </summary>
+                <div class="thought-node-body">
+                  <p class="thought-node-quote">The tag and headline are the whole teaser &mdash; open the card and the quote is capped short too, not a preview of something longer.</p>
+                </div>
+              </details>
             </div>
-          </details>
+            <div class="thought-node thought-node--open">
+              <span class="thought-node-marker" aria-hidden="true"><span class="thought-node-dot"></span></span>
+              <details class="thought-node-card" open>
+                <summary class="thought-node-summary">
+                  <span>
+                    <span class="thought-node-tag">Example &middot; Open</span>
+                    <h3 class="thought-node-headline">The marker glows on open</h3>
+                  </span>
+                  <span class="thought-node-chevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                  </span>
+                </summary>
+                <div class="thought-node-body">
+                  <p class="thought-node-quote">.thought-node--open scales and glows the dot &mdash; toggled by JS listening to the &lt;details&gt; element&rsquo;s native toggle event, nothing more.</p>
+                </div>
+              </details>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -718,10 +754,10 @@
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Every page shares one nav: a fixed logo, a <code class="ds-code">.nav-toggle</code>
           hamburger that morphs into an &times; on open, and a <code class="ds-code">.nav-panel</code>
-          that slides in from the right with three links &mdash; Story, Thinking, Lab. Design System
-          isn&rsquo;t in the primary nav; it's meta-documentation, not content, so it lives as a quiet
-          link in every footer instead. The panel runs the node network canvas below as its background
-          &mdash; only while it's open, so it costs nothing the rest of the time.
+          that slides in from the right with four links &mdash; Story, Thinking, Lab, About. Design
+          System isn&rsquo;t in the primary nav; it's meta-documentation, not content, so it lives as
+          a quiet link in every footer instead. The panel runs the node network canvas below as its
+          background &mdash; only while it's open, so it costs nothing the rest of the time.
         </p>
         <div class="ds-frame">
           <div class="ds-row" style="align-items:flex-start; gap:var(--space-8); flex-wrap:wrap;">
@@ -748,6 +784,24 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Back link &middot; .back-link (used on every non-home page)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A plain-text mono button, first thing inside <code class="ds-code">&lt;main&gt;</code> on
+          every page except the homepage. Calls <code class="ds-code">history.back()</code> so it
+          returns wherever the visitor actually came from &mdash; internal link, search result, or
+          a direct hit, in which case it falls back to <code class="ds-code">/</code> rather than
+          doing nothing. No <code class="ds-code">href</code> to keep in sync with the page it sits
+          on; the browser already knows.
+        </p>
+        <div class="ds-frame">
+          <button type="button" class="back-link" tabindex="-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back
+          </button>
         </div>
       </div>
 
@@ -787,7 +841,7 @@
         <div class="ds-row" style="margin-top:var(--space-5); gap:var(--space-7); flex-wrap:wrap; font-family:var(--font-mono); font-size:var(--text-2xs); color:var(--color-ink-soft);">
           <span><strong style="color:var(--color-ink);">Hero background</strong> &middot; linkDist 140 &middot; density 16000 &middot; speed 0.25 &middot; runs continuously</span>
           <span><strong style="color:var(--color-ink);">Nav panel background</strong> &middot; linkDist 110 &middot; density 9000 &middot; speed 0.18 &middot; runs only while open</span>
-          <span><strong style="color:var(--color-ink);">Intro background</strong> &middot; same defaults as the hero &middot; used on <a href="/lab/" style="color:var(--color-accent);">/lab/</a> and <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a></span>
+          <span><strong style="color:var(--color-ink);">Intro background</strong> &middot; same defaults as the hero &middot; used on <a href="/story/" style="color:var(--color-accent);">/story/</a>, <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a>, <a href="/lab/" style="color:var(--color-accent);">/lab/</a>, and <a href="/about/" style="color:var(--color-accent);">/about/</a></span>
           <span><strong style="color:var(--color-ink);">Thinking pulse</strong> &middot; a centered, breathing glow layered behind the network on <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a> only &mdash; reuses <code class="ds-code">frontier-pulse</code>, just recentered</span>
         </div>
       </div>
@@ -844,7 +898,7 @@
           <details class="provenance provenance--collaborative footer-provenance">
             <summary class="provenance-mark">
               <span class="provenance-dot" aria-hidden="true"></span>
-              Dr. Paul X Claude
+              <a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a>
               <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
             </summary>
             <div class="provenance-detail">
@@ -910,6 +964,10 @@
           <span class="ds-principle-num">06</span>
           <p><strong>This page is documentation, not decoration.</strong> When a token or component changes in <code class="ds-code">styles.css</code>, this page changes with it automatically — if it ever doesn't, something is wrong.</p>
         </div>
+        <div class="ds-principle">
+          <span class="ds-principle-num">07</span>
+          <p><strong>Claude doesn't draft what goes in a Thinking node.</strong> Layout, spine, pulses, markup — all fair game. The tag, headline, and quote inside each <code class="ds-code">.thought-node</code> are Dr. Paul's own words; Claude asks for them rather than writing placeholders that could pass as real.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -922,7 +980,7 @@
     <details class="provenance provenance--collaborative footer-provenance">
       <summary class="provenance-mark">
         <span class="provenance-dot" aria-hidden="true"></span>
-        Dr. Paul X Claude
+        <a href="/about/" class="provenance-author" onclick="event.stopPropagation()">Dr. Paul</a>
         <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
       </summary>
       <div class="provenance-detail">
@@ -1048,6 +1106,16 @@
       });
     }
   })();
+
+  // Same marker-glow wiring as the live .thought-node component on /thinking/
+  // (a page-scoped inline script there, same pattern) — kept here too so this
+  // demo isn't just a screenshot of the behavior, it actually does it.
+  document.querySelectorAll(".thought-node").forEach(function (node) {
+    var card = node.querySelector(".thought-node-card");
+    if (!card) return;
+    var sync = function () { node.classList.toggle("thought-node--open", card.open); };
+    card.addEventListener("toggle", sync);
+  });
 </script>
 </body>
 </html>
