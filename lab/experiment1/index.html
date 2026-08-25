@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Can AI Replace a CMS? | Lab | Dr. Paul Ress, DBA</title>
-<meta name="description" content="Experiment 001: can an AI pair-programmer replace a traditional CMS for a personal site? The real receipts &mdash; a nav bug fixed in one pass, and the one decision the AI got wrong.">
+<meta name="description" content="Experiment 001: the problem, the hypothesis, what got tested, and the results of replacing a CMS with an AI pair-programmer, a design system, and Git.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#4C3AE3">
 <link rel="canonical" href="https://paulmress.com/lab/experiment1/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Can AI Replace a CMS? | Lab | Dr. Paul Ress, DBA">
-<meta property="og:description" content="Experiment 001: can an AI pair-programmer replace a traditional CMS for a personal site? The real receipts, what worked, what didn't, and what changed my mind.">
+<meta property="og:description" content="Experiment 001: the problem, the hypothesis, what got tested, and the results of replacing a CMS with an AI pair-programmer, a design system, and Git.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://paulmress.com/lab/experiment1/">
 <meta property="og:site_name" content="Paul Ress">
@@ -24,7 +24,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Can AI Replace a CMS? | Lab | Dr. Paul Ress, DBA">
-<meta name="twitter:description" content="Experiment 001: can an AI pair-programmer replace a traditional CMS for a personal site? The real receipts, what worked, and what changed my mind.">
+<meta name="twitter:description" content="Experiment 001: the problem, the hypothesis, what got tested, and the results &mdash; evidence, not adjectives.">
 <meta name="twitter:image" content="https://paulmress.com/images/og-image.png">
 <meta name="twitter:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
 
@@ -106,9 +106,9 @@
       <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; Experiment 001</p>
       <h1 class="about-title" data-reveal>Can AI replace a CMS?</h1>
       <p class="section-lede" data-reveal>
-        This domain used to run on a GoDaddy website builder. Now it runs on a written brief, an AI
+        This site used to run on a GoDaddy website builder. Now it runs on a written brief, an AI
         pair-programmer, and a design system instead of an admin panel &mdash; and this site is the
-        experiment. Not a case study written after the fact: the log, as it actually happened.
+        experiment.
       </p>
       <div class="lab-meta" data-reveal>
         <span class="pill">Ongoing</span>
@@ -117,100 +117,110 @@
     </div>
   </section>
 
-  <!-- HYPOTHESIS -->
+  <!-- 01 PROBLEM -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>The Hypothesis</p>
-      <blockquote class="lab-hypothesis" data-reveal>
-        I think an AI pair-programmer can fully replace a traditional CMS for a personal site &mdash;
-        with real version control and design consistency a CMS doesn&rsquo;t give you by default, and
-        without a monthly SaaS fee &mdash; as long as I&rsquo;m willing to type instructions instead of
-        clicking through an admin panel.
-      </blockquote>
+      <p class="kicker" data-reveal>01 &middot; Problem</p>
+      <div class="hmw" data-reveal>
+        <p class="hmw-label">How might we</p>
+        <p class="hmw-question">Replace a traditional CMS with an AI-native publishing workflow &mdash; without sacrificing consistency, control, or speed?</p>
+      </div>
     </div>
   </section>
 
-  <!-- THE THING BUILT -->
+  <!-- 02 HYPOTHESIS -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>The Thing Built</p>
-      <h2 class="section-title" data-reveal>You&rsquo;re already inside it</h2>
-      <p class="section-lede" data-reveal>
-        There&rsquo;s no separate demo for this one. Every page on paulmress.com &mdash; this one
-        included &mdash; was written, styled, and shipped the same way. Five steps, every time,
-        whether it&rsquo;s a typo fix or a brand-new page.
-      </p>
+      <p class="kicker" data-reveal>02 &middot; Hypothesis</p>
+      <blockquote class="lab-hypothesis" data-reveal>
+        An AI pair-programmer can replace a traditional CMS for a personal website if the site has a
+        sufficiently strong design system and version-controlled workflow.
+      </blockquote>
+      <p class="lab-meta-facts" style="margin-top:var(--space-5);" data-reveal>Tested with Claude &middot; GitHub &middot; GitHub Actions &middot; Design System</p>
+    </div>
+  </section>
 
-      <div class="steps" data-reveal>
-        <span class="steps-pulse" aria-hidden="true"></span>
-        <span class="steps-pulse" aria-hidden="true"></span>
-        <span class="steps-pulse" aria-hidden="true"></span>
+  <!-- 03 EXPERIMENT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>03 &middot; Experiment</p>
+      <h2 class="section-title" data-reveal>Build the entire site without a traditional CMS.</h2>
+      <p class="section-lede" data-reveal>Every page on this site &mdash; this one included &mdash; ships through the same five-stage pipeline.</p>
 
-        <div class="step">
+      <div class="flow-row" data-reveal>
+        <div class="flow-step">
           <span class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M15 2v5h5"/><path d="M8 12h8M8 16h5"/></svg>
           </span>
-          <div>
-            <h3>Write the brief</h3>
-            <p>Plain language, in Google Docs or straight in chat &mdash; what should change, and why.</p>
-          </div>
+          <h3>Brief</h3>
+          <p>Plain language: what should change, and why.</p>
         </div>
-
-        <div class="step">
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
           <span class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2z"/></svg>
           </span>
-          <div>
-            <h3>Hand it to AI</h3>
-            <p>The brief becomes a prompt. Claude writes the real HTML, CSS, and copy &mdash; not a mockup.</p>
-          </div>
+          <h3>AI</h3>
+          <p>Claude writes the real HTML, CSS, and copy.</p>
         </div>
-
-        <div class="step">
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
           <span class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           </span>
-          <div>
-            <h3>The design system governs it</h3>
-            <p>Every new component has to match what&rsquo;s already documented on <a href="/design-system/">Design System</a> &mdash; nothing gets invented from scratch.</p>
-          </div>
+          <h3>Design System</h3>
+          <p>Nothing new gets invented from scratch.</p>
         </div>
-
-        <div class="step">
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
           <span class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/></svg>
           </span>
-          <div>
-            <h3>Committed to GitHub</h3>
-            <p>A real commit, a real message &mdash; permanent and reviewable. Nothing silently overwritten.</p>
-          </div>
+          <h3>Git</h3>
+          <p>A real, permanent, reviewable commit.</p>
         </div>
-
-        <div class="step">
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
           <span class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6z"/></svg>
           </span>
-          <div>
-            <h3>Live in about a minute</h3>
-            <p>GitHub Pages rebuilds and deploys automatically. No IT ticket, no agency, no waiting.</p>
-          </div>
+          <h3>Deploy</h3>
+          <p>Live automatically, in about a minute.</p>
         </div>
       </div>
-
-      <p class="section-lede" style="margin-top:var(--space-8); margin-bottom:0;" data-reveal>
-        What follows is the part a pipeline diagram can&rsquo;t show: the actual receipts, and what I got wrong along the way.
-      </p>
     </div>
   </section>
 
-  <!-- RECEIPTS -->
+  <!-- 04 RESULTS -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>The Receipts</p>
-      <h2 class="section-title" data-reveal>Two real exchanges, unedited</h2>
-      <p class="section-lede" data-reveal>Not summaries of what happened &mdash; what was actually asked, and what actually came back.</p>
+      <p class="kicker" data-reveal>04 &middot; Results</p>
+      <h2 class="section-title" data-reveal>Evidence, not adjectives.</h2>
 
-      <p class="kicker" data-reveal>Receipt 01 &middot; A nav bug, found and fixed in one pass</p>
+      <div class="spec-table" data-reveal>
+        <div class="spec-row"><span class="spec-label">Pages built</span><span class="spec-value">8</span></div>
+        <div class="spec-row"><span class="spec-label">Bugs caught</span><span class="spec-value">2</span></div>
+        <div class="spec-row"><span class="spec-label">Revision required</span><span class="spec-value">No</span></div>
+        <div class="spec-row"><span class="spec-label">Deployment</span><span class="spec-value">~1 min</span></div>
+        <div class="spec-row"><span class="spec-label">Human intervention</span><span class="spec-value">Required</span></div>
+      </div>
+
+      <div class="worked-list" style="margin-top:var(--space-6);" data-reveal>
+        <div class="worked-item is-good">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <p><strong>Worked:</strong> a nav bug fixed end-to-end in one pass &mdash; plus a second, unrelated bug caught before it shipped.</p>
+        </div>
+        <div class="worked-item is-bad">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <p><strong>Failed:</strong> defaulted to the wrong AI provider, and needed a correction before the real question &mdash; whether the feature should exist at all &mdash; could even be asked.</p>
+        </div>
+      </div>
+
+      <p class="chapter-range" style="margin-top:var(--space-8);" data-reveal>Evidence &middot; Receipt 01</p>
       <div data-reveal>
         <div class="receipt-block receipt--input">
           <p class="receipt-label"><span aria-hidden="true">&rarr;</span> Input</p>
@@ -218,23 +228,19 @@
         </div>
         <div class="receipt-block receipt--output">
           <p class="receipt-label"><span aria-hidden="true">&larr;</span> AI output</p>
-          <p>Diagnosed the cause &mdash; that one page had its own bespoke header instead of the shared
-            site nav &mdash; rebuilt it with the real hamburger menu and slide-in panel, and caught a
-            second, unrelated bug in the process: a footer script would have thrown a silent error on
-            that page the moment the shared script was added. Fixed both, screenshot-tested at desktop
-            and mobile, deployed.</p>
+          <p>Diagnosed a bespoke header as the cause, rebuilt it with the shared nav, and caught an unrelated footer-script bug in the same pass.</p>
         </div>
         <div class="receipt-block receipt--outcome">
           <p class="receipt-label"><span aria-hidden="true">&#10003;</span> Outcome</p>
-          <p>Live in one pass. No revision needed &mdash; the fix matched every other page exactly, because the design system left no room to invent a different pattern.</p>
+          <p>Live in one pass &mdash; the fix matched every other page exactly, because the design system left no room to invent a different pattern.</p>
         </div>
       </div>
 
-      <p class="kicker" style="margin-top:var(--space-9);" data-reveal>Receipt 02 &middot; The decision the AI got wrong</p>
+      <p class="chapter-range" style="margin-top:var(--space-8);" data-reveal>Evidence &middot; Receipt 02</p>
       <div data-reveal>
         <div class="receipt-block receipt--output">
           <p class="receipt-label"><span aria-hidden="true">&larr;</span> AI output (earlier)</p>
-          <p>A full technical plan for an &ldquo;Ask Dr. Paul&rdquo; chat feature &mdash; researched, priced, and built around OpenAI&rsquo;s models, because that was the provider the source material referenced.</p>
+          <p>A full technical plan for an &ldquo;Ask Dr. Paul&rdquo; chat feature &mdash; priced and built around OpenAI&rsquo;s models, because that was the provider the source material referenced.</p>
         </div>
         <div class="receipt-block receipt--input">
           <p class="receipt-label"><span aria-hidden="true">&rarr;</span> Input</p>
@@ -242,102 +248,25 @@
         </div>
         <div class="receipt-block receipt--outcome">
           <p class="receipt-label"><span aria-hidden="true">&#10003;</span> Outcome</p>
-          <p>The entire plan got rebuilt around Claude instead &mdash; and the bigger question surfaced along with it: not which AI provider to use, but whether a talking avatar of himself was something Paul wanted to exist at all. Still open. See &ldquo;next experiment&rdquo; below.</p>
+          <p>The plan got rebuilt around Claude &mdash; and a bigger question surfaced: not which provider, but whether a talking avatar of himself should exist at all.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT WORKED -->
-  <section>
-    <div class="wrap">
-      <p class="kicker" data-reveal>What Worked, What Didn&rsquo;t</p>
-      <h2 class="section-title" data-reveal>Observations, not conclusions</h2>
-
-      <div class="worked-grid">
-        <div data-reveal>
-          <p class="kicker">Worked well</p>
-          <div class="worked-list">
-            <div class="worked-item is-good">
-              <span class="worked-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              <p>Turning a written brief into a shipped page, same sitting &mdash; no back-and-forth once the brief was clear.</p>
-            </div>
-            <div class="worked-item is-good">
-              <span class="worked-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              <p>Visual consistency enforced automatically &mdash; new components have to justify themselves against the design system instead of getting invented fresh.</p>
-            </div>
-            <div class="worked-item is-good">
-              <span class="worked-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              <p>Catching problems before they ship &mdash; the footer-script bug in Receipt 01 never made it live.</p>
-            </div>
-          </div>
-        </div>
-
-        <div data-reveal>
-          <p class="kicker">Needed a human</p>
-          <div class="worked-list">
-            <div class="worked-item is-bad">
-              <span class="worked-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-              </span>
-              <p>Whose voice a feature gets to use &mdash; an identity call, not a technical one.</p>
-            </div>
-            <div class="worked-item is-bad">
-              <span class="worked-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-              </span>
-              <p>Knowing when a feature is honest and useful versus just impressive &mdash; still unresolved for the AI avatar idea.</p>
-            </div>
-            <div class="worked-item is-bad">
-              <span class="worked-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-              </span>
-              <p>Aesthetic taste on anything visual &mdash; that&rsquo;s a feel call, not a logic call.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HUMAN ADVANTAGE -->
-  <section>
-    <div class="wrap">
-      <p class="kicker" data-reveal>The Human Advantage</p>
-      <h2 class="section-title" data-reveal>What still required me</h2>
-      <p class="section-lede" data-reveal>Receipt 02, side by side.</p>
-
-      <div class="compare-grid">
-        <article class="card" data-reveal>
-          <p class="chapter-range">What the plan looked like</p>
-          <h3>A phased rollout</h3>
-          <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">Text chatbot first, then a talking avatar &mdash; researched and priced against OpenAI&rsquo;s models, because that was the provider already in the source material.</p>
-        </article>
-        <article class="card card--current" data-reveal>
-          <p class="chapter-range">What I actually decided</p>
-          <h3>Wrong provider. Wrong question.</h3>
-          <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">Not OpenAI &mdash; Claude. And the phased rollout didn&rsquo;t matter yet, because the real question hadn&rsquo;t been asked: should an avatar of me exist at all, or does that cross into pretending to be me?</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT CHANGED MY MIND -->
+  <!-- 05 CONCLUSION -->
   <section style="background: var(--color-dark); color: var(--color-dark-ink);">
     <div class="wrap">
-      <p class="kicker kicker-dark" data-reveal>What Changed My Mind</p>
+      <p class="kicker kicker-dark" data-reveal>05 &middot; Conclusion</p>
       <blockquote class="pull-quote" data-reveal>
-        I expected the hard part to be teaching the AI my writing voice and visual taste. It picked
-        those up fast. The hard part turned out to be everything upstream of taste &mdash; deciding
-        what&rsquo;s true enough to say about myself, when a feature is honest instead of just clever,
-        and when &ldquo;good enough to ship&rdquo; is actually the wrong bar.
+        The hard part wasn&rsquo;t teaching AI how to build the site. It was deciding what should be
+        built in the first place.
       </blockquote>
+      <p style="max-width:620px; color:rgba(243, 241, 234, 0.72); font-size:var(--text-lg); margin:0;" data-reveal>
+        <strong style="color:var(--color-dark-ink);">What I learned:</strong> AI is increasingly
+        capable of execution. The human advantage is moving upstream &mdash; toward judgment, taste,
+        identity, and deciding what&rsquo;s worth building.
+      </p>
     </div>
   </section>
 
@@ -345,8 +274,8 @@
   <section class="about-cta" data-reveal>
     <div class="wrap">
       <p class="kicker">Next Experiment</p>
-      <h2 class="section-title">Chatbot, avatar, or nothing at all?</h2>
-      <p class="section-lede">Whether &ldquo;Ask Dr. Paul&rdquo; becomes a talking avatar, stays a text chatbot, or gets shelved entirely &mdash; and what that decision says about the line between AI-fluent and AI-gimmicky.</p>
+      <h2 class="section-title">Should &ldquo;Ask Dr. Paul&rdquo; become an avatar?</h2>
+      <p class="section-lede">Talking avatar, text chatbot, or shelved entirely &mdash; that&rsquo;s the question this experiment created.</p>
       <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
     </div>
   </section>
