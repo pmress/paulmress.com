@@ -41,11 +41,12 @@
 
 <link rel="stylesheet" href="../../styles.css">
 
-<!-- Page-scoped rhythm: this page reads as an executive scan, so its sections
-     run tighter than the site default (~27% less vertical padding) — except
-     Key Observation, the page's one deliberate pause, which keeps full rhythm. -->
+<!-- Page-scoped rhythm: this is an experiment artifact, not an article, so it
+     runs shorter than a normal site page — sections carry ~45% less vertical
+     padding than the site default, and related content is grouped under
+     fewer section breaks rather than one full-padding section apiece. -->
 <style>
-  main > section:not(#key-observation) { padding: var(--space-10) 0; }
+  main > section { padding: var(--space-9) 0; }
 </style>
 
 <script type="application/ld+json">
@@ -117,13 +118,8 @@
         <span class="pill">Ongoing</span>
         <span class="lab-meta-facts">Claude &middot; GitHub Pages &middot; GitHub Actions &middot; Google Drive</span>
       </div>
-    </div>
-  </section>
 
-  <!-- THE SETUP: Question / Why test it / Hypothesis -->
-  <section>
-    <div class="wrap">
-      <div class="setup-grid" data-reveal>
+      <div class="setup-grid" style="margin-top:var(--space-8);" data-reveal>
         <div class="card">
           <p class="chapter-range">The question</p>
           <p style="margin:0; color:var(--color-ink-soft);">Can Dr. Paul replace a traditional CMS with an AI-native workflow?</p>
@@ -136,7 +132,7 @@
     </div>
   </section>
 
-  <!-- THE EXPERIMENT: mechanics -->
+  <!-- THE EXPERIMENT: mechanics + results -->
   <section>
     <div class="wrap">
       <p class="kicker" data-reveal>The experiment</p>
@@ -192,13 +188,8 @@
           <span class="pill">Live</span>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- WHAT HAPPENED -->
-  <section>
-    <div class="wrap">
-      <p class="kicker" data-reveal>What happened?</p>
+      <p class="kicker" style="margin-top:var(--space-8);" data-reveal>What happened?</p>
 
       <div class="compare-grid" data-reveal>
         <div class="card">
@@ -240,16 +231,19 @@
     </div>
   </section>
 
-  <!-- KEY OBSERVATION -->
-  <section id="key-observation" style="background: var(--color-dark); color: var(--color-dark-ink);">
+  <!-- KEY OBSERVATION: an inset callout, not a full-bleed section, so it
+       reads as part of the page rather than the page ending. -->
+  <section>
     <div class="wrap">
-      <p class="kicker kicker-dark" style="text-align:center;" data-reveal>Key observation</p>
-      <p class="statement" data-reveal>Execution wasn&rsquo;t the constraint.<br>Judgment was.</p>
-      <p class="statement-support" data-reveal>AI could quickly build what was requested. The harder question was whether it was worth building.</p>
+      <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-4);">Key observation</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">Execution wasn&rsquo;t the constraint.<br>Judgment was.</p>
+        <p class="statement-support">AI could quickly build what was requested. The harder question was whether it was worth building.</p>
+      </div>
     </div>
   </section>
 
-  <!-- WHAT CHANGED -->
+  <!-- WHAT CHANGED + EXECUTIVE IMPLICATION -->
   <section>
     <div class="wrap">
       <p class="kicker" data-reveal>What changed</p>
@@ -259,55 +253,38 @@
       <p style="max-width:560px; color:var(--color-ink-soft); font-size:var(--text-lg); margin:0;" data-reveal>
         AI didn&rsquo;t replace the marketer. It changed where the marketer adds value.
       </p>
-    </div>
-  </section>
 
-  <!-- CMO IMPLICATION -->
-  <section>
-    <div class="wrap">
-      <div class="card card--current" style="max-width:720px;" data-reveal>
-        <p class="chapter-range">CMO implication</p>
+      <div class="card card--current" style="max-width:720px; margin-top:var(--space-8);" data-reveal>
+        <p class="chapter-range">Executive implication</p>
         <p style="margin:0 0 var(--space-3); font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">Don&rsquo;t just add AI to the workflow. Redesign the workflow around AI.</p>
         <p style="margin:0; font-size:var(--text-base); color:var(--color-ink-soft);">The opportunity isn&rsquo;t simply replacing marketing technology with AI. It&rsquo;s redesigning the marketing workflow around what humans and AI each do best.</p>
       </div>
     </div>
   </section>
 
-  <!-- THE RECEIPTS -->
+  <!-- THE RECEIPTS + NEXT EXPERIMENT -->
   <section>
     <div class="wrap">
       <p class="kicker" data-reveal>The receipts</p>
-      <details class="thought-node-card" data-reveal>
-        <summary class="thought-node-summary">
-          <span>
-            <span class="thought-node-tag">Evidence &middot; 01</span>
-            <h3 class="thought-node-headline">What happens without enough context</h3>
-          </span>
-          <span class="thought-node-chevron" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
-        <div class="thought-node-body">
-          <div class="receipt-block receipt--input" style="margin-top:var(--space-5);">
-            <p class="receipt-label"><span aria-hidden="true">&rarr;</span> Input</p>
-            <p>TBD</p>
-          </div>
-          <div class="receipt-block receipt--outcome">
-            <p class="receipt-label"><span aria-hidden="true">&#10003;</span> Outcome</p>
-            <p>TBD</p>
-          </div>
+      <p class="chapter-range" data-reveal>Evidence &middot; 01</p>
+      <h3 style="margin:0 0 var(--space-4); font-size:var(--text-xl);" data-reveal>What happens without enough context</h3>
+      <div data-reveal>
+        <div class="receipt-block receipt--input">
+          <p class="receipt-label"><span aria-hidden="true">&rarr;</span> Input</p>
+          <p>TBD</p>
         </div>
-      </details>
-    </div>
-  </section>
+        <div class="receipt-block receipt--outcome">
+          <p class="receipt-label"><span aria-hidden="true">&#10003;</span> Outcome</p>
+          <p>TBD</p>
+        </div>
+      </div>
 
-  <!-- NEXT EXPERIMENT -->
-  <section class="about-cta" data-reveal>
-    <div class="wrap">
-      <p class="kicker">Next Experiment &middot; 002</p>
-      <h2 class="section-title">Should &ldquo;Ask Dr. Paul&rdquo; become an avatar?</h2>
-      <p class="section-lede">Talking avatar, text chatbot, or shelved entirely &mdash; that&rsquo;s the question this experiment created.</p>
-      <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      <div class="about-cta" style="margin-top:var(--space-9); padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
+        <p class="kicker">Next Experiment &middot; 002</p>
+        <h2 class="section-title">Should &ldquo;Ask Dr. Paul&rdquo; become an avatar?</h2>
+        <p class="section-lede">Talking avatar, text chatbot, or shelved entirely &mdash; that&rsquo;s the question this experiment created.</p>
+        <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      </div>
     </div>
   </section>
 
