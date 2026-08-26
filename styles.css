@@ -1571,9 +1571,11 @@ section { padding: var(--space-11) 0; }
   background: var(--color-accent);
 }
 
-/* ---------- Statement (single large centered claim, full-bleed dark section
-   — the one moment on a page meant to stop a scanning reader, e.g. Lab
-   "Key observation"). Same typographic recipe as .about-title, centered. ---------- */
+/* ---------- Statement (single large centered claim, set inside an inset
+   .hmw-style callout — the one moment on a page meant to stop a scanning
+   reader, e.g. Lab "Key observation"). Deliberately NOT a full-bleed
+   color-inverted section: that read as the page footer and stopped people
+   scrolling early. Same typographic recipe as .about-title, centered. ---------- */
 .statement {
   font-family: var(--font-display);
   font-weight: 500;
@@ -1589,7 +1591,7 @@ section { padding: var(--space-11) 0; }
   margin: 0 auto;
   text-align: center;
   font-size: var(--text-lg);
-  color: rgba(243, 241, 234, 0.72);
+  color: var(--color-ink-soft);
 }
 
 /* ---------- Provenance mark (site-wide authorship disclosure) ---------- */
