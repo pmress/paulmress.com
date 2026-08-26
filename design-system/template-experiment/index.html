@@ -21,6 +21,12 @@
 
 <link rel="stylesheet" href="../../styles.css">
 
+<!-- Page-scoped rhythm: an experiment is an artifact, not an article — it runs
+     shorter than a normal site page. Keep this on the real page. -->
+<style>
+  main > section { padding: var(--space-9) 0; }
+</style>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -69,12 +75,19 @@
   <section style="padding-bottom:0;">
     <div class="wrap">
       <div class="lab-hypothesis" style="border-left-color: var(--color-accent-2); font-family: var(--font-mono); font-style: normal; font-size: var(--text-sm); max-width: 100%;">
-        <strong>This is a template, not a real page.</strong> Duplicate this folder to <code class="ds-code" style="background:var(--color-bg);">/lab/experimentN/</code>, replace every bracketed placeholder below with the real experiment, delete this notice block, and update the canonical/OG URLs and the <code class="ds-code" style="background:var(--color-bg);">&lt;title&gt;</code> in &lt;head&gt;. See <a href="/design-system/#templates">Design System &middot; Templates</a>.
+        <strong>This is a template, not a real page.</strong> Duplicate this folder to
+        <code class="ds-code" style="background:var(--color-bg);">/lab/00N-descriptive-slug/</code>
+        (zero-padded number, short descriptive slug &mdash; see
+        <a href="/design-system/#lab-urls">Design System &middot; Lab URLs</a>), replace every
+        bracketed placeholder below with the real experiment, delete this notice block, and update
+        the canonical/OG URLs and the <code class="ds-code" style="background:var(--color-bg);">&lt;title&gt;</code>
+        in &lt;head&gt;. Then add a row for it to <a href="/lab/">/lab/</a> and link forward to it from
+        the previous experiment&rsquo;s Next Question.
       </div>
     </div>
   </section>
 
-  <!-- INTRO -->
+  <!-- 1. QUESTION (header) -->
   <section class="about-intro intro-network">
     <canvas class="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-glow" aria-hidden="true"></div>
@@ -85,44 +98,56 @@
           Back
         </button>
       </div>
-      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; Experiment [00N]</p>
-      <h1 class="about-title" data-reveal>[Experiment title, phrased as a question]</h1>
+      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; [00N]</p>
+      <h1 class="about-title" data-reveal>[The question this experiment asks, stated as a question]</h1>
       <p class="section-lede" data-reveal>
         [One or two sentences setting up what this experiment actually is and why it&rsquo;s worth
-        running &mdash; the same job the CMS entry&rsquo;s lede does: orient a stranger fast.]
+        running &mdash; orient a stranger fast.]
       </p>
       <div class="lab-meta" data-reveal>
-        <span class="pill">[Ongoing / Done / Shelved]</span>
-        <span class="lab-meta-facts">[Tools &middot; used &middot; in &middot; this &middot; one]</span>
+        <span class="pill pill--ongoing">[Ongoing / Supported / Rejected / Inconclusive]</span>
+        <span class="lab-meta-facts">[Domain] &middot; [Tools used in this one]</span>
       </div>
     </div>
   </section>
 
-  <!-- HYPOTHESIS -->
+  <!-- 2. HYPOTHESIS + RESULT (most prominent pairing on the page — keep it
+       near the top, before any method or mechanics) -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>The Hypothesis</p>
-      <blockquote class="lab-hypothesis" data-reveal>
-        [The claim, stated plainly, before the evidence &mdash; one or two sentences, first person, specific enough that it could turn out to be wrong.]
-      </blockquote>
+      <div class="hyp-result" data-reveal>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Hypothesis</p>
+          <p class="hyp-result-text">[The claim, stated plainly, before the evidence &mdash; specific enough that it could turn out to be wrong.]</p>
+        </div>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Result</p>
+          <p class="hyp-result-status"><span class="pill pill--ongoing">[Status]</span></p>
+          <p class="hyp-result-text">[What actually happened, or where the test currently stands &mdash; this should echo the Finding below.]</p>
+        </div>
+      </div>
+      <p class="hyp-result-limitations" data-reveal>[Optional: a one-line honesty check on how much this result can carry &mdash; sample size, single-subject, still running, etc. Delete this line if it isn't needed.]</p>
     </div>
   </section>
 
-  <!-- THE THING BUILT -->
+  <!-- 3. METHOD -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>The Thing Built</p>
-      <h2 class="section-title" data-reveal>[What actually got built]</h2>
-      <p class="section-lede" data-reveal>
-        [Describe the artifact. Link to a live demo if one exists &mdash; a Lab entry without something
-        to see or try is a blog post wearing a lab coat.]
-      </p>
+      <p class="kicker" data-reveal>Method</p>
+      <p class="section-lede" data-reveal>[What actually got built or tested, and how.]</p>
 
-      <div class="steps" data-reveal>
-        <span class="steps-pulse" aria-hidden="true"></span>
-        <span class="steps-pulse" aria-hidden="true"></span>
-        <span class="steps-pulse" aria-hidden="true"></span>
+      <div class="spec-table" data-reveal>
+        <div class="spec-row"><span class="spec-label">AI model</span><span class="spec-value">[Claude, etc.]</span></div>
+        <div class="spec-row"><span class="spec-label">Human role</span><span class="spec-value">[What Dr. Paul did]</span></div>
+        <div class="spec-row"><span class="spec-label">Primary input</span><span class="spec-value">[Brief, prompt, dataset...]</span></div>
+        <div class="spec-row"><span class="spec-label">Constraint tested</span><span class="spec-value">[The one variable this experiment isolates]</span></div>
+      </div>
 
+      <!-- Optional: a .steps sequence if the method is a real multi-step process worth walking through. Delete if the spec-table above already says enough. -->
+      <div class="steps" style="margin-top:var(--space-8);" data-reveal>
+        <span class="steps-pulse" aria-hidden="true"></span>
+        <span class="steps-pulse" aria-hidden="true"></span>
+        <span class="steps-pulse" aria-hidden="true"></span>
         <div class="step">
           <span class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
@@ -132,119 +157,125 @@
             <p>[What happened first.]</p>
           </div>
         </div>
-
         <div class="step">
           <span class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
           </span>
           <div>
             <h3>[Step two]</h3>
-            <p>[What happened next. Add or remove &lt;div class="step"&gt; blocks freely &mdash; the spine resizes automatically.]</p>
+            <p>[What happened next. Add or remove &lt;div class="step"&gt; blocks freely.]</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- RECEIPTS -->
+  <!-- 4. THE EXPERIMENT (the artifact itself — a Lab entry without something
+       to see or try is a blog post wearing a lab coat) -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>The Receipts</p>
-      <h2 class="section-title" data-reveal>[N] real exchange[s], unedited</h2>
-      <p class="section-lede" data-reveal>Not summaries of what happened &mdash; what was actually asked, and what actually came back. Real receipts only; never invent a quote or an output.</p>
+      <p class="kicker" data-reveal>The experiment</p>
+      <p class="section-lede" data-reveal>[Describe the artifact and link to it if it's live &mdash; the tangible thing this experiment produced, not just prose about it.]</p>
 
-      <p class="kicker" data-reveal>Receipt 01 &middot; [one-line description]</p>
+      <div class="compare-grid" data-reveal>
+        <div class="card">
+          <p class="chapter-range">[AI / system handled]</p>
+          <ul class="plain-list">
+            <li>[Thing]</li>
+            <li>[Thing]</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="chapter-range">[Dr. Paul handled]</p>
+          <ul class="plain-list">
+            <li>[Thing]</li>
+            <li>[Thing]</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="worked-list" style="margin-top:var(--space-6);" data-reveal>
+        <div class="worked-item is-good">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <p><strong>Worked:</strong> [Thing that worked, specifically.]</p>
+        </div>
+        <div class="worked-item is-bad">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <p><strong>Constraint:</strong> [Judgment call the AI couldn't make, or where it drifted.]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. EVIDENCE -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Evidence</p>
+      <p class="chapter-range" data-reveal>01 &middot; [one-line description]</p>
+      <h3 style="margin:0 0 var(--space-4); font-size:var(--text-xl);" data-reveal>[What this receipt demonstrates]</h3>
       <div data-reveal>
         <div class="receipt-block receipt--input">
           <p class="receipt-label"><span aria-hidden="true">&rarr;</span> Input</p>
-          <p>&ldquo;[What was actually typed.]&rdquo;</p>
+          <p>&ldquo;[What was actually typed or asked.]&rdquo;</p>
         </div>
         <div class="receipt-block receipt--output">
-          <p class="receipt-label"><span aria-hidden="true">&larr;</span> AI output</p>
-          <p>[What actually came back &mdash; summarized honestly, not dressed up.]</p>
+          <p class="receipt-label"><span aria-hidden="true">&larr;</span> Output</p>
+          <p>[What actually came back &mdash; summarized honestly, never invented.]</p>
         </div>
         <div class="receipt-block receipt--outcome">
           <p class="receipt-label"><span aria-hidden="true">&#10003;</span> Outcome</p>
           <p>[What happened next.]</p>
         </div>
       </div>
+      <!-- Add more receipt groups (kicker + h3 + block trio) for additional evidence. Never invent a quote or an output. -->
     </div>
   </section>
 
-  <!-- WHAT WORKED -->
+  <!-- 6. FINDING: an inset callout, not a full-bleed section, so it reads as
+       part of the page rather than the page ending. This is the one moment
+       meant to stop a scanning reader — keep it to a single sentence or two. -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>What Worked, What Didn&rsquo;t</p>
-      <h2 class="section-title" data-reveal>Observations, not conclusions</h2>
-
-      <div class="worked-grid">
-        <div data-reveal>
-          <p class="kicker">Worked well</p>
-          <div class="worked-list">
-            <div class="worked-item is-good">
-              <span class="worked-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              <p>[Thing that worked.]</p>
-            </div>
-          </div>
-        </div>
-
-        <div data-reveal>
-          <p class="kicker">Needed a human</p>
-          <div class="worked-list">
-            <div class="worked-item is-bad">
-              <span class="worked-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-              </span>
-              <p>[Judgment call the AI couldn&rsquo;t make.]</p>
-            </div>
-          </div>
-        </div>
+      <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">[The honest, specific thing that surprised you &mdash; not a generic AI take.]</p>
+        <p class="statement-support">[One supporting sentence, if needed. Delete this line if the statement stands alone.]</p>
       </div>
     </div>
   </section>
 
-  <!-- HUMAN ADVANTAGE -->
+  <!-- 7. CONCLUSION -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>The Human Advantage</p>
-      <h2 class="section-title" data-reveal>What still required me</h2>
-      <p class="section-lede" data-reveal>[Which receipt this contrasts, if any.]</p>
-
-      <div class="compare-grid">
-        <article class="card" data-reveal>
-          <p class="chapter-range">[What the plan looked like]</p>
-          <h3>[Default path]</h3>
-          <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">[The obvious or first-pass answer.]</p>
-        </article>
-        <article class="card card--current" data-reveal>
-          <p class="chapter-range">[What actually happened]</p>
-          <h3>[The human call]</h3>
-          <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">[What changed, and why it took a person.]</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT CHANGED MY MIND -->
-  <section style="background: var(--color-dark); color: var(--color-dark-ink);">
-    <div class="wrap">
-      <p class="kicker kicker-dark" data-reveal>What Changed My Mind</p>
+      <p class="kicker" data-reveal>Conclusion</p>
       <blockquote class="pull-quote" data-reveal>
-        [The honest, specific thing that surprised you &mdash; not a generic AI take. This is the
-        section that makes an entry worth reading past the receipts.]
+        [What changed as a result of this finding &mdash; stated as a before/after, if one exists.]
       </blockquote>
+      <p style="max-width:560px; color:var(--color-ink-soft); font-size:var(--text-lg); margin:0;" data-reveal>
+        [One supporting sentence tying the finding back to the original hypothesis.]
+      </p>
+
+      <div class="card card--current" style="max-width:720px; margin-top:var(--space-8);" data-reveal>
+        <p class="chapter-range">Executive implication</p>
+        <p style="margin:0 0 var(--space-3); font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">[The primary, quotable statement &mdash; what a reader should do differently because of this.]</p>
+        <p style="margin:0; font-size:var(--text-base); color:var(--color-ink-soft);">[Supporting sentence with the nuance the headline statement can't carry alone.]</p>
+      </div>
     </div>
   </section>
 
-  <!-- NEXT EXPERIMENT -->
-  <section class="about-cta" data-reveal>
+  <!-- 8. NEXT QUESTION -->
+  <section>
     <div class="wrap">
-      <p class="kicker">Next Experiment</p>
-      <h2 class="section-title">[The open question this one raised]</h2>
-      <p class="section-lede">[What&rsquo;s still unresolved, teasing whatever comes next.]</p>
-      <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
+        <p class="kicker">Next Question &middot; [00N+1]</p>
+        <h2 class="section-title">[The open question this finding raised]</h2>
+        <p class="section-lede">[What's still unresolved, teasing whatever comes next.]</p>
+        <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      </div>
     </div>
   </section>
 
