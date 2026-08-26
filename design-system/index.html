@@ -519,7 +519,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Compare grid &middot; .compare-grid (used on <a href="/lab/experiment-1/">/lab/experiment-1/</a>)</p>
+        <p class="ds-group-title">Compare grid &middot; .compare-grid (used on <a href="/lab/001-can-ai-replace-a-cms/">/lab/001-can-ai-replace-a-cms/</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           A plain 2-column grid for setting two <code class="ds-code">.card</code>s side by side &mdash;
           deliberately kept separate from <code class="ds-code">.explore-grid</code> (3 columns, for promo
@@ -544,7 +544,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Process steps &middot; .steps (used on <a href="/lab/experiment-1/">/lab/experiment-1/</a>)</p>
+        <p class="ds-group-title">Process steps &middot; .steps (used in the <a href="/design-system/template-experiment/">experiment template</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           A single-column relative of the timeline above: the same gradient spine
           (<code class="ds-code">.steps::before</code>) and the same <code class="ds-code">timeline-flow</code>
@@ -605,11 +605,13 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Hypothesis block &middot; .lab-hypothesis (used on <a href="/lab/">/lab/</a>)</p>
+        <p class="ds-group-title">Hypothesis block &middot; .lab-hypothesis (legacy pull-quote style, superseded by .hyp-result below)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           The light-mode sibling of <code class="ds-code">.pull-quote</code> &mdash; same italic display
           type and accent left-border, but on <code class="ds-code">--color-bg-alt</code> instead of the
-          dark surface, since a Lab entry opens on a light background.
+          dark surface. Kept in the system for a standalone claim that isn&rsquo;t paired with a result,
+          but every Lab experiment page now leads with <code class="ds-code">.hyp-result</code> instead,
+          since a hypothesis without its result invites the reader to wonder what happened.
         </p>
         <div class="ds-frame">
           <blockquote class="lab-hypothesis" style="margin:0;">I think a claim stated plainly, before the evidence, is what makes the evidence mean something.</blockquote>
@@ -617,7 +619,87 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Worked / didn&rsquo;t &middot; .worked-item (used on <a href="/lab/">/lab/</a>)</p>
+        <p class="ds-group-title">Status pill &middot; .pill--ongoing / .pill--supported / .pill--rejected / .pill--inconclusive (used on <a href="/lab/">/lab/</a> and every Lab entry)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The Lab&rsquo;s result vocabulary, as four tints of the same <code class="ds-code">.pill</code>
+          shape &mdash; no new hues added to the palette. <code class="ds-code">--ongoing</code> is
+          accent-soft (still active); <code class="ds-code">--supported</code> is solid ink (a settled,
+          confirmed result); <code class="ds-code">--rejected</code> is accent-2 (the hypothesis
+          didn&rsquo;t hold &mdash; a valid result, not a failure, so it stays warm rather than reading
+          as an error state); <code class="ds-code">--inconclusive</code> is muted bg-alt (no strong
+          signal yet). Same four classes on the index list and on each experiment&rsquo;s own
+          <code class="ds-code">.hyp-result</code> block, so status reads identically everywhere.
+        </p>
+        <div class="ds-frame">
+          <div class="ds-row" style="gap:var(--space-4); flex-wrap:wrap;">
+            <span class="pill pill--ongoing">Ongoing</span>
+            <span class="pill pill--supported">Supported</span>
+            <span class="pill pill--rejected">Rejected</span>
+            <span class="pill pill--inconclusive">Inconclusive</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Hypothesis / Result &middot; .hyp-result (used on every Lab experiment page)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The most prominent element on an experiment page &mdash; sits directly under the header,
+          before any method or mechanics, so the claim and where it landed are visible in one glance.
+          Two-column, divided by a hairline; the result side sits on <code class="ds-code">--color-bg-alt</code>
+          to read as the &ldquo;payoff&rdquo; half. Carries a status pill and, optionally, a one-line
+          limitations note underneath &mdash; this is single-subject, ongoing research, not a controlled
+          study, and the layout should never imply more rigor than that.
+        </p>
+        <div class="ds-frame">
+          <div class="hyp-result">
+            <div class="hyp-result-col">
+              <p class="hyp-result-label">Hypothesis</p>
+              <p class="hyp-result-text">The claim, stated plainly, before the evidence.</p>
+            </div>
+            <div class="hyp-result-col">
+              <p class="hyp-result-label">Result</p>
+              <p class="hyp-result-status"><span class="pill pill--ongoing">Ongoing</span></p>
+              <p class="hyp-result-text">What actually happened &mdash; or where the test currently stands.</p>
+            </div>
+          </div>
+          <p class="hyp-result-limitations">Optional: a one-line honesty check on how much this result can carry.</p>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Experiment list &middot; .experiment-list / .experiment-row (used on <a href="/lab/">/lab/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Replaces the old one-card-per-entry index. Built to hold hundreds of rows without each one
+          costing a full card&rsquo;s worth of space: a zero-padded number for sort and scale, the
+          question as the entry point, domain and model as small mono facts, a status pill, an arrow.
+          Rows stack their fields on narrow viewports rather than truncating.
+        </p>
+        <div class="ds-frame">
+          <div class="experiment-list" style="margin-top:0;">
+            <a class="experiment-row" href="#" onclick="return false;">
+              <span class="experiment-num">001</span>
+              <span class="experiment-main">
+                <span class="experiment-title">Can AI replace a CMS?</span>
+                <span class="experiment-domain">Website production &middot; Claude</span>
+              </span>
+              <span class="experiment-status"><span class="pill pill--ongoing">Ongoing</span></span>
+              <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="experiment-row" href="#" onclick="return false;">
+              <span class="experiment-num">002</span>
+              <span class="experiment-main">
+                <span class="experiment-title">Should &ldquo;Ask Dr. Paul&rdquo; become an avatar?</span>
+                <span class="experiment-domain">Conversational UX &middot; Claude</span>
+              </span>
+              <span class="experiment-status"><span class="pill pill--inconclusive">Inconclusive</span></span>
+              <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Worked / didn&rsquo;t &middot; .worked-item (used on every Lab entry)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Two-column honest ledger. <code class="ds-code">.is-good</code> gets a filled accent-soft
           circle with a check; <code class="ds-code">.is-bad</code> gets a muted bg-alt circle with an
@@ -852,7 +934,7 @@
         <div class="ds-row" style="margin-top:var(--space-5); gap:var(--space-7); flex-wrap:wrap; font-family:var(--font-mono); font-size:var(--text-2xs); color:var(--color-ink-soft);">
           <span><strong style="color:var(--color-ink);">Hero background</strong> &middot; linkDist 140 &middot; density 16000 &middot; speed 0.25 &middot; runs continuously</span>
           <span><strong style="color:var(--color-ink);">Nav panel background</strong> &middot; linkDist 110 &middot; density 9000 &middot; speed 0.18 &middot; runs only while open</span>
-          <span><strong style="color:var(--color-ink);">Intro background</strong> &middot; same defaults as the hero &middot; used on <a href="/story/" style="color:var(--color-accent);">/story/</a>, <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a>, <a href="/lab/" style="color:var(--color-accent);">/lab/</a>, <a href="/about/" style="color:var(--color-accent);">/about/</a>, and every Lab entry (e.g. <a href="/lab/experiment-1/" style="color:var(--color-accent);">/lab/experiment-1/</a>)</span>
+          <span><strong style="color:var(--color-ink);">Intro background</strong> &middot; same defaults as the hero &middot; used on <a href="/story/" style="color:var(--color-accent);">/story/</a>, <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a>, <a href="/lab/" style="color:var(--color-accent);">/lab/</a>, <a href="/about/" style="color:var(--color-accent);">/about/</a>, and every Lab entry (e.g. <a href="/lab/001-can-ai-replace-a-cms/" style="color:var(--color-accent);">/lab/001-can-ai-replace-a-cms/</a>)</span>
           <span><strong style="color:var(--color-ink);">Thinking pulse</strong> &middot; a centered, breathing glow layered behind the network on <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a> only &mdash; reuses <code class="ds-code">frontier-pulse</code>, just recentered</span>
         </div>
       </div>
@@ -880,8 +962,34 @@
           <div class="ds-row" style="gap: var(--space-4);">
             <a class="btn btn-ghost" href="/design-system/template-experiment/">template-experiment &rarr;</a>
           </div>
-          <p style="margin:var(--space-4) 0 0; color:var(--color-ink-soft); font-size:var(--text-sm);">A blank Lab experiment: hypothesis, the thing built, two placeholder receipts, worked/didn&rsquo;t, human advantage, what changed my mind, next experiment. The scaffold for Experiment 002 and beyond.</p>
+          <p style="margin:var(--space-4) 0 0; color:var(--color-ink-soft); font-size:var(--text-sm);">A blank Lab experiment, built around the scientific-method structure every entry follows: Question (header), Hypothesis + Result, Method, the Experiment itself, Evidence, Finding, Conclusion, Next Question. The scaffold for Experiment 002 and beyond.</p>
         </div>
+      </div>
+
+      <div class="ds-group" id="lab-urls">
+        <p class="ds-group-title">Lab URL scheme &middot; /lab/00N-descriptive-slug/</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Built to scale to hundreds of entries. The number is zero-padded to three digits
+          (<code class="ds-code">001</code>, <code class="ds-code">002</code>&hellip;
+          <code class="ds-code">099</code>, <code class="ds-code">100</code>) so entries sort correctly
+          as plain strings well past two digits, and a short descriptive slug follows it for
+          readability, SEO, and sharing &mdash; e.g. <code class="ds-code">/lab/001-can-ai-replace-a-cms/</code>.
+          Never reuse or renumber: if an experiment moves or is superseded, its old URL gets a redirect
+          stub (see below) pointing at the new one &mdash; it never gets deleted outright.
+        </p>
+      </div>
+
+      <div class="ds-group" id="redirects">
+        <p class="ds-group-title">Redirect stub &middot; minimal meta-refresh page</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          When a page moves, the old URL keeps a tiny page in place rather than going to a 404:
+          <code class="ds-code">&lt;meta http-equiv="refresh" content="0; url=/new/path/"&gt;</code>,
+          <code class="ds-code">&lt;meta name="robots" content="noindex, follow"&gt;</code> so it drops
+          from search results but still passes link equity, and a <code class="ds-code">canonical</code>
+          pointed at the new URL. Point every stub directly at the current canonical destination rather
+          than through an intermediate &mdash; update old stubs in place when something moves again,
+          instead of chaining redirects.
+        </p>
       </div>
     </div>
   </section>
