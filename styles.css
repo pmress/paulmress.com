@@ -1414,7 +1414,7 @@ section { padding: var(--space-11) 0; }
   .worked-grid { grid-template-columns: 1fr; gap: var(--space-6); }
 }
 
-/* ---------- HOW MIGHT WE block (Lab: Problem framing, e.g. /lab/experiment1/) ---------- */
+/* ---------- HOW MIGHT WE block (Lab: Problem framing, e.g. /lab/experiment-1/) ---------- */
 /* A distinct signature pattern from .lab-hypothesis: accent-2 label, no italic,
    no left border — reads as a strategy-doc convention, not a pull-quote. */
 .hmw {
@@ -1529,6 +1529,67 @@ section { padding: var(--space-11) 0; }
 
 @media (max-width: 720px) {
   .spec-row { padding: var(--space-3) var(--space-5); }
+}
+
+/* ---------- Setup grid (compact cards: Question / Hypothesis, e.g. /lab/experiment-1/) ---------- */
+.setup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 720px) {
+  .setup-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Plain list (concise items inside a .compare-grid card, e.g.
+   "AI handled" / "Dr. Paul handled" on /lab/experiment-1/) ---------- */
+.plain-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.plain-list li {
+  position: relative;
+  padding-left: var(--space-5);
+  font-size: var(--text-base);
+  color: var(--color-ink-soft);
+}
+
+.plain-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* ---------- Statement (single large centered claim, full-bleed dark section
+   — the one moment on a page meant to stop a scanning reader, e.g. Lab
+   "Key observation"). Same typographic recipe as .about-title, centered. ---------- */
+.statement {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-hero);
+  line-height: 1.15;
+  max-width: 780px;
+  margin: 0 auto var(--space-6);
+  text-align: center;
+}
+
+.statement-support {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: var(--text-lg);
+  color: rgba(243, 241, 234, 0.72);
 }
 
 /* ---------- Provenance mark (site-wide authorship disclosure) ---------- */
