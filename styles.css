@@ -1542,6 +1542,163 @@ section { padding: var(--space-11) 0; }
   .setup-grid { grid-template-columns: 1fr; }
 }
 
+/* ---------- Status pill modifiers (Lab result vocabulary: Supported /
+   Rejected / Inconclusive / Ongoing). Same .pill shape site-wide; these just
+   tint it so status reads at a glance in a scannable list of many entries.
+   Deliberately reuse existing tokens only — no new hues added for this. ---------- */
+.pill--ongoing {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.pill--supported {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-bg);
+}
+
+.pill--rejected {
+  background: #FBEAE3;
+  border-color: var(--color-accent-2);
+  color: var(--color-accent-2);
+}
+
+.pill--inconclusive {
+  background: var(--color-bg-alt);
+  border-color: var(--color-line);
+  color: var(--color-ink-soft);
+}
+
+/* ---------- Hypothesis / Result pairing (the most prominent element on an
+   experiment page — sits right under the header, before any method or
+   mechanics, so a visitor sees the claim and where it landed in one glance). ---------- */
+.hyp-result {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.hyp-result-col {
+  padding: var(--space-7) var(--space-7);
+}
+
+.hyp-result-col + .hyp-result-col {
+  border-left: 1px solid var(--color-line);
+  background: var(--color-bg-alt);
+}
+
+.hyp-result-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin: 0 0 var(--space-4);
+}
+
+.hyp-result-status { margin: 0 0 var(--space-4); }
+
+.hyp-result-text {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-md);
+  font-weight: 500;
+  color: var(--color-ink);
+  line-height: 1.32;
+  margin: 0;
+}
+
+.hyp-result-limitations {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  margin: var(--space-4) 0 0;
+}
+
+@media (max-width: 720px) {
+  .hyp-result { grid-template-columns: 1fr; }
+  .hyp-result-col + .hyp-result-col { border-left: none; border-top: 1px solid var(--color-line); }
+}
+
+/* ---------- Experiment list (Lab index: scalable rows, not cards — built to
+   hold hundreds of entries without each one costing a full card's worth of
+   vertical space). Number for sort/scale, question as the entry point,
+   domain + model as scan-able mono facts, status pill, arrow. ---------- */
+.experiment-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-line);
+}
+
+.experiment-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-3);
+  border-bottom: 1px solid var(--color-line);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--duration-base) ease;
+}
+
+.experiment-row:hover { background: var(--color-bg-alt); }
+
+.experiment-num {
+  flex: 0 0 auto;
+  width: 2.75em;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.experiment-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.experiment-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-1);
+}
+
+.experiment-domain {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.experiment-status { flex: 0 0 auto; }
+
+.experiment-arrow {
+  flex: 0 0 auto;
+  color: var(--color-line);
+  font-size: 1.2rem;
+  transition: transform var(--duration-base) ease, color var(--duration-base) ease;
+}
+
+.experiment-row:hover .experiment-arrow {
+  color: var(--color-accent);
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px) {
+  .experiment-row { flex-wrap: wrap; padding: var(--space-5) var(--space-2); }
+  .experiment-num { width: auto; }
+  .experiment-main { flex-basis: 100%; order: 1; }
+  .experiment-status { order: 2; }
+  .experiment-arrow { order: 3; margin-left: auto; }
+}
+
 /* ---------- Plain list (concise items inside a .compare-grid card, e.g.
    "AI handled" / "Dr. Paul handled" on /lab/experiment-1/) ---------- */
 .plain-list {
