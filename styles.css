@@ -1084,6 +1084,14 @@ section { padding: var(--space-11) 0; }
 
 .contact-form .btn { align-self: flex-start; }
 
+.form-note {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: rgba(243, 241, 234, 0.55);
+  margin: 0;
+  max-width: 46ch;
+}
+
 .form-status {
   font-size: var(--text-base);
   min-height: 1.2em;
