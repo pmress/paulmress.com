@@ -2205,7 +2205,7 @@ details.thought-node-card[open] .thought-node-chevron {
 
 .footer-disclaimer {
   max-width: 480px;
-  margin: var(--space-3) auto 0;
+  margin: 0 auto var(--space-3);
   font-size: var(--text-sm);
   color: var(--color-ink-soft);
   line-height: 1.6;
