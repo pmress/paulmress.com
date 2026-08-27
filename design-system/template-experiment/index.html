@@ -76,8 +76,8 @@
     <div class="wrap">
       <div class="lab-hypothesis" style="border-left-color: var(--color-accent-2); font-family: var(--font-mono); font-style: normal; font-size: var(--text-sm); max-width: 100%;">
         <strong>This is a template, not a real page.</strong> Duplicate this folder to
-        <code class="ds-code" style="background:var(--color-bg);">/lab/00N-descriptive-slug/</code>
-        (zero-padded number, short descriptive slug &mdash; see
+        <code class="ds-code" style="background:var(--color-bg);">/lab/N-descriptive-slug/</code>
+        (plain incrementing number, short descriptive slug &mdash; see
         <a href="/design-system/#lab-urls">Design System &middot; Lab URLs</a>), replace every
         bracketed placeholder below with the real experiment, delete this notice block, and update
         the canonical/OG URLs and the <code class="ds-code" style="background:var(--color-bg);">&lt;title&gt;</code>
@@ -98,7 +98,7 @@
           Back
         </button>
       </div>
-      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; [00N]</p>
+      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; [N]</p>
       <h1 class="about-title" data-reveal>[The question this experiment asks, stated as a question]</h1>
       <p class="section-lede" data-reveal>
         [One or two sentences setting up what this experiment actually is and why it&rsquo;s worth
@@ -106,7 +106,7 @@
       </p>
       <div class="lab-meta" data-reveal>
         <span class="pill pill--ongoing">[Ongoing / Supported / Rejected / Inconclusive]</span>
-        <span class="lab-meta-facts">[Domain] &middot; [Tools used in this one]</span>
+        <span class="lab-meta-facts">[One line of context for the status &mdash; what "ongoing" (or whatever it says) actually means for this experiment.]</span>
       </div>
     </div>
   </section>
@@ -122,8 +122,7 @@
         </div>
         <div class="hyp-result-col">
           <p class="hyp-result-label">Result</p>
-          <p class="hyp-result-status"><span class="pill pill--ongoing">[Status]</span></p>
-          <p class="hyp-result-text">[What actually happened, or where the test currently stands &mdash; this should echo the Finding below.]</p>
+          <p class="hyp-result-text">[What actually happened, or where the test currently stands &mdash; this should echo the Finding below. No status pill here; it's already in the header.]</p>
         </div>
       </div>
       <p class="hyp-result-limitations" data-reveal>[Optional: a one-line honesty check on how much this result can carry &mdash; sample size, single-subject, still running, etc. Delete this line if it isn't needed.]</p>
@@ -136,14 +135,16 @@
       <p class="kicker" data-reveal>Method</p>
       <p class="section-lede" data-reveal>[What actually got built or tested, and how.]</p>
 
-      <div class="spec-table" data-reveal>
-        <div class="spec-row"><span class="spec-label">AI model</span><span class="spec-value">[Claude, etc.]</span></div>
-        <div class="spec-row"><span class="spec-label">Human role</span><span class="spec-value">[What Dr. Paul did]</span></div>
-        <div class="spec-row"><span class="spec-label">Primary input</span><span class="spec-value">[Brief, prompt, dataset...]</span></div>
-        <div class="spec-row"><span class="spec-label">Constraint tested</span><span class="spec-value">[The one variable this experiment isolates]</span></div>
+      <div data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
+        <div class="pipeline" style="margin-bottom:0;">
+          <span class="pill">[Tool]</span>
+          <span class="pill">[Tool]</span>
+          <span class="pill">[Tool]</span>
+        </div>
       </div>
 
-      <!-- Optional: a .steps sequence if the method is a real multi-step process worth walking through. Delete if the spec-table above already says enough. -->
+      <!-- Optional: a .steps sequence if the method is a real multi-step process worth walking through. Delete if the Tech list above already says enough. -->
       <div class="steps" style="margin-top:var(--space-8);" data-reveal>
         <span class="steps-pulse" aria-hidden="true"></span>
         <span class="steps-pulse" aria-hidden="true"></span>
@@ -271,7 +272,7 @@
   <section>
     <div class="wrap">
       <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
-        <p class="kicker">Next Question &middot; [00N+1]</p>
+        <p class="kicker">Next Question &middot; [N+1]</p>
         <h2 class="section-title">[The open question this finding raised]</h2>
         <p class="section-lede">[What's still unresolved, teasing whatever comes next.]</p>
         <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
@@ -308,6 +309,7 @@
       </div>
     </div>
     <p>&copy; <span id="year"></span> Paul Ress. Built by hand, with AI as the pair programmer.</p>
+    <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
   </div>
 </footer>
 
