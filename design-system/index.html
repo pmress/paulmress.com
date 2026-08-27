@@ -394,7 +394,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Stat tile &middot; .stats-grid (3-up, used on <a href="/about/">the About page</a>)</p>
+        <p class="ds-group-title">Stat tile &middot; .stats-grid (3-up, used on <a href="/about/">the About page</a> and the <a href="/lab/1-can-ai-replace-a-cms/">Lab experiment&rsquo;s</a> Evidence section)</p>
         <div class="ds-frame">
           <div class="stat ds-stat-demo" style="border-radius:var(--radius);">
             <p class="stat-number">4.0</p>
@@ -519,7 +519,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Compare grid &middot; .compare-grid (used on <a href="/lab/001-can-ai-replace-a-cms/">/lab/001-can-ai-replace-a-cms/</a>)</p>
+        <p class="ds-group-title">Compare grid &middot; .compare-grid (used on <a href="/lab/1-can-ai-replace-a-cms/">/lab/1-can-ai-replace-a-cms/</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           A plain 2-column grid for setting two <code class="ds-code">.card</code>s side by side &mdash;
           deliberately kept separate from <code class="ds-code">.explore-grid</code> (3 columns, for promo
@@ -579,7 +579,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Receipts &middot; .receipt-block (used on <a href="/lab/">/lab/</a>)</p>
+        <p class="ds-group-title">Receipts &middot; .receipt-block (default for new Lab entries &mdash; see the <a href="/design-system/template-experiment/">experiment template</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Three variants sharing one base: <code class="ds-code">.receipt--input</code> (neutral,
           <code class="ds-code">--color-ink-soft</code> border) for what was actually asked,
@@ -646,7 +646,8 @@
           The most prominent element on an experiment page &mdash; sits directly under the header,
           before any method or mechanics, so the claim and where it landed are visible in one glance.
           Two-column, divided by a hairline; the result side sits on <code class="ds-code">--color-bg-alt</code>
-          to read as the &ldquo;payoff&rdquo; half. Carries a status pill and, optionally, a one-line
+          to read as the &ldquo;payoff&rdquo; half. No status pill here &mdash; the header already carries
+          one, and repeating it here just duplicates the same signal. Optionally carries a one-line
           limitations note underneath &mdash; this is single-subject, ongoing research, not a controlled
           study, and the layout should never imply more rigor than that.
         </p>
@@ -658,7 +659,6 @@
             </div>
             <div class="hyp-result-col">
               <p class="hyp-result-label">Result</p>
-              <p class="hyp-result-status"><span class="pill pill--ongoing">Ongoing</span></p>
               <p class="hyp-result-text">What actually happened &mdash; or where the test currently stands.</p>
             </div>
           </div>
@@ -670,14 +670,14 @@
         <p class="ds-group-title">Experiment list &middot; .experiment-list / .experiment-row (used on <a href="/lab/">/lab/</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Replaces the old one-card-per-entry index. Built to hold hundreds of rows without each one
-          costing a full card&rsquo;s worth of space: a zero-padded number for sort and scale, the
+          costing a full card&rsquo;s worth of space: a plain incrementing number for sort and scale, the
           question as the entry point, domain and model as small mono facts, a status pill, an arrow.
           Rows stack their fields on narrow viewports rather than truncating.
         </p>
         <div class="ds-frame">
           <div class="experiment-list" style="margin-top:0;">
             <a class="experiment-row" href="#" onclick="return false;">
-              <span class="experiment-num">001</span>
+              <span class="experiment-num">1</span>
               <span class="experiment-main">
                 <span class="experiment-title">Can AI replace a CMS?</span>
                 <span class="experiment-domain">Website production &middot; Claude</span>
@@ -686,9 +686,9 @@
               <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
             </a>
             <a class="experiment-row" href="#" onclick="return false;">
-              <span class="experiment-num">002</span>
+              <span class="experiment-num">2</span>
               <span class="experiment-main">
-                <span class="experiment-title">Should &ldquo;Ask Dr. Paul&rdquo; become an avatar?</span>
+                <span class="experiment-title">Should Dr. Paul become an avatar?</span>
                 <span class="experiment-domain">Conversational UX &middot; Claude</span>
               </span>
               <span class="experiment-status"><span class="pill pill--inconclusive">Inconclusive</span></span>
@@ -934,7 +934,7 @@
         <div class="ds-row" style="margin-top:var(--space-5); gap:var(--space-7); flex-wrap:wrap; font-family:var(--font-mono); font-size:var(--text-2xs); color:var(--color-ink-soft);">
           <span><strong style="color:var(--color-ink);">Hero background</strong> &middot; linkDist 140 &middot; density 16000 &middot; speed 0.25 &middot; runs continuously</span>
           <span><strong style="color:var(--color-ink);">Nav panel background</strong> &middot; linkDist 110 &middot; density 9000 &middot; speed 0.18 &middot; runs only while open</span>
-          <span><strong style="color:var(--color-ink);">Intro background</strong> &middot; same defaults as the hero &middot; used on <a href="/story/" style="color:var(--color-accent);">/story/</a>, <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a>, <a href="/lab/" style="color:var(--color-accent);">/lab/</a>, <a href="/about/" style="color:var(--color-accent);">/about/</a>, and every Lab entry (e.g. <a href="/lab/001-can-ai-replace-a-cms/" style="color:var(--color-accent);">/lab/001-can-ai-replace-a-cms/</a>)</span>
+          <span><strong style="color:var(--color-ink);">Intro background</strong> &middot; same defaults as the hero &middot; used on <a href="/story/" style="color:var(--color-accent);">/story/</a>, <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a>, <a href="/lab/" style="color:var(--color-accent);">/lab/</a>, <a href="/about/" style="color:var(--color-accent);">/about/</a>, and every Lab entry (e.g. <a href="/lab/1-can-ai-replace-a-cms/" style="color:var(--color-accent);">/lab/1-can-ai-replace-a-cms/</a>)</span>
           <span><strong style="color:var(--color-ink);">Thinking pulse</strong> &middot; a centered, breathing glow layered behind the network on <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a> only &mdash; reuses <code class="ds-code">frontier-pulse</code>, just recentered</span>
         </div>
       </div>
@@ -962,20 +962,20 @@
           <div class="ds-row" style="gap: var(--space-4);">
             <a class="btn btn-ghost" href="/design-system/template-experiment/">template-experiment &rarr;</a>
           </div>
-          <p style="margin:var(--space-4) 0 0; color:var(--color-ink-soft); font-size:var(--text-sm);">A blank Lab experiment, built around the scientific-method structure every entry follows: Question (header), Hypothesis + Result, Method, the Experiment itself, Evidence, Finding, Conclusion, Next Question. The scaffold for Experiment 002 and beyond.</p>
+          <p style="margin:var(--space-4) 0 0; color:var(--color-ink-soft); font-size:var(--text-sm);">A blank Lab experiment, built around the scientific-method structure every entry follows: Question (header), Hypothesis + Result, Method, the Experiment itself, Evidence, Finding, Conclusion, Next Question. The scaffold for Experiment 2 and beyond.</p>
         </div>
       </div>
 
       <div class="ds-group" id="lab-urls">
-        <p class="ds-group-title">Lab URL scheme &middot; /lab/00N-descriptive-slug/</p>
+        <p class="ds-group-title">Lab URL scheme &middot; /lab/N-descriptive-slug/</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
-          Built to scale to hundreds of entries. The number is zero-padded to three digits
-          (<code class="ds-code">001</code>, <code class="ds-code">002</code>&hellip;
-          <code class="ds-code">099</code>, <code class="ds-code">100</code>) so entries sort correctly
-          as plain strings well past two digits, and a short descriptive slug follows it for
-          readability, SEO, and sharing &mdash; e.g. <code class="ds-code">/lab/001-can-ai-replace-a-cms/</code>.
-          Never reuse or renumber: if an experiment moves or is superseded, its old URL gets a redirect
-          stub (see below) pointing at the new one &mdash; it never gets deleted outright.
+          Built to scale to hundreds of entries. The number is a plain increment
+          (<code class="ds-code">1</code>, <code class="ds-code">2</code>&hellip;
+          <code class="ds-code">99</code>, <code class="ds-code">100</code>), and a short descriptive
+          slug follows it for readability, SEO, and sharing &mdash; e.g.
+          <code class="ds-code">/lab/1-can-ai-replace-a-cms/</code>. Never reuse or renumber: if an
+          experiment moves or is superseded, its old URL gets a redirect stub (see below) pointing at
+          the new one &mdash; it never gets deleted outright.
         </p>
       </div>
 
@@ -1120,6 +1120,7 @@
       </div>
     </div>
     <p>&copy; <span id="year"></span> Paul Ress. Design system built and maintained in collaboration with AI.</p>
+    <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
   </div>
 </footer>
 
