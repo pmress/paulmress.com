@@ -99,6 +99,13 @@
       "drive_modified": "2026-08-22T20:06:46.367Z",
       "last_synced": "2026-08-22",
       "applies_to": "authoring reference only, not implemented anywhere directly"
+    },
+    {
+      "drive_doc_id": "1vPlovLCCh3A-G0VZFH_nRWOiLWt7wjgyqjcGlBrHYhA",
+      "drive_doc_title": "Content Brief Schema — Reference",
+      "drive_modified": "2026-08-28T17:17:05.586Z",
+      "last_synced": "2026-08-28",
+      "applies_to": "defines the required header block (Live URL / Sync status / Last synced / Components used) that every 01 Pages brief should carry going forward — CMS-replacement recommendation #2. Not yet retrofitted onto existing briefs; apply opportunistically when a brief is next touched for real content work."
     }
   ]
 }
