@@ -1,0 +1,104 @@
+{
+  "_comment": "Maps each live page to its Google Drive content brief. 'drive_modified' is the Drive doc's modifiedTime as of the last time a session actually read that doc and confirmed/updated the live page. 'last_synced' is when that happened. Run scripts/check-content-sync.py with a fresh Drive snapshot to see which pages have Drive edits newer than what's reflected here. Root Drive folder: https://drive.google.com/drive/folders/1nMEaV95H4n6V8fpqf08MqFHsKJQvg5OT",
+  "generated": "2026-08-28",
+  "pages": [
+    {
+      "path": "/",
+      "file": "index.html",
+      "drive_doc_id": "18Vk87dXJEIOyk7HDsxZ2ij90KDkQco2SkaDHn-BdWVo",
+      "drive_doc_title": "Home — Content",
+      "drive_modified": "2026-08-25T19:21:49.438Z",
+      "last_synced": "2026-08-25"
+    },
+    {
+      "path": "/about/",
+      "file": "about/index.html",
+      "drive_doc_id": "1rnFIoeLAwW8aRBD-NM1wwz16QlMBjaoV8fNGG1Sjo9k",
+      "drive_doc_title": "About — Content",
+      "drive_modified": "2026-08-25T19:41:12.316Z",
+      "last_synced": "2026-08-25"
+    },
+    {
+      "path": "/story/",
+      "file": "story/index.html",
+      "drive_doc_id": "1QgJs6xMtl9lwmxOHr7qvi7KksdZLIY72_eI0IPOvcDo",
+      "drive_doc_title": "Story — Content",
+      "drive_modified": "2026-08-24T18:14:46.786Z",
+      "last_synced": "2026-08-24"
+    },
+    {
+      "path": "/thinking/",
+      "file": "thinking/index.html",
+      "drive_doc_id": "1cpG5xkQnxLAfVPAgbVZWfhNh-Wn1Qjxb2j64MbCpUto",
+      "drive_doc_title": "Thinking — Content",
+      "drive_modified": "2026-08-25T18:26:40.885Z",
+      "last_synced": "2026-08-25"
+    },
+    {
+      "path": "/lab/",
+      "file": "lab/index.html",
+      "drive_doc_id": "17fnnT6LfCv6HnyT4UxeLkfmov4dA8TzgQZ0c17suJ7A",
+      "drive_doc_title": "Lab — Content",
+      "drive_modified": "2026-08-25T20:31:44.912Z",
+      "last_synced": "2026-08-25"
+    },
+    {
+      "path": "/lab/1-can-ai-replace-a-cms/",
+      "file": "lab/1-can-ai-replace-a-cms/index.html",
+      "drive_doc_id": "1xCkDXwuxBjf2aKbel1mKNGEdDpqdYeP30iYXPFnEU2k",
+      "drive_doc_title": "Experiment 1 — Can AI Replace a CMS — Content",
+      "drive_modified": "2026-08-25T20:46:51.342Z",
+      "last_synced": "2026-08-25",
+      "note": "Drive doc's own 'URL convention' section says experiment pages live at /lab/experiment1/, /lab/experiment2/ (plain numbering) — the live site actually uses a descriptive slug (/lab/1-can-ai-replace-a-cms/) with /lab/experiment1/ as a redirect stub to it. Convention note in Drive is stale; live URL pattern is the current one. Also: the brief's '04 Results' section describes a 'Spec table' presentation, but the live page does not use the .spec-table CSS component (confirmed unused site-wide by audit-site.py) — implemented instead as plain text/stat elements. Worth reconciling next content pass."
+    },
+    {
+      "path": "/design-system/",
+      "file": "design-system/index.html",
+      "drive_doc_id": "1j7-3HzM6q9IC7EFc7zJd_gW8MndF89MHBcfN_emv0p4",
+      "drive_doc_title": "Design System — Content",
+      "drive_modified": "2026-08-25T18:27:13.076Z",
+      "last_synced": "2026-08-25",
+      "note": "This Drive doc says 'There is no separate About — Content doc yet' — that is now false; an About — Content doc exists (created/modified 2026-08-25T19:41:12Z, after this doc's own last edit at 18:27:13Z). Stale cross-reference, not a live-site problem."
+    }
+  ],
+  "unmanaged_pages": [
+    {
+      "path": "/ask-paul/",
+      "file": "ask-paul/index.html",
+      "reason": "No Drive content brief exists for this page as of 2026-08-28. Its copy was written directly; not tracked here until a brief is created."
+    },
+    {
+      "path": "/design-system/template-experiment/",
+      "file": "design-system/template-experiment/index.html",
+      "reason": "Starter scaffold, not real content — intentionally not Drive-managed."
+    },
+    {
+      "path": "/how-its-built/",
+      "file": "how-its-built/index.html",
+      "reason": "Retired redirect stub — no content of its own to track."
+    }
+  ],
+  "reference_docs": [
+    {
+      "drive_doc_id": "1z9oRYLiyKXfHTaMR1HqWoWOa4vo1wkaC6CNK-X5RUnE",
+      "drive_doc_title": "Site-Wide — Content",
+      "drive_modified": "2026-08-25T18:26:32.506Z",
+      "last_synced": "2026-08-25",
+      "applies_to": "header/footer/nav markup on every page — not a single URL, so tracked separately from the page list above"
+    },
+    {
+      "drive_doc_id": "19ZQuLg7UGh_jzP10JZlyiwPzJxTCwVsPSXA8AHgPadU",
+      "drive_doc_title": "Schemas & Sitemap Plan — Content",
+      "drive_modified": "2026-08-25T14:58:18.770Z",
+      "last_synced": "2026-08-25",
+      "applies_to": "robots.txt, sitemap.xml, per-page JSON-LD — reference doc, not page copy"
+    },
+    {
+      "drive_doc_id": "1JJl-p1wNbZmEdjC9IoSz2dK9buUWKRNmRweWoRjrlx0",
+      "drive_doc_title": "Page Template — Blank",
+      "drive_modified": "2026-08-22T20:06:46.367Z",
+      "last_synced": "2026-08-22",
+      "applies_to": "authoring reference only, not implemented anywhere directly"
+    }
+  ]
+}
