@@ -1,0 +1,51 @@
+{
+  "_comment": "Starting point for a new Lab experiment. Copy this file to something like lab-experiment.N-slug.json, fill in every field, then render with: python3 scripts/render_template.py templates/lab-experiment.template.html templates/data/lab-experiment.N-slug.json lab/N-slug/index.html — review the output, then push it through the normal GitHub upload flow like any other page.",
+  "page": {
+    "title": "[Page title] | Lab | Dr. Paul Ress, DBA",
+    "meta_description": "[One or two sentences for search results and social previews.]",
+    "social_description": "[Optional shorter variant for Twitter — reuse meta_description if no shorter version is needed.]",
+    "canonical_path": "/lab/N-descriptive-slug/"
+  },
+  "kicker_number": "[N]",
+  "h1": "[The question this experiment asks, stated as a question]",
+  "lede": "[One or two sentences setting up what this experiment actually is and why it's worth running.]",
+  "status_word": "Ongoing",
+  "status_pill_class": "pill--ongoing",
+  "updated_date": "[Mon. D, YYYY]",
+  "hypothesis_text": "[The claim, stated plainly, before the evidence — specific enough that it could turn out to be wrong.]",
+  "result_text": "[What actually happened, or where the test currently stands.]",
+  "limitations_text": "[Optional one-line honesty check — sample size, single-subject, still running, etc. Remove this field entirely to omit the line.]",
+  "workflow_traditional": ["[Step]", "[Step]", "[Step]"],
+  "workflow_experiment": ["[Step]", "[Step]", "[Step]"],
+  "flow_steps": [
+    {
+      "title": "[Step one]",
+      "body": "[What happened first.]",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/></svg>"
+    },
+    {
+      "title": "[Step two]",
+      "body": "[What happened next. Add or remove flow_steps entries freely.]",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/></svg>",
+      "current": true
+    }
+  ],
+  "tech_tools": ["[Tool]", "[Tool]", "[Tool]"],
+  "experiment_lede": "[Describe the artifact and link to it if it's live — the tangible thing this experiment produced.]",
+  "ai_handled": ["[Thing]", "[Thing]"],
+  "human_handled": ["[Thing]", "[Thing]"],
+  "stats_line": "[The real numbers — pages, time, whatever's actually measurable for this experiment.]",
+  "worked_text": "[Thing that worked, specifically.]",
+  "constraint_text": "[Judgment call the AI couldn't make, or where it drifted.]",
+  "evidence_heading": "[What this evidence demonstrates]",
+  "evidence_lede": "[One sentence on where this evidence comes from — never invent a number.]",
+  "finding_statement": "[The honest, specific thing that surprised you — not a generic AI take.]",
+  "finding_support": "[Optional one supporting sentence. Remove this field entirely to omit the line.]",
+  "implication_text": "[What you believe the finding means for marketing — the \"so what,\" one sentence.]",
+  "takeaway_text": "[The primary, quotable takeaway — what a reader should do differently because of this.]",
+  "next_question_number": "[N+1]",
+  "next_question_title": "[The open question this finding raised]",
+  "next_question_lede": "[What's still unresolved, teasing whatever comes next.]",
+  "nav": { "active_lab": true },
+  "footer": { "active_lab": true }
+}
