@@ -1144,6 +1144,37 @@
         </div>
       </div>
 
+      <div class="ds-group" id="data-driven-templates">
+        <p class="ds-group-title">Data-driven templates &middot; templates/ + scripts/render_template.py</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A second, newer way to start a page &mdash; alongside the copy-and-fill-in scaffold above,
+          not replacing it. A template file (<code class="ds-code">templates/lab-experiment.template.html</code>)
+          holds the markup with placeholders; a JSON data file holds one experiment&rsquo;s content;
+          <code class="ds-code">scripts/render_template.py</code> combines them into a real HTML page,
+          which still gets hand-reviewed and pushed through the normal GitHub upload flow like any
+          other page &mdash; this doesn&rsquo;t change how or where the site deploys, only how the
+          starting HTML gets produced. Shared chrome (nav, footer, the provenance mark) lives once as
+          partials under <code class="ds-code">templates/partials/</code> instead of being copied into
+          every new page by hand.
+        </p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The syntax intentionally echoes the real Swig template engine (double-brace variables, an
+          include tag, an if/endif tag) even though the renderer is a small dependency-free script, not
+          the actual library &mdash; this sandbox&rsquo;s npm registry access is blocked, so the real
+          package can&rsquo;t be installed here. If that ever changes, the template files themselves
+          should need little rework to move to it.
+        </p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">
+          <code class="ds-code">templates/lab-experiment.template.html</code> encodes the
+          <em>current</em> page structure (workflow-compare Method centerpiece, consolidated
+          Finding &rarr; Implication) and is now the source of truth for a new experiment page's shape
+          &mdash; the static <code class="ds-code">template-experiment</code> scaffold above predates
+          that structure and is stale relative to it (still fine as a components reference, just not the
+          current page shape to copy). Verified against Experiment 1&rsquo;s real content: rendering it
+          through this template reproduces the shared nav/footer/provenance partials byte-for-byte.
+        </p>
+      </div>
+
       <div class="ds-group" id="lab-urls">
         <p class="ds-group-title">Lab URL scheme &middot; /lab/N-descriptive-slug/</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
