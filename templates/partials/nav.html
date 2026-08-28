@@ -1,0 +1,9 @@
+<div class="nav-panel" id="nav-panel" aria-hidden="true">
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/lab/" class="nav-panel-link"{% if nav.active_lab %} aria-current="page"{% endif %}><span class="nav-panel-num">01</span>Lab</a>
+    <a href="/thinking/" class="nav-panel-link"{% if nav.active_thinking %} aria-current="page"{% endif %}><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/about/" class="nav-panel-link"{% if nav.active_about %} aria-current="page"{% endif %}><span class="nav-panel-num">03</span>About</a>
+  </nav>
+</div>

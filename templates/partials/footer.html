@@ -1,0 +1,20 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links-groups">
+      <div class="footer-links footer-links--primary">
+        <a href="/lab/"{% if footer.active_lab %} aria-current="page"{% endif %}>Lab</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/thinking/"{% if footer.active_thinking %} aria-current="page"{% endif %}>Thinking</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/about/"{% if footer.active_about %} aria-current="page"{% endif %}>About</a>
+      </div>
+      <div class="footer-links footer-links--meta">
+        <a href="/story/"{% if footer.active_story %} aria-current="page"{% endif %}>Story</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/design-system/"{% if footer.active_design_system %} aria-current="page"{% endif %}>Design System</a>
+      </div>
+    </div>
+    <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
+    <p>&copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
+  </div>
+</footer>
