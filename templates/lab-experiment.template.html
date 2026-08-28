@@ -1,0 +1,261 @@
+<!--
+  Lab experiment page template — CMS-replacement recommendation #4.
+
+  Renders with scripts/render_template.py against a JSON data file (see
+  templates/data/lab-experiment.example.json for a filled-in example, and
+  templates/data/lab-experiment.blank.json for a fresh starting point).
+  Output still gets hand-reviewed and pushed through the normal GitHub
+  web-upload flow — this only replaces hand-copying the previous static
+  template-experiment scaffold, it doesn't change how the site deploys.
+
+  This template encodes the CURRENT structural convention (see
+  claude/project-notes.md → "Lab experiment page conventions"): Hypothesis
+  /Result pairing near the top, a workflow-compare centerpiece for Method,
+  a consolidated Finding → Implication section (not separate Finding/
+  Conclusion blocks), and a Next Question close. It supersedes
+  design-system/template-experiment/index.html as the source of truth for
+  new experiment pages going forward — that static scaffold predates the
+  workflow-compare pattern and is now the stale one; see project notes for
+  the retirement note.
+
+  Template syntax (a minimal, dependency-free renderer — see
+  scripts/render_template.py's docstring for why not the real Swig
+  library): double-brace variables, an include tag for partials (see the
+  actual include tags below), and an if/endif tag pair for optional
+  content.
+  List-shaped content (pill rows, step flows, plain lists) is precomputed
+  into ready HTML by render_template.py's "computed fields" step rather
+  than a template for-loop — keeps the data files plain lists, like the
+  Drive content briefs already are, instead of requiring loop syntax.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.meta_description }}">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com{{ page.canonical_path }}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:description" content="{{ page.meta_description }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paulmress.com{{ page.canonical_path }}">
+<meta property="og:site_name" content="Paul Ress">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paulmress.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title }}">
+<meta name="twitter:description" content="{{ page.social_description }}">
+<meta name="twitter:image" content="https://paulmress.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Favicon -->
+<link rel="icon" href="../../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../styles.css">
+
+<style>
+  main > section { padding: var(--space-9) 0; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ page.title }}",
+  "url": "https://paulmress.com{{ page.canonical_path }}",
+  "description": "{{ page.meta_description }}",
+  "author": { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+  "creator": [
+    { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+    { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com/", "description": "Claude, the AI pair-programmer that drafted this page's language and code under Dr. Paul Ress's direction." }
+  ],
+  "accountablePerson": { "@type": "Person", "name": "Dr. Paul Ress" },
+  "digitalSourceType": "https://schema.org/CompositeWithTrainedAlgorithmicMediaDigitalSource"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+{% include "partials/nav.html" %}
+
+<main id="main">
+
+  <!-- QUESTION -->
+  <section class="about-intro intro-network">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="page-back-bar">
+        <button type="button" class="back-link" onclick="if (window.history.length > 1) { history.back(); } else { window.location.href = '/'; }">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+      </div>
+      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; {{ kicker_number }}</p>
+      <h1 class="about-title" data-reveal>{{ h1 }}</h1>
+      <p class="section-lede" data-reveal>{{ lede }}</p>
+      <div class="lab-meta" data-reveal>
+        <span class="pill {{ status_pill_class }}">{{ status_word }}</span>
+        <span class="lab-meta-facts">Updated {{ updated_date }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPOTHESIS + RESULT -->
+  <section>
+    <div class="wrap">
+      <div class="hyp-result" data-reveal>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Hypothesis</p>
+          <p class="hyp-result-text">{{ hypothesis_text }}</p>
+        </div>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Result</p>
+          <p class="hyp-result-text">{{ result_text }}</p>
+        </div>
+      </div>
+      {% if limitations_text %}<p class="hyp-result-limitations" data-reveal>{{ limitations_text }}</p>{% endif %}
+    </div>
+  </section>
+
+  <!-- METHOD (workflow-compare centerpiece) -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Method</p>
+
+      <div class="workflow-compare" data-reveal>
+        <div class="workflow-compare-row">
+          <span class="workflow-compare-label">Traditional</span>
+          <div class="pipeline" style="margin-bottom:0;">{{ workflow_traditional_html }}</div>
+        </div>
+        <div class="workflow-compare-row workflow-compare-row--current">
+          <span class="workflow-compare-label">Experiment</span>
+          <div class="pipeline" style="margin-bottom:0;">{{ workflow_experiment_html }}</div>
+        </div>
+      </div>
+
+      <div class="flow-row" style="margin-top:var(--space-8);" data-reveal>{{ flow_steps_html }}</div>
+
+      <div style="margin-top:var(--space-7);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
+        <div class="pipeline" style="margin-bottom:0;">{{ tech_tools_html }}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE EXPERIMENT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The experiment</p>
+      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>{{ experiment_lede }}</p>
+
+      <div class="compare-grid" data-reveal>
+        <div class="card">
+          <p class="chapter-range">AI handled</p>
+          <ul class="plain-list">{{ ai_handled_html }}</ul>
+        </div>
+        <div class="card">
+          <p class="chapter-range">Dr. Paul handled</p>
+          <ul class="plain-list">{{ human_handled_html }}</ul>
+        </div>
+      </div>
+
+      <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>{{ stats_line }}</p>
+
+      <div class="worked-list" style="margin-top:var(--space-5);" data-reveal>
+        <div class="worked-item is-good">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <p><strong>Worked:</strong> {{ worked_text }}</p>
+        </div>
+        <div class="worked-item is-bad">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <p><strong>Constraint:</strong> {{ constraint_text }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVIDENCE -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Evidence</p>
+      <h3 style="margin:0 0 var(--space-2); font-size:var(--text-xl);" data-reveal>{{ evidence_heading }}</h3>
+      <p class="section-lede" data-reveal>{{ evidence_lede }}</p>
+    </div>
+  </section>
+
+  <!-- FINDING -> IMPLICATION (consolidated, present tense) -->
+  <section>
+    <div class="wrap">
+      <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">{{ finding_statement }}</p>
+        {% if finding_support %}<p class="statement-support">{{ finding_support }}</p>{% endif %}
+      </div>
+
+      <div style="max-width:560px; margin-top:var(--space-8);" data-reveal>
+        <p class="kicker">Implication</p>
+        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">{{ implication_text }}</p>
+      </div>
+
+      <div class="card card--current" style="max-width:720px; margin-top:var(--space-6);" data-reveal>
+        <p style="margin:0; font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">{{ takeaway_text }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT QUESTION -->
+  <section>
+    <div class="wrap">
+      <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
+        <p class="kicker">Next Question &middot; {{ next_question_number }}</p>
+        <h2 class="section-title">{{ next_question_title }}</h2>
+        <p class="section-lede">{{ next_question_lede }}</p>
+        <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include "partials/provenance.html" %}
+{% include "partials/footer.html" %}
+
+<script src="../../script.js"></script>
+</body>
+</html>
