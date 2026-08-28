@@ -106,8 +106,11 @@
       </p>
       <div class="lab-meta" data-reveal>
         <span class="pill pill--ongoing">[Ongoing / Supported / Rejected / Inconclusive]</span>
-        <span class="lab-meta-facts">[One line of context for the status &mdash; what "ongoing" (or whatever it says) actually means for this experiment.]</span>
+        <span class="lab-meta-facts">[Status] &middot; Updated [Mon. D, YYYY]</span>
       </div>
+      <!-- Keep this "Updated" date current whenever you revise the page. Subtle,
+           secondary metadata only — never a heading, and never "Published": this
+           is a live, ongoing experiment log, not a finished article. -->
     </div>
   </section>
 
@@ -228,9 +231,18 @@
     </div>
   </section>
 
-  <!-- 6. FINDING: an inset callout, not a full-bleed section, so it reads as
-       part of the page rather than the page ending. This is the one moment
-       meant to stop a scanning reader — keep it to a single sentence or two. -->
+  <!-- 6. FINDING → IMPLICATION: one inset callout, not a full-bleed section,
+       so it reads as part of the page rather than the page ending. This is
+       the one moment meant to stop a scanning reader — keep the Finding to a
+       single sentence or two, and don't let Implication restate it in
+       different words; each line should add something the one above it
+       didn't already say. Close on the single strongest, most quotable line
+       you have as the takeaway — don't add a supporting sentence under it.
+       Tense convention for the whole page: Method above is past tense (what
+       you actually did); Finding and Implication are present tense (what
+       the experiment currently tells you, what you believe it means); Next
+       Question below is future/ongoing framing. Keep the experiment reading
+       as live and ongoing, not a completed, controlled study. -->
   <section>
     <div class="wrap">
       <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
@@ -238,29 +250,19 @@
         <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">[The honest, specific thing that surprised you &mdash; not a generic AI take.]</p>
         <p class="statement-support">[One supporting sentence, if needed. Delete this line if the statement stands alone.]</p>
       </div>
-    </div>
-  </section>
 
-  <!-- 7. CONCLUSION -->
-  <section>
-    <div class="wrap">
-      <p class="kicker" data-reveal>Conclusion</p>
-      <blockquote class="pull-quote" data-reveal>
-        [What changed as a result of this finding &mdash; stated as a before/after, if one exists.]
-      </blockquote>
-      <p style="max-width:560px; color:var(--color-ink-soft); font-size:var(--text-lg); margin:0;" data-reveal>
-        [One supporting sentence tying the finding back to the original hypothesis.]
-      </p>
+      <div style="max-width:560px; margin-top:var(--space-8);" data-reveal>
+        <p class="kicker">Implication</p>
+        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">[What you believe the finding means for marketing &mdash; the "so what," one sentence.]</p>
+      </div>
 
-      <div class="card card--current" style="max-width:720px; margin-top:var(--space-8);" data-reveal>
-        <p class="chapter-range">Executive implication</p>
-        <p style="margin:0 0 var(--space-3); font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">[The primary, quotable statement &mdash; what a reader should do differently because of this.]</p>
-        <p style="margin:0; font-size:var(--text-base); color:var(--color-ink-soft);">[Supporting sentence with the nuance the headline statement can't carry alone.]</p>
+      <div class="card card--current" style="max-width:720px; margin-top:var(--space-6);" data-reveal>
+        <p style="margin:0; font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">[The primary, quotable takeaway &mdash; what a reader should do differently because of this.]</p>
       </div>
     </div>
   </section>
 
-  <!-- 8. NEXT QUESTION -->
+  <!-- 7. NEXT QUESTION (future/ongoing framing: what you'll explore next) -->
   <section>
     <div class="wrap">
       <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
@@ -301,7 +303,7 @@
       </div>
     </div>
     <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
-    <p>Built by hand, with AI as the pair programmer. &copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
+    <p>&copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
   </div>
 </footer>
 
