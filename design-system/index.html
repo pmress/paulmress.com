@@ -195,6 +195,27 @@
       </div>
 
       <div class="ds-group">
+        <p class="ds-group-title">Typography &middot; three families, three jobs</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Loaded once from Google Fonts (the same <code class="ds-code">&lt;link&gt;</code>, byte-for-byte,
+          in every page&rsquo;s <code class="ds-code">&lt;head&gt;</code>) &mdash; each family has exactly
+          one job, and mixing them outside these roles is the fastest way to make a page feel off-system.
+        </p>
+        <div class="ds-type-row">
+          <div class="ds-type-meta"><span class="ds-token-name">--font-display</span>&ldquo;Fraunces&rdquo;, Georgia, serif &middot; weights 400/500/600/700 &middot; hero headlines, section titles, pull-quotes &mdash; anywhere a line needs weight and warmth</div>
+          <p class="ds-type-sample" style="font-size:var(--text-2xl); font-family:var(--font-display); margin:0;">Dr. Paul, DBA</p>
+        </div>
+        <div class="ds-type-row">
+          <div class="ds-type-meta"><span class="ds-token-name">--font-body</span>&ldquo;Inter&rdquo;, system-ui, -apple-system, &ldquo;Segoe UI&rdquo;, sans-serif &middot; weights 400/500/600/700/800 &middot; paragraph copy, nav, buttons, form fields &mdash; anything read at length or clicked</div>
+          <p class="ds-type-sample" style="font-size:var(--text-base); font-family:var(--font-body); margin:0;">What happens when marketers stop asking what AI can do and start experimenting?</p>
+        </div>
+        <div class="ds-type-row">
+          <div class="ds-type-meta"><span class="ds-token-name">--font-mono</span>&ldquo;JetBrains Mono&rdquo;, &ldquo;SFMono-Regular&rdquo;, Menlo, Consolas, monospace &middot; weights 500/600 &middot; kickers, pills, timestamps, code, footer links &mdash; the site&rsquo;s &ldquo;metadata&rdquo; voice</div>
+          <p class="ds-type-sample" style="font-size:var(--text-xs); font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.04em; margin:0;">01 &middot; Story &middot; 2010&ndash;2016</p>
+        </div>
+      </div>
+
+      <div class="ds-group">
         <p class="ds-group-title">Type scale</p>
         <div class="ds-type-row">
           <div class="ds-type-meta"><span class="ds-token-name">--text-hero</span>clamp(2.6rem, 5.4vw, 4rem) &middot; hero headline</div>
@@ -329,6 +350,22 @@
           </div>
         </div>
       </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Scroll reveal &middot; [data-reveal] (used site-wide)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Every content block that should animate in on scroll carries a bare <code class="ds-code">data-reveal</code>
+          attribute &mdash; no class naming needed. CSS starts it faded and shifted <code class="ds-code">24px</code>
+          down; a small IntersectionObserver in <code class="ds-code">script.js</code> adds
+          <code class="ds-code">.is-visible</code> the first time an element scrolls into view, which is the only
+          thing that animates it in. <code class="ds-code">prefers-reduced-motion</code> turns the whole pattern off
+          &mdash; elements render at full opacity, in place, with no transition &mdash; rather than firing the motion
+          and hoping no one minds.
+        </p>
+        <div class="ds-frame">
+          <div data-reveal class="is-visible" style="padding:var(--space-5); background:var(--color-bg-alt); border:1px solid var(--color-line); border-radius:var(--radius); font-family:var(--font-mono); font-size:var(--text-sm); color:var(--color-ink-soft);">[data-reveal] once .is-visible is added</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -379,6 +416,31 @@
             </div>
             <button type="submit" class="btn btn-primary">Send message</button>
           </form>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Scroll progress &middot; .scroll-progress (used site-wide)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A fixed 3px bar pinned to the very top of every page, one per document. <code class="ds-code">script.js</code>
+          sets its width to the page's scroll percentage on every scroll tick &mdash; the only moving part is that
+          one inline <code class="ds-code">width</code>, everything else (position, gradient, z-index) lives in CSS.
+        </p>
+        <div class="ds-frame" style="padding-top: calc(var(--space-6) + 3px); position:relative;">
+          <div style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--color-accent), var(--color-accent-2)); width:62%;"></div>
+          <p style="color:var(--color-ink-soft); font-size:var(--text-sm); margin:0;">Frozen at 62% scrolled, for demonstration &mdash; live on the page it tracks <code class="ds-code">scrollY / (docHeight - viewportHeight)</code>.</p>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Plain list &middot; .plain-list (concise items inside a .compare-grid card, e.g. <a href="/lab/1-can-ai-replace-a-cms/">/lab/1-can-ai-replace-a-cms/</a>)</p>
+        <div class="ds-frame">
+          <ul class="plain-list" style="max-width:280px;">
+            <li>Code</li>
+            <li>Iteration</li>
+            <li>Troubleshooting</li>
+            <li>Deployment</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -432,6 +494,21 @@
             <h3>.card--current</h3>
             <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">Adds the accent outline used to mark the active chapter.</p>
           </article>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">How Might We &middot; .hmw (Lab problem framing, e.g. <a href="/lab/1-can-ai-replace-a-cms/">/lab/1-can-ai-replace-a-cms/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A distinct signature from <code class="ds-code">.lab-hypothesis</code>: accent-2 label, no italic, no left
+          border &mdash; reads as a strategy-doc convention framing the question a Lab entry sets out to answer, not
+          a pull-quote answering it.
+        </p>
+        <div class="ds-frame" style="text-align:center;">
+          <div class="hmw" style="margin:0 auto;">
+            <p class="hmw-label">How might we</p>
+            <p class="hmw-question">Replace a CMS with a marketing intent, reviewed by a human?</p>
+          </div>
         </div>
       </div>
     </div>
@@ -938,6 +1015,107 @@
           <span><strong style="color:var(--color-ink);">Thinking pulse</strong> &middot; a centered, breathing glow layered behind the network on <a href="/thinking/" style="color:var(--color-accent);">/thinking/</a> only &mdash; reuses <code class="ds-code">frontier-pulse</code>, just recentered</span>
         </div>
       </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Workflow compare &middot; .workflow-compare (Lab: Traditional vs. Experiment pipeline, used on <a href="/lab/1-can-ai-replace-a-cms/">/lab/1-can-ai-replace-a-cms/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The strongest at-a-glance insight on an experiment page: two bordered rows, not a diagram, so it stays in
+          the site's restrained register. <code class="ds-code">.workflow-compare-row--current</code> outlines
+          whichever row is the page's actual subject. Content-specific to before/after comparison findings &mdash;
+          deliberately not (yet) folded into a generic Organism, since every Lab entry's comparison has a different
+          shape.
+        </p>
+        <div class="ds-frame">
+          <div class="workflow-compare">
+            <div class="workflow-compare-row">
+              <span class="workflow-compare-label">Traditional</span>
+              <div class="pipeline" style="margin-bottom:0;">
+                <span class="pill">Marketing</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span>
+                <span class="pill">CMS</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span>
+                <span class="pill">Developer / Agency</span>
+              </div>
+            </div>
+            <div class="workflow-compare-row workflow-compare-row--current">
+              <span class="workflow-compare-label">Experiment</span>
+              <div class="pipeline" style="margin-bottom:0;">
+                <span class="pill">Marketing intent</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span>
+                <span class="pill">AI</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span>
+                <span class="pill">Human review</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Flow row &middot; .flow-row (horizontal process artifact, e.g. Brief &rarr; AI &rarr; Deploy on <a href="/lab/1-can-ai-replace-a-cms/">/lab/1-can-ai-replace-a-cms/</a>)</p>
+        <div class="ds-frame">
+          <div class="flow-row">
+            <div class="flow-step">
+              <span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M15 2v5h5"/></svg></span>
+              <h3>Brief</h3>
+              <p>What should exist, and why.</p>
+            </div>
+            <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+            <div class="flow-step">
+              <span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>
+              <h3>AI</h3>
+              <p>Built it &mdash; code, copy, and design.</p>
+            </div>
+            <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+            <div class="flow-step">
+              <span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <h3>Human judgment</h3>
+              <p>Reviewed, edited, decided what shipped.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Statement &middot; .statement (single large centered claim, e.g. &ldquo;Key observation&rdquo; on <a href="/lab/1-can-ai-replace-a-cms/">/lab/1-can-ai-replace-a-cms/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The one moment on a page meant to stop a scanning reader. Deliberately not a full-bleed color-inverted
+          section &mdash; that read as the page footer and stopped people scrolling early. Same typographic recipe
+          as <code class="ds-code">.about-title</code>, centered, capped narrow so it never runs the full width of
+          the page.
+        </p>
+        <div class="ds-frame">
+          <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">Execution wasn&rsquo;t the constraint.<br>Judgment was.</p>
+          <p class="statement-support">AI can quickly build what&rsquo;s requested. The harder question is whether it&rsquo;s worth building.</p>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Ask Dr. Paul &middot; .chat-shell (chat widget, <a href="/ask-paul/">/ask-paul/</a> only)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A self-contained chat surface: <code class="ds-code">.chat-disclosure</code> pill states up front that
+          messages go to an AI, not Dr. Paul directly; <code class="ds-code">.chat-log</code> scrolls independently
+          of the page so a long conversation never pushes the input off-screen; assistant and user bubbles
+          (<code class="ds-code">.chat-msg--assistant</code> / <code class="ds-code">.chat-msg--user</code>) mirror
+          the accent-vs-neutral logic used everywhere else on the site rather than inventing new chat-specific
+          colors; a three-dot <code class="ds-code">.chat-msg--typing</code> state and starter
+          <code class="ds-code">.chat-suggestion</code> chips round it out. The only Organism unique to a single
+          page &mdash; everything else here is reused at least twice.
+        </p>
+        <div class="ds-frame">
+          <div class="chat-shell" style="height:auto; max-height:none;">
+            <div class="chat-log" style="overflow:visible;">
+              <div class="chat-msg chat-msg--assistant">Ask me anything about Dr. Paul&rsquo;s work in marketing AI.</div>
+              <div class="chat-msg chat-msg--user">What&rsquo;s Experiment 1?</div>
+              <div class="chat-msg chat-msg--typing" aria-hidden="true"><span></span><span></span><span></span></div>
+            </div>
+            <div class="chat-suggestions">
+              <button type="button" class="chat-suggestion" disabled>What do you do day to day?</button>
+              <button type="button" class="chat-suggestion" disabled>How is this site built?</button>
+            </div>
+            <form class="chat-form" onsubmit="return false;">
+              <input type="text" class="chat-input" placeholder="Ask a question&hellip;" disabled>
+              <button type="submit" class="btn btn-primary" disabled>Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1007,11 +1185,14 @@
         <p class="ds-group-title">Footer provenance mark &middot; every page</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           The same <code class="ds-code">.provenance</code> component from Molecules, in a
-          <code class="ds-code">.footer-provenance</code> wrapper, centered in the footer of every
-          real page on the site (not the redirect stubs, which have no content of their own to
-          attribute). This closes the drift Paul flagged: the mark used to appear only on pages
-          where it happened to get written in &mdash; now it&rsquo;s a footer-level guarantee, the
-          same way <code class="ds-code">.hero-glow</code> is a top-of-page guarantee.
+          <code class="ds-code">.footer-provenance</code> wrapper inside a <code class="ds-code">.page-provenance</code>
+          block &mdash; a sibling that sits directly above <code class="ds-code">&lt;footer class="site-footer"&gt;</code>,
+          not nested inside it. The split is deliberate: <code class="ds-code">.site-footer</code>&rsquo;s markup is
+          byte-identical on every real page (not the redirect stubs, which have no content of their own to attribute),
+          so a footer-wide edit is one shape to change everywhere, while the provenance mark stays free to vary
+          per page without touching that shared shape. This closes the drift Paul flagged: the mark used to appear
+          only on pages where it happened to get written in &mdash; now it&rsquo;s a guarantee just above every
+          footer, the same way <code class="ds-code">.hero-glow</code> is a top-of-page guarantee.
         </p>
         <div class="ds-frame" style="text-align:center;">
           <details class="provenance provenance--collaborative footer-provenance">
@@ -1086,6 +1267,10 @@
           <span class="ds-principle-num">07</span>
           <p><strong>Claude doesn't draft what goes in a Thinking node.</strong> Layout, spine, pulses, markup — all fair game. The tag, headline, and quote inside each <code class="ds-code">.thought-node</code> are Dr. Paul's own words; Claude asks for them rather than writing placeholders that could pass as real.</p>
         </div>
+        <div class="ds-principle">
+          <span class="ds-principle-num">08</span>
+          <p><strong>Documentation only self-heals if something checks it.</strong> Principle 06 says this page updates itself when tokens change — but nothing used to catch a new component shipping without a matching entry here, which is how the gaps behind this Principle got in. <code class="ds-code">scripts/audit-site.py</code> diffs every class used in HTML against every class defined in CSS (both directions — unstyled classes and dead CSS), and checks the footer is still byte-identical across every real page. Run it before every deploy.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1093,7 +1278,7 @@
 
 </main>
 
-<footer class="site-footer">
+<div class="page-provenance">
   <div class="wrap">
     <details class="provenance provenance--collaborative footer-provenance">
       <summary class="provenance-mark">
@@ -1105,6 +1290,11 @@
         <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
       </div>
     </details>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
     <div class="footer-links-groups">
       <div class="footer-links footer-links--primary">
         <a href="/lab/">Lab</a>
@@ -1120,7 +1310,7 @@
       </div>
     </div>
     <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
-    <p>Design system built and maintained in collaboration with AI. &copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
+    <p>&copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
   </div>
 </footer>
 
