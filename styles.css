@@ -1283,6 +1283,46 @@ section { padding: var(--space-11) 0; }
   z-index: 1;
 }
 
+/* ---------- Workflow compare (Lab: Traditional vs Experiment pipeline —
+   the strongest at-a-glance insight on an experiment page. Two bordered
+   rows, not a diagram, so it stays in the site's restrained register. ---------- */
+.workflow-compare {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.workflow-compare-row {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  padding: var(--space-6);
+}
+
+.workflow-compare-row--current {
+  background: var(--color-bg);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.workflow-compare-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-3);
+}
+
+.workflow-compare-row--current .workflow-compare-label { color: var(--color-accent); }
+
+.workflow-compare .pill {
+  font-size: var(--text-sm);
+  padding: var(--space-2) var(--space-5);
+}
+
 /* ---------- Lab (experiment log, /lab/) ---------- */
 
 /* Entry header meta row: status pill + mono facts, sits under the H1 */
