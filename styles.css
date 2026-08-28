@@ -1541,7 +1541,10 @@ section { padding: var(--space-11) 0; }
   .flow-arrow { transform: rotate(90deg); align-self: center; padding: var(--space-1) 0; }
 }
 
-/* ---------- Spec table (key/value results row, e.g. Lab experiment results) ---------- */
+/* ---------- Spec table (key/value results row, e.g. Lab experiment results) ----------
+   AUDIT NOTE (Aug 2026): not referenced by any current page's HTML. Left in place in
+   case a future Lab entry wants it; if it's still unused next time this file gets a
+   pass, it's a real candidate for deletion rather than something to re-document. ---------- */
 .spec-table {
   border: 1px solid var(--color-line);
   border-radius: var(--radius);
@@ -1579,7 +1582,10 @@ section { padding: var(--space-11) 0; }
   .spec-row { padding: var(--space-3) var(--space-5); }
 }
 
-/* ---------- Setup grid (compact cards: Question / Hypothesis, e.g. /lab/experiment-1/) ---------- */
+/* ---------- Setup grid (compact cards: Question / Hypothesis, e.g. /lab/experiment-1/) ----------
+   AUDIT NOTE (Aug 2026): not referenced by any current page's HTML. Left in place in
+   case a future Lab entry wants it; if it's still unused next time this file gets a
+   pass, it's a real candidate for deletion rather than something to re-document. ---------- */
 .setup-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1867,8 +1873,9 @@ section { padding: var(--space-11) 0; }
 
 .provenance-detail a { color: var(--color-accent); }
 
-/* Footer variant: same component, centered under the footer links on every
-   page (see .site-footer below) instead of inline with body content. */
+/* Footer variant: same component, centered in the .page-provenance block that
+   sits directly above .site-footer on every page (see below) instead of
+   inline with body content. */
 .footer-provenance {
   display: block;
   width: fit-content;
@@ -2202,8 +2209,19 @@ details.thought-node-card[open] .thought-node-chevron {
 }
 
 /* ---------- Footer ---------- */
+/* Page-specific provenance mark, a sibling directly above .site-footer rather
+   than nested inside it — kept out of the footer so the footer markup can be
+   byte-identical on every page while this stays per-page content. Carries the
+   top padding the footer used to supply, so total spacing above the mark is
+   unchanged; .footer-provenance's own bottom margin still separates it from
+   the footer below. */
+.page-provenance {
+  padding-top: var(--space-7);
+  text-align: center;
+}
+
 .site-footer {
-  padding: var(--space-7) 0;
+  padding: 0 0 var(--space-7);
   text-align: center;
   font-size: var(--text-sm);
   color: var(--color-ink-soft);
