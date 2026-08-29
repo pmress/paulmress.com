@@ -10,13 +10,27 @@
 
   This template encodes the CURRENT structural convention (see
   claude/project-notes.md → "Lab experiment page conventions"): Hypothesis
-  /Result pairing near the top, a workflow-compare centerpiece for Method,
+  /Finding pairing near the top, a workflow-compare centerpiece for Method,
   a consolidated Finding → Implication section (not separate Finding/
-  Conclusion blocks), and a Next Question close. It supersedes
+  Conclusion blocks), and a Next Question close. No separate Evidence
+  section — retired 2026-08-29 (Experiment 1's copy already carried its
+  own receipts; a bare "trust me, check the commits" section added
+  nothing a reader could act on). It supersedes
   design-system/template-experiment/index.html as the source of truth for
   new experiment pages going forward — that static scaffold predates the
   workflow-compare pattern and is now the stale one; see project notes for
   the retirement note.
+
+  Tense: Method stays past tense regardless of status (it's a record of
+  what was done). Finding/Implication default to present tense — stated as
+  standing claims about what the evidence shows, not a narration of the
+  test — which reads correctly whether status is Ongoing or has resolved
+  to Supported/Rejected/Inconclusive. hyp-result-text and
+  limitations_text are the two spots most likely to carry "still running"
+  language that goes stale the moment status stops being Ongoing — when a
+  page moves off Ongoing, sweep for tense/status words like "running",
+  "ongoing", or present-tense hero copy ("tests what happens") that assumed
+  the test was still in progress, per claude/project-notes.md.
 
   Template syntax (a minimal, dependency-free renderer — see
   scripts/render_template.py's docstring for why not the real Swig
@@ -27,6 +41,12 @@
   into ready HTML by render_template.py's "computed fields" step rather
   than a template for-loop — keeps the data files plain lists, like the
   Drive content briefs already are, instead of requiring loop syntax.
+
+  finding_support and finding_support_2 are both optional (each has its
+  own if/endif) — use one for a single supporting sentence, or both when
+  the finding really has two distinct points worth their own line (e.g.
+  Experiment 1: one sentence on the headline finding, a second naming a
+  specific concrete result it produced).
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -132,7 +152,7 @@
     </div>
   </section>
 
-  <!-- HYPOTHESIS + RESULT -->
+  <!-- HYPOTHESIS + FINDING -->
   <section>
     <div class="wrap">
       <div class="hyp-result" data-reveal>
@@ -141,8 +161,8 @@
           <p class="hyp-result-text">{{ hypothesis_text }}</p>
         </div>
         <div class="hyp-result-col">
-          <p class="hyp-result-label">Result</p>
-          <p class="hyp-result-text">{{ result_text }}</p>
+          <p class="hyp-result-label">Finding</p>
+          <p class="hyp-result-text">{{ finding_text }}</p>
         </div>
       </div>
       {% if limitations_text %}<p class="hyp-result-limitations" data-reveal>{{ limitations_text }}</p>{% endif %}
@@ -210,22 +230,15 @@
     </div>
   </section>
 
-  <!-- EVIDENCE -->
-  <section>
-    <div class="wrap">
-      <p class="kicker" data-reveal>Evidence</p>
-      <h3 style="margin:0 0 var(--space-2); font-size:var(--text-xl);" data-reveal>{{ evidence_heading }}</h3>
-      <p class="section-lede" data-reveal>{{ evidence_lede }}</p>
-    </div>
-  </section>
-
-  <!-- FINDING -> IMPLICATION (consolidated, present tense) -->
+  <!-- FINDING -> IMPLICATION (consolidated; see tense note in the header
+       comment above) -->
   <section>
     <div class="wrap">
       <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
         <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
         <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">{{ finding_statement }}</p>
         {% if finding_support %}<p class="statement-support">{{ finding_support }}</p>{% endif %}
+        {% if finding_support_2 %}<p class="statement-support" style="margin-top:var(--space-3);">{{ finding_support_2 }}</p>{% endif %}
       </div>
 
       <div style="max-width:560px; margin-top:var(--space-8);" data-reveal>
