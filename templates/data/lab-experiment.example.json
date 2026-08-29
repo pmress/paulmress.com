@@ -1,5 +1,5 @@
 {
-  "_comment": "Experiment 1's actual live content, reproduced here as a fidelity check for the templating system (CMS-replacement recommendation #4) \u2014 rendering this through templates/lab-experiment.template.html should match the live page's shared partials (nav/footer/provenance) exactly, proving the extraction was clean. It is not the live source of truth for that page; the live HTML file is. Updated 2026-08-29 alongside the live page: URL moved to /lab/1/, status Ongoing -> Supported, Evidence section removed, result_text renamed finding_text (label Result -> Finding), and finding_support_2 added.",
+  "_comment": "Experiment 1's actual live content, reproduced here as a fidelity check for the templating system (CMS-replacement recommendation #4) \u2014 rendering this through templates/lab-experiment.template.html should match the live page's shared partials (nav/footer/provenance) exactly, proving the extraction was clean. It is not the live source of truth for that page; the live HTML file is. Updated 2026-08-29 alongside the live page: URL moved to /lab/1/, status Ongoing -> Supported, Evidence section removed, result_text renamed finding_text (label Result -> Finding), and finding_support_2 added. next_question_number briefly bumped 2 -> 3 the same day when Experiment 2 didn't exist yet as content, then corrected back to 2 once Experiment 2 (see templates/data/lab-experiment.2-self-healing-design-system.json) was actually built and ready to link to \u2014 next_question_href/next_question_cta (new required fields, see the template's header comment) now point straight at it instead of the generic \"Back to the Lab\". Experiment 2's own next_question in turn points at #3 (the avatar question) since Experiment 3 doesn't exist yet.",
   "page": {
     "title": "Can AI Replace a CMS? | Lab | Dr. Paul Ress, DBA",
     "meta_description": "Experiment 1: Dr. Paul tested what happened when AI took over the traditional website production workflow &mdash; and found it can replace a CMS, once the ways of working are rebuilt around it.",
@@ -79,8 +79,10 @@
   "implication_text": "AI doesn&rsquo;t replace the marketer. It changes where the marketer adds value.",
   "takeaway_text": "Don&rsquo;t just add AI to the workflow. Redesign the workflow around AI.",
   "next_question_number": "2",
-  "next_question_title": "Should Dr. Paul become an avatar?",
-  "next_question_lede": "Talking avatar, text chatbot, or shelved entirely &mdash; that&rsquo;s the question this finding raised.",
+  "next_question_title": "If AI replaced the CMS, what stops the site from drifting?",
+  "next_question_lede": "Replacing the CMS turned out to be the easy part. A CMS also quietly keeps a site consistent &mdash; something still has to do that job now that it&rsquo;s gone.",
+  "next_question_href": "/lab/2/",
+  "next_question_cta": "Read Experiment 2 &rarr;",
   "nav": {
     "active_lab": true
   },

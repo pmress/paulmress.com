@@ -1,0 +1,89 @@
+{
+  "_comment": "Experiment 2. Grounded in this repo's own commit history: the design-system doc's own Principle 08 ('Documentation only self-heals if something checks it') already named the exact gap this experiment tests. Two real drift incidents on record: the design-system page's stray AI-credit footer sentence (fixed in 8525f45, 2026-08-28 08:05:51 -0400) and the Lab status-line word duplication (fixed in 934623f/2eab838, same day 08:20) — the footer sentence is exactly the class of bug scripts/audit-site.py's footer-identity check now exists to catch (added 79 seconds after that fix, in 4410257); the status-line duplication is content drift the script's structural checks don't cover, which is what later motivated scripts/check-content-diff.py (recommendation #3). Re-ran scripts/audit-site.py 2026-08-29 while building this page: clean, 'No drift found' across all 9 real pages. Revised twice more the same day per Dr. Paul's direct feedback: (1) simplified the language for a non-technical (CMO-level) reader and spelled out every acronym in parentheses on first use — jargon removed or replaced: 'CI pipeline/lint gate' (dropped), 'CSS custom properties' (-> 'shared style file'), 'token drift'/'structural drift' (-> 'small style details' / 'bigger mistakes'), 'byte-identical' (-> 'word for word'), 'diff' (-> 'results'), 'on its own recognizance' (dropped); (2) reframed the hook to explicitly chain off Experiment 1's finding — the real question isn't an abstract 'can documentation heal itself,' it's 'Experiment 1 showed AI can replace the CMS; a CMS also normally keeps a site consistent — what's doing that job now that it's gone?' Every section rewritten around that CMS-job framing (workflow_traditional now literally says 'CMS enforces the rules'; experiment_lede links back to /lab/1/).",
+  "page": {
+    "title": "If AI Replaced the CMS, What Stops the Site From Drifting? | Lab | Dr. Paul Ress, DBA",
+    "meta_description": "Experiment 2: Experiment 1 found AI can replace a content management system (CMS). This one asks what replaces the job the CMS was quietly doing &mdash; keeping the site consistent &mdash; and whether a design rulebook and a simple automatic checklist can fill that gap.",
+    "social_description": "Experiment 2: Once AI replaced the CMS, Dr. Paul tested whether a design rulebook could keep the site from drifting.",
+    "canonical_path": "/lab/2/"
+  },
+  "kicker_number": "2",
+  "h1": "If AI replaced the CMS, what stops the site from drifting?",
+  "lede": "<a href=\"/lab/1/\">Experiment 1</a> found that AI can replace a content management system (CMS). But a CMS quietly does something else too: it keeps a site consistent, page after page, without anyone having to think about it. Once AI took over and the CMS was gone, Dr. Paul tested whether a written design rulebook, plus a simple automatic checklist, could do that job instead.",
+  "status_word": "Supported",
+  "status_pill_class": "pill--supported",
+  "updated_date": "Aug. 29, 2026",
+  "hypothesis_text": "A design rulebook, backed by a simple automatic check, can keep an AI-built website consistent &mdash; doing the job a CMS normally does, without a CMS in place.",
+  "finding_text": "Some of the job, yes. Small style details &mdash; colors, spacing, fonts &mdash; update everywhere at once, because every page pulls them from one shared file, so that part fixes itself. But the CMS's other job, catching bigger mistakes before they ship, doesn't happen on its own. Someone, or something, still has to notice those on purpose.",
+  "limitations_text": "Two real mistakes caught on one nine-page site &mdash; not a controlled study, and not enough to prove this works everywhere. But it beat trusting nothing would go wrong.",
+  "workflow_traditional": [
+    "Design rulebook",
+    "CMS enforces the rules",
+    "Team review",
+    "Launch"
+  ],
+  "workflow_experiment": [
+    "Design rulebook",
+    "Automatic checklist (run by hand)",
+    "Human + AI review",
+    "Launch"
+  ],
+  "flow_steps": [
+    {
+      "title": "Launch",
+      "body": "A new page or change &mdash; often drafted by AI &mdash; goes live. Nothing else automatically stops a mistake from shipping.",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 2h9l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z\"/><path d=\"M15 2v5h5\"/><path d=\"M8 12h8M8 16h5\"/></svg>"
+    },
+    {
+      "title": "Drift",
+      "body": "Something on the site quietly stops matching the rulebook &mdash; the wrong color, a leftover sentence, an inconsistent footer.",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"/></svg>"
+    },
+    {
+      "title": "Check",
+      "body": "Before anything goes live, an automatic checklist scans every page for exactly this kind of mistake &mdash; the job the CMS used to do.",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m21 21-4.3-4.3\"/></svg>",
+      "current": true
+    },
+    {
+      "title": "Fix",
+      "body": "A human or AI reads the results and fixes the problem by hand &mdash; the checklist finds mistakes, it doesn't fix them.",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 6L9 17l-5-5\"/></svg>"
+    }
+  ],
+  "tech_tools": [
+    "Claude",
+    "scripts/audit-site.py",
+    "Shared style file",
+    "GitHub Pages"
+  ],
+  "experiment_lede": "The artifact isn&rsquo;t a writeup &mdash; it&rsquo;s the automatic checklist itself (<code style=\"font-family:var(--font-mono);\">scripts/audit-site.py</code>), watching over the same AI-built site from <a href=\"/lab/1/\">Experiment 1</a>, plus the two real mistakes it&rsquo;s already helped catch, described in <a href=\"/design-system/#principles\">the design system&rsquo;s own rules</a>.",
+  "ai_handled": [
+    "Writing the checklist",
+    "Spotting the mistakes",
+    "Drafting the fixes"
+  ],
+  "human_handled": [
+    "Deciding what counts as a mistake",
+    "Approving the fixes",
+    "Final review"
+  ],
+  "stats_line": "9 pages checked &middot; 2 real mistakes caught &middot; a clean re-check the day this page went live",
+  "worked_text": "The automatic checklist reliably catches the bigger mistakes &mdash; it's flagged nothing since, and stayed clean even while this very page was being built.",
+  "constraint_text": "It can't catch mistakes in the writing itself &mdash; repeated wording, outdated phrasing, a wrong reference. That needed a separate tool built just for text.",
+  "finding_statement": "Replacing the CMS didn&rsquo;t remove the job.<br>It just left it unassigned.",
+  "finding_support": "Small style details fix themselves automatically &mdash; colors, spacing, and fonts update everywhere at once, because every page pulls them from the same shared style file.",
+  "finding_support_2": "Bigger mistakes aren&rsquo;t automatic &mdash; a leftover sentence sat in one page&rsquo;s footer until a person noticed it. That&rsquo;s exactly why an automatic checklist now runs before every page goes live, instead of relying on memory.",
+  "implication_text": "Swapping AI in for a CMS doesn&rsquo;t just remove a tool &mdash; it removes whatever that tool was quietly enforcing. Something has to pick that job back up, on purpose.",
+  "takeaway_text": "If you replace the CMS, replace what it was enforcing too. A design rulebook only works if something keeps checking it against what actually went live.",
+  "next_question_number": "3",
+  "next_question_title": "Should Dr. Paul become an avatar?",
+  "next_question_lede": "Not this experiment's question, but the next one in the queue, raised back in <a href=\"/lab/1/\">Experiment 1</a>: talking avatar, text chatbot, or shelved entirely.",
+  "next_question_href": "/lab/",
+  "next_question_cta": "Back to the Lab",
+  "nav": {
+    "active_lab": true
+  },
+  "footer": {
+    "active_lab": true
+  }
+}

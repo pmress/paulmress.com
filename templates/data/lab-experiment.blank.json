@@ -63,6 +63,8 @@
   "next_question_number": "[N+1]",
   "next_question_title": "[The open question this finding raised]",
   "next_question_lede": "[What's still unresolved, teasing whatever comes next.]",
+  "next_question_href": "[/lab/N+1/ once that experiment is live — otherwise \"/lab/\"]",
+  "next_question_cta": "[\"Read Experiment N+1\" once that experiment is live — otherwise \"Back to the Lab\". Required field — and remember to come back and update THIS experiment's own next_question_href/cta once its sequel ships, per the template's header comment.]",
   "nav": {
     "active_lab": true
   },
