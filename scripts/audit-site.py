@@ -27,7 +27,7 @@ PAGES = [
     "story/index.html",
     "thinking/index.html",
     "lab/index.html",
-    "lab/1-can-ai-replace-a-cms/index.html",
+    "lab/1/index.html",
     "design-system/index.html",
     "ask-paul/index.html",
     "design-system/template-experiment/index.html",

@@ -6,7 +6,7 @@
       "path": "/",
       "file": "index.html",
       "drive_doc_id": "18Vk87dXJEIOyk7HDsxZ2ij90KDkQco2SkaDHn-BdWVo",
-      "drive_doc_title": "Home — Content",
+      "drive_doc_title": "Home \u2014 Content",
       "drive_modified": "2026-08-25T19:21:49.438Z",
       "last_synced": "2026-08-25"
     },
@@ -14,7 +14,7 @@
       "path": "/about/",
       "file": "about/index.html",
       "drive_doc_id": "1rnFIoeLAwW8aRBD-NM1wwz16QlMBjaoV8fNGG1Sjo9k",
-      "drive_doc_title": "About — Content",
+      "drive_doc_title": "About \u2014 Content",
       "drive_modified": "2026-08-25T19:41:12.316Z",
       "last_synced": "2026-08-25"
     },
@@ -22,7 +22,7 @@
       "path": "/story/",
       "file": "story/index.html",
       "drive_doc_id": "1QgJs6xMtl9lwmxOHr7qvi7KksdZLIY72_eI0IPOvcDo",
-      "drive_doc_title": "Story — Content",
+      "drive_doc_title": "Story \u2014 Content",
       "drive_modified": "2026-08-24T18:14:46.786Z",
       "last_synced": "2026-08-24"
     },
@@ -30,7 +30,7 @@
       "path": "/thinking/",
       "file": "thinking/index.html",
       "drive_doc_id": "1cpG5xkQnxLAfVPAgbVZWfhNh-Wn1Qjxb2j64MbCpUto",
-      "drive_doc_title": "Thinking — Content",
+      "drive_doc_title": "Thinking \u2014 Content",
       "drive_modified": "2026-08-25T18:26:40.885Z",
       "last_synced": "2026-08-25"
     },
@@ -38,27 +38,27 @@
       "path": "/lab/",
       "file": "lab/index.html",
       "drive_doc_id": "17fnnT6LfCv6HnyT4UxeLkfmov4dA8TzgQZ0c17suJ7A",
-      "drive_doc_title": "Lab — Content",
+      "drive_doc_title": "Lab \u2014 Content",
       "drive_modified": "2026-08-25T20:31:44.912Z",
       "last_synced": "2026-08-25"
     },
     {
-      "path": "/lab/1-can-ai-replace-a-cms/",
-      "file": "lab/1-can-ai-replace-a-cms/index.html",
+      "path": "/lab/1/",
+      "file": "lab/1/index.html",
       "drive_doc_id": "1xCkDXwuxBjf2aKbel1mKNGEdDpqdYeP30iYXPFnEU2k",
-      "drive_doc_title": "Experiment 1 — Can AI Replace a CMS — Content",
+      "drive_doc_title": "Experiment 1 \u2014 Can AI Replace a CMS \u2014 Content",
       "drive_modified": "2026-08-25T20:46:51.342Z",
       "last_synced": "2026-08-25",
-      "note": "Drive doc's own 'URL convention' section says experiment pages live at /lab/experiment1/, /lab/experiment2/ (plain numbering) — the live site actually uses a descriptive slug (/lab/1-can-ai-replace-a-cms/) with /lab/experiment1/ as a redirect stub to it. Convention note in Drive is stale; live URL pattern is the current one. Also: the brief's '04 Results' section describes a 'Spec table' presentation, but the live page does not use the .spec-table CSS component (confirmed unused site-wide by audit-site.py) — implemented instead as plain text/stat elements. Worth reconciling next content pass."
+      "note": "URL scheme changed 2026-08-29: the site now uses bare /lab/N/ (no descriptive slug) as the permanent convention, documented in design-system/index.html under \u201cLab URL scheme.\u201d The old descriptive-slug URL (/lab/1-can-ai-replace-a-cms/) and the older /lab/experiment1/, /lab/experiment-1/, /lab/001-can-ai-replace-a-cms/ stubs all now redirect straight to /lab/1/ (no chained redirects). Status moved Ongoing \u2192 Supported the same day; the experiment's content was substantially rewritten (Evidence section removed, Hypothesis/Result relabeled Hypothesis/Finding, tenses realigned for a concluded experiment) and templates/lab-experiment.template.html + its data files were updated to match, so new experiments follow the same shape. Drive brief (doc id 1xCkDXwuxBjf2aKbel1mKNGEdDpqdYeP30iYXPFnEU2k) not yet updated to reflect any of this \u2014 still says Ongoing, the old URL convention, and describes the removed Evidence/'Spec table' framing. Worth reconciling next content pass."
     },
     {
       "path": "/design-system/",
       "file": "design-system/index.html",
       "drive_doc_id": "1j7-3HzM6q9IC7EFc7zJd_gW8MndF89MHBcfN_emv0p4",
-      "drive_doc_title": "Design System — Content",
+      "drive_doc_title": "Design System \u2014 Content",
       "drive_modified": "2026-08-25T18:27:13.076Z",
       "last_synced": "2026-08-25",
-      "note": "This Drive doc says 'There is no separate About — Content doc yet' — that is now false; an About — Content doc exists (created/modified 2026-08-25T19:41:12Z, after this doc's own last edit at 18:27:13Z). Stale cross-reference, not a live-site problem."
+      "note": "This Drive doc says 'There is no separate About \u2014 Content doc yet' \u2014 that is now false; an About \u2014 Content doc exists (created/modified 2026-08-25T19:41:12Z, after this doc's own last edit at 18:27:13Z). Stale cross-reference, not a live-site problem."
     }
   ],
   "unmanaged_pages": [
@@ -70,42 +70,42 @@
     {
       "path": "/design-system/template-experiment/",
       "file": "design-system/template-experiment/index.html",
-      "reason": "Starter scaffold, not real content — intentionally not Drive-managed."
+      "reason": "Starter scaffold, not real content \u2014 intentionally not Drive-managed."
     },
     {
       "path": "/how-its-built/",
       "file": "how-its-built/index.html",
-      "reason": "Retired redirect stub — no content of its own to track."
+      "reason": "Retired redirect stub \u2014 no content of its own to track."
     }
   ],
   "reference_docs": [
     {
       "drive_doc_id": "1z9oRYLiyKXfHTaMR1HqWoWOa4vo1wkaC6CNK-X5RUnE",
-      "drive_doc_title": "Site-Wide — Content",
+      "drive_doc_title": "Site-Wide \u2014 Content",
       "drive_modified": "2026-08-25T18:26:32.506Z",
       "last_synced": "2026-08-25",
-      "applies_to": "header/footer/nav markup on every page — not a single URL, so tracked separately from the page list above"
+      "applies_to": "header/footer/nav markup on every page \u2014 not a single URL, so tracked separately from the page list above"
     },
     {
       "drive_doc_id": "19ZQuLg7UGh_jzP10JZlyiwPzJxTCwVsPSXA8AHgPadU",
-      "drive_doc_title": "Schemas & Sitemap Plan — Content",
+      "drive_doc_title": "Schemas & Sitemap Plan \u2014 Content",
       "drive_modified": "2026-08-25T14:58:18.770Z",
       "last_synced": "2026-08-25",
-      "applies_to": "robots.txt, sitemap.xml, per-page JSON-LD — reference doc, not page copy"
+      "applies_to": "robots.txt, sitemap.xml, per-page JSON-LD \u2014 reference doc, not page copy"
     },
     {
       "drive_doc_id": "1JJl-p1wNbZmEdjC9IoSz2dK9buUWKRNmRweWoRjrlx0",
-      "drive_doc_title": "Page Template — Blank",
+      "drive_doc_title": "Page Template \u2014 Blank",
       "drive_modified": "2026-08-22T20:06:46.367Z",
       "last_synced": "2026-08-22",
       "applies_to": "authoring reference only, not implemented anywhere directly"
     },
     {
       "drive_doc_id": "1vPlovLCCh3A-G0VZFH_nRWOiLWt7wjgyqjcGlBrHYhA",
-      "drive_doc_title": "Content Brief Schema — Reference",
+      "drive_doc_title": "Content Brief Schema \u2014 Reference",
       "drive_modified": "2026-08-28T17:17:05.586Z",
       "last_synced": "2026-08-28",
-      "applies_to": "defines the required header block (Live URL / Sync status / Last synced / Components used) that every 01 Pages brief should carry going forward — CMS-replacement recommendation #2. Not yet retrofitted onto existing briefs; apply opportunistically when a brief is next touched for real content work."
+      "applies_to": "defines the required header block (Live URL / Sync status / Last synced / Components used) that every 01 Pages brief should carry going forward \u2014 CMS-replacement recommendation #2. Not yet retrofitted onto existing briefs; apply opportunistically when a brief is next touched for real content work."
     }
   ]
 }
