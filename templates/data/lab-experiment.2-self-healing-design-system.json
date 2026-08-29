@@ -14,7 +14,7 @@
   "updated_date": "Aug. 29, 2026",
   "hypothesis_text": "A design rulebook, backed by a simple automatic check, can keep an AI-built website consistent &mdash; doing the job a CMS normally does, without a CMS in place.",
   "finding_text": "Some of the job, yes. Small style details &mdash; colors, spacing, fonts &mdash; update everywhere at once, because every page pulls them from one shared file, so that part fixes itself. But the CMS's other job, catching bigger mistakes before they ship, doesn't happen on its own. Someone, or something, still has to notice those on purpose.",
-  "limitations_text": "Two real mistakes caught on one nine-page site &mdash; not a controlled study, and not enough to prove this works everywhere. But it beat trusting nothing would go wrong.",
+  "limitations_text": "Some mistakes were caught on this site &mdash; not a controlled study, and not enough to prove this works everywhere. But it worked to an extent.",
   "workflow_traditional": [
     "Design rulebook",
     "CMS enforces the rules",
