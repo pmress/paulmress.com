@@ -1,22 +1,33 @@
 {
-  "_comment": "Experiment 1's actual live content, reproduced here as a fidelity check for the templating system (CMS-replacement recommendation #4) — rendering this through templates/lab-experiment.template.html should match the live page's shared partials (nav/footer/provenance) exactly, proving the extraction was clean. It is not the live source of truth for that page; the live HTML file is.",
+  "_comment": "Experiment 1's actual live content, reproduced here as a fidelity check for the templating system (CMS-replacement recommendation #4) \u2014 rendering this through templates/lab-experiment.template.html should match the live page's shared partials (nav/footer/provenance) exactly, proving the extraction was clean. It is not the live source of truth for that page; the live HTML file is. Updated 2026-08-29 alongside the live page: URL moved to /lab/1/, status Ongoing -> Supported, Evidence section removed, result_text renamed finding_text (label Result -> Finding), and finding_support_2 added.",
   "page": {
     "title": "Can AI Replace a CMS? | Lab | Dr. Paul Ress, DBA",
-    "meta_description": "Experiment 1: Dr. Paul tests what happens when AI takes over the traditional website production workflow &mdash; and finds execution wasn&rsquo;t the constraint.",
-    "social_description": "Experiment 1: Dr. Paul tests what happens when AI takes over the traditional website production workflow.",
-    "canonical_path": "/lab/1-can-ai-replace-a-cms/"
+    "meta_description": "Experiment 1: Dr. Paul tested what happened when AI took over the traditional website production workflow &mdash; and found it can replace a CMS, once the ways of working are rebuilt around it.",
+    "social_description": "Experiment 1: Dr. Paul tested what happened when AI took over the traditional website production workflow.",
+    "canonical_path": "/lab/1/"
   },
   "kicker_number": "1",
   "h1": "Can AI replace a CMS?",
-  "lede": "Dr. Paul tests what happens when AI takes over much of the traditional website production workflow.",
-  "status_word": "Ongoing",
-  "status_pill_class": "pill--ongoing",
-  "updated_date": "Aug. 27, 2026",
+  "lede": "Dr. Paul tested what happened when AI took over much of the traditional website production workflow.",
+  "status_word": "Supported",
+  "status_pill_class": "pill--supported",
+  "updated_date": "Aug. 29, 2026",
   "hypothesis_text": "AI can eliminate much of the production layer when given the right constraints.",
-  "result_text": "Execution wasn&rsquo;t the constraint. Judgment was &mdash; this page is itself running evidence.",
-  "limitations_text": "Single-subject test, still running &mdash; not a controlled study. Read this as one practitioner&rsquo;s evidence, not a general claim.",
-  "workflow_traditional": ["Marketing", "CMS", "Developer / Agency", "QA", "Deployment"],
-  "workflow_experiment": ["Marketing intent", "AI", "Human review", "Live"],
+  "finding_text": "Execution wasn&rsquo;t the constraint. Judgment was &mdash; this page is itself the evidence.",
+  "limitations_text": "Single-subject test, concluded &mdash; not a controlled study. Read this as one practitioner&rsquo;s evidence, not a general claim.",
+  "workflow_traditional": [
+    "Marketing",
+    "CMS",
+    "Developer / Agency",
+    "QA",
+    "Deployment"
+  ],
+  "workflow_experiment": [
+    "Marketing intent",
+    "AI",
+    "Human review",
+    "Live"
+  ],
   "flow_steps": [
     {
       "title": "Brief",
@@ -40,22 +51,40 @@
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M13 2 3 14h7l-1 8 11-14h-7l1-6z\"/></svg>"
     }
   ],
-  "tech_tools": ["Claude", "GitHub Pages", "GitHub Actions", "Google Drive"],
+  "tech_tools": [
+    "Claude",
+    "GitHub Pages",
+    "GitHub Actions",
+    "Google Drive"
+  ],
   "experiment_lede": "The artifact isn&rsquo;t a writeup &mdash; it&rsquo;s <a href=\"/\">this site</a>, live right now. Every page was produced through the pipeline above.",
-  "ai_handled": ["Code", "Iteration", "Troubleshooting", "Deployment"],
-  "human_handled": ["Direction", "Judgment", "Taste", "Final decisions"],
+  "ai_handled": [
+    "Code",
+    "Iteration",
+    "Troubleshooting",
+    "Deployment"
+  ],
+  "human_handled": [
+    "Direction",
+    "Judgment",
+    "Taste",
+    "Final decisions"
+  ],
   "stats_line": "8 pages &middot; ~1 min deployment &middot; Human review required",
   "worked_text": "AI handled the implementation surprisingly well.",
   "constraint_text": "Context mattered &mdash; without enough of it, AI drifted.",
-  "evidence_heading": "The real numbers behind this page",
-  "evidence_lede": "Pulled straight from this repository&rsquo;s own commit history &mdash; nothing estimated, nothing invented.",
   "finding_statement": "Execution wasn&rsquo;t the constraint.<br>Judgment was.",
   "finding_support": "AI can quickly build what&rsquo;s requested. The harder question is whether it&rsquo;s worth building.",
+  "finding_support_2": "Yes &mdash; AI can replace a CMS. What made that possible wasn&rsquo;t the tooling; it was reimagining the ways of working around AI from the start.",
   "implication_text": "AI doesn&rsquo;t replace the marketer. It changes where the marketer adds value.",
   "takeaway_text": "Don&rsquo;t just add AI to the workflow. Redesign the workflow around AI.",
   "next_question_number": "2",
   "next_question_title": "Should Dr. Paul become an avatar?",
   "next_question_lede": "Talking avatar, text chatbot, or shelved entirely &mdash; that&rsquo;s the question this finding raised.",
-  "nav": { "active_lab": true },
-  "footer": { "active_lab": true }
+  "nav": {
+    "active_lab": true
+  },
+  "footer": {
+    "active_lab": true
+  }
 }
