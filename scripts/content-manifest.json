@@ -63,6 +63,11 @@
   ],
   "unmanaged_pages": [
     {
+      "path": "/lab/2/",
+      "file": "lab/2/index.html",
+      "reason": "No Drive content brief exists for this page as of 2026-08-29 (Experiment 2, added the same day). Content was authored directly in templates/data/lab-experiment.2-self-healing-design-system.json and rendered via scripts/render_template.py; not tracked here until a Drive brief is created for it."
+    },
+    {
       "path": "/ask-paul/",
       "file": "ask-paul/index.html",
       "reason": "No Drive content brief exists for this page as of 2026-08-28. Its copy was written directly; not tracked here until a brief is created."
