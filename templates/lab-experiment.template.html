@@ -47,6 +47,17 @@
   the finding really has two distinct points worth their own line (e.g.
   Experiment 1: one sentence on the headline finding, a second naming a
   specific concrete result it produced).
+
+  next_question_href / next_question_cta (added 2026-08-29) are required,
+  not optional — every experiment must set both. Point them at the actual
+  next experiment's URL and a "Read Experiment N" label once it exists
+  (see Experiment 1, updated the same day to link forward to Experiment 2
+  instead of a generic Lab link); fall back to href "/lab/" and cta "Back
+  to the Lab" only when there genuinely isn't a next entry yet (see
+  Experiment 2 here, since Experiment 3 doesn't exist yet). Don't leave a
+  page pointing at "Back to the Lab" once its actual sequel is live —
+  that's exactly the kind of drift this site's own audit script can't
+  catch (it's a content problem, not a structural one; see Principle 08).
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -259,7 +270,7 @@
         <p class="kicker">Next Question &middot; {{ next_question_number }}</p>
         <h2 class="section-title">{{ next_question_title }}</h2>
         <p class="section-lede">{{ next_question_lede }}</p>
-        <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+        <a class="btn btn-primary" href="{{ next_question_href }}">{{ next_question_cta }}</a>
       </div>
     </div>
   </section>
