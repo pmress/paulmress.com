@@ -15,8 +15,9 @@
       "file": "about/index.html",
       "drive_doc_id": "1rnFIoeLAwW8aRBD-NM1wwz16QlMBjaoV8fNGG1Sjo9k",
       "drive_doc_title": "About \u2014 Content",
-      "drive_modified": "2026-08-25T19:41:12.316Z",
-      "last_synced": "2026-08-25"
+      "drive_modified": "2026-08-31T10:25:11.884Z",
+      "last_synced": "2026-08-31",
+      "note": "2026-08-31: fixed one stale link in this brief (Card 3's 'Read the experiment' link pointed to the retired /lab/experiment1/ stub, now /lab/1/) and added the Content Brief Schema header block (Sync status: Draft). This was a targeted fix, not a full section-by-section reconciliation against the live page."
     },
     {
       "path": "/story/",
@@ -47,18 +48,18 @@
       "file": "lab/1/index.html",
       "drive_doc_id": "1xCkDXwuxBjf2aKbel1mKNGEdDpqdYeP30iYXPFnEU2k",
       "drive_doc_title": "Experiment 1 \u2014 Can AI Replace a CMS \u2014 Content",
-      "drive_modified": "2026-08-25T20:46:51.342Z",
-      "last_synced": "2026-08-25",
-      "note": "URL scheme changed 2026-08-29: the site now uses bare /lab/N/ (no descriptive slug) as the permanent convention, documented in design-system/index.html under \u201cLab URL scheme.\u201d The old descriptive-slug URL (/lab/1-can-ai-replace-a-cms/) and the older /lab/experiment1/, /lab/experiment-1/, /lab/001-can-ai-replace-a-cms/ stubs all now redirect straight to /lab/1/ (no chained redirects). Status moved Ongoing \u2192 Supported the same day; the experiment's content was substantially rewritten (Evidence section removed, Hypothesis/Result relabeled Hypothesis/Finding, tenses realigned for a concluded experiment) and templates/lab-experiment.template.html + its data files were updated to match, so new experiments follow the same shape. Drive brief (doc id 1xCkDXwuxBjf2aKbel1mKNGEdDpqdYeP30iYXPFnEU2k) not yet updated to reflect any of this \u2014 still says Ongoing, the old URL convention, and describes the removed Evidence/'Spec table' framing. Worth reconciling next content pass."
+      "drive_modified": "2026-08-31T10:17:27.245Z",
+      "last_synced": "2026-08-31",
+      "note": "2026-08-31: fixed in this brief \u2014 URL/kicker updated from /lab/experiment1/ + \"Experiment 001\" to /lab/1/ + \"1\"; status pill Ongoing \u2192 Supported; the invented \"Spec table\" heading (never a real /design-system/ component) renamed to \"Stats line\" and its stats corrected to match the live stats line; the unfilled \"Evidence \u00b7 Receipt 01 \u2014 Input: TBD / Outcome: TBD\" placeholder removed, since the live page's Aug 29 rewrite dropped Evidence/receipts entirely; Content Brief Schema header block added (Sync status: Draft). Not yet fixed: the Hypothesis statement's wording still differs from the live page's phrasing \u2014 left untouched since that's Dr. Paul's own claim, not something to silently reword. Full section-by-section reconciliation still outstanding."
     },
     {
       "path": "/design-system/",
       "file": "design-system/index.html",
       "drive_doc_id": "1j7-3HzM6q9IC7EFc7zJd_gW8MndF89MHBcfN_emv0p4",
       "drive_doc_title": "Design System \u2014 Content",
-      "drive_modified": "2026-08-25T18:27:13.076Z",
-      "last_synced": "2026-08-25",
-      "note": "This Drive doc says 'There is no separate About \u2014 Content doc yet' \u2014 that is now false; an About \u2014 Content doc exists (created/modified 2026-08-25T19:41:12Z, after this doc's own last edit at 18:27:13Z). Stale cross-reference, not a live-site problem."
+      "drive_modified": "2026-08-31T10:24:16.641Z",
+      "last_synced": "2026-08-31",
+      "note": "2026-08-31: fixed the stale cross-reference \u2014 this brief claimed 'There is no separate About \u2014 Content doc yet', which had been false since 2026-08-25. Now points to the real About \u2014 Content doc and says to edit About's copy there going forward. Content Brief Schema header block added (Sync status: Draft, since this was a targeted fix, not a full reconciliation)."
     }
   ],
   "unmanaged_pages": [
