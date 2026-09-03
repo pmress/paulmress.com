@@ -6,7 +6,7 @@
       "path": "/",
       "file": "index.html",
       "drive_doc_id": "18Vk87dXJEIOyk7HDsxZ2ij90KDkQco2SkaDHn-BdWVo",
-      "drive_doc_title": "Home \u2014 Content",
+      "drive_doc_title": "Home — Content",
       "drive_modified": "2026-08-25T19:21:49.438Z",
       "last_synced": "2026-08-25"
     },
@@ -14,7 +14,7 @@
       "path": "/about/",
       "file": "about/index.html",
       "drive_doc_id": "1rnFIoeLAwW8aRBD-NM1wwz16QlMBjaoV8fNGG1Sjo9k",
-      "drive_doc_title": "About \u2014 Content",
+      "drive_doc_title": "About — Content",
       "drive_modified": "2026-08-31T10:25:11.884Z",
       "last_synced": "2026-08-31",
       "note": "2026-08-31: fixed one stale link in this brief (Card 3's 'Read the experiment' link pointed to the retired /lab/experiment1/ stub, now /lab/1/) and added the Content Brief Schema header block (Sync status: Draft). This was a targeted fix, not a full section-by-section reconciliation against the live page."
@@ -23,7 +23,7 @@
       "path": "/story/",
       "file": "story/index.html",
       "drive_doc_id": "1QgJs6xMtl9lwmxOHr7qvi7KksdZLIY72_eI0IPOvcDo",
-      "drive_doc_title": "Story \u2014 Content",
+      "drive_doc_title": "Story — Content",
       "drive_modified": "2026-08-24T18:14:46.786Z",
       "last_synced": "2026-08-24"
     },
@@ -31,7 +31,7 @@
       "path": "/thinking/",
       "file": "thinking/index.html",
       "drive_doc_id": "1cpG5xkQnxLAfVPAgbVZWfhNh-Wn1Qjxb2j64MbCpUto",
-      "drive_doc_title": "Thinking \u2014 Content",
+      "drive_doc_title": "Thinking — Content",
       "drive_modified": "2026-08-29T18:04:16.039Z",
       "last_synced": "2026-08-29"
     },
@@ -39,45 +39,49 @@
       "path": "/lab/",
       "file": "lab/index.html",
       "drive_doc_id": "17fnnT6LfCv6HnyT4UxeLkfmov4dA8TzgQZ0c17suJ7A",
-      "drive_doc_title": "Lab \u2014 Content",
-      "drive_modified": "2026-09-03T10:55:09.826Z",
+      "drive_doc_title": "Lab — Content",
+      "drive_modified": "2026-09-03T12:03:00.909Z",
       "last_synced": "2026-09-03",
-      "note": "2026-09-03: added Entry 002 (Experiment 2) and Entry 003 (Experiment 3) to the Entry List \u2014 previously stopped at Entry 001 and predated both. Fixed Entry 001's stale bits found along the way: Status pill Ongoing \u2192 Supported (live page moved to Supported on Aug 29) and Links to /lab/experiment1/ \u2192 /lab/1/. Fixed the URL convention section (still described the old /lab/experimentN/ scheme) and the Retired page note's stale /lab/experiment1/ redirect target, both \u2192 bare-number scheme. Live page also updated the same day: new /lab/3/ row added to the experiment list."
+      "note": "2026-09-03: added Entry 002 (Experiment 2) and Entry 003 (Experiment 3) to the Entry List — previously stopped at Entry 001 and predated both. Fixed Entry 001's stale bits found along the way: Status pill Ongoing → Supported (live page moved to Supported on Aug 29) and Links to /lab/experiment1/ → /lab/1/. Fixed the URL convention section (still described the old /lab/experimentN/ scheme) and the Retired page note's stale /lab/experiment1/ redirect target, both → bare-number scheme. Live page also updated the same day: new /lab/3/ row added to the experiment list. Later the same day, once the Experiment 2 Drive brief was created, Entry 002's 'Full content' line was updated from 'no separate Content doc exists yet' to point at that new doc, matching Entry 001/003's pattern. Later the same day, once the Experiment 2 Drive brief was created, Entry 002's 'Full content' line was updated from 'no separate Content doc exists yet' to point at that new doc, matching Entry 001/003's pattern."
     },
     {
       "path": "/lab/1/",
       "file": "lab/1/index.html",
       "drive_doc_id": "1xCkDXwuxBjf2aKbel1mKNGEdDpqdYeP30iYXPFnEU2k",
-      "drive_doc_title": "Experiment 1 \u2014 Can AI Replace a CMS \u2014 Content",
+      "drive_doc_title": "Experiment 1 — Can AI Replace a CMS — Content",
       "drive_modified": "2026-08-31T10:17:27.245Z",
       "last_synced": "2026-08-31",
-      "note": "2026-08-31: fixed in this brief \u2014 URL/kicker updated from /lab/experiment1/ + \"Experiment 001\" to /lab/1/ + \"1\"; status pill Ongoing \u2192 Supported; the invented \"Spec table\" heading (never a real /design-system/ component) renamed to \"Stats line\" and its stats corrected to match the live stats line; the unfilled \"Evidence \u00b7 Receipt 01 \u2014 Input: TBD / Outcome: TBD\" placeholder removed, since the live page's Aug 29 rewrite dropped Evidence/receipts entirely; Content Brief Schema header block added (Sync status: Draft). Not yet fixed: the Hypothesis statement's wording still differs from the live page's phrasing \u2014 left untouched since that's Dr. Paul's own claim, not something to silently reword. Full section-by-section reconciliation still outstanding."
+      "note": "2026-08-31: fixed in this brief — URL/kicker updated from /lab/experiment1/ + \"Experiment 001\" to /lab/1/ + \"1\"; status pill Ongoing → Supported; the invented \"Spec table\" heading (never a real /design-system/ component) renamed to \"Stats line\" and its stats corrected to match the live stats line; the unfilled \"Evidence · Receipt 01 — Input: TBD / Outcome: TBD\" placeholder removed, since the live page's Aug 29 rewrite dropped Evidence/receipts entirely; Content Brief Schema header block added (Sync status: Draft). Not yet fixed: the Hypothesis statement's wording still differs from the live page's phrasing — left untouched since that's Dr. Paul's own claim, not something to silently reword. Full section-by-section reconciliation still outstanding."
     },
     {
       "path": "/design-system/",
       "file": "design-system/index.html",
       "drive_doc_id": "1j7-3HzM6q9IC7EFc7zJd_gW8MndF89MHBcfN_emv0p4",
-      "drive_doc_title": "Design System \u2014 Content",
+      "drive_doc_title": "Design System — Content",
       "drive_modified": "2026-08-31T10:24:16.641Z",
       "last_synced": "2026-08-31",
-      "note": "2026-08-31: fixed the stale cross-reference \u2014 this brief claimed 'There is no separate About \u2014 Content doc yet', which had been false since 2026-08-25. Now points to the real About \u2014 Content doc and says to edit About's copy there going forward. Content Brief Schema header block added (Sync status: Draft, since this was a targeted fix, not a full reconciliation)."
+      "note": "2026-08-31: fixed the stale cross-reference — this brief claimed 'There is no separate About — Content doc yet', which had been false since 2026-08-25. Now points to the real About — Content doc and says to edit About's copy there going forward. Content Brief Schema header block added (Sync status: Draft, since this was a targeted fix, not a full reconciliation)."
     },
     {
       "path": "/lab/3/",
       "file": "lab/3/index.html",
       "drive_doc_id": "1M4D4S4BRk9g9tulifOWzHl3ZJQM36NRPgJprWRAwpfs",
-      "drive_doc_title": "Experiment 3 \u2014 Can AI Catch and Fix Its Own Documentation Drift \u2014 Content",
+      "drive_doc_title": "Experiment 3 — Can AI Catch and Fix Its Own Documentation Drift — Content",
       "drive_modified": "2026-09-03T10:45:40.910Z",
       "last_synced": "2026-09-03",
-      "note": "2026-09-03: new page and new brief, built together this session. Copy finalized per Dr. Paul's approval: H1/lede/hypothesis note/status pill (Inconclusive)/pull-quote/what-I-learned all set to final text; all 'Paul' references in this brief changed to 'Dr. Paul' (page discusses Claude's own work in the first person, so this was scoped as a disclosure choice, not applied site-wide); PROPOSED and NEEDS PAUL placeholder tags removed. Also recovered this session from two accidental full-selection edits during Find & Replace (browser-automation coordinate drift) \u2014 both fully repaired and verified against a fresh Drive read, including reapplying the Postscript heading's Heading 1 style after an undo cascade reverted it to Normal text."
-    }
-  ],
-  "unmanaged_pages": [
+      "note": "2026-09-03: new page and new brief, built together this session. Copy finalized per Dr. Paul's approval: H1/lede/hypothesis note/status pill (Inconclusive)/pull-quote/what-I-learned all set to final text; all 'Paul' references in this brief changed to 'Dr. Paul' (page discusses Claude's own work in the first person, so this was scoped as a disclosure choice, not applied site-wide); PROPOSED and NEEDS PAUL placeholder tags removed. Also recovered this session from two accidental full-selection edits during Find & Replace (browser-automation coordinate drift) — both fully repaired and verified against a fresh Drive read, including reapplying the Postscript heading's Heading 1 style after an undo cascade reverted it to Normal text. Later the same day, per Dr. Paul's direct request, the 'Next Experiment' section lede was simplified from 'Not this experiment's question, but the next one in the queue, raised back in Experiment 1: talking avatar, text chatbot, or shelved entirely.' to 'Talking avatar, text chatbot, or shelved entirely?' (link to Experiment 1 removed) — matching the live page edit deployed the same day."
+    },
     {
       "path": "/lab/2/",
       "file": "lab/2/index.html",
-      "reason": "No Drive content brief exists for this page as of 2026-09-03 (Experiment 2, added 2026-08-29). Content was authored directly in templates/data/lab-experiment.2-self-healing-design-system.json and rendered via scripts/render_template.py; not tracked here until a Drive brief is created for it. 2026-09-03: this page's own Next Question CTA was updated live (now points to /lab/3/) as part of shipping Experiment 3 — done directly on the live page since there's no brief for this one to edit first. Still an open gap: 'update all Google Doc artifacts' for this round of changes could not fully cover this page for that reason."
-    },
+      "drive_doc_id": "1hBKE9Vy8uLGUluONGmUzhQcFwwYxfW7EjQHgK41jI88",
+      "drive_doc_title": "Experiment 2 — If AI Replaced the CMS, What Stops the Site From Drifting — Content",
+      "drive_modified": "2026-09-03T11:59:22.473Z",
+      "last_synced": "2026-09-03",
+      "note": "2026-09-03: this page had no Drive brief since it shipped 2026-08-29 (authored directly into templates/data/lab-experiment.2-self-healing-design-system.json and the live page). At Dr. Paul's request, a brief was reconstructed this session via the paulmress-content-doc-backfill skill by reading the live page and its data file back into brief form — new subfolder + Content doc created in the Lab folder, matching the Experiment 1/3 header-block convention. Flagged in the doc itself as a reconstruction, not an originally-authored brief — needs Dr. Paul's review. Also carries the 2026-09-03 Next Question CTA update (now points to /lab/3/), which had already been made live before this brief existed."
+    }
+  ],
+  "unmanaged_pages": [
     {
       "path": "/ask-paul/",
       "file": "ask-paul/index.html",
@@ -86,42 +90,42 @@
     {
       "path": "/design-system/template-experiment/",
       "file": "design-system/template-experiment/index.html",
-      "reason": "Starter scaffold, not real content \u2014 intentionally not Drive-managed."
+      "reason": "Starter scaffold, not real content — intentionally not Drive-managed."
     },
     {
       "path": "/how-its-built/",
       "file": "how-its-built/index.html",
-      "reason": "Retired redirect stub \u2014 no content of its own to track."
+      "reason": "Retired redirect stub — no content of its own to track."
     }
   ],
   "reference_docs": [
     {
       "drive_doc_id": "1z9oRYLiyKXfHTaMR1HqWoWOa4vo1wkaC6CNK-X5RUnE",
-      "drive_doc_title": "Site-Wide \u2014 Content",
+      "drive_doc_title": "Site-Wide — Content",
       "drive_modified": "2026-08-25T18:26:32.506Z",
       "last_synced": "2026-08-25",
-      "applies_to": "header/footer/nav markup on every page \u2014 not a single URL, so tracked separately from the page list above"
+      "applies_to": "header/footer/nav markup on every page — not a single URL, so tracked separately from the page list above"
     },
     {
       "drive_doc_id": "19ZQuLg7UGh_jzP10JZlyiwPzJxTCwVsPSXA8AHgPadU",
-      "drive_doc_title": "Schemas & Sitemap Plan \u2014 Content",
+      "drive_doc_title": "Schemas & Sitemap Plan — Content",
       "drive_modified": "2026-08-25T14:58:18.770Z",
       "last_synced": "2026-08-25",
-      "applies_to": "robots.txt, sitemap.xml, per-page JSON-LD \u2014 reference doc, not page copy"
+      "applies_to": "robots.txt, sitemap.xml, per-page JSON-LD — reference doc, not page copy"
     },
     {
       "drive_doc_id": "1JJl-p1wNbZmEdjC9IoSz2dK9buUWKRNmRweWoRjrlx0",
-      "drive_doc_title": "Page Template \u2014 Blank",
+      "drive_doc_title": "Page Template — Blank",
       "drive_modified": "2026-08-22T20:06:46.367Z",
       "last_synced": "2026-08-22",
       "applies_to": "authoring reference only, not implemented anywhere directly"
     },
     {
       "drive_doc_id": "1vPlovLCCh3A-G0VZFH_nRWOiLWt7wjgyqjcGlBrHYhA",
-      "drive_doc_title": "Content Brief Schema \u2014 Reference",
+      "drive_doc_title": "Content Brief Schema — Reference",
       "drive_modified": "2026-08-28T17:17:05.586Z",
       "last_synced": "2026-08-28",
-      "applies_to": "defines the required header block (Live URL / Sync status / Last synced / Components used) that every 01 Pages brief should carry going forward \u2014 CMS-replacement recommendation #2. Not yet retrofitted onto existing briefs; apply opportunistically when a brief is next touched for real content work."
+      "applies_to": "defines the required header block (Live URL / Sync status / Last synced / Components used) that every 01 Pages brief should carry going forward — CMS-replacement recommendation #2. Not yet retrofitted onto existing briefs; apply opportunistically when a brief is next touched for real content work."
     }
   ]
 }
