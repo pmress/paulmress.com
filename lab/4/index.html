@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can AI Build a Helpful Filter, Sort, and Search? | Lab | Dr. Paul Ress, DBA</title>
+<meta name="description" content="Experiment 4: could AI design and build a genuinely useful filter, sort, and search organism, inside the site's own atomic-design constraints, and make it work identically across two different pages?">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com/lab/4/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Can AI Build a Helpful Filter, Sort, and Search? | Lab | Dr. Paul Ress, DBA">
+<meta property="og:description" content="Experiment 4: could AI design and build a genuinely useful filter, sort, and search organism, inside the site's own atomic-design constraints, and make it work identically across two different pages?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paulmress.com/lab/4/">
+<meta property="og:site_name" content="Paul Ress">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paulmress.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Can AI Build a Helpful Filter, Sort, and Search? | Lab | Dr. Paul Ress, DBA">
+<meta name="twitter:description" content="Experiment 4: a new filter/sort/search organism, built entirely from the site's existing design tokens, running identically on /lab/ and /thinking/.">
+<meta name="twitter:image" content="https://paulmress.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Favicon -->
+<link rel="icon" href="../../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../styles.css">
+
+<style>
+  main > section { padding: var(--space-9) 0; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Can AI Build a Helpful Filter, Sort, and Search? | Lab | Dr. Paul Ress, DBA",
+  "url": "https://paulmress.com/lab/4/",
+  "description": "Experiment 4: could AI design and build a genuinely useful filter, sort, and search organism, inside the site's own atomic-design constraints, and make it work identically across two different pages?",
+  "author": { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+  "creator": [
+    { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+    { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com/", "description": "Claude, the AI pair-programmer that drafted this page's language and code under Dr. Paul Ress's direction." }
+  ],
+  "accountablePerson": { "@type": "Person", "name": "Dr. Paul Ress" },
+  "digitalSourceType": "https://schema.org/CompositeWithTrainedAlgorithmicMediaDigitalSource"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true">
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/lab/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">01</span>Lab</a>
+    <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/about/" class="nav-panel-link"><span class="nav-panel-num">03</span>About</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- QUESTION -->
+  <section class="about-intro intro-network">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="page-back-bar">
+        <button type="button" class="back-link" onclick="if (window.history.length > 1) { history.back(); } else { window.location.href = '/'; }">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+      </div>
+      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; 4</p>
+      <h1 class="about-title" data-reveal>Can AI build a helpful filter, sort, and search?</h1>
+      <p class="section-lede" data-reveal><a href="/lab/3/">Experiment 3</a> found that AI can fix drift, but only once someone points it at the specific thing to fix &mdash; it doesn&rsquo;t notice on its own. This experiment tested something more contained: could AI design and build a genuinely useful piece of interface &mdash; filter, sort, and search &mdash; working inside the site&rsquo;s own atomic-design rules, and make it run identically across two different pages?</p>
+      <div class="lab-meta" data-reveal>
+        <span class="pill pill--supported">Supported</span>
+        <span class="lab-meta-facts">Updated Sept. 3, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPOTHESIS + FINDING -->
+  <section>
+    <div class="wrap">
+      <div class="hyp-result" data-reveal>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Hypothesis</p>
+          <p class="hyp-result-text">AI can easily create a helpful tool for sorting, filtering and searching content.</p>
+        </div>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Finding</p>
+          <p class="hyp-result-text">AI can easily create a helpful tool for sorting, filtering and searching content.</p>
+        </div>
+      </div>
+      <p class="hyp-result-limitations" data-reveal>Tested by building and shipping the tool itself, live on <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a> &mdash; not a controlled study across other sites, other content types, or other design systems.</p>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Method</p>
+      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>What was built, and how the work split between AI and Dr. Paul.</p>
+
+      <div data-reveal>
+        <h3 style="margin:0 0 var(--space-3); font-size:var(--text-xl);">What was built</h3>
+        <p style="max-width:780px; color:var(--color-ink-soft);">One new organism &mdash; a content toolbar, combining search, filter, and sort &mdash; assembled entirely from atoms and molecules already documented at <a href="/design-system/#organisms">the design system</a>: a search field, a filter chip, a sort select, and a result count, grouped into a filter group and a sort control, and finally the toolbar itself. No new colors, radii, spacing values, or type sizes were introduced. The same component, same markup, same script, now runs on both <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a> &mdash; only the filter facet and sort options change per page: Status for the Lab, Topic for Thinking.</p>
+      </div>
+
+      <div class="compare-grid" style="margin-top:var(--space-7);" data-reveal>
+        <div class="card">
+          <p class="chapter-range">AI handled</p>
+          <ul class="plain-list"><li>Designing the components inside the atomic-design constraints</li><li>Writing the CSS and the filter/sort/search logic</li><li>Building a working mockup for review before anything shipped</li><li>Wiring the toolbar into both live pages</li></ul>
+        </div>
+        <div class="card">
+          <p class="chapter-range">Dr. Paul handled</p>
+          <ul class="plain-list"><li>Deciding a shared toolbar was worth building at all</li><li>Choosing the filter facet for each page</li><li>Reviewing and approving the mockup</li><li>Setting the hypothesis, finding, and framing for this page</li></ul>
+        </div>
+      </div>
+
+      <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>1 new organism &middot; 5 new atoms &middot; 2 new molecules &middot; 0 new colors, radii, or type sizes &middot; 2 live pages wired up</p>
+    </div>
+  </section>
+
+  <!-- FINDING -> IMPLICATION -->
+  <section>
+    <div class="wrap">
+      <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">AI can easily create a helpful tool for sorting, filtering and searching content.</p>
+        <p class="statement-support">The component came together in a single session, drawing only on tokens the site already had &mdash; no new visual language, and nothing simplified to fit the constraint.</p>
+        <p class="statement-support" style="margin-top:var(--space-3);">The same organism runs both pages from one shared script; only the filter facet and the sort options differ per page.</p>
+      </div>
+
+      <div style="max-width:560px; margin-top:var(--space-8);" data-reveal>
+        <p class="kicker">Implication</p>
+        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">For a CMO, this is a cost story more than a feature story. Findability tooling &mdash; filter, sort, search &mdash; is usually the work that loses to campaign deadlines for the same engineering hours, so it sits on the backlog until a content library is already hard to navigate. If AI can build it to spec, on brand, and production-ready inside a single session, it stops being a backlog item and becomes a checkbox: every content-heavy page can have one the day it ships, not the quarter someone finally gets to it.</p>
+      </div>
+
+      <div class="card card--current" style="max-width:720px; margin-top:var(--space-6);" data-reveal>
+        <p style="margin:0; font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">The tools that make content easy to find shouldn&rsquo;t be the ones AI can&rsquo;t be trusted to build. This one, it built well.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT QUESTION -->
+  <section>
+    <div class="wrap">
+      <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
+        <p class="kicker">Next Question &middot; 5</p>
+        <h2 class="section-title">Should Dr. Paul become an avatar?</h2>
+        <p class="section-lede">Not this experiment&rsquo;s question, but the next one in the queue, raised back in <a href="/lab/1/">Experiment 1</a>: talking avatar, text chatbot, or shelved entirely?</p>
+        <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="page-provenance">
+  <div class="wrap">
+    <details class="provenance provenance--collaborative footer-provenance">
+      <summary class="provenance-mark">
+        <span class="provenance-dot" aria-hidden="true"></span>
+        <span class="provenance-tier">AI-Collaborative Creation</span>
+        <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
+      </summary>
+      <div class="provenance-detail">
+        <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links-groups">
+      <div class="footer-links footer-links--primary">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/thinking/">Thinking</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer-links footer-links--meta">
+        <a href="/story/">Story</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/design-system/">Design System</a>
+      </div>
+    </div>
+    <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
+    <p>&copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>
