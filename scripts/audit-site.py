@@ -31,6 +31,7 @@ PAGES = [
     "lab/2/index.html",
     "lab/3/index.html",
     "lab/4/index.html",
+    "lab/5/index.html",
     "design-system/index.html",
     "ask-paul/index.html",
     "design-system/template-experiment/index.html",
