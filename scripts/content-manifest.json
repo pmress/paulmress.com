@@ -40,8 +40,9 @@
       "file": "lab/index.html",
       "drive_doc_id": "17fnnT6LfCv6HnyT4UxeLkfmov4dA8TzgQZ0c17suJ7A",
       "drive_doc_title": "Lab \u2014 Content",
-      "drive_modified": "2026-08-25T20:31:44.912Z",
-      "last_synced": "2026-08-25"
+      "drive_modified": "2026-09-03T10:55:09.826Z",
+      "last_synced": "2026-09-03",
+      "note": "2026-09-03: added Entry 002 (Experiment 2) and Entry 003 (Experiment 3) to the Entry List \u2014 previously stopped at Entry 001 and predated both. Fixed Entry 001's stale bits found along the way: Status pill Ongoing \u2192 Supported (live page moved to Supported on Aug 29) and Links to /lab/experiment1/ \u2192 /lab/1/. Fixed the URL convention section (still described the old /lab/experimentN/ scheme) and the Retired page note's stale /lab/experiment1/ redirect target, both \u2192 bare-number scheme. Live page also updated the same day: new /lab/3/ row added to the experiment list."
     },
     {
       "path": "/lab/1/",
@@ -60,13 +61,22 @@
       "drive_modified": "2026-08-31T10:24:16.641Z",
       "last_synced": "2026-08-31",
       "note": "2026-08-31: fixed the stale cross-reference \u2014 this brief claimed 'There is no separate About \u2014 Content doc yet', which had been false since 2026-08-25. Now points to the real About \u2014 Content doc and says to edit About's copy there going forward. Content Brief Schema header block added (Sync status: Draft, since this was a targeted fix, not a full reconciliation)."
+    },
+    {
+      "path": "/lab/3/",
+      "file": "lab/3/index.html",
+      "drive_doc_id": "1M4D4S4BRk9g9tulifOWzHl3ZJQM36NRPgJprWRAwpfs",
+      "drive_doc_title": "Experiment 3 \u2014 Can AI Catch and Fix Its Own Documentation Drift \u2014 Content",
+      "drive_modified": "2026-09-03T10:45:40.910Z",
+      "last_synced": "2026-09-03",
+      "note": "2026-09-03: new page and new brief, built together this session. Copy finalized per Dr. Paul's approval: H1/lede/hypothesis note/status pill (Inconclusive)/pull-quote/what-I-learned all set to final text; all 'Paul' references in this brief changed to 'Dr. Paul' (page discusses Claude's own work in the first person, so this was scoped as a disclosure choice, not applied site-wide); PROPOSED and NEEDS PAUL placeholder tags removed. Also recovered this session from two accidental full-selection edits during Find & Replace (browser-automation coordinate drift) \u2014 both fully repaired and verified against a fresh Drive read, including reapplying the Postscript heading's Heading 1 style after an undo cascade reverted it to Normal text."
     }
   ],
   "unmanaged_pages": [
     {
       "path": "/lab/2/",
       "file": "lab/2/index.html",
-      "reason": "No Drive content brief exists for this page as of 2026-08-29 (Experiment 2, added the same day). Content was authored directly in templates/data/lab-experiment.2-self-healing-design-system.json and rendered via scripts/render_template.py; not tracked here until a Drive brief is created for it."
+      "reason": "No Drive content brief exists for this page as of 2026-09-03 (Experiment 2, added 2026-08-29). Content was authored directly in templates/data/lab-experiment.2-self-healing-design-system.json and rendered via scripts/render_template.py; not tracked here until a Drive brief is created for it. 2026-09-03: this page's own Next Question CTA was updated live (now points to /lab/3/) as part of shipping Experiment 3 — done directly on the live page since there's no brief for this one to edit first. Still an open gap: 'update all Google Doc artifacts' for this round of changes could not fully cover this page for that reason."
     },
     {
       "path": "/ask-paul/",
