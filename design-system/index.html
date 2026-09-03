@@ -443,6 +443,27 @@
           </ul>
         </div>
       </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Content toolbar atoms &middot; .search-field / .filter-chip / .sort-select / .toolbar-count (introduced in <a href="/lab/4/">Experiment 4</a>, used on <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Four single-purpose controls, styled from the same tokens as <code class="ds-code">.pill</code> and
+          <code class="ds-code">.form-row</code> rather than inventing a new visual language: a search input with
+          an icon and a clear button, a toggleable chip, a mono dropdown, and a mono result count.
+        </p>
+        <div class="ds-frame">
+          <div class="ds-row" style="gap:var(--space-7); align-items:flex-end;">
+            <label class="search-field" style="max-width:220px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="text" placeholder="Search&hellip;">
+            </label>
+            <span class="filter-chip is-active">Supported</span>
+            <span class="filter-chip">Rejected</span>
+            <select class="sort-select"><option>Newest first</option></select>
+            <span class="toolbar-count">2 of 4</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -508,6 +529,28 @@
           <div class="hmw" style="margin:0 auto;">
             <p class="hmw-label">How might we</p>
             <p class="hmw-question">Replace a CMS with a marketing intent, reviewed by a human?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Filter group &amp; sort control &middot; .filter-group / .sort-control (introduced in <a href="/lab/4/">Experiment 4</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A mono micro-label paired with a row of atoms &mdash; the same shape as <code class="ds-code">.form-row</code>,
+          just horizontal. These two molecules are what the Content Toolbar organism below assembles.
+        </p>
+        <div class="ds-frame">
+          <div style="display:flex; flex-direction:column; gap:var(--space-5);">
+            <div class="filter-group">
+              <span class="filter-group-label">Status</span>
+              <span class="filter-chip is-active">All</span>
+              <span class="filter-chip">Supported</span>
+              <span class="filter-chip">Rejected</span>
+            </div>
+            <div class="sort-control">
+              <span class="filter-group-label">Sort</span>
+              <select class="sort-select"><option>Newest first</option></select>
+            </div>
           </div>
         </div>
       </div>
@@ -767,6 +810,77 @@
               <span class="experiment-main">
                 <span class="experiment-title">Should Dr. Paul become an avatar?</span>
                 <span class="experiment-domain">Conversational UX &middot; Claude</span>
+              </span>
+              <span class="experiment-status"><span class="pill pill--inconclusive">Inconclusive</span></span>
+              <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Content toolbar &middot; .content-toolbar (Experiment 4, used on <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The filter group and sort control above, stacked into one bordered bar with a result strip
+          underneath, plus <code class="ds-code">script.js</code>&rsquo;s shared filter/sort/search logic. One
+          organism, imported by both pages &mdash; only the filter facet and sort options differ per page
+          (Status for the Lab, Topic for Thinking). Live below: try the search box or a chip.
+        </p>
+        <div class="ds-frame">
+          <div class="content-toolbar" id="ds-toolbar-demo" style="margin-bottom:var(--space-6);">
+            <div class="content-toolbar-row">
+              <label class="search-field">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" class="js-search" placeholder="Search&hellip;">
+                <button class="search-field-clear" type="button" aria-label="Clear search">&times;</button>
+              </label>
+              <div class="sort-control">
+                <span class="filter-group-label">Sort</span>
+                <select class="sort-select js-sort">
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                  <option value="status">By status</option>
+                </select>
+              </div>
+            </div>
+            <div class="content-toolbar-row">
+              <div class="filter-group js-filters">
+                <span class="filter-group-label">Status</span>
+                <span class="filter-chip is-active" data-filter="all">All</span>
+                <span class="filter-chip" data-filter="supported">Supported</span>
+                <span class="filter-chip" data-filter="rejected">Rejected</span>
+                <span class="filter-chip" data-filter="inconclusive">Inconclusive</span>
+              </div>
+            </div>
+            <div class="content-toolbar-row content-toolbar-meta">
+              <span class="toolbar-count js-count">3 of 3 examples</span>
+              <button class="toolbar-clear js-clear" type="button">Clear filters</button>
+            </div>
+          </div>
+          <div class="experiment-list" style="margin-top:0;">
+            <a class="experiment-row" href="#" onclick="return false;" data-status="supported" data-order="1" data-search="demo row one supported">
+              <span class="experiment-num">1</span>
+              <span class="experiment-main">
+                <span class="experiment-title">Demo row, status: Supported</span>
+                <span class="experiment-domain">Design system &middot; example</span>
+              </span>
+              <span class="experiment-status"><span class="pill pill--supported">Supported</span></span>
+              <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="experiment-row" href="#" onclick="return false;" data-status="rejected" data-order="2" data-search="demo row two rejected">
+              <span class="experiment-num">2</span>
+              <span class="experiment-main">
+                <span class="experiment-title">Demo row, status: Rejected</span>
+                <span class="experiment-domain">Design system &middot; example</span>
+              </span>
+              <span class="experiment-status"><span class="pill pill--rejected">Rejected</span></span>
+              <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="experiment-row" href="#" onclick="return false;" data-status="inconclusive" data-order="3" data-search="demo row three inconclusive">
+              <span class="experiment-num">3</span>
+              <span class="experiment-main">
+                <span class="experiment-title">Demo row, status: Inconclusive</span>
+                <span class="experiment-domain">Design system &middot; example</span>
               </span>
               <span class="experiment-status"><span class="pill pill--inconclusive">Inconclusive</span></span>
               <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
