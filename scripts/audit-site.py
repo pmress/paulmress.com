@@ -30,6 +30,7 @@ PAGES = [
     "lab/1/index.html",
     "lab/2/index.html",
     "lab/3/index.html",
+    "lab/4/index.html",
     "design-system/index.html",
     "ask-paul/index.html",
     "design-system/template-experiment/index.html",
@@ -99,7 +100,13 @@ def main():
     # Known-fine structural/semantic wrappers with no CSS rule of their own —
     # confirmed during the Aug 2026 audit, not bugs. Re-check before adding
     # to this list; it should stay short.
-    known_unstyled_ok = {"chat-section", "footer-links--primary", "hero-copy", "values"}
+    known_unstyled_ok = {
+        "chat-section", "footer-links--primary", "hero-copy", "values",
+        # Content Toolbar (Experiment 4) JS hooks — pure selectors for
+        # script.js's shared filter/sort/search logic, deliberately
+        # unstyled (the visual atoms are .search-field/.filter-chip/etc.).
+        "js-search", "js-sort", "js-filters", "js-count", "js-clear",
+    }
     real_unstyled = [c for c in unstyled if c not in known_unstyled_ok]
     if real_unstyled:
         problems += 1
