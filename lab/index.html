@@ -109,9 +109,42 @@
   <!-- ENTRIES -->
   <section>
     <div class="wrap">
+
+      <div class="content-toolbar" id="lab-toolbar" data-reveal>
+        <div class="content-toolbar-row">
+          <label class="search-field">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" class="js-search" placeholder="Search experiments&hellip;">
+            <button class="search-field-clear" type="button" aria-label="Clear search">&times;</button>
+          </label>
+          <div class="sort-control">
+            <span class="filter-group-label">Sort</span>
+            <select class="sort-select js-sort">
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="status">By status</option>
+            </select>
+          </div>
+        </div>
+        <div class="content-toolbar-row">
+          <div class="filter-group js-filters">
+            <span class="filter-group-label">Status</span>
+            <span class="filter-chip is-active" data-filter="all">All</span>
+            <span class="filter-chip" data-filter="supported">Supported</span>
+            <span class="filter-chip" data-filter="rejected">Rejected</span>
+            <span class="filter-chip" data-filter="inconclusive">Inconclusive</span>
+            <span class="filter-chip" data-filter="ongoing">Ongoing</span>
+          </div>
+        </div>
+        <div class="content-toolbar-row content-toolbar-meta">
+          <span class="toolbar-count js-count">4 of 4 experiments</span>
+          <button class="toolbar-clear js-clear" type="button">Clear filters</button>
+        </div>
+      </div>
+
       <div class="experiment-list">
 
-        <a class="experiment-row" href="/lab/1/" data-reveal>
+        <a class="experiment-row" href="/lab/1/" data-reveal data-status="supported" data-order="1" data-search="can ai replace a cms website production claude supported">
           <span class="experiment-num">1</span>
           <span class="experiment-main">
             <span class="experiment-title">Can AI replace a CMS?</span>
@@ -121,7 +154,7 @@
           <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
         </a>
 
-        <a class="experiment-row" href="/lab/2/" data-reveal>
+        <a class="experiment-row" href="/lab/2/" data-reveal data-status="supported" data-order="2" data-search="if ai replaced the cms what stops the site from drifting design system claude supported">
           <span class="experiment-num">2</span>
           <span class="experiment-main">
             <span class="experiment-title">If AI replaced the CMS, what stops the site from drifting?</span>
@@ -131,13 +164,23 @@
           <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
         </a>
 
-        <a class="experiment-row" href="/lab/3/" data-reveal>
+        <a class="experiment-row" href="/lab/3/" data-reveal data-status="inconclusive" data-order="3" data-search="can ai catch and fix its own documentation drift content ops claude inconclusive">
           <span class="experiment-num">3</span>
           <span class="experiment-main">
             <span class="experiment-title">Can AI catch and fix its own documentation drift?</span>
             <span class="experiment-domain">Content ops &middot; Claude</span>
           </span>
           <span class="experiment-status"><span class="pill pill--inconclusive">Inconclusive</span></span>
+          <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="experiment-row" href="/lab/4/" data-reveal data-status="supported" data-order="4" data-search="can ai build a helpful filter sort and search design system claude supported">
+          <span class="experiment-num">4</span>
+          <span class="experiment-main">
+            <span class="experiment-title">Can AI build a helpful filter, sort, and search?</span>
+            <span class="experiment-domain">Design system &middot; Claude</span>
+          </span>
+          <span class="experiment-status"><span class="pill pill--supported">Supported</span></span>
           <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
         </a>
 
