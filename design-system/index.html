@@ -857,7 +857,7 @@
               <button class="toolbar-clear js-clear" type="button">Clear filters</button>
             </div>
           </div>
-          <div class="experiment-list" style="margin-top:0;">
+          <div class="experiment-list" style="margin-top:0;" data-scroll-batch="2">
             <a class="experiment-row" href="#" onclick="return false;" data-status="supported" data-order="1" data-search="demo row one supported">
               <span class="experiment-num">1</span>
               <span class="experiment-main">
@@ -886,7 +886,22 @@
               <span class="experiment-arrow" aria-hidden="true">&rarr;</span>
             </a>
           </div>
+          <div class="scroll-sentinel" aria-hidden="true"></div>
         </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Progressive scroll reveal &middot; .scroll-sentinel / .is-scroll-hidden (Experiment 5, used on <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          An infinite-scroll feel for people, without ever hiding content from a crawler. Every item
+          still ships in the page&rsquo;s raw HTML at load &mdash; nothing is fetched on scroll &mdash;
+          a <code class="ds-code">.scroll-sentinel</code> just tells the shared toolbar script above to
+          reveal the next batch, via <code class="ds-code">.is-scroll-hidden</code>, as a person scrolls
+          near the bottom. Since most AI crawlers never execute JavaScript, they read the same complete
+          list a search engine would &mdash; visibility state is a rendering concept, and a crawler that
+          never renders never sees it. Live in the toolbar demo above: scroll down and watch more rows
+          reveal themselves.
+        </p>
       </div>
 
       <div class="ds-group">
