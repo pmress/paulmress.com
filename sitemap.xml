@@ -17,7 +17,7 @@
 
   <url>
     <loc>https://paulmress.com/thinking/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -51,6 +51,13 @@
   </url>
 
   <url>
+    <loc>https://paulmress.com/lab/4/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://paulmress.com/about/</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -66,7 +73,7 @@
 
   <url>
     <loc>https://paulmress.com/design-system/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

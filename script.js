@@ -292,3 +292,91 @@ if (form) {
     }
   });
 }
+
+// ---------------------------------------------------------------
+// Content toolbar: shared filter / sort / search organism.
+// Used on /lab/ (facet: status) and /thinking/ (facet: topic) — same
+// markup, same logic; only the data-status vocabulary differs per page.
+// Guarded so pages without a .content-toolbar do nothing.
+// ---------------------------------------------------------------
+document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
+  const list = toolbar.nextElementSibling;
+  if (!list) return;
+
+  // Filter to items that opt in via data-status, so decorative siblings
+  // (e.g. .thought-nodes-pulse) never get treated as filterable/sortable.
+  const items = Array.from(list.children).filter((el) => el.hasAttribute("data-status"));
+  const searchInput = toolbar.querySelector(".js-search");
+  const searchField = toolbar.querySelector(".search-field");
+  const clearSearchBtn = toolbar.querySelector(".search-field-clear");
+  const sortSelect = toolbar.querySelector(".js-sort");
+  const filterGroup = toolbar.querySelector(".js-filters");
+  const countEl = toolbar.querySelector(".js-count");
+  const clearAllBtn = toolbar.querySelector(".js-clear");
+  if (!searchInput || !sortSelect || !filterGroup || !countEl) return;
+
+  const noun = (countEl.textContent.split(" of ")[1] || "items").replace(/^\d+\s*/, "");
+  let activeFilter = "all";
+
+  function apply() {
+    const q = searchInput.value.trim().toLowerCase();
+    if (searchField) searchField.classList.toggle("has-value", q.length > 0);
+
+    let visible = 0;
+    items.forEach((el) => {
+      const matchesFilter = activeFilter === "all" || el.getAttribute("data-status") === activeFilter;
+      const matchesSearch = q === "" || (el.getAttribute("data-search") || "").indexOf(q) !== -1;
+      const show = matchesFilter && matchesSearch;
+      el.classList.toggle("is-toolbar-hidden", !show);
+      if (show) visible++;
+    });
+
+    const sortMode = sortSelect.value;
+    const statusOrder = { supported: 0, ongoing: 1, inconclusive: 2, rejected: 3 };
+    const sorted = items.slice().sort((a, b) => {
+      const oa = parseInt(a.getAttribute("data-order"), 10) || 0;
+      const ob = parseInt(b.getAttribute("data-order"), 10) || 0;
+      if (sortMode === "oldest") return oa - ob;
+      if (sortMode === "status") {
+        const sa = statusOrder[a.getAttribute("data-status")] ?? 9;
+        const sb = statusOrder[b.getAttribute("data-status")] ?? 9;
+        if (sa !== sb) return sa - sb;
+        return ob - oa;
+      }
+      return ob - oa; // newest first (default)
+    });
+    sorted.forEach((el) => list.appendChild(el));
+
+    countEl.textContent = `${visible} of ${items.length} ${noun}`;
+  }
+
+  searchInput.addEventListener("input", apply);
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      apply();
+    });
+  }
+  sortSelect.addEventListener("change", apply);
+  filterGroup.querySelectorAll(".filter-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      filterGroup.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("is-active"));
+      chip.classList.add("is-active");
+      activeFilter = chip.getAttribute("data-filter");
+      apply();
+    });
+  });
+  if (clearAllBtn) {
+    clearAllBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      activeFilter = "all";
+      filterGroup.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("is-active"));
+      const allChip = filterGroup.querySelector('[data-filter="all"]');
+      if (allChip) allChip.classList.add("is-active");
+      sortSelect.value = sortSelect.querySelector("option")?.value || "newest";
+      apply();
+    });
+  }
+
+  apply();
+});
