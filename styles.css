@@ -2526,3 +2526,32 @@ details.thought-node-card[open] .thought-node-chevron {
 .is-toolbar-hidden {
   display: none !important;
 }
+
+/* ---------- ORGANISM: progressive scroll reveal (Experiment 5) ----------
+   An infinite-scroll feel for people, without ever hiding content from a
+   crawler: every item still ships in the page's raw HTML at load, nothing
+   is fetched on scroll. .scroll-sentinel is an unobtrusive marker the
+   shared toolbar script (script.js) watches via IntersectionObserver to
+   reveal the next batch. Reuses the same display:none-!important pattern
+   as .is-toolbar-hidden above, for the same specificity reason. */
+.scroll-sentinel {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-5) 0 var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  opacity: 0.6;
+}
+.scroll-sentinel::before {
+  content: "Scroll for more";
+}
+.scroll-sentinel.is-scroll-exhausted {
+  display: none;
+}
+
+.is-scroll-hidden {
+  display: none !important;
+}

@@ -318,6 +318,36 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
   const noun = (countEl.textContent.split(" of ")[1] || "items").replace(/^\d+\s*/, "");
   let activeFilter = "all";
 
+  // Progressive reveal (Experiment 5): every item already sits in the
+  // page's static HTML -- nothing is fetched on scroll -- so a crawler
+  // that never executes JavaScript (most AI crawlers, as of the research
+  // behind this experiment) sees the full list regardless of how far a
+  // person has scrolled. This only staggers what's *visually* shown,
+  // batch by batch, as a real visitor nears the bottom of the list.
+  const batchSize = parseInt(list.getAttribute("data-scroll-batch"), 10) || 2;
+  let revealCount = batchSize;
+  let sentinel = list.nextElementSibling;
+  if (!sentinel || !sentinel.classList.contains("scroll-sentinel")) {
+    sentinel = document.createElement("div");
+    sentinel.className = "scroll-sentinel";
+    sentinel.setAttribute("aria-hidden", "true");
+    list.insertAdjacentElement("afterend", sentinel);
+  }
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          revealCount += batchSize;
+          apply();
+        }
+      },
+      { rootMargin: "0px 0px 200px 0px" }
+    );
+    revealObserver.observe(sentinel);
+  } else {
+    revealCount = items.length; // no IntersectionObserver: just show everything
+  }
+
   function apply() {
     const q = searchInput.value.trim().toLowerCase();
     if (searchField) searchField.classList.toggle("has-value", q.length > 0);
@@ -347,23 +377,45 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
     });
     sorted.forEach((el) => list.appendChild(el));
 
+    // Layer progressive reveal on top of the filter result, in the same
+    // sorted order, so "first N shown" always means the first N a person
+    // would actually see -- filtered-out items are left alone here.
+    let shownSoFar = 0;
+    sorted.forEach((el) => {
+      if (el.classList.contains("is-toolbar-hidden")) {
+        el.classList.remove("is-scroll-hidden");
+        return;
+      }
+      shownSoFar++;
+      el.classList.toggle("is-scroll-hidden", shownSoFar > revealCount);
+    });
+    sentinel.classList.toggle("is-scroll-exhausted", visible <= revealCount);
+
     countEl.textContent = `${visible} of ${items.length} ${noun}`;
   }
 
-  searchInput.addEventListener("input", apply);
+  // Any filter/search/sort change starts the reveal over at one batch --
+  // otherwise switching filters could leave a stale reveal count that no
+  // longer matches what's actually been scrolled into view.
+  function resetAndApply() {
+    revealCount = batchSize;
+    apply();
+  }
+
+  searchInput.addEventListener("input", resetAndApply);
   if (clearSearchBtn) {
     clearSearchBtn.addEventListener("click", () => {
       searchInput.value = "";
-      apply();
+      resetAndApply();
     });
   }
-  sortSelect.addEventListener("change", apply);
+  sortSelect.addEventListener("change", resetAndApply);
   filterGroup.querySelectorAll(".filter-chip").forEach((chip) => {
     chip.addEventListener("click", () => {
       filterGroup.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("is-active"));
       chip.classList.add("is-active");
       activeFilter = chip.getAttribute("data-filter");
-      apply();
+      resetAndApply();
     });
   });
   if (clearAllBtn) {
@@ -374,7 +426,7 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
       const allChip = filterGroup.querySelector('[data-filter="all"]');
       if (allChip) allChip.classList.add("is-active");
       sortSelect.value = sortSelect.querySelector("option")?.value || "newest";
-      apply();
+      resetAndApply();
     });
   }
 
