@@ -32,8 +32,9 @@
       "file": "thinking/index.html",
       "drive_doc_id": "1cpG5xkQnxLAfVPAgbVZWfhNh-Wn1Qjxb2j64MbCpUto",
       "drive_doc_title": "Thinking — Content",
-      "drive_modified": "2026-08-29T18:04:16.039Z",
-      "last_synced": "2026-08-29"
+      "drive_modified": "2026-09-03T12:14:20.636Z",
+      "last_synced": "2026-09-03",
+      "note": "2026-09-03: added the 'Does AI Know Best?' node (kicker: Motherly AI) to both the live page and this brief, per Dr. Paul's direct request — provenance mark set to Human Creation. Also fixed a stale claim in this doc's first Thought section ('This is currently the only live node.' → 'This was the first live node.'), since the AI Sharpens AI node had already been live since Aug 29 without that line ever being updated. Note: this doc uses real Google Docs Heading 1/2 styles for its Thought sections (not literal '#'/'##' text like the Lab brief) — an early attempt to add the new section via Ctrl+Alt+1/2 keyboard shortcuts misfired (typed literal digits instead of applying heading styles, and the new text was accidentally appended directly onto the prior line with no paragraph break); caught immediately, undone via repeated Ctrl+Z back to the clean original state (verified via a fresh Drive API read), then redone safely: Return first to create the new paragraph, plain text typed, then each heading line's style applied afterward via the toolbar's paragraph-style dropdown."
     },
     {
       "path": "/lab/",
