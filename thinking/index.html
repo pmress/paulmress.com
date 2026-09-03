@@ -110,12 +110,42 @@
   <section>
     <div class="wrap">
 
+      <div class="content-toolbar" id="thinking-toolbar" data-reveal>
+        <div class="content-toolbar-row">
+          <label class="search-field">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" class="js-search" placeholder="Search notes&hellip;">
+            <button class="search-field-clear" type="button" aria-label="Clear search">&times;</button>
+          </label>
+          <div class="sort-control">
+            <span class="filter-group-label">Sort</span>
+            <select class="sort-select js-sort">
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+            </select>
+          </div>
+        </div>
+        <div class="content-toolbar-row">
+          <div class="filter-group js-filters">
+            <span class="filter-group-label">Topic</span>
+            <span class="filter-chip is-active" data-filter="all">All</span>
+            <span class="filter-chip" data-filter="authorship-ai">Authorship &amp; AI</span>
+            <span class="filter-chip" data-filter="thinking-with-ai">Thinking with AI</span>
+            <span class="filter-chip" data-filter="motherly-ai">Motherly AI</span>
+          </div>
+        </div>
+        <div class="content-toolbar-row content-toolbar-meta">
+          <span class="toolbar-count js-count">3 of 3 notes</span>
+          <button class="toolbar-clear js-clear" type="button">Clear filters</button>
+        </div>
+      </div>
+
       <div class="thought-nodes">
         <span class="thought-nodes-pulse" aria-hidden="true"></span>
         <span class="thought-nodes-pulse" aria-hidden="true"></span>
         <span class="thought-nodes-pulse" aria-hidden="true"></span>
 
-        <div class="thought-node" data-reveal>
+        <div class="thought-node" data-reveal data-status="authorship-ai" data-order="1" data-search="authorship ai human ai provenance co-creator transparently credited">
           <span class="thought-node-marker" aria-hidden="true"><span class="thought-node-dot"></span></span>
           <details class="thought-node-card" id="human-ai-provenance">
             <summary class="thought-node-summary">
@@ -144,7 +174,7 @@
           </details>
         </div>
 
-        <div class="thought-node" data-reveal>
+        <div class="thought-node" data-reveal data-status="thinking-with-ai" data-order="2" data-search="thinking with ai sharpens ai proverbs iron">
           <span class="thought-node-marker" aria-hidden="true"><span class="thought-node-dot"></span></span>
           <details class="thought-node-card" id="ai-sharpens-ai">
             <summary class="thought-node-summary">
@@ -173,7 +203,7 @@
           </details>
         </div>
 
-        <div class="thought-node" data-reveal>
+        <div class="thought-node" data-reveal data-status="motherly-ai" data-order="3" data-search="motherly ai does ai know best rapunzel mother knows best deceiving">
           <span class="thought-node-marker" aria-hidden="true"><span class="thought-node-dot"></span></span>
           <details class="thought-node-card" id="does-ai-know-best">
             <summary class="thought-node-summary">
