@@ -493,15 +493,21 @@ function pmClearPathTrackerCookie() {
   const root = document.createElement("div");
   root.className = "path-tracker";
   root.innerHTML =
-    '<button type="button" class="path-tracker-toggle">' +
-      '<span class="path-tracker-dot" aria-hidden="true"></span>Track my path' +
-    "</button>" +
+    '<div class="path-tracker-pre">' +
+      '<button type="button" class="path-tracker-toggle">' +
+        '<span class="path-tracker-dot" aria-hidden="true"></span>Opt in to track my path' +
+      "</button>" +
+      '<a href="/privacy-policy/" class="path-tracker-privacy">Privacy policy</a>' +
+    "</div>" +
     '<div class="path-tracker-panel" role="status">' +
-      '<span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>' +
-      '<span class="path-tracker-countdown">15:00</span>' +
-      '<span class="path-tracker-trail"></span>' +
-      '<a href="/cookie/" class="path-tracker-view">View path</a>' +
-      '<button type="button" class="path-tracker-dismiss" aria-label="Stop tracking now">&times;</button>' +
+      '<span class="path-tracker-countdown-label">This cookie will self-destruct in</span>' +
+      '<div class="path-tracker-panel-row">' +
+        '<span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>' +
+        '<span class="path-tracker-countdown">15:00</span>' +
+        '<span class="path-tracker-trail"></span>' +
+        '<a href="/cookie/" class="path-tracker-view">View path</a>' +
+        '<button type="button" class="path-tracker-dismiss" aria-label="Stop tracking now">&times;</button>' +
+      "</div>" +
     "</div>";
   document.body.appendChild(root);
 

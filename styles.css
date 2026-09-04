@@ -2339,8 +2339,7 @@ main > section.legal-body {
   font-family: var(--font-mono);
 }
 
-.path-tracker-toggle,
-.path-tracker-panel {
+.path-tracker-toggle {
   display: flex;
   align-items: center;
   gap: var(--space-2);
@@ -2351,9 +2350,6 @@ main > section.legal-body {
   box-shadow: 0 6px 20px rgba(20, 18, 12, 0.1);
   font-size: var(--text-xs);
   letter-spacing: 0.02em;
-}
-
-.path-tracker-toggle {
   color: var(--color-ink-soft);
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease;
@@ -2364,14 +2360,59 @@ main > section.legal-body {
   color: var(--color-accent);
 }
 
-.path-tracker-panel {
-  display: none;
-  color: var(--color-ink);
-  border-color: var(--color-accent);
+/* Pre-tracking state: the opt-in pill plus a small link to the Privacy
+   Policy, so the disclosure sits right next to the action that starts
+   the cookie rather than only living on a page most visitors won't seek
+   out. */
+.path-tracker-pre {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
 }
 
-.path-tracker.is-active .path-tracker-toggle { display: none; }
+.path-tracker-privacy {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.02em;
+  color: var(--color-ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.path-tracker-privacy:hover {
+  color: var(--color-accent);
+}
+
+.path-tracker-panel {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-accent);
+  background: var(--color-bg);
+  box-shadow: 0 6px 20px rgba(20, 18, 12, 0.1);
+  font-size: var(--text-xs);
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+}
+
+.path-tracker.is-active .path-tracker-pre { display: none; }
 .path-tracker.is-active .path-tracker-panel { display: flex; }
+
+.path-tracker-countdown-label {
+  font-size: var(--text-2xs);
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+
+.path-tracker-panel-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
 
 .path-tracker-dot {
   width: 7px;
