@@ -455,32 +455,40 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
 // living in per-page markup, so no page's HTML has to change to carry
 // it, and no new page needs to remember to include it.
 // ---------------------------------------------------------------
+// Shared cookie helpers -- used by both the corner widget below and the
+// full-page trail view on /breadcrumbs/, so the two stay in lockstep without
+// duplicating the read/write/clear logic.
+const PM_PATH_TRACKER_COOKIE = "pmPathTracker";
+const PM_PATH_TRACKER_DURATION_MS = 15 * 60 * 1000; // fixed 15 minutes -- no renewal
+
+function pmReadPathTrackerCookie() {
+  const match = document.cookie.match(new RegExp("(?:^|; )" + PM_PATH_TRACKER_COOKIE + "=([^;]*)"));
+  if (!match) return null;
+  try {
+    const data = JSON.parse(decodeURIComponent(match[1]));
+    if (!data || !Array.isArray(data.trail) || typeof data.expires !== "number") return null;
+    return data;
+  } catch (e) {
+    return null;
+  }
+}
+
+function pmWritePathTrackerCookie(data) {
+  const maxAge = Math.max(0, Math.round((data.expires - Date.now()) / 1000));
+  document.cookie =
+    PM_PATH_TRACKER_COOKIE + "=" + encodeURIComponent(JSON.stringify(data)) +
+    "; path=/; max-age=" + maxAge + "; SameSite=Lax";
+}
+
+function pmClearPathTrackerCookie() {
+  document.cookie = PM_PATH_TRACKER_COOKIE + "=; path=/; max-age=0";
+}
+
 (function initPathTracker() {
-  const COOKIE_NAME = "pmPathTracker";
-  const DURATION_MS = 15 * 60 * 1000; // fixed 15 minutes from opt-in -- no renewal
-
-  function readCookie() {
-    const match = document.cookie.match(new RegExp("(?:^|; )" + COOKIE_NAME + "=([^;]*)"));
-    if (!match) return null;
-    try {
-      const data = JSON.parse(decodeURIComponent(match[1]));
-      if (!data || !Array.isArray(data.trail) || typeof data.expires !== "number") return null;
-      return data;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  function writeCookie(data) {
-    const maxAge = Math.max(0, Math.round((data.expires - Date.now()) / 1000));
-    document.cookie =
-      COOKIE_NAME + "=" + encodeURIComponent(JSON.stringify(data)) +
-      "; path=/; max-age=" + maxAge + "; SameSite=Lax";
-  }
-
-  function clearCookie() {
-    document.cookie = COOKIE_NAME + "=; path=/; max-age=0";
-  }
+  const readCookie = pmReadPathTrackerCookie;
+  const writeCookie = pmWritePathTrackerCookie;
+  const clearCookie = pmClearPathTrackerCookie;
+  const DURATION_MS = PM_PATH_TRACKER_DURATION_MS;
 
   const root = document.createElement("div");
   root.className = "path-tracker";
@@ -492,6 +500,7 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
       '<span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>' +
       '<span class="path-tracker-countdown">15:00</span>' +
       '<span class="path-tracker-trail"></span>' +
+      '<a href="/breadcrumbs/" class="path-tracker-view">View path</a>' +
       '<button type="button" class="path-tracker-dismiss" aria-label="Stop tracking now">&times;</button>' +
     "</div>";
   document.body.appendChild(root);
@@ -567,4 +576,125 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
   if (existing && existing.expires > Date.now()) {
     beginTracking(existing);
   }
+})();
+
+// ---------------------------------------------------------------
+// Path map: the full-page live view of the path-tracker trail, at
+// /breadcrumbs/. Reads the same cookie as the corner widget above and
+// renders every visited page as a connected, growing trail of nodes.
+// Guarded so pages without a .path-map container do nothing. Start/Stop
+// delegate to the corner widget's own toggle/dismiss buttons instead of
+// duplicating the opt-in/clear logic, so the two views can never drift
+// out of sync with each other or with what the cookie actually holds.
+// ---------------------------------------------------------------
+(function initPathMap() {
+  const mapEl = document.querySelector(".path-map");
+  if (!mapEl) return;
+
+  const PATH_LABELS = {
+    "/": "Home",
+    "/story/": "Story",
+    "/thinking/": "Thinking",
+    "/lab/": "Lab",
+    "/lab/1/": "Lab · Experiment 1",
+    "/lab/2/": "Lab · Experiment 2",
+    "/lab/3/": "Lab · Experiment 3",
+    "/lab/4/": "Lab · Experiment 4",
+    "/lab/5/": "Lab · Experiment 5",
+    "/lab/6/": "Lab · Experiment 6",
+    "/about/": "About",
+    "/design-system/": "Design System",
+    "/privacy-policy/": "Privacy Policy",
+    "/terms-and-conditions/": "Terms & Conditions",
+    "/breadcrumbs/": "Breadcrumbs"
+  };
+
+  function labelFor(path) {
+    if (PATH_LABELS[path]) return PATH_LABELS[path];
+    const seg = path.replace(/\/+$/, "").split("/").pop();
+    if (!seg) return "Home";
+    return seg.replace(/-/g, " ").replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function formatCountdown(ms) {
+    const totalSeconds = Math.max(0, Math.ceil(ms / 1000));
+    const m = Math.floor(totalSeconds / 60);
+    const s = totalSeconds % 60;
+    return m + ":" + String(s).padStart(2, "0");
+  }
+
+  function emptyStateHtml() {
+    return (
+      '<div class="path-map-empty">' +
+        '<p class="path-map-empty-text">You haven&rsquo;t turned on path tracking yet &mdash; there&rsquo;s nothing to show. ' +
+        'Opt in below (or via the widget in the corner) and this page fills in live, right up until it self-destructs.</p>' +
+        '<button type="button" class="btn btn-primary path-map-start">Start tracking my path</button>' +
+      "</div>"
+    );
+  }
+
+  function activeStateHtml(data) {
+    const remaining = data.expires - Date.now();
+    const nodes = data.trail
+      .map(function (path, i) {
+        const isCurrent = i === data.trail.length - 1;
+        return (
+          '<li class="path-map-node' + (isCurrent ? " path-map-node--current" : "") + '">' +
+            '<span class="path-map-node-dot" aria-hidden="true"></span>' +
+            '<span class="path-map-node-body">' +
+              '<span class="path-map-node-title">' + escapeHtml(labelFor(path)) + "</span>" +
+              '<span class="path-map-node-path">' + escapeHtml(path) + "</span>" +
+            "</span>" +
+          "</li>"
+        );
+      })
+      .join("");
+    return (
+      '<div class="path-map-status">' +
+        '<span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>' +
+        '<span class="path-map-countdown">' + formatCountdown(remaining) + "</span>" +
+        '<span class="path-map-count">' + data.trail.length + (data.trail.length === 1 ? " page" : " pages") + " visited</span>" +
+        '<button type="button" class="path-map-stop">Stop tracking now</button>' +
+      "</div>" +
+      '<ol class="path-map-track">' + nodes + "</ol>"
+    );
+  }
+
+  function wireStart() {
+    const btn = mapEl.querySelector(".path-map-start");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      const toggle = document.querySelector(".path-tracker-toggle");
+      if (toggle) toggle.click();
+      render();
+    });
+  }
+
+  function wireStop() {
+    const btn = mapEl.querySelector(".path-map-stop");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      const dismiss = document.querySelector(".path-tracker-dismiss");
+      if (dismiss) dismiss.click();
+      render();
+    });
+  }
+
+  function render() {
+    const data = pmReadPathTrackerCookie();
+    if (!data || data.expires <= Date.now()) {
+      mapEl.innerHTML = emptyStateHtml();
+      wireStart();
+      return;
+    }
+    mapEl.innerHTML = activeStateHtml(data);
+    wireStop();
+  }
+
+  render();
+  setInterval(render, 1000);
 })();
