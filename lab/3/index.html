@@ -105,97 +105,130 @@
       <p class="section-lede" data-reveal>Experiment 2 found that an automatic checklist catches structural drift on its own, but content drift &mdash; stale wording, dead cross-references &mdash; still needs someone to notice it on purpose. This experiment tested whether AI could be the one to notice, and then actually fix it, not just flag it.</p>
       <div class="lab-meta" data-reveal>
         <span class="pill pill--inconclusive">Inconclusive</span>
-        <span class="lab-meta-facts">Updated Sept. 3, 2026</span>
+        <span class="lab-meta-facts">Updated Sept. 4, 2026</span>
       </div>
     </div>
   </section>
 
-  <!-- HYPOTHESIS -->
+  <!-- HYPOTHESIS + FINDING -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>02 &middot; Hypothesis</p>
-      <div class="lab-hypothesis" data-reveal>
-        &ldquo;AI can find and directly fix its own stale documentation in Drive, the same way it already fixes stale code &mdash; without a human doing the editing by hand.&rdquo;
+      <div class="hyp-result" data-reveal>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Hypothesis</p>
+          <p class="hyp-result-text">AI can find and directly fix its own stale documentation in Drive, the same way it already fixes stale code &mdash; without a human doing the editing by hand.</p>
+        </div>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Finding</p>
+          <p class="hyp-result-text">It sorta worked and sorta didn&rsquo;t work &mdash; Claude can fix its own drift, but only when someone points it at the specific thing to fix.</p>
+        </div>
       </div>
       <p class="hyp-result-limitations" data-reveal>Not a controlled study, and not conclusive enough to prove this works with Claude as of September 3rd 2026, but it seems possible with other AI technologies.</p>
     </div>
   </section>
 
-  <!-- METHOD -->
+  <!-- METHOD (workflow-compare centerpiece) -->
   <section>
     <div class="wrap">
       <p class="kicker" data-reveal>Method</p>
-      <p class="section-lede" data-reveal>What actually happened, in order.</p>
 
-      <div data-reveal>
-        <h3 style="margin:0 0 var(--space-3); font-size:var(--text-xl);">What was built</h3>
-        <p style="max-width:780px; color:var(--color-ink-soft);">Earlier this project, browser automation proved it could write new content directly into a Google Doc&rsquo;s body &mdash; not just read Drive via the API connector, which is read-only. This experiment used that same capability against a real backlog: three known-stale claims in two existing Lab / Design System briefs, catalogued in the &ldquo;Content Brief Schema &mdash; Reference&rdquo; doc after a prior session found them. The test was whether AI could open each Drive doc, locate the stale text precisely, and correct it in place &mdash; end to end, not just identify it.</p>
+      <div class="workflow-compare" data-reveal>
+        <div class="workflow-compare-row">
+          <span class="workflow-compare-label">Traditional</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Content goes stale</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Someone eventually notices</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Manual edit in Docs</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Maybe re-checked</span></div>
+        </div>
+        <div class="workflow-compare-row workflow-compare-row--current">
+          <span class="workflow-compare-label">Experiment</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Backlog catalogued</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">AI opens the Doc</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">AI edits in place</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Re-read confirms it held</span></div>
+        </div>
       </div>
 
-      <div style="margin-top:var(--space-7);" data-reveal>
-        <h3 style="margin:0 0 var(--space-4); font-size:var(--text-xl);">The backlog &mdash; what was actually stale</h3>
-        <div style="display:flex; flex-direction:column; gap:var(--space-4);">
-          <div class="receipt-block receipt--input">
-            <p class="receipt-label">01</p>
-            <p>Experiment 1 brief described the page&rsquo;s URL as <code style="font-family:var(--font-mono);">/lab/experiment1/</code> and its kicker as &ldquo;Lab &middot; Experiment 001&rdquo; &mdash; both predate the Aug 29 URL-convention change to bare <code style="font-family:var(--font-mono);">/lab/1/</code>.</p>
-          </div>
-          <div class="receipt-block receipt--input">
-            <p class="receipt-label">02</p>
-            <p>The same brief had a &ldquo;Spec table&rdquo; heading with a stat list and an unfilled &ldquo;Evidence &middot; Receipt 01 &mdash; Input: TBD / Outcome: TBD&rdquo; &mdash; &ldquo;Spec table&rdquo; was never a real <code style="font-family:var(--font-mono);">/design-system/</code> component, and Evidence was removed from the live page entirely in the Aug 29 rewrite.</p>
-          </div>
-          <div class="receipt-block receipt--input">
-            <p class="receipt-label">03</p>
-            <p>The Design System brief stated &ldquo;There is no separate &lsquo;About &mdash; Content&rsquo; doc yet&rdquo; &mdash; false since an About brief was created Aug 25, six days before this session.</p>
-          </div>
-          <div class="receipt-block receipt--input">
-            <p class="receipt-label">04</p>
-            <p>Found along the way, not in the original catalogue: the About brief&rsquo;s own &ldquo;Card 3&rdquo; linked to <code style="font-family:var(--font-mono);">/lab/experiment1/</code> &mdash; the same stale-URL problem, in a second document.</p>
-          </div>
+      <div class="flow-row" style="margin-top:var(--space-8);" data-reveal>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M15 2v5h5"/><path d="M8 12h8M8 16h5"/></svg>
+          </span>
+          <h3>Catalogue</h3>
+          <p>Three known-stale claims, found earlier and logged in the Content Brief Schema doc.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2z"/></svg>
+          </span>
+          <h3>Locate</h3>
+          <p>Claude opened each Google Doc and found the exact stale text.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step card--current">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </span>
+          <h3>Fix</h3>
+          <p>Edited the text directly in Drive &mdash; no copy-pasting into a new doc for Dr. Paul to apply by hand.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <h3>Verify</h3>
+          <p>Re-read each doc afterward to confirm the fix actually held.</p>
         </div>
       </div>
 
       <div style="margin-top:var(--space-7);" data-reveal>
-        <div class="receipt-block receipt--output">
-          <p class="receipt-label">What Claude actually did</p>
-          <p>Fixed all four directly in the live Google Docs &mdash; no copy-pasting into a new doc, no describing the fix in chat for Dr. Paul to apply by hand. Rewrote the URL/kicker text and renamed &ldquo;Spec table&rdquo; to &ldquo;Stats line&rdquo; with corrected numbers; removed the unfilled Evidence/Receipt placeholder and updated the brief&rsquo;s own retired-sections note; corrected the Design System brief&rsquo;s About-doc claim; fixed the About brief&rsquo;s stale link; and, while already in each doc, added the Content Brief Schema&rsquo;s required header block. Also caught and corrected two smaller drifts noticed only by reading closely: a stale &ldquo;Ongoing&rdquo; status pill after the live page moved to &ldquo;Supported,&rdquo; and a stray typo from Claude&rsquo;s own automation that needed a follow-up correction before it shipped.</p>
-        </div>
-      </div>
-
-      <div style="margin-top:var(--space-5);" data-reveal>
-        <div class="receipt-block receipt--outcome">
-          <p class="receipt-label">What Claude did not do</p>
-          <p>Did not touch the Hypothesis statement in the Experiment 1 brief, even though its wording differs from the live page&rsquo;s &mdash; that&rsquo;s Dr. Paul&rsquo;s own claim, not a factual drift to silently correct. The <code style="font-family:var(--font-mono);">content-manifest.json</code> bookkeeping update also hit a real wall mid-session: this session&rsquo;s <code style="font-family:var(--font-mono);">git push</code> was blocked by a repo-access proxy (a 403, &ldquo;not in this session&rsquo;s authorized repository set&rdquo;) &mdash; no workaround for the git CLI exists here. It shipped anyway, through the site&rsquo;s own established deploy path (GitHub&rsquo;s web-upload UI) instead, with an explicit go-ahead from Dr. Paul before the commit landed on <code style="font-family:var(--font-mono);">main</code>.</p>
+        <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
+        <div class="pipeline" style="margin-bottom:0;">
+          <span class="pill">Claude</span>
+          <span class="pill">Google Drive</span>
+          <span class="pill">Browser automation</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- RESULTS -->
+  <!-- THE EXPERIMENT -->
   <section>
     <div class="wrap">
-      <p class="kicker" data-reveal>04 &middot; Results</p>
-      <h2 class="section-title" data-reveal>Four for four, with one detour to get it fully live.</h2>
+      <p class="kicker" data-reveal>The experiment</p>
+      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>Four for four, with one detour to get it fully live.</p>
 
-      <p class="lab-meta-facts" style="margin-bottom:var(--space-6);" data-reveal>3 stale claims catalogued going in &middot; 1 more found while working &middot; 4 of 4 fixed directly in Drive &middot; 3 docs touched &middot; 3 header blocks retrofitted &middot; 2 automation mistakes self-corrected mid-session &middot; 1 deploy path swapped after the git CLI 403&rsquo;d, then pushed live</p>
+      <div class="compare-grid" data-reveal>
+        <div class="card">
+          <p class="chapter-range">AI handled</p>
+          <ul class="plain-list">
+            <li>Locating and rewriting four stale items directly in three live Google Docs</li>
+            <li>Renaming a &ldquo;Spec table&rdquo; heading to &ldquo;Stats line,&rdquo; with corrected numbers</li>
+            <li>Removing an unfilled Evidence placeholder and updating the retired-sections note</li>
+            <li>Adding the Content Brief Schema&rsquo;s required header block to each doc touched</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="chapter-range">Dr. Paul handled</p>
+          <ul class="plain-list">
+            <li>Deciding which drift was real vs. his own claim to leave alone (Experiment 1&rsquo;s hypothesis wording)</li>
+            <li>Signing off before the <code style="font-family:var(--font-mono);">content-manifest.json</code> commit landed on main</li>
+            <li>Raising the guardrails question below, after reading the draft</li>
+            <li>Final review</li>
+          </ul>
+        </div>
+      </div>
 
-      <div class="worked-list" data-reveal>
+      <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>3 stale claims catalogued going in &middot; 1 more found while working &middot; 4 of 4 fixed directly in Drive &middot; 3 docs touched &middot; 3 header blocks retrofitted</p>
+
+      <div class="worked-list" style="margin-top:var(--space-5);" data-reveal>
         <div class="worked-item is-good">
           <span class="worked-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </span>
-          <p><strong>Worked:</strong> Locating exact stale text inside a real Google Doc and rewriting it in place, including recovering cleanly after an accidental keystroke landed mid-paragraph instead of at the end of it (undo, re-target, redo) &mdash; the fix held up under a fresh re-read afterward.</p>
+          <p><strong>Worked:</strong> Locating exact stale text inside a real Google Doc and rewriting it in place, including recovering cleanly after an accidental keystroke landed mid-paragraph instead of at the end of it &mdash; the fix held up under a fresh re-read afterward.</p>
         </div>
         <div class="worked-item is-bad">
           <span class="worked-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </span>
-          <p><strong>Limited:</strong> Two small automation errors shipped without being caught until a follow-up zoomed screenshot &mdash; a bullet-list edit briefly broke list formatting, and a double-click-and-replace once fused two words into &ldquo;ThAn&rdquo; before a second pass fixed it. Neither reached the live site, but both would have if this had been treated as one-shot instead of self-checked.</p>
-        </div>
-        <div class="worked-item is-good">
-          <span class="worked-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </span>
-          <p><strong>Also worked, eventually:</strong> The <code style="font-family:var(--font-mono);">content-manifest.json</code> push. Blocked once by the git CLI&rsquo;s repo-access proxy, it went out through the site&rsquo;s own established GitHub web-upload path instead &mdash; the workaround this project already used for every other deploy &mdash; with Dr. Paul&rsquo;s explicit sign-off before the commit landed.</p>
+          <p><strong>Constraint:</strong> Claude can fix drift once it&rsquo;s pointed at the exact thing to fix, but doesn&rsquo;t yet notice new drift on its own &mdash; two small automation errors also shipped uncaught until a follow-up screenshot, though neither reached the live site.</p>
         </div>
       </div>
     </div>
@@ -214,17 +247,24 @@
     </div>
   </section>
 
-  <!-- CONCLUSION -->
+  <!-- FINDING -> IMPLICATION (consolidated; see tense note in the header
+       comment above) -->
   <section>
     <div class="wrap">
       <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
-        <p class="kicker" style="margin-bottom:var(--space-4);">05 &middot; Conclusion</p>
-        <p class="statement" style="font-size:var(--text-heading-lg); font-style:italic; color:var(--color-ink-soft); margin-bottom:0;">&ldquo;It sorta worked and sorta didn&rsquo;t work.&rdquo;</p>
+        <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">It sorta worked and sorta didn&rsquo;t work.</p>
+        <p class="statement-support">Claude can fix its own drift, but only when someone points it at the specific thing to fix.</p>
+        <p class="statement-support" style="margin-top:var(--space-3);">Other AI technologies that allow a standard process to run might close that gap &mdash; worth trying again as the tooling matures, rather than treating this one attempt as the final word.</p>
       </div>
 
-      <div style="max-width:640px; margin:var(--space-8) auto 0;" data-reveal>
-        <p class="kicker">What I learned</p>
-        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">Claude can fix its own drift, but only when someone points it at the specific thing to fix. However, it seems that other AI technologies that allow a standard process to occur could fix the drift, so this experiment should be tried again in the future.</p>
+      <div style="max-width:560px; margin-top:var(--space-8);" data-reveal>
+        <p class="kicker">Implication</p>
+        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">For now, content-drift review isn&rsquo;t something to hand fully to AI and walk away from. It&rsquo;s a real productivity gain once a human has already spotted the problem &mdash; but the noticing still has to be a person&rsquo;s job.</p>
+      </div>
+
+      <div class="card card--current" style="max-width:720px; margin-top:var(--space-6);" data-reveal>
+        <p style="margin:0; font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">Point AI at exactly what&rsquo;s broken, and it&rsquo;ll fix it. It won&rsquo;t yet go looking on its own.</p>
       </div>
     </div>
   </section>
