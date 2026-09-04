@@ -104,8 +104,8 @@
       <h1 class="about-title" data-reveal>Can AI build an infinite-scroll page that stays fully visible to AI?</h1>
       <p class="section-lede" data-reveal>This started as two separate experiments &mdash; pagination for the Lab, infinite scroll for Thinking &mdash; before a working session collapsed them into one question. Real pagination means real page-2 URLs, which felt like overhead this site doesn&rsquo;t need yet. Real infinite scroll usually means fetching more as you scroll, which is exactly the pattern most AI crawlers can&rsquo;t see through, since most of them never execute JavaScript at all. So the actual test became narrower: can AI build something that <em>feels</em> like infinite scroll to a person, while every item still ships in the page&rsquo;s raw HTML &mdash; nothing fetched, nothing hidden from a machine that only ever reads the source?</p>
       <div class="lab-meta" data-reveal>
-        <span class="pill pill--ongoing">Ongoing</span>
-        <span class="lab-meta-facts">Updated Sept. 3, 2026</span>
+        <span class="pill pill--supported">Supported</span>
+        <span class="lab-meta-facts">Updated Sept. 4, 2026</span>
       </div>
     </div>
   </section>
@@ -120,10 +120,10 @@
         </div>
         <div class="hyp-result-col">
           <p class="hyp-result-label">Finding</p>
-          <p class="hyp-result-text">TBD &mdash; this experiment is still ongoing.</p>
+          <p class="hyp-result-text">The infinite scroll works and the html is visible in the source code.</p>
         </div>
       </div>
-      <p class="hyp-result-limitations" data-reveal>The mechanism below is live on <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a>, but the finding hasn&rsquo;t been written yet &mdash; it needs time to hold up against real crawl behavior, not just a working demo.</p>
+      <p class="hyp-result-limitations" data-reveal>Tested by building and shipping the tool itself, live on <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a> &mdash; not a controlled study across other sites, other content types, or other design systems.</p>
     </div>
   </section>
 
@@ -145,7 +145,7 @@
         </div>
         <div class="card">
           <p class="chapter-range">Dr. Paul handled</p>
-          <ul class="plain-list"><li>Setting the original two-experiment idea (pagination for Lab, infinite scroll for Thinking)</li><li>Deciding, after working through the SEO/AEO/GEO tradeoffs, to collapse it into one experiment instead</li><li>Setting the final hypothesis</li><li>Moving the avatar/chatbot Next Question down a slot</li><li>Will set the finding once there&rsquo;s enough to report</li></ul>
+          <ul class="plain-list"><li>Setting the original two-experiment idea (pagination for Lab, infinite scroll for Thinking)</li><li>Deciding, after working through the SEO/AEO/GEO tradeoffs, to collapse it into one experiment instead</li><li>Setting the final hypothesis</li><li>Moving the avatar/chatbot Next Question down a slot</li><li>Setting the final finding once the mechanism was confirmed working live</li></ul>
         </div>
       </div>
 
@@ -158,13 +158,14 @@
     <div class="wrap">
       <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
         <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
-        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">TBD &mdash; this experiment is still ongoing.</p>
-        <p class="statement-support">The build is live. What&rsquo;s not yet known is whether it actually holds up &mdash; that takes time, not just a working demo.</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">The infinite scroll works and the html is visible in the source code.</p>
+        <p class="statement-support">Verified two ways: scrolling the live page shows the batched reveal working, and reading the page&rsquo;s raw HTML response &mdash; not the rendered DOM &mdash; shows every item present at every scroll state.</p>
+        <p class="statement-support" style="margin-top:var(--space-3);">A post-launch bug was caught and fixed along the way: the reveal was firing before it was ever visible on screen, the kind of thing that only surfaces once a real person tries scrolling a real page, not a demo.</p>
       </div>
 
       <div style="max-width:560px; margin-top:var(--space-8);" data-reveal>
         <p class="kicker">Implication</p>
-        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">To follow once the finding is confirmed.</p>
+        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">For a CMO, this closes a false choice marketing teams have been living with: build the smoother scroll experience people actually prefer, or keep content broken into paginated pages so AI answer engines can still see all of it. Those two goals used to compete because most infinite-scroll builds fetch content on demand, and most AI crawlers never run the JavaScript that fetch depends on &mdash; so a page built for a better human experience could quietly go invisible to the systems now answering people&rsquo;s questions before they ever click through. Here nothing is ever fetched or hidden: every item ships in the page&rsquo;s HTML at load, and only the on-screen display is staged. The scroll experience and the AEO/GEO visibility stop trading off against each other &mdash; they&rsquo;re the same page.</p>
       </div>
     </div>
   </section>
