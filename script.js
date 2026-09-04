@@ -456,7 +456,7 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
 // it, and no new page needs to remember to include it.
 // ---------------------------------------------------------------
 // Shared cookie helpers -- used by both the corner widget below and the
-// full-page trail view on /breadcrumbs/, so the two stay in lockstep without
+// full-page trail view on /cookie/, so the two stay in lockstep without
 // duplicating the read/write/clear logic.
 const PM_PATH_TRACKER_COOKIE = "pmPathTracker";
 const PM_PATH_TRACKER_DURATION_MS = 15 * 60 * 1000; // fixed 15 minutes -- no renewal
@@ -500,7 +500,7 @@ function pmClearPathTrackerCookie() {
       '<span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>' +
       '<span class="path-tracker-countdown">15:00</span>' +
       '<span class="path-tracker-trail"></span>' +
-      '<a href="/breadcrumbs/" class="path-tracker-view">View path</a>' +
+      '<a href="/cookie/" class="path-tracker-view">View path</a>' +
       '<button type="button" class="path-tracker-dismiss" aria-label="Stop tracking now">&times;</button>' +
     "</div>";
   document.body.appendChild(root);
@@ -580,7 +580,7 @@ function pmClearPathTrackerCookie() {
 
 // ---------------------------------------------------------------
 // Path map: the full-page live view of the path-tracker trail, at
-// /breadcrumbs/. Reads the same cookie as the corner widget above and
+// /cookie/. Reads the same cookie as the corner widget above and
 // renders every visited page as a connected, growing trail of nodes.
 // Guarded so pages without a .path-map container do nothing. Start/Stop
 // delegate to the corner widget's own toggle/dismiss buttons instead of
@@ -606,7 +606,7 @@ function pmClearPathTrackerCookie() {
     "/design-system/": "Design System",
     "/privacy-policy/": "Privacy Policy",
     "/terms-and-conditions/": "Terms & Conditions",
-    "/breadcrumbs/": "Breadcrumbs"
+    "/cookie/": "Cookie"
   };
 
   function labelFor(path) {
