@@ -334,14 +334,26 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
     list.insertAdjacentElement("afterend", sentinel);
   }
   if ("IntersectionObserver" in window) {
+    // No bottom rootMargin: on a short page a look-ahead margin fires the
+    // reveal (and hides the sentinel as exhausted) before it's ever actually
+    // scrolled into view, so "Scroll for more" never gets seen. Only trigger
+    // once the sentinel is genuinely on screen. A short deliberate pause
+    // before revealing the next batch (there's no real fetch to wait on)
+    // gives "Scroll for more" a moment to actually be readable, instead of
+    // being replaced within the same frame it appears.
+    let isRevealing = false;
     const revealObserver = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          revealCount += batchSize;
-          apply();
+        if (entries[0].isIntersecting && !isRevealing) {
+          isRevealing = true;
+          setTimeout(() => {
+            revealCount += batchSize;
+            apply();
+            isRevealing = false;
+          }, 350);
         }
       },
-      { rootMargin: "0px 0px 200px 0px" }
+      { rootMargin: "0px" }
     );
     revealObserver.observe(sentinel);
   } else {
