@@ -2261,8 +2261,17 @@ details.thought-node-card[open] .thought-node-chevron {
   opacity: 0.75;
 }
 
+.footer-links--legal {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-line);
+  font-size: var(--text-2xs);
+  opacity: 0.75;
+}
+
 @media (max-width: 560px) {
-  .footer-links--meta {
+  .footer-links--meta,
+  .footer-links--legal {
     max-width: 220px;
     margin-left: auto;
     margin-right: auto;
@@ -2275,6 +2284,46 @@ details.thought-node-card[open] .thought-node-chevron {
   font-size: var(--text-sm);
   color: var(--color-ink-soft);
   line-height: 1.6;
+}
+
+/* ---------- Legal pages (Privacy Policy / Terms & Conditions) ---------- */
+/* Plain numbered body copy for a long-form legal page — not a reusable
+   design-system component (no such component exists yet), just a scoped
+   readability treatment: a narrower measure than the default .wrap, and
+   section spacing that matches the rest of the site's rhythm. */
+main > section.legal-body {
+  padding: var(--space-9) 0 var(--space-10);
+}
+
+.legal-body .wrap {
+  max-width: 720px;
+}
+
+.legal-body h2 {
+  font-size: var(--text-xl);
+  margin-top: var(--space-9);
+}
+
+.legal-body h2:first-of-type {
+  margin-top: 0;
+}
+
+.legal-body ul {
+  padding-left: 1.2em;
+  margin: 0 0 1em;
+}
+
+.legal-body li {
+  margin-bottom: 0.5em;
+}
+
+.legal-body blockquote {
+  margin: 0 0 var(--space-9);
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
 }
 
 /* ---------- Responsive ---------- */
