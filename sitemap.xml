@@ -24,7 +24,7 @@
 
   <url>
     <loc>https://paulmress.com/lab/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -65,17 +65,17 @@
   </url>
 
   <url>
-    <loc>https://paulmress.com/about/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <loc>https://paulmress.com/lab/6/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://paulmress.com/ask-paul/</loc>
+    <loc>https://paulmress.com/about/</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
 
   <url>

@@ -444,3 +444,127 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
 
   apply();
 });
+
+// ---------------------------------------------------------------
+// Path tracker: opt-in, first-party, self-destructing 15-minute
+// cookie feature (Lab Experiment 6). Tracks which pages were visited
+// during one session -- nothing more. No renewal, no re-prompt: once
+// the 15 minutes are up, it's gone. Dismissing the widget kills it
+// immediately. Never transmitted anywhere -- see /privacy-policy/ for
+// the full disclosure. The widget itself is injected here rather than
+// living in per-page markup, so no page's HTML has to change to carry
+// it, and no new page needs to remember to include it.
+// ---------------------------------------------------------------
+(function initPathTracker() {
+  const COOKIE_NAME = "pmPathTracker";
+  const DURATION_MS = 15 * 60 * 1000; // fixed 15 minutes from opt-in -- no renewal
+
+  function readCookie() {
+    const match = document.cookie.match(new RegExp("(?:^|; )" + COOKIE_NAME + "=([^;]*)"));
+    if (!match) return null;
+    try {
+      const data = JSON.parse(decodeURIComponent(match[1]));
+      if (!data || !Array.isArray(data.trail) || typeof data.expires !== "number") return null;
+      return data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeCookie(data) {
+    const maxAge = Math.max(0, Math.round((data.expires - Date.now()) / 1000));
+    document.cookie =
+      COOKIE_NAME + "=" + encodeURIComponent(JSON.stringify(data)) +
+      "; path=/; max-age=" + maxAge + "; SameSite=Lax";
+  }
+
+  function clearCookie() {
+    document.cookie = COOKIE_NAME + "=; path=/; max-age=0";
+  }
+
+  const root = document.createElement("div");
+  root.className = "path-tracker";
+  root.innerHTML =
+    '<button type="button" class="path-tracker-toggle">' +
+      '<span class="path-tracker-dot" aria-hidden="true"></span>Track my path' +
+    "</button>" +
+    '<div class="path-tracker-panel" role="status">' +
+      '<span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>' +
+      '<span class="path-tracker-countdown">15:00</span>' +
+      '<span class="path-tracker-trail"></span>' +
+      '<button type="button" class="path-tracker-dismiss" aria-label="Stop tracking now">&times;</button>' +
+    "</div>";
+  document.body.appendChild(root);
+
+  const toggleBtn = root.querySelector(".path-tracker-toggle");
+  const panel = root.querySelector(".path-tracker-panel");
+  const countdownEl = root.querySelector(".path-tracker-countdown");
+  const trailEl = root.querySelector(".path-tracker-trail");
+  const dismissBtn = root.querySelector(".path-tracker-dismiss");
+
+  let timerId = null;
+
+  function formatCountdown(ms) {
+    const totalSeconds = Math.max(0, Math.ceil(ms / 1000));
+    const m = Math.floor(totalSeconds / 60);
+    const s = totalSeconds % 60;
+    return m + ":" + String(s).padStart(2, "0");
+  }
+
+  function render(data) {
+    const remaining = data.expires - Date.now();
+    if (remaining <= 0) {
+      selfDestruct();
+      return;
+    }
+    countdownEl.textContent = formatCountdown(remaining);
+    trailEl.textContent = data.trail.length + (data.trail.length === 1 ? " page" : " pages");
+    root.classList.add("is-active");
+    panel.classList.toggle("is-critical", remaining < 60000);
+  }
+
+  function selfDestruct() {
+    clearCookie();
+    if (timerId) clearInterval(timerId);
+    timerId = null;
+    root.classList.remove("is-active");
+    panel.classList.remove("is-critical");
+  }
+
+  function startTicking() {
+    if (timerId) clearInterval(timerId);
+    timerId = setInterval(() => {
+      const data = readCookie();
+      if (!data) {
+        selfDestruct();
+        return;
+      }
+      render(data);
+    }, 1000);
+  }
+
+  function beginTracking(existing) {
+    const path = window.location.pathname;
+    let data = existing;
+    if (!data) {
+      data = { trail: [path], expires: Date.now() + DURATION_MS };
+    } else if (data.trail[data.trail.length - 1] !== path) {
+      data.trail.push(path);
+    }
+    writeCookie(data);
+    render(data);
+    startTicking();
+  }
+
+  toggleBtn.addEventListener("click", () => beginTracking(null));
+  dismissBtn.addEventListener("click", selfDestruct);
+
+  // Resume an already-active session on load (logging this page into
+  // the trail) rather than starting fresh -- opting in once should
+  // follow a visitor around the site until it expires or is dismissed,
+  // not reset every time they open a new page.
+  const existing = readCookie();
+  if (existing && existing.expires > Date.now()) {
+    beginTracking(existing);
+  }
+})();
