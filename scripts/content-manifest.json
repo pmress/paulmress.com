@@ -125,9 +125,9 @@
       "reason": "New page, 2026-09-04 -- Experiment 6 (path-tracker cookie feature). Hypothesis is Dr. Paul's own confirmed wording ('AI can build an opt-in, self-destructing tracking feature.'); Finding/Implication explicitly TBD, status Ongoing, per the paulmress-lab-experiment skill's rule against inventing them. No Drive content brief created yet -- tracked here as unmanaged until the brief exists, then moves up to the pages list with its drive_doc_id."
     },
     {
-      "path": "/breadcrumbs/",
-      "file": "breadcrumbs/index.html",
-      "reason": "New page, 2026-09-04 -- companion to Experiment 6, added after Dr. Paul clarified the path-tracker feature was meant to include a dedicated page showing the visited-pages trail as connected nodes, not just the corner widget's page count. URL named /breadcrumbs/ at Dr. Paul's explicit request -- he asked for a creative, pop-culture-style name; Claude proposed a shortlist (breadcrumbs, self-destruct, dossier) and he picked breadcrumbs, which doubles as both the Hansel & Gretel reference and the standard UX term for 'the path you took.' Reads the same pmPathTracker cookie as the corner widget (script.js's initPathMap); static .path-map-empty state ships in the raw HTML for crawlers/no-JS, upgraded live by JS when a session is active. Linked from the corner widget panel (.path-tracker-view), from /lab/6/'s lede, and from the Privacy Policy's cookie disclosure. No Drive content brief created yet -- tracked here as unmanaged until one exists, same pattern as /lab/6/ above."
+      "path": "/cookie/",
+      "file": "cookie/index.html",
+      "reason": "New page, 2026-09-04 -- companion to Experiment 6, added after Dr. Paul clarified the path-tracker feature was meant to include a dedicated page showing the visited-pages trail as connected nodes, not just the corner widget's page count. URL went through two rounds of naming: originally deployed live at /breadcrumbs/ (Claude proposed a shortlist of creative, pop-culture-style names -- breadcrumbs, self-destruct, dossier -- and Dr. Paul picked breadcrumbs); after that deploy, Dr. Paul asked to rename it, and it was renamed locally to /tracker/ (not yet redeployed at that point); before that redeploy happened, Dr. Paul asked for a second rename, to /cookie/, which is the current live target. The lede copy was also revised to drop the Hansel & Gretel/breadcrumbs framing that no longer fit once the URL moved away from 'breadcrumbs'. Reads the same pmPathTracker cookie as the corner widget (script.js's initPathMap); static .path-map-empty state ships in the raw HTML for crawlers/no-JS, upgraded live by JS when a session is active. Linked from the corner widget panel (.path-tracker-view), from /lab/6/'s lede, and from the Privacy Policy's cookie disclosure. The old /breadcrumbs/ URL is being retired as a redirect stub to /cookie/, matching the /ask-paul/ and /how-its-built/ retirement precedent above. No Drive content brief created yet -- tracked here as unmanaged until one exists, same pattern as /lab/6/ above."
     },
     {
       "path": "/ask-paul/",
@@ -143,6 +143,11 @@
       "path": "/how-its-built/",
       "file": "how-its-built/index.html",
       "reason": "Retired redirect stub — no content of its own to track."
+    },
+    {
+      "path": "/breadcrumbs/",
+      "file": "breadcrumbs/index.html",
+      "reason": "Retired 2026-09-04 — briefly live as the path-tracker's dedicated page before Dr. Paul asked for it to be renamed. Converted to a redirect stub (noindex, follow) pointing to /cookie/, matching the /ask-paul/ and /how-its-built/ retirement precedent. Excluded from sitemap.xml and scripts/audit-site.py's PAGES list, per existing convention for stubs."
     }
   ],
   "reference_docs": [

@@ -37,7 +37,7 @@ PAGES = [
     "design-system/template-experiment/index.html",
     "privacy-policy/index.html",
     "terms-and-conditions/index.html",
-    "breadcrumbs/index.html",
+    "cookie/index.html",
 ]
 
 CSS_FILES = [
@@ -110,7 +110,7 @@ def main():
         # script.js's shared filter/sort/search logic, deliberately
         # unstyled (the visual atoms are .search-field/.filter-chip/etc.).
         "js-search", "js-sort", "js-filters", "js-count", "js-clear",
-        # Path map (Experiment 6, /breadcrumbs/) JS hooks — .path-map is the
+        # Path map (Experiment 6, /cookie/) JS hooks — .path-map is the
         # bare container script.js's initPathMap renders into; .path-map-start
         # is the empty-state button, styled only via .btn/.btn-primary. Both
         # are pure selectors, same pattern as the js-* hooks above.
