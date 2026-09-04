@@ -105,7 +105,7 @@
       <p class="section-lede" data-reveal><a href="/lab/3/">Experiment 3</a> found that AI can fix drift, but only once someone points it at the specific thing to fix &mdash; it doesn&rsquo;t notice on its own. This experiment tested something more contained: could AI design and build a genuinely useful piece of interface &mdash; filter, sort, and search &mdash; working inside the site&rsquo;s own atomic-design rules, and make it run identically across two different pages?</p>
       <div class="lab-meta" data-reveal>
         <span class="pill pill--supported">Supported</span>
-        <span class="lab-meta-facts">Updated Sept. 3, 2026</span>
+        <span class="lab-meta-facts">Updated Sept. 4, 2026</span>
       </div>
     </div>
   </section>
@@ -127,18 +127,74 @@
     </div>
   </section>
 
-  <!-- METHOD -->
+  <!-- METHOD (workflow-compare centerpiece) -->
   <section>
     <div class="wrap">
       <p class="kicker" data-reveal>Method</p>
-      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>What was built, and how the work split between AI and Dr. Paul.</p>
 
-      <div data-reveal>
-        <h3 style="margin:0 0 var(--space-3); font-size:var(--text-xl);">What was built</h3>
-        <p style="max-width:780px; color:var(--color-ink-soft);">One new organism &mdash; a content toolbar, combining search, filter, and sort &mdash; assembled entirely from atoms and molecules already documented at <a href="/design-system/#organisms">the design system</a>: a search field, a filter chip, a sort select, and a result count, grouped into a filter group and a sort control, and finally the toolbar itself. No new colors, radii, spacing values, or type sizes were introduced. The same component, same markup, same script, now runs on both <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a> &mdash; only the filter facet and sort options change per page: Status for the Lab, Topic for Thinking.</p>
+      <div class="workflow-compare" data-reveal>
+        <div class="workflow-compare-row">
+          <span class="workflow-compare-label">Traditional</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Feature requested</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Competes with campaign deadlines</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Loses, sits on backlog</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Ships eventually, if ever</span></div>
+        </div>
+        <div class="workflow-compare-row workflow-compare-row--current">
+          <span class="workflow-compare-label">Experiment</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">AI designs from existing tokens</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Mockup reviewed</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Built same session</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Live on two pages</span></div>
+        </div>
       </div>
 
-      <div class="compare-grid" style="margin-top:var(--space-7);" data-reveal>
+      <div class="flow-row" style="margin-top:var(--space-8);" data-reveal>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2z"/></svg>
+          </span>
+          <h3>Design</h3>
+          <p>Designed the components inside the site&rsquo;s existing atomic-design constraints.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M15 2v5h5"/><path d="M8 12h8M8 16h5"/></svg>
+          </span>
+          <h3>Build</h3>
+          <p>Wrote the CSS and the filter/sort/search logic.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step card--current">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </span>
+          <h3>Mock up</h3>
+          <p>Built a working mockup for Dr. Paul to review before anything shipped.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6z"/></svg>
+          </span>
+          <h3>Wire in</h3>
+          <p>Wired the finished toolbar into both live pages.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-7);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
+        <div class="pipeline" style="margin-bottom:0;">
+          <span class="pill">Claude</span>
+          <span class="pill">styles.css</span>
+          <span class="pill">script.js</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE EXPERIMENT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The experiment</p>
+      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>One new organism &mdash; a content toolbar, combining search, filter, and sort &mdash; assembled entirely from atoms and molecules already documented at <a href="/design-system/#organisms">the design system</a>: a search field, a filter chip, a sort select, and a result count, grouped into a filter group and a sort control, and finally the toolbar itself. No new colors, radii, spacing values, or type sizes were introduced. The same component, same markup, same script, now runs on both <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a> &mdash; only the filter facet and sort options change per page: Status for the Lab, Topic for Thinking.</p>
+
+      <div class="compare-grid" data-reveal>
         <div class="card">
           <p class="chapter-range">AI handled</p>
           <ul class="plain-list"><li>Designing the components inside the atomic-design constraints</li><li>Writing the CSS and the filter/sort/search logic</li><li>Building a working mockup for review before anything shipped</li><li>Wiring the toolbar into both live pages</li></ul>
@@ -150,6 +206,21 @@
       </div>
 
       <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>1 new organism &middot; 5 new atoms &middot; 2 new molecules &middot; 0 new colors, radii, or type sizes &middot; 2 live pages wired up</p>
+
+      <div class="worked-list" style="margin-top:var(--space-5);" data-reveal>
+        <div class="worked-item is-good">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <p><strong>Worked:</strong> The component came together in a single session, drawing only on tokens the site already had &mdash; no new visual language, and nothing simplified to fit the constraint.</p>
+        </div>
+        <div class="worked-item is-bad">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <p><strong>Constraint:</strong> One real bug was caught before shipping: hiding filtered-out rows with the native <code style="font-family:var(--font-mono);">hidden</code> attribute silently lost a CSS specificity tie against <code style="font-family:var(--font-mono);">.experiment-row</code>&rsquo;s own display rule &mdash; fixed with an explicit <code style="font-family:var(--font-mono);">.is-toolbar-hidden</code> class instead.</p>
+        </div>
+      </div>
     </div>
   </section>
 
