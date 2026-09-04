@@ -920,11 +920,15 @@
           opt-in &mdash; a page-visit trail plus an expiry timestamp, never transmitted anywhere. The
           panel&rsquo;s <code class="ds-code">.path-tracker-view</code>
           link opens the same trail as a full page (see <code class="ds-code">.path-map</code> below).
-          It self-destructs automatically at 00:00, or
-          immediately on clicking <code class="ds-code">.path-tracker-dismiss</code> &mdash; no
-          renewal, no re-prompt either way. See it live on this page&rsquo;s own corner, or read the
-          full disclosure on the <a href="/privacy-policy/">Privacy Policy</a>. The two static frames
-          below show both states; the real widget in the corner is the live one.
+          Next to it, a <code class="ds-code">.path-tracker-stop</code> hyperlink (orange,
+          <code class="ds-code">--color-accent-2</code>) reads "Stop tracking" and does the same thing
+          as the &times; button just after it &mdash; two ways to reach the same action, one worded
+          for clarity and one for a minimal footprint. It self-destructs automatically at 00:00, or
+          immediately on clicking <code class="ds-code">.path-tracker-stop</code> or
+          <code class="ds-code">.path-tracker-dismiss</code> &mdash; no renewal, no re-prompt either
+          way. See it live on this page&rsquo;s own corner, or read the full disclosure on the
+          <a href="/privacy-policy/">Privacy Policy</a>. The two static frames below show both states;
+          the real widget in the corner is the live one.
         </p>
         <div class="ds-frame" style="display:flex; gap:var(--space-6); flex-wrap:wrap; align-items:flex-start;">
           <div>
@@ -949,6 +953,7 @@
                   <span class="path-tracker-countdown">14:52</span>
                   <span class="path-tracker-trail">3 pages</span>
                   <a href="/cookie/" class="path-tracker-view">View path</a>
+                  <button type="button" class="path-tracker-stop">Stop tracking</button>
                   <button type="button" class="path-tracker-dismiss" aria-label="Stop tracking">&times;</button>
                 </span>
               </span>
