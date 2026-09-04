@@ -127,18 +127,74 @@
     </div>
   </section>
 
-  <!-- METHOD -->
+  <!-- METHOD (workflow-compare centerpiece) -->
   <section>
     <div class="wrap">
       <p class="kicker" data-reveal>Method</p>
-      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>What was built, and how the work split between AI and Dr. Paul.</p>
 
-      <div data-reveal>
-        <h3 style="margin:0 0 var(--space-3); font-size:var(--text-xl);">What was built</h3>
-        <p style="max-width:780px; color:var(--color-ink-soft);">A progressive scroll reveal, layered onto the existing <a href="/design-system/#organisms">content toolbar</a> organism from <a href="/lab/4/">Experiment 4</a> rather than built as a separate system. Every entry on <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a> still renders in full in the page&rsquo;s HTML at load &mdash; a new <code>.scroll-sentinel</code> marker just tells the shared script to reveal the next batch, via a new <code>.is-scroll-hidden</code> state class, as a person scrolls near the bottom. Nothing is fetched, and the reveal coordinates with the existing filter/sort/search logic: changing a filter or sort resets the reveal back to the first batch, so it never shows a stale mix. Confirmed against current research before building: most AI crawlers (GPTBot, ClaudeBot, PerplexityBot, and others) don&rsquo;t execute JavaScript at all &mdash; they read the raw HTML response, so content present in the markup but visually staged behind a CSS class is fully available to them regardless of scroll state.</p>
+      <div class="workflow-compare" data-reveal>
+        <div class="workflow-compare-row">
+          <span class="workflow-compare-label">Traditional</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Fetch more on scroll</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Crawler skips the JS</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Later content invisible to AI</span></div>
+        </div>
+        <div class="workflow-compare-row workflow-compare-row--current">
+          <span class="workflow-compare-label">Experiment</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Everything ships in raw HTML</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">CSS stages the reveal</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Crawler sees it regardless</span></div>
+        </div>
       </div>
 
-      <div class="compare-grid" style="margin-top:var(--space-7);" data-reveal>
+      <div class="flow-row" style="margin-top:var(--space-8);" data-reveal>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <h3>Research</h3>
+          <p>Researched current AI-crawler behavior for paginated and infinite-scroll content.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2z"/></svg>
+          </span>
+          <h3>Design</h3>
+          <p>Designed a progressive reveal, not fetch-based infinite scroll, so nothing is ever hidden from a non-rendering crawler.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step card--current">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M15 2v5h5"/><path d="M8 12h8M8 16h5"/></svg>
+          </span>
+          <h3>Build</h3>
+          <p>Wrote the CSS/JS and wired it into the existing shared toolbar script.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6z"/></svg>
+          </span>
+          <h3>Ship</h3>
+          <p>Built it directly on both live pages.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-7);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
+        <div class="pipeline" style="margin-bottom:0;">
+          <span class="pill">Claude</span>
+          <span class="pill">IntersectionObserver</span>
+          <span class="pill">script.js</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE EXPERIMENT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The experiment</p>
+      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>A progressive scroll reveal, layered onto the existing <a href="/design-system/#organisms">content toolbar</a> organism from <a href="/lab/4/">Experiment 4</a> rather than built as a separate system. Every entry on <a href="/lab/">/lab/</a> and <a href="/thinking/">/thinking/</a> still renders in full in the page&rsquo;s HTML at load &mdash; a new <code>.scroll-sentinel</code> marker just tells the shared script to reveal the next batch, via a new <code>.is-scroll-hidden</code> state class, as a person scrolls near the bottom. Nothing is fetched, and the reveal coordinates with the existing filter/sort/search logic: changing a filter or sort resets the reveal back to the first batch, so it never shows a stale mix. Confirmed against current research before building: most AI crawlers (GPTBot, ClaudeBot, PerplexityBot, and others) don&rsquo;t execute JavaScript at all &mdash; they read the raw HTML response, so content present in the markup but visually staged behind a CSS class is fully available to them regardless of scroll state.</p>
+
+      <div class="compare-grid" data-reveal>
         <div class="card">
           <p class="chapter-range">AI handled</p>
           <ul class="plain-list"><li>Researching current SEO/AEO/GEO crawling behavior for paginated and infinite-scroll content</li><li>Identifying that most AI crawlers don&rsquo;t render JavaScript, which shaped the actual design</li><li>Designing progressive reveal (not fetch-based infinite scroll) so nothing is ever hidden from a non-rendering crawler</li><li>Writing the CSS/JS and wiring it into the existing shared toolbar script</li><li>Building it directly on both live pages</li></ul>
@@ -150,6 +206,21 @@
       </div>
 
       <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>1 new atom (.scroll-sentinel) &middot; 1 new state class (.is-scroll-hidden) &middot; 0 new colors, radii, or type sizes &middot; 2 live pages wired up</p>
+
+      <div class="worked-list" style="margin-top:var(--space-5);" data-reveal>
+        <div class="worked-item is-good">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <p><strong>Worked:</strong> Verified two ways: scrolling the live page shows the batched reveal working, and reading the page&rsquo;s raw HTML response &mdash; not the rendered DOM &mdash; shows every item present at every scroll state.</p>
+        </div>
+        <div class="worked-item is-bad">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <p><strong>Constraint:</strong> The first version had a real bug: an IntersectionObserver look-ahead fired the reveal &mdash; and hid the sentinel as exhausted &mdash; before it was ever actually on screen, on a page short enough that the look-ahead ate nearly the whole remaining scroll distance. Caught only once Dr. Paul tried scrolling the live page, not from local testing alone.</p>
+        </div>
+      </div>
     </div>
   </section>
 
