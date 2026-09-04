@@ -506,6 +506,7 @@ function pmClearPathTrackerCookie() {
         '<span class="path-tracker-countdown">15:00</span>' +
         '<span class="path-tracker-trail"></span>' +
         '<a href="/cookie/" class="path-tracker-view">View path</a>' +
+        '<button type="button" class="path-tracker-stop">Stop tracking</button>' +
         '<button type="button" class="path-tracker-dismiss" aria-label="Stop tracking now">&times;</button>' +
       "</div>" +
     "</div>";
@@ -515,6 +516,7 @@ function pmClearPathTrackerCookie() {
   const panel = root.querySelector(".path-tracker-panel");
   const countdownEl = root.querySelector(".path-tracker-countdown");
   const trailEl = root.querySelector(".path-tracker-trail");
+  const stopBtn = root.querySelector(".path-tracker-stop");
   const dismissBtn = root.querySelector(".path-tracker-dismiss");
 
   let timerId = null;
@@ -572,6 +574,7 @@ function pmClearPathTrackerCookie() {
   }
 
   toggleBtn.addEventListener("click", () => beginTracking(null));
+  stopBtn.addEventListener("click", selfDestruct);
   dismissBtn.addEventListener("click", selfDestruct);
 
   // Resume an already-active session on load (logging this page into

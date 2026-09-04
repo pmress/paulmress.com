@@ -2446,6 +2446,26 @@ main > section.legal-body {
 
 .path-tracker-view:hover { text-decoration: underline; }
 
+.path-tracker-stop {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  color: var(--color-accent-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.path-tracker-stop:hover {
+  color: var(--color-accent-2);
+  opacity: 0.8;
+}
+
 .path-tracker-dismiss {
   border: none;
   background: none;
@@ -2479,6 +2499,7 @@ main > section.legal-body {
     bottom: var(--space-3);
   }
   .path-tracker-trail { display: none; }
+  .path-tracker-stop { display: none; }
 }
 
 /* ---------- Path map page (/my-path/, Lab Experiment 6) ---------- */
