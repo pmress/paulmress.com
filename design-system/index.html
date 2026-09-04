@@ -1146,7 +1146,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Workflow compare &middot; .workflow-compare (Lab: Traditional vs. Experiment pipeline, used on <a href="/lab/1/">/lab/1/</a>, <a href="/lab/2/">/lab/2/</a>, and <a href="/lab/3/">/lab/3/</a>)</p>
+        <p class="ds-group-title">Workflow compare &middot; .workflow-compare (Lab: Traditional vs. Experiment pipeline, used on <a href="/lab/1/">/lab/1/</a>, <a href="/lab/2/">/lab/2/</a>, <a href="/lab/3/">/lab/3/</a>, <a href="/lab/4/">/lab/4/</a>, and <a href="/lab/5/">/lab/5/</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           The strongest at-a-glance insight on an experiment page: two bordered rows, not a diagram, so it stays in
           the site's restrained register. <code class="ds-code">.workflow-compare-row--current</code> outlines
@@ -1298,19 +1298,13 @@
           <em>canonical</em> page structure (workflow-compare Method centerpiece, a separate
           Experiment section with a Worked/Constraint pair, consolidated Finding &rarr; Implication)
           and is the source of truth for a new experiment page's shape &mdash; confirmed directly with
-          Dr. Paul 2026-09-04 after Experiments 4 and 5 shipped a leaner Method-only variant (no
-          workflow-compare/flow-row/Tech pills, no separate Worked/Constraint pair) instead of this
-          shape. Verified against Experiment 1&rsquo;s real content: rendering it through this template
-          reproduces the shared nav/footer/provenance partials byte-for-byte. Experiment 2 is the
-          template&rsquo;s second real page, produced the same way; Experiment 3 was rebuilt by hand
-          2026-09-04 to match this shape (it previously had its own bespoke structure).
-        </p>
-        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:var(--space-4) 0 0;">
-          <strong>Known drift, not yet reconciled:</strong> Experiments 4 (<a href="/lab/4/">/lab/4/</a>)
-          and 5 (<a href="/lab/5/">/lab/5/</a>) both use a leaner Method &mdash; prose plus the AI/Dr. Paul
-          compare-grid and a stats line, no workflow-compare pipeline, no flow-row, no separate
-          Worked/Constraint pair. This is flagged as drift to bring back in line with the canonical
-          shape above, not a second valid shape &mdash; see <code class="ds-code">claude/project-notes.md</code>.
+          Dr. Paul 2026-09-04. Verified against Experiment 1&rsquo;s real content: rendering it through
+          this template reproduces the shared nav/footer/provenance partials byte-for-byte. Experiment 2
+          is the template&rsquo;s second real page, produced the same way. Experiments 3, 4, and 5 were
+          each rebuilt by hand 2026-09-04 to match this shape &mdash; Experiment 3 previously had its own
+          bespoke structure, and Experiments 4 and 5 had shipped a leaner Method-only variant (no
+          workflow-compare/flow-row/Tech pills, no separate Worked/Constraint pair). All five live
+          experiments now share the one canonical shape.
         </p>
       </div>
 
