@@ -120,9 +120,14 @@
   ],
   "unmanaged_pages": [
     {
+      "path": "/lab/6/",
+      "file": "lab/6/index.html",
+      "reason": "New page, 2026-09-04 -- Experiment 6 (path-tracker cookie feature). Hypothesis is Dr. Paul's own confirmed wording ('AI can build an opt-in, self-destructing tracking feature.'); Finding/Implication explicitly TBD, status Ongoing, per the paulmress-lab-experiment skill's rule against inventing them. No Drive content brief created yet -- tracked here as unmanaged until the brief exists, then moves up to the pages list with its drive_doc_id."
+    },
+    {
       "path": "/ask-paul/",
       "file": "ask-paul/index.html",
-      "reason": "No Drive content brief exists for this page as of 2026-08-28. Its copy was written directly; not tracked here until a brief is created."
+      "reason": "Retired 2026-09-04 at Dr. Paul's request — the chat feature's backend was never actually deployed (a non-functional prototype, per project-notes.md). Converted to a redirect stub (noindex, follow) pointing to / with a link to the homepage's #connect section, matching the how-its-built/lab-experiment1 retirement precedent. Removed from sitemap.xml and scripts/audit-site.py's PAGES list (redirect stubs are excluded from both, per existing convention). All links to it removed: privacy-policy and terms-and-conditions's Contact/Questions lines now point to /#connect instead; design-system/index.html's dedicated .chat-shell Organism demo and its mention in the hero-glow 'used on' list were both removed. The .chat-shell/.chat-msg/.chat-suggestion CSS in styles.css was left in place, not deleted — now fully undocumented and unused, flagged here as a candidate for a future cleanup pass rather than removed unasked."
     },
     {
       "path": "/design-system/template-experiment/",
