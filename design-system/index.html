@@ -1024,12 +1024,16 @@
       <div class="ds-group">
         <p class="ds-group-title">Footer links &middot; .footer-links-groups (used site-wide)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
-          A complete site index &mdash; a small, quiet, mono-uppercase pair of rows above the
+          A complete site index &mdash; a small, quiet, mono-uppercase set of rows above the
           copyright line, out of the hamburger menu. The top row repeats the three primary-nav
           pages (Lab, Thinking, About) in the same order as the hamburger menu; a hairline divides
           it from a second, lighter row for Story and Design System, which aren&rsquo;t in the
-          hamburger menu at all. Splitting the rows this way (rather than one flat pipe-separated
-          list) is what lets the row wrap cleanly on narrow phones instead of overflowing.
+          hamburger menu at all. A third row (added 2026-09-04, prerequisite infrastructure for the
+          path-tracker Lab experiment) holds Privacy Policy and Terms &amp; Conditions &mdash; the
+          site&rsquo;s two legal pages, grouped together since neither belongs in primary nav or the
+          Story/Design System meta row. Splitting the rows this way (rather than one flat
+          pipe-separated list) is what lets each row wrap cleanly on narrow phones instead of
+          overflowing.
         </p>
         <div class="ds-frame">
           <div class="footer-links-groups">
@@ -1044,6 +1048,11 @@
               <a href="/story/">Story</a>
               <span class="footer-links-sep" aria-hidden="true">|</span>
               <a href="/design-system/">Design System</a>
+            </div>
+            <div class="footer-links footer-links--legal" style="justify-content:flex-start;">
+              <a href="/privacy-policy/">Privacy Policy</a>
+              <span class="footer-links-sep" aria-hidden="true">|</span>
+              <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
             </div>
           </div>
         </div>
@@ -1473,6 +1482,11 @@
         <a href="/story/">Story</a>
         <span class="footer-links-sep" aria-hidden="true">|</span>
         <a href="/design-system/" aria-current="page">Design System</a>
+      </div>
+      <div class="footer-links footer-links--legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
       </div>
     </div>
     <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
