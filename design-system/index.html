@@ -905,6 +905,45 @@
       </div>
 
       <div class="ds-group">
+        <p class="ds-group-title">Path tracker &middot; .path-tracker (Experiment 6, injected sitewide via <code class="ds-code">script.js</code>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          An opt-in, first-party, self-destructing cookie widget &mdash; not markup on any individual
+          page. <code class="ds-code">script.js</code> injects it into every page on load, so nothing
+          had to be added to any page&rsquo;s HTML to ship it. Off by default: a small
+          <code class="ds-code">.path-tracker-toggle</code> pill sits fixed in the corner. Opting in
+          swaps it for a <code class="ds-code">.path-tracker-panel</code> showing a live 15-minute
+          countdown and the number of pages visited since opt-in &mdash; a page-visit trail plus an
+          expiry timestamp, never transmitted anywhere. It self-destructs automatically at 00:00, or
+          immediately on clicking <code class="ds-code">.path-tracker-dismiss</code> &mdash; no
+          renewal, no re-prompt either way. See it live on this page&rsquo;s own corner, or read the
+          full disclosure on the <a href="/privacy-policy/">Privacy Policy</a>. The two static frames
+          below show both states; the real widget in the corner is the live one.
+        </p>
+        <div class="ds-frame" style="display:flex; gap:var(--space-6); flex-wrap:wrap; align-items:flex-start;">
+          <div>
+            <p class="filter-group-label" style="margin-bottom:var(--space-3);">Off (default)</p>
+            <div class="path-tracker" style="position:static;">
+              <span class="path-tracker-toggle">
+                <span class="path-tracker-dot" aria-hidden="true"></span>
+                Track my path
+              </span>
+            </div>
+          </div>
+          <div>
+            <p class="filter-group-label" style="margin-bottom:var(--space-3);">Opted in</p>
+            <div class="path-tracker" style="position:static;">
+              <span class="path-tracker-panel" style="display:flex;">
+                <span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>
+                <span class="path-tracker-countdown">14:52</span>
+                <span class="path-tracker-trail">3 pages</span>
+                <button type="button" class="path-tracker-dismiss" aria-label="Stop tracking">&times;</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
         <p class="ds-group-title">Worked / didn&rsquo;t &middot; .worked-item (used on every Lab entry)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Two-column honest ledger. <code class="ds-code">.is-good</code> gets a filled accent-soft
@@ -1119,7 +1158,7 @@
           A single soft radial gradient, top-right, <code class="ds-code">rgba(76, 58, 227, 0.28)</code>
           fading to transparent &mdash; the quiet color wash every page top should carry. This used to
           drift: some intros had it, some didn&rsquo;t. It&rsquo;s now standard on every page&rsquo;s
-          intro section (Home, Story, Thinking, Lab index, every Lab entry, Ask Dr. Paul, and this
+          intro section (Home, Story, Thinking, Lab index, every Lab entry, and this
           page), independent of whether that page also runs the node-network canvas below.
         </p>
         <div class="ds-frame" style="position:relative; overflow:hidden; padding:0;">
@@ -1224,36 +1263,6 @@
         </div>
       </div>
 
-      <div class="ds-group">
-        <p class="ds-group-title">Ask Dr. Paul &middot; .chat-shell (chat widget, <a href="/ask-paul/">/ask-paul/</a> only)</p>
-        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
-          A self-contained chat surface: <code class="ds-code">.chat-disclosure</code> pill states up front that
-          messages go to an AI, not Dr. Paul directly; <code class="ds-code">.chat-log</code> scrolls independently
-          of the page so a long conversation never pushes the input off-screen; assistant and user bubbles
-          (<code class="ds-code">.chat-msg--assistant</code> / <code class="ds-code">.chat-msg--user</code>) mirror
-          the accent-vs-neutral logic used everywhere else on the site rather than inventing new chat-specific
-          colors; a three-dot <code class="ds-code">.chat-msg--typing</code> state and starter
-          <code class="ds-code">.chat-suggestion</code> chips round it out. The only Organism unique to a single
-          page &mdash; everything else here is reused at least twice.
-        </p>
-        <div class="ds-frame">
-          <div class="chat-shell" style="height:auto; max-height:none;">
-            <div class="chat-log" style="overflow:visible;">
-              <div class="chat-msg chat-msg--assistant">Ask me anything about Dr. Paul&rsquo;s work in marketing AI.</div>
-              <div class="chat-msg chat-msg--user">What&rsquo;s Experiment 1?</div>
-              <div class="chat-msg chat-msg--typing" aria-hidden="true"><span></span><span></span><span></span></div>
-            </div>
-            <div class="chat-suggestions">
-              <button type="button" class="chat-suggestion" disabled>What do you do day to day?</button>
-              <button type="button" class="chat-suggestion" disabled>How is this site built?</button>
-            </div>
-            <form class="chat-form" onsubmit="return false;">
-              <input type="text" class="chat-input" placeholder="Ask a question&hellip;" disabled>
-              <button type="submit" class="btn btn-primary" disabled>Send</button>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
