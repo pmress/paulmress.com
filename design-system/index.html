@@ -909,11 +909,16 @@
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           An opt-in, first-party, self-destructing cookie widget &mdash; not markup on any individual
           page. <code class="ds-code">script.js</code> injects it into every page on load, so nothing
-          had to be added to any page&rsquo;s HTML to ship it. Off by default: a small
-          <code class="ds-code">.path-tracker-toggle</code> pill sits fixed in the corner. Opting in
-          swaps it for a <code class="ds-code">.path-tracker-panel</code> showing a live 15-minute
-          countdown and the number of pages visited since opt-in &mdash; a page-visit trail plus an
-          expiry timestamp, never transmitted anywhere. The panel&rsquo;s <code class="ds-code">.path-tracker-view</code>
+          had to be added to any page&rsquo;s HTML to ship it. Off by default: a
+          <code class="ds-code">.path-tracker-pre</code> block sits fixed in the corner &mdash; the
+          <code class="ds-code">.path-tracker-toggle</code> pill itself, plus a small
+          <code class="ds-code">.path-tracker-privacy</code> link straight to the Privacy Policy, so
+          the disclosure sits right next to the action rather than only living on a page most
+          visitors won&rsquo;t seek out. Opting in swaps it for a <code class="ds-code">.path-tracker-panel</code>
+          showing a <code class="ds-code">.path-tracker-countdown-label</code> ("This cookie will
+          self-destruct in") above a live 15-minute countdown and the number of pages visited since
+          opt-in &mdash; a page-visit trail plus an expiry timestamp, never transmitted anywhere. The
+          panel&rsquo;s <code class="ds-code">.path-tracker-view</code>
           link opens the same trail as a full page (see <code class="ds-code">.path-map</code> below).
           It self-destructs automatically at 00:00, or
           immediately on clicking <code class="ds-code">.path-tracker-dismiss</code> &mdash; no
@@ -925,21 +930,27 @@
           <div>
             <p class="filter-group-label" style="margin-bottom:var(--space-3);">Off (default)</p>
             <div class="path-tracker" style="position:static;">
-              <span class="path-tracker-toggle">
-                <span class="path-tracker-dot" aria-hidden="true"></span>
-                Track my path
-              </span>
+              <div class="path-tracker-pre">
+                <span class="path-tracker-toggle">
+                  <span class="path-tracker-dot" aria-hidden="true"></span>
+                  Opt in to track my path
+                </span>
+                <a href="/privacy-policy/" class="path-tracker-privacy">Privacy policy</a>
+              </div>
             </div>
           </div>
           <div>
             <p class="filter-group-label" style="margin-bottom:var(--space-3);">Opted in</p>
             <div class="path-tracker" style="position:static;">
               <span class="path-tracker-panel" style="display:flex;">
-                <span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>
-                <span class="path-tracker-countdown">14:52</span>
-                <span class="path-tracker-trail">3 pages</span>
-                <a href="/cookie/" class="path-tracker-view">View path</a>
-                <button type="button" class="path-tracker-dismiss" aria-label="Stop tracking">&times;</button>
+                <span class="path-tracker-countdown-label">This cookie will self-destruct in</span>
+                <span class="path-tracker-panel-row">
+                  <span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>
+                  <span class="path-tracker-countdown">14:52</span>
+                  <span class="path-tracker-trail">3 pages</span>
+                  <a href="/cookie/" class="path-tracker-view">View path</a>
+                  <button type="button" class="path-tracker-dismiss" aria-label="Stop tracking">&times;</button>
+                </span>
               </span>
             </div>
           </div>
