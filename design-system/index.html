@@ -664,7 +664,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Process steps &middot; .steps (used in the <a href="/design-system/template-experiment/">experiment template</a>)</p>
+        <p class="ds-group-title">Process steps &middot; .steps (not currently used on any live Lab page &mdash; superseded by the workflow-compare + flow-row Method centerpiece below; kept documented for a future page that genuinely needs a vertical multi-step walkthrough)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           A single-column relative of the timeline above: the same gradient spine
           (<code class="ds-code">.steps::before</code>) and the same <code class="ds-code">timeline-flow</code>
@@ -699,7 +699,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Receipts &middot; .receipt-block (default for new Lab entries &mdash; see the <a href="/design-system/template-experiment/">experiment template</a>)</p>
+        <p class="ds-group-title">Receipts &middot; .receipt-block (not currently used on any live Lab page as of Sept. 2026 &mdash; Experiment 3 used this pattern until it was rebuilt around the standard workflow-compare/flow-row Method; kept documented for a future entry that genuinely needs input/output/outcome receipts)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Three variants sharing one base: <code class="ds-code">.receipt--input</code> (neutral,
           <code class="ds-code">--color-ink-soft</code> border) for what was actually asked,
@@ -1146,7 +1146,7 @@
       </div>
 
       <div class="ds-group">
-        <p class="ds-group-title">Workflow compare &middot; .workflow-compare (Lab: Traditional vs. Experiment pipeline, used on <a href="/lab/1/">/lab/1/</a>)</p>
+        <p class="ds-group-title">Workflow compare &middot; .workflow-compare (Lab: Traditional vs. Experiment pipeline, used on <a href="/lab/1/">/lab/1/</a>, <a href="/lab/2/">/lab/2/</a>, and <a href="/lab/3/">/lab/3/</a>)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           The strongest at-a-glance insight on an experiment page: two bordered rows, not a diagram, so it stays in
           the site's restrained register. <code class="ds-code">.workflow-compare-row--current</code> outlines
@@ -1269,7 +1269,7 @@
           <div class="ds-row" style="gap: var(--space-4);">
             <a class="btn btn-ghost" href="/design-system/template-experiment/">template-experiment &rarr;</a>
           </div>
-          <p style="margin:var(--space-4) 0 0; color:var(--color-ink-soft); font-size:var(--text-sm);">A blank Lab experiment, built around the scientific-method structure every entry follows: Question (header), Hypothesis + Result, Method, the Experiment itself, Evidence, Finding, Conclusion, Next Question. Predates the current workflow-compare / consolidated Finding &rarr; Implication structure (Experiment 2 was built with the data-driven template below instead) &mdash; still useful as a components reference, just not the current page shape to copy.</p>
+          <p style="margin:var(--space-4) 0 0; color:var(--color-ink-soft); font-size:var(--text-sm);">A blank Lab experiment, built around the scientific-method structure every entry follows: Question (header), Hypothesis + Finding, Method (workflow-compare + flow-row + Tech), the Experiment itself, Finding &rarr; Implication, Next Question. Refreshed 2026-09-04 to match the current structure (it previously said &ldquo;Result&rdquo; instead of &ldquo;Finding,&rdquo; still referenced the retired slugged URL scheme, and still had the retired Evidence section) &mdash; still a copy-and-fill-in scaffold, not the preferred way to start a new page (see Data-driven templates below), but no longer stale as a shape.</p>
         </div>
       </div>
 
@@ -1295,13 +1295,22 @@
         </p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0;">
           <code class="ds-code">templates/lab-experiment.template.html</code> encodes the
-          <em>current</em> page structure (workflow-compare Method centerpiece, consolidated
-          Finding &rarr; Implication) and is now the source of truth for a new experiment page's shape
-          &mdash; the static <code class="ds-code">template-experiment</code> scaffold above predates
-          that structure and is stale relative to it (still fine as a components reference, just not the
-          current page shape to copy). Verified against Experiment 1&rsquo;s real content: rendering it
-          through this template reproduces the shared nav/footer/provenance partials byte-for-byte.
-          Experiment 2 is the template&rsquo;s second real page &mdash; produced the same way, not hand-copied.
+          <em>canonical</em> page structure (workflow-compare Method centerpiece, a separate
+          Experiment section with a Worked/Constraint pair, consolidated Finding &rarr; Implication)
+          and is the source of truth for a new experiment page's shape &mdash; confirmed directly with
+          Dr. Paul 2026-09-04 after Experiments 4 and 5 shipped a leaner Method-only variant (no
+          workflow-compare/flow-row/Tech pills, no separate Worked/Constraint pair) instead of this
+          shape. Verified against Experiment 1&rsquo;s real content: rendering it through this template
+          reproduces the shared nav/footer/provenance partials byte-for-byte. Experiment 2 is the
+          template&rsquo;s second real page, produced the same way; Experiment 3 was rebuilt by hand
+          2026-09-04 to match this shape (it previously had its own bespoke structure).
+        </p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:var(--space-4) 0 0;">
+          <strong>Known drift, not yet reconciled:</strong> Experiments 4 (<a href="/lab/4/">/lab/4/</a>)
+          and 5 (<a href="/lab/5/">/lab/5/</a>) both use a leaner Method &mdash; prose plus the AI/Dr. Paul
+          compare-grid and a stats line, no workflow-compare pipeline, no flow-row, no separate
+          Worked/Constraint pair. This is flagged as drift to bring back in line with the canonical
+          shape above, not a second valid shape &mdash; see <code class="ds-code">claude/project-notes.md</code>.
         </p>
       </div>
 
