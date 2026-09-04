@@ -35,6 +35,8 @@ PAGES = [
     "design-system/index.html",
     "ask-paul/index.html",
     "design-system/template-experiment/index.html",
+    "privacy-policy/index.html",
+    "terms-and-conditions/index.html",
 ]
 
 CSS_FILES = [
