@@ -913,7 +913,9 @@
           <code class="ds-code">.path-tracker-toggle</code> pill sits fixed in the corner. Opting in
           swaps it for a <code class="ds-code">.path-tracker-panel</code> showing a live 15-minute
           countdown and the number of pages visited since opt-in &mdash; a page-visit trail plus an
-          expiry timestamp, never transmitted anywhere. It self-destructs automatically at 00:00, or
+          expiry timestamp, never transmitted anywhere. The panel&rsquo;s <code class="ds-code">.path-tracker-view</code>
+          link opens the same trail as a full page (see <code class="ds-code">.path-map</code> below).
+          It self-destructs automatically at 00:00, or
           immediately on clicking <code class="ds-code">.path-tracker-dismiss</code> &mdash; no
           renewal, no re-prompt either way. See it live on this page&rsquo;s own corner, or read the
           full disclosure on the <a href="/privacy-policy/">Privacy Policy</a>. The two static frames
@@ -936,10 +938,59 @@
                 <span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>
                 <span class="path-tracker-countdown">14:52</span>
                 <span class="path-tracker-trail">3 pages</span>
+                <a href="/breadcrumbs/" class="path-tracker-view">View path</a>
                 <button type="button" class="path-tracker-dismiss" aria-label="Stop tracking">&times;</button>
               </span>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <p class="ds-group-title">Path map &middot; .path-map (on <a href="/breadcrumbs/">/breadcrumbs/</a>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          The full-page view of the same trail the corner widget tracks &mdash; reads the identical
+          <code class="ds-code">pmPathTracker</code> cookie, so the two can never drift apart. Each
+          visited page becomes a node on a connected, vertically-growing path, in visit order; the
+          most recent page pulses via the same <code class="ds-code">.path-tracker-dot--live</code>
+          treatment as the corner widget&rsquo;s live dot. With no active session, the static
+          <code class="ds-code">.path-map-empty</code> state below ships in the page&rsquo;s raw HTML
+          &mdash; real content for anyone or anything not running JavaScript &mdash; and its
+          <code class="ds-code">.path-map-start</code> / <code class="ds-code">.path-map-stop</code>
+          buttons simply trigger the corner widget&rsquo;s own toggle/dismiss controls rather than
+          duplicating the opt-in logic.
+        </p>
+        <div class="ds-frame">
+          <p class="filter-group-label" style="margin-bottom:var(--space-3);">Sample trail (static, for illustration)</p>
+          <div class="path-map-status">
+            <span class="path-tracker-dot path-tracker-dot--live" aria-hidden="true"></span>
+            <span class="path-map-countdown">11:24</span>
+            <span class="path-map-count">3 pages visited</span>
+            <button type="button" class="path-map-stop">Stop tracking now</button>
+          </div>
+          <ol class="path-map-track">
+            <li class="path-map-node">
+              <span class="path-map-node-dot" aria-hidden="true"></span>
+              <span class="path-map-node-body">
+                <span class="path-map-node-title">Home</span>
+                <span class="path-map-node-path">/</span>
+              </span>
+            </li>
+            <li class="path-map-node">
+              <span class="path-map-node-dot" aria-hidden="true"></span>
+              <span class="path-map-node-body">
+                <span class="path-map-node-title">Lab</span>
+                <span class="path-map-node-path">/lab/</span>
+              </span>
+            </li>
+            <li class="path-map-node path-map-node--current">
+              <span class="path-map-node-dot" aria-hidden="true"></span>
+              <span class="path-map-node-body">
+                <span class="path-map-node-title">Lab &middot; Experiment 6</span>
+                <span class="path-map-node-path">/lab/6/</span>
+              </span>
+            </li>
+          </ol>
         </div>
       </div>
 
