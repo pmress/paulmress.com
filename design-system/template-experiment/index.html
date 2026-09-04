@@ -63,7 +63,7 @@
   <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
   <p class="nav-panel-kicker">Menu</p>
   <nav class="nav-panel-links" aria-label="Primary">
-    <a href="/lab/" class="nav-panel-link"><span class="nav-panel-num">01</span>Lab</a>
+    <a href="/lab/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">01</span>Lab</a>
     <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
     <a href="/about/" class="nav-panel-link"><span class="nav-panel-num">03</span>About</a>
   </nav>
@@ -76,13 +76,18 @@
     <div class="wrap">
       <div class="lab-hypothesis" style="border-left-color: var(--color-accent-2); font-family: var(--font-mono); font-style: normal; font-size: var(--text-sm); max-width: 100%;">
         <strong>This is a template, not a real page.</strong> Duplicate this folder to
-        <code class="ds-code" style="background:var(--color-bg);">/lab/N-descriptive-slug/</code>
-        (plain incrementing number, short descriptive slug &mdash; see
+        <code class="ds-code" style="background:var(--color-bg);">/lab/N/</code>
+        (bare incrementing number, no slug &mdash; see
         <a href="/design-system/#lab-urls">Design System &middot; Lab URLs</a>), replace every
         bracketed placeholder below with the real experiment, delete this notice block, and update
         the canonical/OG URLs and the <code class="ds-code" style="background:var(--color-bg);">&lt;title&gt;</code>
         in &lt;head&gt;. Then add a row for it to <a href="/lab/">/lab/</a> and link forward to it from
-        the previous experiment&rsquo;s Next Question.
+        the previous experiment&rsquo;s Next Question. (For a new page, the data-driven
+        <code class="ds-code" style="background:var(--color-bg);">templates/lab-experiment.template.html</code>
+        + <code class="ds-code" style="background:var(--color-bg);">scripts/render_template.py</code>
+        is the preferred way to start &mdash; see <a href="/design-system/#data-driven-templates">Design
+        System &middot; Data-driven templates</a>. This scaffold stays useful as a components
+        reference either way.)
       </div>
     </div>
   </section>
@@ -114,7 +119,7 @@
     </div>
   </section>
 
-  <!-- 2. HYPOTHESIS + RESULT (most prominent pairing on the page — keep it
+  <!-- 2. HYPOTHESIS + FINDING (most prominent pairing on the page — keep it
        near the top, before any method or mechanics) -->
   <section>
     <div class="wrap">
@@ -124,51 +129,69 @@
           <p class="hyp-result-text">[The claim, stated plainly, before the evidence &mdash; specific enough that it could turn out to be wrong.]</p>
         </div>
         <div class="hyp-result-col">
-          <p class="hyp-result-label">Result</p>
-          <p class="hyp-result-text">[What actually happened, or where the test currently stands &mdash; this should echo the Finding below. No status pill here; it's already in the header.]</p>
+          <p class="hyp-result-label">Finding</p>
+          <p class="hyp-result-text">[What the evidence shows, stated as a standing conclusion in present tense &mdash; not a narration of the test. If the experiment is still Ongoing and there's genuinely nothing to report yet, this can say so plainly (e.g. "TBD — this experiment is still ongoing") rather than being filled with a guessed outcome. No status pill here; it's already in the header.]</p>
         </div>
       </div>
-      <p class="hyp-result-limitations" data-reveal>[Optional: a one-line honesty check on how much this result can carry &mdash; sample size, single-subject, still running, etc. Delete this line if it isn't needed.]</p>
+      <p class="hyp-result-limitations" data-reveal>[Optional: a one-line honesty check on how much this finding can carry &mdash; sample size, single-subject, still running, etc. Delete this line if it isn't needed.]</p>
     </div>
   </section>
 
-  <!-- 3. METHOD -->
+  <!-- 3. METHOD (workflow-compare centerpiece — the current convention as of
+       Experiments 1 and 2; see claude/project-notes.md → "Lab experiment page
+       conventions" for when a leaner Method-only shape, without this
+       centerpiece, has also been used instead. Method is always past tense:
+       a record of what was actually done, regardless of the experiment's
+       current status.) -->
   <section>
     <div class="wrap">
       <p class="kicker" data-reveal>Method</p>
-      <p class="section-lede" data-reveal>[What actually got built or tested, and how.]</p>
 
-      <div data-reveal>
+      <div class="workflow-compare" data-reveal>
+        <div class="workflow-compare-row">
+          <span class="workflow-compare-label">Traditional</span>
+          <div class="pipeline" style="margin-bottom:0;">
+            <span class="pill">[Step]</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span>
+            <span class="pill">[Step]</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span>
+            <span class="pill">[Step]</span>
+          </div>
+        </div>
+        <div class="workflow-compare-row workflow-compare-row--current">
+          <span class="workflow-compare-label">Experiment</span>
+          <div class="pipeline" style="margin-bottom:0;">
+            <span class="pill">[Step]</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span>
+            <span class="pill">[Step]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 icon-step walkthrough of what actually happened, in order. Add or
+           remove &lt;div class="flow-step"&gt; blocks (with a &lt;span
+           class="flow-arrow"&gt; between each) as the real process needs. -->
+      <div class="flow-row" style="margin-top:var(--space-8);" data-reveal>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
+          </span>
+          <h3>[Step one]</h3>
+          <p>[What happened first.]</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
+          </span>
+          <h3>[Step two]</h3>
+          <p>[What happened next.]</p>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-7);" data-reveal>
         <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
         <div class="pipeline" style="margin-bottom:0;">
           <span class="pill">[Tool]</span>
           <span class="pill">[Tool]</span>
           <span class="pill">[Tool]</span>
-        </div>
-      </div>
-
-      <!-- Optional: a .steps sequence if the method is a real multi-step process worth walking through. Delete if the Tech list above already says enough. -->
-      <div class="steps" style="margin-top:var(--space-8);" data-reveal>
-        <span class="steps-pulse" aria-hidden="true"></span>
-        <span class="steps-pulse" aria-hidden="true"></span>
-        <span class="steps-pulse" aria-hidden="true"></span>
-        <div class="step">
-          <span class="step-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
-          </span>
-          <div>
-            <h3>[Step one]</h3>
-            <p>[What happened first.]</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
-          </span>
-          <div>
-            <h3>[Step two]</h3>
-            <p>[What happened next. Add or remove &lt;div class="step"&gt; blocks freely.]</p>
-          </div>
         </div>
       </div>
     </div>
@@ -198,7 +221,9 @@
         </div>
       </div>
 
-      <div class="worked-list" style="margin-top:var(--space-6);" data-reveal>
+      <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>[One line of real numbers &mdash; pages touched, items fixed, whatever this experiment actually counted.]</p>
+
+      <div class="worked-list" style="margin-top:var(--space-5);" data-reveal>
         <div class="worked-item is-good">
           <span class="worked-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -215,23 +240,7 @@
     </div>
   </section>
 
-  <!-- 5. EVIDENCE -->
-  <section>
-    <div class="wrap">
-      <p class="kicker" data-reveal>Evidence</p>
-      <p class="chapter-range" data-reveal>01 &middot; [one-line description]</p>
-      <h3 style="margin:0 0 var(--space-4); font-size:var(--text-xl);" data-reveal>[What this receipt demonstrates]</h3>
-      <div data-reveal>
-        <div class="receipt-block receipt--outcome">
-          <p class="receipt-label"><span aria-hidden="true">&#10003;</span> Outcome</p>
-          <p>[What happened next.]</p>
-        </div>
-      </div>
-      <!-- Add more receipt groups (kicker + h3 + block trio) for additional evidence. Never invent a quote or an output. -->
-    </div>
-  </section>
-
-  <!-- 6. FINDING → IMPLICATION: one inset callout, not a full-bleed section,
+  <!-- 5. FINDING → IMPLICATION: one inset callout, not a full-bleed section,
        so it reads as part of the page rather than the page ending. This is
        the one moment meant to stop a scanning reader — keep the Finding to a
        single sentence or two, and don't let Implication restate it in
@@ -262,7 +271,13 @@
     </div>
   </section>
 
-  <!-- 7. NEXT QUESTION (future/ongoing framing: what you'll explore next) -->
+  <!-- 6. NEXT QUESTION (future/ongoing framing: what you'll explore next).
+       Point the href/label at the actual next experiment once it exists
+       (e.g. href="/lab/N+1/", "Read Experiment N+1 →") — fall back to
+       href="/lab/" + "Back to the Lab" only when there genuinely isn't a
+       next entry yet. Don't leave a page pointing at "Back to the Lab"
+       once its real sequel is live; also repoint the *previous*
+       experiment's own Next Question to this one once it ships. -->
   <section>
     <div class="wrap">
       <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
