@@ -37,7 +37,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"></noscript>
 
 <link rel="stylesheet" href="../styles.css">
 
@@ -79,7 +81,7 @@
   </div>
 </header>
 <div class="nav-scrim" id="nav-scrim"></div>
-<div class="nav-panel" id="nav-panel" aria-hidden="true">
+<div class="nav-panel" id="nav-panel" aria-hidden="true" inert>
   <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
   <p class="nav-panel-kicker">Menu</p>
   <nav class="nav-panel-links" aria-label="Primary">
