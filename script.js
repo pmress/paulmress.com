@@ -26,6 +26,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
     panel.classList.add("is-open");
     scrim.classList.add("is-open");
     panel.setAttribute("aria-hidden", "false");
+    panel.removeAttribute("inert");
     document.body.style.overflow = "hidden";
     if (panelNet) panelNet.start();
   }
@@ -35,6 +36,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
     panel.classList.remove("is-open");
     scrim.classList.remove("is-open");
     panel.setAttribute("aria-hidden", "true");
+    panel.setAttribute("inert", "");
     document.body.style.overflow = "";
     if (panelNet) panelNet.stop();
   }
