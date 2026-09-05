@@ -125,6 +125,15 @@
       "drive_modified": "2026-09-05T01:09:16.015Z",
       "last_synced": "2026-09-05",
       "note": "Brief created 2026-09-05 via the paulmress-content-doc-backfill skill -- reverse-engineered from the live page's already-shipped and already-revised state (the page itself launched 2026-09-04 and had no brief until now), explicitly flagged inside the doc as a reconstruction for Dr. Paul's review, not an originally-authored brief. Reconstructed from the live page's final state as of 2026-09-05, after: the original launch (Ongoing, Finding/Implication TBD), a lede trim, the six-part update that set status to Supported and filled in Finding/Implication/limitations and removed the Scaffold flow-step, a shortened Implication with the 'For a CMO' framing removed per Dr. Paul's own final wording, and removal of the 'Authoring the Privacy Policy and Terms & Conditions...' bullet from the AI-handled list per Dr. Paul's direct request. The brief notes inline that the Ship flow-step text and the stats line still reference the two prerequisite pages, since that specific edit only asked for the AI-handled bullet to be removed, not every mention. No Entry 006 row was added to the 'Lab -- Content' doc's Entry List as part of this backfill -- that doc is already missing Entry 004 and Entry 005 rows (a pre-existing, previously-flagged gap), and adding only 006 would have been inconsistent; left as a future single pass to add 004-006 together."
+    },
+    {
+      "path": "/lab/7/",
+      "file": "lab/7/index.html",
+      "drive_doc_id": "1wHXICVKsgNkDO8t5HptWavjf4MDpdZya2bmP4TaEH6Y",
+      "drive_doc_title": "Experiment 7 — Can AI Achieve a Perfect Google PageSpeed Insights Score — Content",
+      "drive_modified": "2026-09-05T13:43:58.156Z",
+      "last_synced": "2026-09-05",
+      "note": "Page built and brief authored together in the same session, 2026-09-05, following the paulmress-lab-experiment skill: Hypothesis and Finding are Dr. Paul's own exact chat wording (\"AI can achieve a perfect Google PageSpeed Insights score on mobile and desktop.\" / \"Not perfect, but close to perfect.\"), Status (Rejected) and the Next Question topic (avatar/chatbot, carried forward from Experiment 1) are also his direct calls, and the Implication paragraph was Claude-drafted at his direct request (same standing authorship exception already used for Experiments 4, 5, and 6). Method/Receipts sections are the real PageSpeed audit/fix/deploy/re-measure work documented in project-notes.md. lab/index.html got a new Entry 7 row (data-status=rejected) and lab/6/index.html's Next Question CTA was repointed from a generic /lab/ preview to /lab/7/."
     }
   ],
   "unmanaged_pages": [
