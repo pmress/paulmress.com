@@ -5,19 +5,20 @@
     {
       "path": "/",
       "file": "index.html",
-      "drive_doc_id": "18Vk87dXJEIOyk7HDsxZ2ij90KDkQco2SkaDHn-BdWVo",
+      "drive_doc_id": "1vHpKC7ouOajlfCQs3HxAqxwxbcODbcj20IATX5O8u8o",
       "drive_doc_title": "Home — Content",
-      "drive_modified": "2026-08-25T19:21:49.438Z",
-      "last_synced": "2026-08-25"
+      "drive_modified": "2026-09-05T16:33:10.629Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: full resync at Dr. Paul's request to bring all Drive docs into agreement with what's actually live. Fixed two stale items: the Note's Experiment 1 link (was /lab/experiment1/, now /lab/1/) and the Photo section (now documents the WebP+PNG <picture> fallback shipped in the PageSpeed fixes, not a bare PNG). Everything else checked and unchanged."
     },
     {
       "path": "/about/",
       "file": "about/index.html",
-      "drive_doc_id": "1rnFIoeLAwW8aRBD-NM1wwz16QlMBjaoV8fNGG1Sjo9k",
+      "drive_doc_id": "1eAtaxVMQFzkfQFMEawqNZli4MwRg9v94YXI8yPVyVcc",
       "drive_doc_title": "About — Content",
-      "drive_modified": "2026-08-31T10:25:11.884Z",
-      "last_synced": "2026-08-31",
-      "note": "2026-08-31: fixed one stale link in this brief (Card 3's 'Read the experiment' link pointed to the retired /lab/experiment1/ stub, now /lab/1/) and added the Content Brief Schema header block (Sync status: Draft). This was a targeted fix, not a full section-by-section reconciliation against the live page."
+      "drive_modified": "2026-09-05T16:35:29.051Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: full section-by-section reconciliation against the live page (previously only a targeted 2026-08-31 fix) -- every section verified word-for-word against the live /about/ page's rendered text; no content drift found. Header updated to Synced. Photo note updated to mention the WebP+PNG fallback."
     },
     {
       "path": "/story/",
@@ -25,7 +26,8 @@
       "drive_doc_id": "1QgJs6xMtl9lwmxOHr7qvi7KksdZLIY72_eI0IPOvcDo",
       "drive_doc_title": "Story — Content",
       "drive_modified": "2026-08-24T18:14:46.786Z",
-      "last_synced": "2026-08-24"
+      "last_synced": "2026-08-24",
+      "note": "2026-09-05: checked against the live /story/ page as part of a full Drive-doc resync pass -- no drift found, left unchanged."
     },
     {
       "path": "/thinking/",
@@ -34,34 +36,34 @@
       "drive_doc_title": "Thinking — Content",
       "drive_modified": "2026-09-03T12:14:20.636Z",
       "last_synced": "2026-09-03",
-      "note": "2026-09-03: added the 'Does AI Know Best?' node (kicker: Motherly AI) to both the live page and this brief, per Dr. Paul's direct request — provenance mark set to Human Creation. Also fixed a stale claim in this doc's first Thought section ('This is currently the only live node.' → 'This was the first live node.'), since the AI Sharpens AI node had already been live since Aug 29 without that line ever being updated. Note: this doc uses real Google Docs Heading 1/2 styles for its Thought sections (not literal '#'/'##' text like the Lab brief) — an early attempt to add the new section via Ctrl+Alt+1/2 keyboard shortcuts misfired (typed literal digits instead of applying heading styles, and the new text was accidentally appended directly onto the prior line with no paragraph break); caught immediately, undone via repeated Ctrl+Z back to the clean original state (verified via a fresh Drive API read), then redone safely: Return first to create the new paragraph, plain text typed, then each heading line's style applied afterward via the toolbar's paragraph-style dropdown. 2026-09-03 (later): added the same new Content Toolbar organism (Topic filter/sort/search) above the thought nodes, live on the page. UI-only addition, not new written content — the three thought nodes themselves are unchanged from what's already documented in the Drive brief. 2026-09-03 (later): live page gained the same progressive scroll-reveal mechanism (.scroll-sentinel / .is-scroll-hidden) above the thought nodes, from Experiment 5. UI-only addition, not new written content -- the three thought nodes themselves are unchanged from what's already documented in this brief."
+      "note": "2026-09-03: added the 'Does AI Know Best?' node (kicker: Motherly AI) to both the live page and this brief, per Dr. Paul's direct request — provenance mark set to Human Creation. Also fixed a stale claim in this doc's first Thought section ('This is currently the only live node.' → 'This was the first live node.'), since the AI Sharpens AI node had already been live since Aug 29 without that line ever being updated. Note: this doc uses real Google Docs Heading 1/2 styles for its Thought sections (not literal '#'/'##' text like the Lab brief) — an early attempt to add the new section via Ctrl+Alt+1/2 keyboard shortcuts misfired (typed literal digits instead of applying heading styles, and the new text was accidentally appended directly onto the prior line with no paragraph break); caught immediately, undone via repeated Ctrl+Z back to the clean original state (verified via a fresh Drive API read), then redone safely: Return first to create the new paragraph, plain text typed, then each heading line's style applied afterward via the toolbar's paragraph-style dropdown. 2026-09-03 (later): added the same new Content Toolbar organism (Topic filter/sort/search) above the thought nodes, live on the page. UI-only addition, not new written content — the three thought nodes themselves are unchanged from what's already documented in the Drive brief. 2026-09-03 (later): live page gained the same progressive scroll-reveal mechanism (.scroll-sentinel / .is-scroll-hidden) above the thought nodes, from Experiment 5. UI-only addition, not new written content -- the three thought nodes themselves are unchanged from what's already documented in this brief. 2026-09-05: checked against the live /thinking/ page as part of a full Drive-doc resync pass -- no drift found beyond what was already documented, left unchanged."
     },
     {
       "path": "/lab/",
       "file": "lab/index.html",
-      "drive_doc_id": "17fnnT6LfCv6HnyT4UxeLkfmov4dA8TzgQZ0c17suJ7A",
+      "drive_doc_id": "1eY5Pr6bqaMLa_KeElfZtyAL0-l6cfYDgpa6NCuHENpg",
       "drive_doc_title": "Lab — Content",
-      "drive_modified": "2026-09-03T12:03:00.909Z",
-      "last_synced": "2026-09-03",
-      "note": "2026-09-03: added Entry 002 (Experiment 2) and Entry 003 (Experiment 3) to the Entry List — previously stopped at Entry 001 and predated both. Fixed Entry 001's stale bits found along the way: Status pill Ongoing → Supported (live page moved to Supported on Aug 29) and Links to /lab/experiment1/ → /lab/1/. Fixed the URL convention section (still described the old /lab/experimentN/ scheme) and the Retired page note's stale /lab/experiment1/ redirect target, both → bare-number scheme. Live page also updated the same day: new /lab/3/ row added to the experiment list. Later the same day, once the Experiment 2 Drive brief was created, Entry 002's 'Full content' line was updated from 'no separate Content doc exists yet' to point at that new doc, matching Entry 001/003's pattern. Later the same day, once the Experiment 2 Drive brief was created, Entry 002's 'Full content' line was updated from 'no separate Content doc exists yet' to point at that new doc, matching Entry 001/003's pattern. 2026-09-03 (later): added Entry 004 (Experiment 4) to the live experiment list and a new Content Toolbar (search/filter/sort) organism above it — not yet reflected in this Drive brief's Entry List or a new 'toolbar' section; a real drift, flagged here for a future sync pass rather than silently left unmarked. 2026-09-03 (later): added Entry 005 (Experiment 5) to the live experiment list, plus a progressive scroll-reveal mechanism (.scroll-sentinel / .is-scroll-hidden) above the toolbar -- not yet reflected in this Drive brief's Entry List; a real drift, flagged here for a future sync pass."
+      "drive_modified": "2026-09-05T16:26:21.781Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: added the missing Entry 004, 005, 006, and 007 rows to the Entry List in one consolidated pass (per Dr. Paul's request to bring all Drive docs into agreement with what's live), with each entry's domain tag taken directly from its live row. Status pills for Entries 1-3 checked against the live page and confirmed unchanged."
     },
     {
       "path": "/lab/1/",
       "file": "lab/1/index.html",
-      "drive_doc_id": "1xCkDXwuxBjf2aKbel1mKNGEdDpqdYeP30iYXPFnEU2k",
+      "drive_doc_id": "14VEWiDAojgAd4LN1Y9Jx8hlPaSL3cyvDfAE2Ig74Ggg",
       "drive_doc_title": "Experiment 1 — Can AI Replace a CMS — Content",
-      "drive_modified": "2026-08-31T10:17:27.245Z",
-      "last_synced": "2026-08-31",
-      "note": "2026-08-31: fixed in this brief — URL/kicker updated from /lab/experiment1/ + \"Experiment 001\" to /lab/1/ + \"1\"; status pill Ongoing → Supported; the invented \"Spec table\" heading (never a real /design-system/ component) renamed to \"Stats line\" and its stats corrected to match the live stats line; the unfilled \"Evidence · Receipt 01 — Input: TBD / Outcome: TBD\" placeholder removed, since the live page's Aug 29 rewrite dropped Evidence/receipts entirely; Content Brief Schema header block added (Sync status: Draft). Not yet fixed: the Hypothesis statement's wording still differs from the live page's phrasing — left untouched since that's Dr. Paul's own claim, not something to silently reword. Full section-by-section reconciliation still outstanding."
+      "drive_modified": "2026-09-05T16:23:50.025Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: brief fully rewritten -- the live page had been substantially rewritten again since the 2026-08-31 targeted fix (new Hypothesis/Finding/Method/Implication, now matching the Shape A structure every later experiment uses), and this brief still described the old five-part 01-05 structure. Resynced wholesale per Dr. Paul's direct instruction to bring all Drive docs into agreement with what's live, rather than treating the stale brief as authoritative. One residual item flagged, not fixed: the live page's JSON-LD is still TechArticle, the one outlier against the site's WebPage convention -- a schema question, left for a future paulmress-schema-audit pass."
     },
     {
       "path": "/design-system/",
       "file": "design-system/index.html",
-      "drive_doc_id": "1j7-3HzM6q9IC7EFc7zJd_gW8MndF89MHBcfN_emv0p4",
+      "drive_doc_id": "132dcQ5N2PnUvOZsB_Uyx2Btt9M2Ui1uDygDDGDGjpbU",
       "drive_doc_title": "Design System — Content",
-      "drive_modified": "2026-08-31T10:24:16.641Z",
-      "last_synced": "2026-08-31",
-      "note": "2026-08-31: fixed the stale cross-reference — this brief claimed 'There is no separate About — Content doc yet', which had been false since 2026-08-25. Now points to the real About — Content doc and says to edit About's copy there going forward. Content Brief Schema header block added (Sync status: Draft, since this was a targeted fix, not a full reconciliation). 2026-09-03 (later): live page gained new Atoms (.search-field, .filter-chip, .sort-select, .toolbar-count/.toolbar-clear), new Molecules (.filter-group, .sort-control), and a new Organism (.content-toolbar, with a live working demo) — all from Experiment 4. Not yet reflected in this Drive brief; flagged as drift for a future sync pass. 2026-09-03 (later): live page gained a new 'Progressive scroll reveal' Organisms group (.scroll-sentinel / .is-scroll-hidden) from Experiment 5, with a live demo. Not yet reflected in this Drive brief; flagged as drift for a future sync pass."
+      "drive_modified": "2026-09-05T16:30:16.539Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: brief fully resynced -- documents the Content Toolbar, Progressive Scroll Reveal, Path Tracker, and Path Map organisms (all live since their respective experiments but never added to this doc), corrects a stale nav-order claim (was 'Story, Thinking, Lab', live nav actually reads Lab, Thinking, About), and notes the Ask Paul retirement's effect on this page's Organisms section. Two small live-page drift items were also found and fixed the same session: the .workflow-compare caption and the Templates section's experiment count both still stopped at six/Experiment 6, missing Experiment 7 -- see design-system/index.html's own commit for the fix."
     },
     {
       "path": "/lab/3/",
@@ -70,16 +72,16 @@
       "drive_doc_title": "Experiment 3 — Can AI Catch and Fix Its Own Documentation Drift — Content",
       "drive_modified": "2026-09-04T12:26:22.234Z",
       "last_synced": "2026-09-04",
-      "note": "2026-09-03: new page and new brief, built together this session. Copy finalized per Dr. Paul's approval: H1/lede/hypothesis note/status pill (Inconclusive)/pull-quote/what-I-learned all set to final text; all 'Paul' references in this brief changed to 'Dr. Paul' (page discusses Claude's own work in the first person, so this was scoped as a disclosure choice, not applied site-wide); PROPOSED and NEEDS PAUL placeholder tags removed. Also recovered this session from two accidental full-selection edits during Find & Replace (browser-automation coordinate drift) — both fully repaired and verified against a fresh Drive read, including reapplying the Postscript heading's Heading 1 style after an undo cascade reverted it to Normal text. Later the same day, per Dr. Paul's direct request, the 'Next Experiment' section lede was simplified from 'Not this experiment's question, but the next one in the queue, raised back in Experiment 1: talking avatar, text chatbot, or shelved entirely.' to 'Talking avatar, text chatbot, or shelved entirely?' (link to Experiment 1 removed) — matching the live page edit deployed the same day. 2026-09-03 (later): live page's 'Next Experiment · 4' section was rewritten — kicker to 'Next Question · 4', headline/lede changed from the avatar/chatbot topic to Experiment 4's real topic (the content toolbar), CTA now links to /lab/4/. The avatar/chatbot content moved to Experiment 4's own Next Question section instead. This Drive brief's own Next Experiment text was not updated to match — flagged as drift for a future sync pass. 2026-09-04: live page fully rebuilt to match the site's canonical Lab-experiment shape (Hypothesis+Finding pairing, workflow-compare Method + flow-row + Tech pills, a separate Experiment section with AI/Dr. Paul cards + stats line + Worked/Constraint pair, Finding -> Implication instead of a 'What I learned' Conclusion) after a site-wide template conformance review — confirmed with Dr. Paul first (AskUserQuestion: standardize on the fuller Exp1/2 shape; rebuild Exp3 into it using its own already-stated content, not new interpretive claims). The receipt-block backlog list, the separate Results section, and the 'What I learned' Conclusion were folded into the new structured fields; the Postscript on 'guardrails' was kept as-is since it's real, distinctive content with no equivalent slot in the standard shape. Finding/finding_support/Implication/takeaway text was assembled from Dr. Paul's own already-stated words (the pull-quote and 'what I learned' sentence), not newly invented. This Drive brief was NOT resynced to this rewrite -- the drift noted above (stale Next Experiment text) is now compounded by the full structural rewrite; needs a real resync pass, flagged here rather than left unmarked. 2026-09-04 (resync completed): the Drive brief was fully restructured to match the live page's rebuild -- section headers renamed (02 Hypothesis -> 02 Hypothesis + Finding, 03 Build -> 03 Method, 04 Results -> 04 The Experiment, 05 Conclusion -> 05 Finding -> Implication), the Hypothesis paragraph split out into separate Hypothesis/Finding/Limitations lines, the Method section rewritten with the Traditional/Experiment pipeline pairs, the 4 flow steps, and the Tech list, the Experiment section given the AI handled/Dr. Paul handled lists plus a Worked/Constraint pair, the Conclusion section replaced with Finding/Finding support x2/Implication/Takeaway lines, and the stale Next Experiment section rewritten to correctly preview and link to /lab/4/ (the content-toolbar experiment) instead of the old avatar/chatbot topic. Postscript kept verbatim, unchanged. Verified via a full re-read of the doc after editing -- no corruption, no stray content. Both outstanding drift items noted above (stale Next Experiment text, unresynced structural rewrite) are now resolved; header block's Sync status/Last synced/Components used updated to match."
+      "note": "2026-09-03: new page and new brief, built together this session. Copy finalized per Dr. Paul's approval: H1/lede/hypothesis note/status pill (Inconclusive)/pull-quote/what-I-learned all set to final text; all 'Paul' references in this brief changed to 'Dr. Paul' (page discusses Claude's own work in the first person, so this was scoped as a disclosure choice, not applied site-wide); PROPOSED and NEEDS PAUL placeholder tags removed. Also recovered this session from two accidental full-selection edits during Find & Replace (browser-automation coordinate drift) — both fully repaired and verified against a fresh Drive read, including reapplying the Postscript heading's Heading 1 style after an undo cascade reverted it to Normal text. Later the same day, per Dr. Paul's direct request, the 'Next Experiment' section lede was simplified from 'Not this experiment's question, but the next one in the queue, raised back in Experiment 1: talking avatar, text chatbot, or shelved entirely.' to 'Talking avatar, text chatbot, or shelved entirely?' (link to Experiment 1 removed) — matching the live page edit deployed the same day. 2026-09-03 (later): live page's 'Next Experiment · 4' section was rewritten — kicker to 'Next Question · 4', headline/lede changed from the avatar/chatbot topic to Experiment 4's real topic (the content toolbar), CTA now links to /lab/4/. The avatar/chatbot content moved to Experiment 4's own Next Question section instead. This Drive brief's own Next Experiment text was not updated to match — flagged as drift for a future sync pass. 2026-09-04: live page fully rebuilt to match the site's canonical Lab-experiment shape (Hypothesis+Finding pairing, workflow-compare Method + flow-row + Tech pills, a separate Experiment section with AI/Dr. Paul cards + stats line + Worked/Constraint pair, Finding -> Implication instead of a 'What I learned' Conclusion) after a site-wide template conformance review — confirmed with Dr. Paul first (AskUserQuestion: standardize on the fuller Exp1/2 shape; rebuild Exp3 into it using its own already-stated content, not new interpretive claims). The receipt-block backlog list, the separate Results section, and the 'What I learned' Conclusion were folded into the new structured fields; the Postscript on 'guardrails' was kept as-is since it's real, distinctive content with no equivalent slot in the standard shape. Finding/finding_support/Implication/takeaway text was assembled from Dr. Paul's own already-stated words (the pull-quote and 'what I learned' sentence), not newly invented. This Drive brief was NOT resynced to this rewrite -- the drift noted above (stale Next Experiment text) is now compounded by the full structural rewrite; needs a real resync pass, flagged here rather than left unmarked. 2026-09-04 (resync completed): the Drive brief was fully restructured to match the live page's rebuild -- section headers renamed (02 Hypothesis -> 02 Hypothesis + Finding, 03 Build -> 03 Method, 04 Results -> 04 The Experiment, 05 Conclusion -> 05 Finding -> Implication), the Hypothesis paragraph split out into separate Hypothesis/Finding/Limitations lines, the Method section rewritten with the Traditional/Experiment pipeline pairs, the 4 flow steps, and the Tech list, the Experiment section given the AI handled/Dr. Paul handled lists plus a Worked/Constraint pair, the Conclusion section replaced with Finding/Finding support x2/Implication/Takeaway lines, and the stale Next Experiment section rewritten to correctly preview and link to /lab/4/ (the content-toolbar experiment) instead of the old avatar/chatbot topic. Postscript kept verbatim, unchanged. Verified via a full re-read of the doc after editing -- no corruption, no stray content. Both outstanding drift items noted above (stale Next Experiment text, unresynced structural rewrite) are now resolved; header block's Sync status/Last synced/Components used updated to match. 2026-09-05: checked against the live page as part of a full Drive-doc resync pass -- already fully resynced (this brief's 2026-09-04 resync note above was accurate), no further drift found."
     },
     {
       "path": "/lab/4/",
       "file": "lab/4/index.html",
-      "drive_doc_id": "1rnuD30qMfpaSo0FQ0KdHTgpahpNabHLlKUhJw-asb6Q",
+      "drive_doc_id": "1rpzzwtIXID2WWASplexGhy57Bs-VUZBcX6vmfiKSix8",
       "drive_doc_title": "Experiment 4 — Can AI Build a Helpful Filter, Sort, and Search — Content",
-      "drive_modified": "2026-09-03T13:01:10.827Z",
-      "last_synced": "2026-09-03",
-      "note": "2026-09-03: new page and new brief, built together. Documents the new Content Toolbar organism (search/filter/sort), built from existing design tokens and wired live onto /lab/ and /thinking/, plus the /design-system/ documentation for it. Hypothesis and Finding are Dr. Paul's own words (stated identically, since the finding directly confirmed the hypothesis); the Implication section was explicitly drafted by Claude at Dr. Paul's request, with a CMO lens — flagged as AI-authored in the Drive brief, unlike the Hypothesis/Finding. 2026-09-03 (later): live page's 'Next Question · 5' section was rewritten -- headline/lede/CTA changed from the avatar/chatbot placeholder to Experiment 5's real topic (progressive scroll reveal), CTA now links to /lab/5/. This Drive brief's own Next Question text was not updated to match -- flagged as drift for a future sync pass. 2026-09-04: page structurally rebuilt into the canonical Shape A (workflow-compare Method centerpiece + flow-row + Tech pills, separate \"The experiment\" section with a new Worked/Constraint pair) -- Hypothesis, Finding, and Implication wording unchanged, only the section layout and the added Worked/Constraint bullets (sourced from the real .is-toolbar-hidden CSS-specificity bug documented in project-notes.md, not invented). This Drive brief still reflects the page's prior leaner Method-only structure -- flagged for a future resync pass alongside Experiment 3's."
+      "drive_modified": "2026-09-05T16:21:51.959Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: brief resynced to the live page's Shape A rebuild (2026-09-04) -- this brief still described the original Shape B single-section Method after that rebuild. Restructured into the numbered 02/03/04 Shape A sections (workflow-compare Method + flow-row + Tech pills, separate 'The experiment' section with the real .is-toolbar-hidden Worked/Constraint pair); Hypothesis/Finding/Implication wording unchanged."
     },
     {
       "path": "/lab/2/",
@@ -88,34 +90,34 @@
       "drive_doc_title": "Experiment 2 — If AI Replaced the CMS, What Stops the Site From Drifting — Content",
       "drive_modified": "2026-09-03T11:59:22.473Z",
       "last_synced": "2026-09-03",
-      "note": "2026-09-03: this page had no Drive brief since it shipped 2026-08-29 (authored directly into templates/data/lab-experiment.2-self-healing-design-system.json and the live page). At Dr. Paul's request, a brief was reconstructed this session via the paulmress-content-doc-backfill skill by reading the live page and its data file back into brief form — new subfolder + Content doc created in the Lab folder, matching the Experiment 1/3 header-block convention. Flagged in the doc itself as a reconstruction, not an originally-authored brief — needs Dr. Paul's review. Also carries the 2026-09-03 Next Question CTA update (now points to /lab/3/), which had already been made live before this brief existed."
+      "note": "2026-09-03: this page had no Drive brief since it shipped 2026-08-29 (authored directly into templates/data/lab-experiment.2-self-healing-design-system.json and the live page). At Dr. Paul's request, a brief was reconstructed this session via the paulmress-content-doc-backfill skill by reading the live page and its data file back into brief form — new subfolder + Content doc created in the Lab folder, matching the Experiment 1/3 header-block convention. Flagged in the doc itself as a reconstruction, not an originally-authored brief — needs Dr. Paul's review. Also carries the 2026-09-03 Next Question CTA update (now points to /lab/3/), which had already been made live before this brief existed. 2026-09-05: checked against the live page as part of a full Drive-doc resync pass -- matches exactly, no drift found."
     },
     {
       "path": "/lab/5/",
       "file": "lab/5/index.html",
-      "drive_doc_id": "1RUWlpTMyPk8JceC9BcFuqvdtHjXGjG-rcVp2efpRB0w",
+      "drive_doc_id": "1fyqfHgm2H6PbI3lfFSmoYZvwlRSD18hFC8FqnF65z-4",
       "drive_doc_title": "Experiment 5 — Can AI Build an Infinite-Scroll Page That Stays Fully Visible to AI — Content",
-      "drive_modified": "2026-09-04T10:23:40.328Z",
-      "last_synced": "2026-09-04",
-      "note": "2026-09-03: new page and new brief, built together. Originally scoped in chat as two separate experiments (pagination for the Lab, infinite scroll for Thinking); collapsed into one after research showed most AI crawlers don't execute JavaScript, so content already present in the HTML but staged behind a CSS class stays fully visible regardless of scroll state. Hypothesis is Dr. Paul's own confirmed wording. Finding and Implication are explicitly TBD -- status Ongoing -- and marked as such on both the live page and this brief; not to be filled in by Claude. Also moved the avatar/chatbot Next Question topic down from slot 5 (previewed on /lab/4/) to slot 6 (now previewed on /lab/5/). 2026-09-04: Dr. Paul set the final Finding and status (Ongoing -> Supported), and asked Claude to draft the Implication with a CMO lens (same authorship exception as Experiment 4 -- flagged as Claude-drafted-at-Paul's-request in both the live page and this brief, not a standing precedent). Live page and Drive brief both updated to match: Hypothesis/Finding pair, the top limitations note (swapped to Paul's new wording), the Finding->Implication section, the DR. PAUL HANDLED bullet, and the header Status/Last synced fields. Also folded in as part of the same day's work: fixed a post-launch scroll-reveal timing bug in script.js (the reveal was firing before the sentinel was ever visible on screen) -- not itself a content change, no manifest entry of its own since script.js is shared code, not a page. 2026-09-04 (later): page structurally rebuilt into the canonical Shape A (workflow-compare Method centerpiece + flow-row + Tech pills, separate \"The experiment\" section with a new Worked/Constraint pair) -- Hypothesis, Finding, and Implication wording unchanged, only the section layout and the added Worked/Constraint bullets (sourced from the real rootMargin scroll-reveal timing bug documented in project-notes.md, not invented). This Drive brief still reflects the page's prior leaner Method-only structure -- flagged for a future resync pass alongside Experiment 3's and Experiment 4's."
+      "drive_modified": "2026-09-05T16:22:22.744Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: brief resynced to the live page's Shape A rebuild (2026-09-04) -- this brief still described the original single-section Method after that rebuild. Restructured into the numbered 02/03/04 Shape A sections (workflow-compare Method + flow-row + Tech pills, separate 'The experiment' section with the real IntersectionObserver rootMargin Worked/Constraint pair); Hypothesis/Finding/Implication wording unchanged. Also notes the Next Question CTA's repoint to Experiment 6, which had already happened live but wasn't reflected in the brief."
     },
     {
       "path": "/privacy-policy/",
       "file": "privacy-policy/index.html",
-      "drive_doc_id": "1SR037ZuiM9XxiYqiqenCryp_jiUd86atu5DA7izyW7U",
+      "drive_doc_id": "1YJ3Ov8eXLN2YIVYP_wqFHZGVFrP-s5w2ROFYLmI8avY",
       "drive_doc_title": "Privacy Policy — Content",
-      "drive_modified": "2026-09-04T16:37:52.044Z",
-      "last_synced": "2026-09-04",
-      "note": "2026-09-04: new page, brief authored directly (not a backfill -- page didn't exist yet), scaffolded via paulmress-page-scaffold ahead of the upcoming path-tracker cookie Lab experiment. Live page built from the brief: plain Hero (kicker/H1/lede only, no buttons/photo/canvas -- deliberately not .hero-canvas, which is About's page-specific network-animation variant), then a plain numbered-heading Body section (no design-system 'long-form legal text' component exists, so this is flagged as plain markup, not a named component). Content covers: this is the site's only cookie, no third-party cookies/trackers/analytics anywhere, exactly what the cookie contains/doesn't contain, strictly opt-in, self-destructs at 15 minutes with no renewal (also killed on manual widget dismissal), and explicitly distinguishes 'no third-party cookies' from 'zero third-party involvement' by naming Google Fonts and GitHub Pages hosting as standard infrastructure with their own possible access logs. Provenance set to AI-Collaborative (Claude materially drafted the text under Dr. Paul's direction) -- a proposal, not yet explicitly confirmed by Dr. Paul. Contact line points to /ask-paul/ -- also a proposal, not explicitly confirmed. JSON-LD @type set to WebPage (the fallback per the page-scaffold skill, since this isn't a profile/collection/tech-article page) -- also a proposal."
+      "drive_modified": "2026-09-05T16:34:12.347Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: fixed the Questions section's contact line, still the original '[PROPOSED] Ask Dr. Paul page' text even though the live page's Contact link was changed to point at the homepage's Connect section when Ask Paul was retired 2026-09-04, the same day this brief was written. Also confirmed the .footer-links--legal group as live and sitewide (was still flagged 'proposed' in the footer note). Provenance tier (AI-Collaborative) and JSON-LD type (WebPage) still not independently re-confirmed by Dr. Paul, carried over as still-open items."
     },
     {
       "path": "/terms-and-conditions/",
       "file": "terms-and-conditions/index.html",
-      "drive_doc_id": "1iN6XQ2BRd6IBxPedhOcxzk20wnR1e1b0_39FuiOK0zE",
+      "drive_doc_id": "1B5jh5FGTgu1RacJRQe1fzBdMBHH9wi5Ox-GYPexLOl8",
       "drive_doc_title": "Terms & Conditions — Content",
-      "drive_modified": "2026-09-04T16:39:13.159Z",
-      "last_synced": "2026-09-04",
-      "note": "2026-09-04: new page, brief authored directly, scaffolded via paulmress-page-scaffold alongside the Privacy Policy above (same session, same prerequisite-infrastructure purpose). Dr. Paul asked directly whether the existing footer disclaimer needed anything else added; answered with the standard set for a plain-language site and built all of it into the page: acceptance of terms, a not-professional-advice disclaimer, IP ownership, an AI-collaborative content disclosure that cross-references each page's own provenance mark rather than duplicating it, as-is/no-warranty, limitation of liability, an external-links disclaimer, the right to change the site/terms, a cookie cross-reference to the Privacy Policy, Kentucky as governing law, and a contact line. The existing site-wide footer disclaimer text was reused verbatim as the page's opening blockquote, not paraphrased. Same open proposals as the Privacy Policy entry above: AI-Collaborative provenance tier, /ask-paul/ contact line, and WebPage JSON-LD @type -- none yet explicitly confirmed by Dr. Paul."
+      "drive_modified": "2026-09-05T16:34:51.274Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: fixed the Contact section's line, same issue and same fix as the Privacy Policy entry above -- was still '[PROPOSED] Ask Dr. Paul page', now matches the live page's Connect-section wording. Provenance tier and JSON-LD type still not independently re-confirmed by Dr. Paul, carried over as still-open items."
     },
     {
       "path": "/lab/6/",
@@ -124,7 +126,7 @@
       "drive_doc_title": "Experiment 6 — Can AI Build an Opt-In, Self-Destructing Tracking Feature — Content",
       "drive_modified": "2026-09-05T01:09:16.015Z",
       "last_synced": "2026-09-05",
-      "note": "Brief created 2026-09-05 via the paulmress-content-doc-backfill skill -- reverse-engineered from the live page's already-shipped and already-revised state (the page itself launched 2026-09-04 and had no brief until now), explicitly flagged inside the doc as a reconstruction for Dr. Paul's review, not an originally-authored brief. Reconstructed from the live page's final state as of 2026-09-05, after: the original launch (Ongoing, Finding/Implication TBD), a lede trim, the six-part update that set status to Supported and filled in Finding/Implication/limitations and removed the Scaffold flow-step, a shortened Implication with the 'For a CMO' framing removed per Dr. Paul's own final wording, and removal of the 'Authoring the Privacy Policy and Terms & Conditions...' bullet from the AI-handled list per Dr. Paul's direct request. The brief notes inline that the Ship flow-step text and the stats line still reference the two prerequisite pages, since that specific edit only asked for the AI-handled bullet to be removed, not every mention. No Entry 006 row was added to the 'Lab -- Content' doc's Entry List as part of this backfill -- that doc is already missing Entry 004 and Entry 005 rows (a pre-existing, previously-flagged gap), and adding only 006 would have been inconsistent; left as a future single pass to add 004-006 together."
+      "note": "Brief created 2026-09-05 via the paulmress-content-doc-backfill skill -- reverse-engineered from the live page's already-shipped and already-revised state (the page itself launched 2026-09-04 and had no brief until now), explicitly flagged inside the doc as a reconstruction for Dr. Paul's review, not an originally-authored brief. Reconstructed from the live page's final state as of 2026-09-05, after: the original launch (Ongoing, Finding/Implication TBD), a lede trim, the six-part update that set status to Supported and filled in Finding/Implication/limitations and removed the Scaffold flow-step, a shortened Implication with the 'For a CMO' framing removed per Dr. Paul's own final wording, and removal of the 'Authoring the Privacy Policy and Terms & Conditions...' bullet from the AI-handled list per Dr. Paul's direct request. The brief notes inline that the Ship flow-step text and the stats line still reference the two prerequisite pages, since that specific edit only asked for the AI-handled bullet to be removed, not every mention. No Entry 006 row was added to the 'Lab -- Content' doc's Entry List as part of this backfill -- that doc is already missing Entry 004 and Entry 005 rows (a pre-existing, previously-flagged gap), and adding only 006 would have been inconsistent; left as a future single pass to add 004-006 together. 2026-09-05: checked again as part of a full Drive-doc resync pass -- already fully current (reflects both the Implication tightening and both bullet removals from the same day), no further drift found."
     },
     {
       "path": "/lab/7/",
@@ -133,15 +135,19 @@
       "drive_doc_title": "Experiment 7 — Can AI Achieve a Perfect Google PageSpeed Insights Score — Content",
       "drive_modified": "2026-09-05T13:43:58.156Z",
       "last_synced": "2026-09-05",
-      "note": "Page built and brief authored together in the same session, 2026-09-05, following the paulmress-lab-experiment skill: Hypothesis and Finding are Dr. Paul's own exact chat wording (\"AI can achieve a perfect Google PageSpeed Insights score on mobile and desktop.\" / \"Not perfect, but close to perfect.\"), Status (Rejected) and the Next Question topic (avatar/chatbot, carried forward from Experiment 1) are also his direct calls, and the Implication paragraph was Claude-drafted at his direct request (same standing authorship exception already used for Experiments 4, 5, and 6). Method/Receipts sections are the real PageSpeed audit/fix/deploy/re-measure work documented in project-notes.md. lab/index.html got a new Entry 7 row (data-status=rejected) and lab/6/index.html's Next Question CTA was repointed from a generic /lab/ preview to /lab/7/."
-    }
-  ],
-  "unmanaged_pages": [
+      "note": "Page built and brief authored together in the same session, 2026-09-05, following the paulmress-lab-experiment skill: Hypothesis and Finding are Dr. Paul's own exact chat wording (\"AI can achieve a perfect Google PageSpeed Insights score on mobile and desktop.\" / \"Not perfect, but close to perfect.\"), Status (Rejected) and the Next Question topic (avatar/chatbot, carried forward from Experiment 1) are also his direct calls, and the Implication paragraph was Claude-drafted at his direct request (same standing authorship exception already used for Experiments 4, 5, and 6). Method/Receipts sections are the real PageSpeed audit/fix/deploy/re-measure work documented in project-notes.md. lab/index.html got a new Entry 7 row (data-status=rejected) and lab/6/index.html's Next Question CTA was repointed from a generic /lab/ preview to /lab/7/. 2026-09-05: checked against the live page as part of a full Drive-doc resync pass -- matches closely (minor non-substantive wording differences in the Worked/Constraint lines), no real drift found."
+    },
     {
       "path": "/cookie/",
       "file": "cookie/index.html",
-      "reason": "New page, 2026-09-04 -- companion to Experiment 6, added after Dr. Paul clarified the path-tracker feature was meant to include a dedicated page showing the visited-pages trail as connected nodes, not just the corner widget's page count. URL went through two rounds of naming: originally deployed live at /breadcrumbs/ (Claude proposed a shortlist of creative, pop-culture-style names -- breadcrumbs, self-destruct, dossier -- and Dr. Paul picked breadcrumbs); after that deploy, Dr. Paul asked to rename it, and it was renamed locally to /tracker/ (not yet redeployed at that point); before that redeploy happened, Dr. Paul asked for a second rename, to /cookie/, which is the current live target. The lede copy was also revised to drop the Hansel & Gretel/breadcrumbs framing that no longer fit once the URL moved away from 'breadcrumbs'. Reads the same pmPathTracker cookie as the corner widget (script.js's initPathMap); static .path-map-empty state ships in the raw HTML for crawlers/no-JS, upgraded live by JS when a session is active. Linked from the corner widget panel (.path-tracker-view), from /lab/6/'s lede, and from the Privacy Policy's cookie disclosure. The old /breadcrumbs/ URL is being retired as a redirect stub to /cookie/, matching the /ask-paul/ and /how-its-built/ retirement precedent above. No Drive content brief created yet -- tracked here as unmanaged until one exists, same pattern as /lab/6/ above."
-    },
+      "drive_doc_id": "1_5e-xWkOvGWcxeDBULwjkKV6qK-vQ2DBhYotfNDAczg",
+      "drive_doc_title": "Cookie — Content",
+      "drive_modified": "2026-09-05T16:25:15.961Z",
+      "last_synced": "2026-09-05",
+      "note": "2026-09-05: brief backfilled via the paulmress-content-doc-backfill skill -- this page had no Drive brief since it shipped 2026-09-04, tracked in unmanaged_pages until now. Reconstructed from the live empty-state page plus the design-system demo frame and Experiment 6's build notes for the opted-in state (not independently captured live this session -- flagged in the doc as the least-verified part). Documents the full three-round naming history (breadcrumbs -> tracker -> cookie) in full, not summarized to just the final name."
+    }
+  ],
+  "unmanaged_pages": [
     {
       "path": "/ask-paul/",
       "file": "ask-paul/index.html",
@@ -165,10 +171,10 @@
   ],
   "reference_docs": [
     {
-      "drive_doc_id": "1z9oRYLiyKXfHTaMR1HqWoWOa4vo1wkaC6CNK-X5RUnE",
+      "drive_doc_id": "1W2RB9O1x4qPah4jz0-LE3VVr2QXbqmlqMNOAC8psvqc",
       "drive_doc_title": "Site-Wide — Content",
-      "drive_modified": "2026-08-25T18:26:32.506Z",
-      "last_synced": "2026-08-25",
+      "drive_modified": "2026-09-05T16:30:56.562Z",
+      "last_synced": "2026-09-05",
       "applies_to": "header/footer/nav markup on every page — not a single URL, so tracked separately from the page list above"
     },
     {
