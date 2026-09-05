@@ -116,14 +116,18 @@
       "drive_modified": "2026-09-04T16:39:13.159Z",
       "last_synced": "2026-09-04",
       "note": "2026-09-04: new page, brief authored directly, scaffolded via paulmress-page-scaffold alongside the Privacy Policy above (same session, same prerequisite-infrastructure purpose). Dr. Paul asked directly whether the existing footer disclaimer needed anything else added; answered with the standard set for a plain-language site and built all of it into the page: acceptance of terms, a not-professional-advice disclaimer, IP ownership, an AI-collaborative content disclosure that cross-references each page's own provenance mark rather than duplicating it, as-is/no-warranty, limitation of liability, an external-links disclaimer, the right to change the site/terms, a cookie cross-reference to the Privacy Policy, Kentucky as governing law, and a contact line. The existing site-wide footer disclaimer text was reused verbatim as the page's opening blockquote, not paraphrased. Same open proposals as the Privacy Policy entry above: AI-Collaborative provenance tier, /ask-paul/ contact line, and WebPage JSON-LD @type -- none yet explicitly confirmed by Dr. Paul."
-    }
-  ],
-  "unmanaged_pages": [
+    },
     {
       "path": "/lab/6/",
       "file": "lab/6/index.html",
-      "reason": "New page, 2026-09-04 -- Experiment 6 (path-tracker cookie feature). Hypothesis is Dr. Paul's own confirmed wording ('AI can build an opt-in, self-destructing tracking feature.'); Finding/Implication explicitly TBD, status Ongoing, per the paulmress-lab-experiment skill's rule against inventing them. No Drive content brief created yet -- tracked here as unmanaged until the brief exists, then moves up to the pages list with its drive_doc_id."
-    },
+      "drive_doc_id": "1xPZFsDn9hCLHgZZLdUEuL0dAq0_bi2bCR_Ncqefwta0",
+      "drive_doc_title": "Experiment 6 — Can AI Build an Opt-In, Self-Destructing Tracking Feature — Content",
+      "drive_modified": "2026-09-05T01:09:16.015Z",
+      "last_synced": "2026-09-05",
+      "note": "Brief created 2026-09-05 via the paulmress-content-doc-backfill skill -- reverse-engineered from the live page's already-shipped and already-revised state (the page itself launched 2026-09-04 and had no brief until now), explicitly flagged inside the doc as a reconstruction for Dr. Paul's review, not an originally-authored brief. Reconstructed from the live page's final state as of 2026-09-05, after: the original launch (Ongoing, Finding/Implication TBD), a lede trim, the six-part update that set status to Supported and filled in Finding/Implication/limitations and removed the Scaffold flow-step, a shortened Implication with the 'For a CMO' framing removed per Dr. Paul's own final wording, and removal of the 'Authoring the Privacy Policy and Terms & Conditions...' bullet from the AI-handled list per Dr. Paul's direct request. The brief notes inline that the Ship flow-step text and the stats line still reference the two prerequisite pages, since that specific edit only asked for the AI-handled bullet to be removed, not every mention. No Entry 006 row was added to the 'Lab -- Content' doc's Entry List as part of this backfill -- that doc is already missing Entry 004 and Entry 005 rows (a pre-existing, previously-flagged gap), and adding only 006 would have been inconsistent; left as a future single pass to add 004-006 together."
+    }
+  ],
+  "unmanaged_pages": [
     {
       "path": "/cookie/",
       "file": "cookie/index.html",
