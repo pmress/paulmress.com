@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can AI Achieve a Perfect Google PageSpeed Insights Score? | Lab | Dr. Paul Ress, DBA</title>
+<meta name="description" content="Experiment 7: AI found and fixed every real PageSpeed issue on paulmress.com and re-measured with a fresh Lighthouse run. Not perfect, but close to perfect &mdash; and the gap that's left traces to the hosting platform, not the code.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com/lab/7/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Can AI Achieve a Perfect Google PageSpeed Insights Score? | Lab | Dr. Paul Ress, DBA">
+<meta property="og:description" content="Experiment 7: AI found and fixed every real PageSpeed issue on paulmress.com and re-measured with a fresh Lighthouse run. Not perfect, but close to perfect &mdash; and the gap that's left traces to the hosting platform, not the code.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paulmress.com/lab/7/">
+<meta property="og:site_name" content="Paul Ress">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paulmress.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Can AI Achieve a Perfect Google PageSpeed Insights Score? | Lab | Dr. Paul Ress, DBA">
+<meta name="twitter:description" content="Experiment 7: Real fixes, a real re-measurement &mdash; not perfect, but close to perfect.">
+<meta name="twitter:image" content="https://paulmress.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Favicon -->
+<link rel="icon" href="../../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"></noscript>
+
+<link rel="stylesheet" href="../../styles.css">
+
+<style>
+  main > section { padding: var(--space-9) 0; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Can AI Achieve a Perfect Google PageSpeed Insights Score? | Lab | Dr. Paul Ress, DBA",
+  "url": "https://paulmress.com/lab/7/",
+  "description": "Experiment 7: AI found and fixed every real PageSpeed issue on paulmress.com and re-measured with a fresh Lighthouse run. Not perfect, but close to perfect.",
+  "author": { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+  "creator": [
+    { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+    { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com/", "description": "Claude, the AI pair-programmer that drafted this page's language and code under Dr. Paul Ress's direction." }
+  ],
+  "accountablePerson": { "@type": "Person", "name": "Dr. Paul Ress" },
+  "digitalSourceType": "https://schema.org/CompositeWithTrainedAlgorithmicMediaDigitalSource"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true" inert>
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/lab/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">01</span>Lab</a>
+    <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/about/" class="nav-panel-link"><span class="nav-panel-num">03</span>About</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- QUESTION -->
+  <section class="about-intro intro-network">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="page-back-bar">
+        <button type="button" class="back-link" onclick="if (window.history.length > 1) { history.back(); } else { window.location.href = '/'; }">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+      </div>
+      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; 7</p>
+      <h1 class="about-title" data-reveal>Can AI achieve a perfect Google PageSpeed Insights score?</h1>
+      <p class="section-lede" data-reveal>Every experiment so far has been about what AI can build. This one turned Google's own performance grader on the site itself &mdash; can AI find every real issue, fix it, and get a genuinely re-measured score all the way to perfect, on both mobile and desktop?</p>
+      <div class="lab-meta" data-reveal>
+        <span class="pill pill--rejected">Rejected</span>
+        <span class="lab-meta-facts">Updated Sept. 5, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPOTHESIS + FINDING -->
+  <section>
+    <div class="wrap">
+      <div class="hyp-result" data-reveal>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Hypothesis</p>
+          <p class="hyp-result-text">AI can achieve a perfect Google PageSpeed Insights score on mobile and desktop.</p>
+        </div>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Finding</p>
+          <p class="hyp-result-text">Not perfect, but close to perfect.</p>
+        </div>
+      </div>
+      <p class="hyp-result-limitations" data-reveal>Tested by fixing and deploying to the real, live production site, then running one fresh (not cached) Lighthouse analysis per device &mdash; not a synthetic benchmark, not averaged across repeated runs.</p>
+    </div>
+  </section>
+
+  <!-- METHOD (workflow-compare centerpiece) -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Method</p>
+
+      <div class="workflow-compare" data-reveal>
+        <div class="workflow-compare-row">
+          <span class="workflow-compare-label">Traditional</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Ship pages as they come together</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">No structured performance check</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Issues surface only if a user complains</span></div>
+        </div>
+        <div class="workflow-compare-row workflow-compare-row--current">
+          <span class="workflow-compare-label">Experiment</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Run a real PageSpeed audit</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Fix every verifiable issue</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Deploy</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Re-measure fresh</span></div>
+        </div>
+      </div>
+
+      <div class="flow-row" style="margin-top:var(--space-8);" data-reveal>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <h3>Audit</h3>
+          <p>Ran a genuine PageSpeed Insights analysis against the live site and read every flagged issue.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </span>
+          <h3>Fix</h3>
+          <p>Built five targeted fixes tied to specific flagged problems &mdash; no speculative changes.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </span>
+          <h3>Deploy</h3>
+          <p>Pushed all five fixes live and verified each one directly in the live page's DOM.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step card--current">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <h3>Re-measure</h3>
+          <p>Forced a fresh, non-cached Lighthouse run for both mobile and desktop and recorded the real scores.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-7);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
+        <div class="pipeline" style="margin-bottom:0;">
+          <span class="pill">Claude</span>
+          <span class="pill">GitHub Pages</span>
+          <span class="pill">PageSpeed Insights</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE EXPERIMENT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The experiment</p>
+      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>Four real, verified problems, five shipped fixes, and two more fixes that were investigated and deliberately turned down.</p>
+
+      <div class="compare-grid" data-reveal>
+        <div class="card">
+          <p class="chapter-range">AI handled</p>
+          <ul class="plain-list">
+            <li>Reading the audit and separating real, fixable problems from diagnostics that don&rsquo;t move the score</li>
+            <li>Building and deploying five fixes: async font loading, a WebP headshot with a PNG fallback, an <code style="font-family:var(--font-mono);">inert</code> fix on the nav panel, a footer-contrast increase, and dead-CSS removal</li>
+            <li>Investigating two further levers after the first re-measurement and reporting their honest tradeoffs instead of just doing them</li>
+            <li>Running the fresh, non-cached re-measurement and reporting the real numbers, wins and all</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="chapter-range">Dr. Paul handled</p>
+          <ul class="plain-list">
+            <li>Setting the hypothesis</li>
+            <li>Giving explicit go-ahead to push the full fix batch live</li>
+            <li>Reviewing the real measured results and pushing back accurately (&ldquo;It&rsquo;s not perfect&rdquo;) rather than accepting a partial win as full success</li>
+            <li>Declining both further optimization levers once he&rsquo;d heard the tradeoffs, closing the technical work as final</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>4 real issues found &middot; 5 fixes shipped &middot; 21 files &middot; 353 total commits &middot; 2 further levers investigated, both declined &middot; Mobile Performance 78 &rarr; 89 &middot; Desktop Performance 100 &rarr; 99</p>
+
+      <div class="worked-list" style="margin-top:var(--space-5);" data-reveal>
+        <div class="worked-item is-good">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <p><strong>Worked:</strong> The nav-panel <code style="font-family:var(--font-mono);">inert</code> fix closed a real WCAG violation outright (mobile Accessibility 97&rarr;100), and the combined font/image/CSS work lifted mobile Performance from 78 to 89. Best Practices and SEO were already, and remain, a literal 100/100 on both devices.</p>
+        </div>
+        <div class="worked-item is-bad">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <p><strong>Constraint:</strong> Mobile's remaining gap traces to GitHub Pages serving from a single origin with no CDN and a fixed 10-minute cache lifetime that can't be overridden from the repo &mdash; a hosting-platform ceiling, not anything left unfixed in the page's own code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDING -> IMPLICATION (consolidated; see tense note in the header
+       comment above) -->
+  <section>
+    <div class="wrap">
+      <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">Not perfect, but close to perfect.</p>
+        <p class="statement-support">Accessibility, Best Practices, and SEO all reached a literal 100 on both mobile and desktop.</p>
+        <p class="statement-support" style="margin-top:var(--space-3);">Performance landed at 89 on mobile and 99 on desktop &mdash; real, measured, and short of perfect on both counts.</p>
+      </div>
+
+      <div style="max-width:620px; margin-top:var(--space-8);" data-reveal>
+        <p class="kicker">Implication</p>
+        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">This experiment split into two different kinds of problems. Every issue that was actually inside the code &mdash; a blocking font request, an oversized image, a real accessibility violation, a contrast failure &mdash; got found and fixed, and that alone moved the mobile score from 78 to 89 while three of four scoring categories reached a literal 100 on both devices. What's left isn't a code problem anymore: it's the hosting platform underneath, which has no CDN in front of it and a cache lifetime fixed at ten minutes with no setting in the repository that changes it. That's the distinction worth carrying forward &mdash; asking AI to fix what's broken in the code, and asking it to fix what the infrastructure underneath limits, are two different requests with two very different costs. The first is close to free. The second means changing where the site lives.</p>
+      </div>
+
+      <div class="card card--current" style="max-width:720px; margin-top:var(--space-6);" data-reveal>
+        <p style="margin:0; font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">AI closed every gap that was actually in the code. The gap left over belongs to the hosting bill, not the build.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT QUESTION -->
+  <section>
+    <div class="wrap">
+      <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
+        <p class="kicker">Next Question &middot; 8</p>
+        <h2 class="section-title">Should Dr. Paul become an avatar?</h2>
+        <p class="section-lede">Talking avatar, text chatbot, or shelved entirely?</p>
+        <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="page-provenance">
+  <div class="wrap">
+    <details class="provenance provenance--collaborative footer-provenance">
+      <summary class="provenance-mark">
+        <span class="provenance-dot" aria-hidden="true"></span>
+        <span class="provenance-tier">AI-Collaborative Creation</span>
+        <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
+      </summary>
+      <div class="provenance-detail">
+        <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links-groups">
+      <div class="footer-links footer-links--primary">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/thinking/">Thinking</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer-links footer-links--meta">
+        <a href="/story/">Story</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/design-system/">Design System</a>
+      </div>
+      <div class="footer-links footer-links--legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      </div>
+    </div>
+    <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
+    <p>&copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>
