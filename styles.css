@@ -203,8 +203,12 @@ img { max-width: 100%; display: block; }
   color: var(--color-ink-soft);
   background: none;
   border: none;
-  padding: 0;
-  margin: 0;
+  /* Text-only box is ~15px tall — padding brings the real, clickable box
+     up to the WCAG 2.5.8 AA 24×24px minimum; the matching negative margin
+     cancels the extra space so the row above the title still reads the
+     same visually. */
+  padding: 5px 0;
+  margin: -5px 0;
   cursor: pointer;
   transition: color var(--duration-fast) ease;
 }
@@ -1380,7 +1384,9 @@ section { padding: var(--space-11) 0; }
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  color: var(--color-line);
+  /* was --color-line (1.31:1 on --color-bg, fails WCAG 1.4.3) — same fix
+     as .footer-links-sep and .experiment-arrow */
+  color: var(--color-ink-soft);
   font-size: 1.3rem;
 }
 
@@ -1463,7 +1469,11 @@ section { padding: var(--space-11) 0; }
 .pill--rejected {
   background: #FBEAE3;
   border-color: var(--color-accent-2);
-  color: var(--color-accent-2);
+  /* --color-accent-2 itself only reaches 3.15:1 on this background (fails
+     WCAG 1.4.3's 4.5:1 for normal text) — this is a hand-darkened shade of
+     the same hue (not a new token) purely so the pill's own label text
+     passes; the border above still uses the real --color-accent-2. */
+  color: #B64524;
 }
 
 .pill--inconclusive {
@@ -1583,7 +1593,9 @@ section { padding: var(--space-11) 0; }
 
 .experiment-arrow {
   flex: 0 0 auto;
-  color: var(--color-line);
+  /* was --color-line (1.31:1 on --color-bg, fails WCAG 1.4.3) — same fix
+     as .footer-links-sep, reuses the existing secondary-text tone */
+  color: var(--color-ink-soft);
   font-size: 1.2rem;
   transition: transform var(--duration-base) ease, color var(--duration-base) ease;
 }
@@ -2094,11 +2106,19 @@ details.thought-node-card[open] .thought-node-chevron {
 .footer-links a {
   color: var(--color-ink-soft);
   text-decoration: none;
+  /* Text-only box is 18-20px tall — padding + matching negative margin
+     brings every footer link's real, clickable box up to the WCAG 2.5.8
+     AA 24×24px minimum without growing the compact footer row visually. */
+  display: inline-block;
+  padding: 4px 0;
+  margin: -4px 0;
 }
 .footer-links a:hover { color: var(--color-accent); }
 
 .footer-links-sep {
-  color: var(--color-line);
+  /* was --color-line (1.31:1 on --color-bg, fails WCAG 1.4.3) — reuses
+     the same tone already used for the links it separates */
+  color: var(--color-ink-soft);
 }
 
 .footer-links--meta {
@@ -2220,12 +2240,18 @@ main > section.legal-body {
 }
 
 .path-tracker-privacy {
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: var(--text-2xs);
   letter-spacing: 0.02em;
   color: var(--color-ink-soft);
   text-decoration: underline;
   text-underline-offset: 2px;
+  /* Text-only box is 18px tall — padding + matching negative margin
+     brings the real, clickable box up to the WCAG 2.5.8 AA 24×24px
+     minimum without shifting the widget's layout. */
+  padding: 4px 0;
+  margin: -4px 0;
 }
 
 .path-tracker-privacy:hover {
@@ -2556,8 +2582,8 @@ main > section.legal-body {
   right: var(--space-2);
   top: 50%;
   transform: translateY(-50%);
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   display: none;
   align-items: center;
   justify-content: center;
@@ -2634,7 +2660,11 @@ main > section.legal-body {
   color: var(--color-ink-soft);
   background: none;
   border: none;
-  padding: 0;
+  /* Same padding + negative-margin technique as .back-link — text-only
+     box is ~15px tall, needs to reach the WCAG 2.5.8 AA 24×24px minimum
+     without shifting the toolbar row's visual height. */
+  padding: 5px 0;
+  margin: -5px 0;
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 3px;
