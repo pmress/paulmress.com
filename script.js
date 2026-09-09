@@ -709,3 +709,98 @@ function pmClearPathTrackerCookie() {
   render();
   setInterval(render, 1000);
 })();
+
+(function initContrastChecker() {
+  const fgSwatch = document.getElementById("contrast-fg-swatch");
+  if (!fgSwatch) return;
+
+  const bgSwatch = document.getElementById("contrast-bg-swatch");
+  const fgHex = document.getElementById("contrast-fg-hex");
+  const bgHex = document.getElementById("contrast-bg-hex");
+  const swapBtn = document.querySelector(".contrast-swap");
+  const preview = document.querySelector(".contrast-preview");
+  const ratioValue = document.querySelector(".contrast-ratio-value");
+  const resultEls = {
+    "aa-normal": document.querySelector('[data-contrast-result="aa-normal"]'),
+    "aaa-normal": document.querySelector('[data-contrast-result="aaa-normal"]'),
+    "aa-large": document.querySelector('[data-contrast-result="aa-large"]'),
+    "aaa-large": document.querySelector('[data-contrast-result="aaa-large"]')
+  };
+
+  // Same relative-luminance/contrast-ratio math as scripts/accessibility_check.py's
+  // contrast_ratio() -- kept in sync deliberately so this page and the internal
+  // pre-deploy checker (Lab Experiment 8) always agree on a given pair of colors.
+  function normalizeHex(raw) {
+    let h = String(raw || "").trim().replace(/^#/, "");
+    if (/^[0-9a-fA-F]{3}$/.test(h)) h = h.split("").map(function (c) { return c + c; }).join("");
+    if (!/^[0-9a-fA-F]{6}$/.test(h)) return null;
+    return "#" + h.toLowerCase();
+  }
+
+  function hexToRgb(hex) {
+    const num = parseInt(hex.slice(1), 16);
+    return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
+  }
+
+  function relativeLuminance(rgb) {
+    const chan = rgb.map(function (v) {
+      v = v / 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * chan[0] + 0.7152 * chan[1] + 0.0722 * chan[2];
+  }
+
+  function contrastRatio(hex1, hex2) {
+    const l1 = relativeLuminance(hexToRgb(hex1));
+    const l2 = relativeLuminance(hexToRgb(hex2));
+    const lighter = Math.max(l1, l2);
+    const darker = Math.min(l1, l2);
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  function setResult(el, passes) {
+    if (!el) return;
+    el.textContent = passes ? "Pass" : "Fail";
+    el.classList.toggle("pill--supported", passes);
+    el.classList.toggle("pill--rejected", !passes);
+  }
+
+  function render() {
+    const fg = normalizeHex(fgHex.value);
+    const bg = normalizeHex(bgHex.value);
+    fgHex.classList.toggle("is-invalid", !fg);
+    bgHex.classList.toggle("is-invalid", !bg);
+    if (!fg || !bg) return;
+
+    fgSwatch.value = fg;
+    bgSwatch.value = bg;
+    if (preview) {
+      preview.style.color = fg;
+      preview.style.backgroundColor = bg;
+    }
+
+    const ratio = contrastRatio(fg, bg);
+    if (ratioValue) ratioValue.textContent = ratio.toFixed(2) + " : 1";
+
+    setResult(resultEls["aa-normal"], ratio >= 4.5);
+    setResult(resultEls["aaa-normal"], ratio >= 7);
+    setResult(resultEls["aa-large"], ratio >= 3);
+    setResult(resultEls["aaa-large"], ratio >= 4.5);
+  }
+
+  fgSwatch.addEventListener("input", function () { fgHex.value = fgSwatch.value; render(); });
+  bgSwatch.addEventListener("input", function () { bgHex.value = bgSwatch.value; render(); });
+  fgHex.addEventListener("input", render);
+  bgHex.addEventListener("input", render);
+
+  if (swapBtn) {
+    swapBtn.addEventListener("click", function () {
+      const tmp = fgHex.value;
+      fgHex.value = bgHex.value;
+      bgHex.value = tmp;
+      render();
+    });
+  }
+
+  render();
+})();
