@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can AI Create a Pre-Deploy Checker That Replaces Manual Accessibility Review? | Lab | Dr. Paul Ress, DBA</title>
+<meta name="description" content="Experiment 8: Two accessibility-checking scripts caught four real, previously-shipped bugs on the live site before a human went looking, and every fix was verified by re-running the same scripts after deploying.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com/lab/8/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Can AI Create a Pre-Deploy Checker That Replaces Manual Accessibility Review? | Lab | Dr. Paul Ress, DBA">
+<meta property="og:description" content="Experiment 8: Two accessibility-checking scripts caught four real, previously-shipped bugs on the live site before a human went looking, and every fix was verified by re-running the same scripts after deploying.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paulmress.com/lab/8/">
+<meta property="og:site_name" content="Paul Ress">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paulmress.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Can AI Create a Pre-Deploy Checker That Replaces Manual Accessibility Review? | Lab | Dr. Paul Ress, DBA">
+<meta name="twitter:description" content="Experiment 8: Two checker scripts caught four real bugs before a human went looking &mdash; and verified every fix by re-measuring, not by eye.">
+<meta name="twitter:image" content="https://paulmress.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Favicon -->
+<link rel="icon" href="../../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"></noscript>
+
+<link rel="stylesheet" href="../../styles.css">
+
+<style>
+  main > section { padding: var(--space-9) 0; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Can AI Create a Pre-Deploy Checker That Replaces Manual Accessibility Review? | Lab | Dr. Paul Ress, DBA",
+  "url": "https://paulmress.com/lab/8/",
+  "description": "Experiment 8: Two accessibility-checking scripts caught four real, previously-shipped bugs on the live site before a human went looking, and every fix was verified by re-running the same scripts after deploying.",
+  "author": { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+  "creator": [
+    { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+    { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com/", "description": "Claude, the AI pair-programmer that drafted this page's language and code under Dr. Paul Ress's direction." }
+  ],
+  "accountablePerson": { "@type": "Person", "name": "Dr. Paul Ress" },
+  "digitalSourceType": "https://schema.org/CompositeWithTrainedAlgorithmicMediaDigitalSource"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true" inert>
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/lab/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">01</span>Lab</a>
+    <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/about/" class="nav-panel-link"><span class="nav-panel-num">03</span>About</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- QUESTION -->
+  <section class="about-intro intro-network">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="page-back-bar">
+        <button type="button" class="back-link" onclick="if (window.history.length > 1) { history.back(); } else { window.location.href = '/'; }">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+      </div>
+      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; 8</p>
+      <h1 class="about-title" data-reveal>Can AI create a pre-deploy checker that replaces manual accessibility review?</h1>
+      <p class="section-lede" data-reveal>Every experiment so far has tested what AI can build for the site. This one turned that same question inward &mdash; could AI build a tool that audits the site's own accessibility before anything ships, catch real problems, and prove it by actually fixing what it found?</p>
+      <div class="lab-meta" data-reveal>
+        <span class="pill pill--supported">Supported</span>
+        <span class="lab-meta-facts">Updated Sept. 9, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPOTHESIS + FINDING -->
+  <section>
+    <div class="wrap">
+      <div class="hyp-result" data-reveal>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Hypothesis</p>
+          <p class="hyp-result-text">Can AI create a pre-deploy checker that replaces manual accessibility review?</p>
+        </div>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Finding</p>
+          <p class="hyp-result-text">The checker found bugs that were fixed. It seems like a great use case for AI.</p>
+        </div>
+      </div>
+      <p class="hyp-result-limitations" data-reveal>Tested by building two accessibility-checking scripts and running them against the real, live production site both before and after fixing what they found &mdash; not a synthetic benchmark, and not a study across other sites or design systems.</p>
+    </div>
+  </section>
+
+  <!-- METHOD (workflow-compare centerpiece) -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Method</p>
+
+      <div class="workflow-compare" data-reveal>
+        <div class="workflow-compare-row">
+          <span class="workflow-compare-label">Traditional</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Ship pages as they come together</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">No structured accessibility check</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Issues surface only if someone complains</span></div>
+        </div>
+        <div class="workflow-compare-row workflow-compare-row--current">
+          <span class="workflow-compare-label">Experiment</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Build a pre-deploy checker</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Run it against the live site</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Fix every verified issue</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Re-run to confirm</span></div>
+        </div>
+      </div>
+
+      <div class="flow-row" style="margin-top:var(--space-8);" data-reveal>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </span>
+          <h3>Build</h3>
+          <p>Wrote two Python scripts covering WCAG contrast, touch-target size, heading hierarchy, and unlabeled form controls &mdash; a static HTML parser and a Playwright-rendered checker.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <h3>Audit</h3>
+          <p>Ran both scripts against the real, live site and separated genuine bugs from checker blind spots.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </span>
+          <h3>Fix</h3>
+          <p>Shipped verified fixes for four real findings across two live pages, then deployed.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step card--current">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <h3>Verify</h3>
+          <p>Re-ran both checker scripts against the live site after deploying and confirmed zero remaining findings.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-7);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
+        <div class="pipeline" style="margin-bottom:0;">
+          <span class="pill">Claude</span>
+          <span class="pill">Python</span>
+          <span class="pill">Playwright</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE EXPERIMENT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The experiment</p>
+      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>Four real, verified problems, four fixes shipped, and one technique the checker itself caught as not actually working.</p>
+
+      <div class="compare-grid" data-reveal>
+        <div class="card">
+          <p class="chapter-range">AI handled</p>
+          <ul class="plain-list">
+            <li>Building both checker scripts from WCAG success criteria: contrast (1.4.3), touch-target size (2.5.8), heading hierarchy, and label association</li>
+            <li>Running them against the live site and separating real bugs from a checker blind spot &mdash; WCAG 2.5.8&rsquo;s inline-text exception, which the checker doesn&rsquo;t know about and always flags</li>
+            <li>Trying an invisible <code style="font-family:var(--font-mono);">::before</code> hit-area expander for the touch-target fixes first, discovering via the checker&rsquo;s own re-run that it didn&rsquo;t change what the browser actually measures, and abandoning it for real padding plus a matching negative margin instead</li>
+            <li>Fixing and deploying all four real findings, then re-running both scripts to confirm zero remaining issues</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="chapter-range">Dr. Paul handled</p>
+          <ul class="plain-list">
+            <li>Requesting the checker be built first as an internal, non-user-facing pre-deploy gate &mdash; not a public page</li>
+            <li>Giving explicit go-ahead to fix and push the real findings live</li>
+            <li>Confirming the hypothesis, the finding, and the status pill in his own words</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>4 real bugs found &middot; 4 fixes shipped &middot; 3 deploy commits &middot; 2 checker scripts (static + Playwright-rendered) &middot; 1 technique tried and abandoned once the checker proved it didn&rsquo;t work</p>
+
+      <div class="worked-list" style="margin-top:var(--space-5);" data-reveal>
+        <div class="worked-item is-good">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <p><strong>Worked:</strong> The checker caught real, previously-unknown bugs already live on the site &mdash; two unlabeled sort selects, a heading-hierarchy skip, three low-contrast decorative dividers/arrows, one low-contrast status pill, and four undersized touch targets &mdash; and verified every fix by re-measurement, not by eye.</p>
+        </div>
+        <div class="worked-item is-bad">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <p><strong>Constraint:</strong> The first attempt at the touch-target fix looked correct in the browser, but the checker&rsquo;s own re-run showed the measured element box hadn&rsquo;t changed &mdash; real padding and a negative margin were needed instead. The checker also doesn&rsquo;t know WCAG 2.5.8&rsquo;s inline-text exception, so a few flagged links still needed a human to read the surrounding HTML before ruling them out as non-bugs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDING -->
+  <section>
+    <div class="wrap">
+      <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">The checker found bugs that were fixed. It seems like a great use case for AI.</p>
+        <p class="statement-support">Two rendering-based scripts caught four real, previously-shipped accessibility bugs across four live pages that had gone unnoticed until this experiment.</p>
+        <p class="statement-support" style="margin-top:var(--space-3);">Every fix was verified by re-running the same scripts against the live site after deploying, not just checked by eye.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT QUESTION -->
+  <section>
+    <div class="wrap">
+      <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
+        <p class="kicker">Next Question &middot; 9</p>
+        <h2 class="section-title">What&rsquo;s next is still open.</h2>
+        <p class="section-lede">Not decided yet &mdash; check back.</p>
+        <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="page-provenance">
+  <div class="wrap">
+    <details class="provenance provenance--collaborative footer-provenance">
+      <summary class="provenance-mark">
+        <span class="provenance-dot" aria-hidden="true"></span>
+        <span class="provenance-tier">AI-Collaborative Creation</span>
+        <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
+      </summary>
+      <div class="provenance-detail">
+        <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links-groups">
+      <div class="footer-links footer-links--primary">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/thinking/">Thinking</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer-links footer-links--meta">
+        <a href="/story/">Story</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/design-system/">Design System</a>
+      </div>
+      <div class="footer-links footer-links--legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      </div>
+    </div>
+    <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
+    <p>&copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>
