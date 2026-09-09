@@ -35,6 +35,7 @@ PAGES = [
     "lab/6/index.html",
     "lab/7/index.html",
     "lab/8/index.html",
+    "lab/9/index.html",
     "contrast-checker/index.html",
     "design-system/index.html",
     "design-system/template-experiment/index.html",

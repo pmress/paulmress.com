@@ -154,6 +154,15 @@
       "drive_modified": "2026-09-05T16:25:15.961Z",
       "last_synced": "2026-09-05",
       "note": "2026-09-05: brief backfilled via the paulmress-content-doc-backfill skill -- this page had no Drive brief since it shipped 2026-09-04, tracked in unmanaged_pages until now. Reconstructed from the live empty-state page plus the design-system demo frame and Experiment 6's build notes for the opted-in state (not independently captured live this session -- flagged in the doc as the least-verified part). Documents the full three-round naming history (breadcrumbs -> tracker -> cookie) in full, not summarized to just the final name."
+    },
+    {
+      "path": "/lab/9/",
+      "file": "lab/9/index.html",
+      "drive_doc_id": "1cPKzK2H_YcoD1dg0IRLVnwPappcH5ga6hyUjUqtxqRY",
+      "drive_doc_title": "Experiment 9 — Can AI Make WCAG Contrast Rules Understandable to Non-Experts — Content",
+      "drive_modified": "2026-09-09T18:10:20.906Z",
+      "last_synced": "2026-09-09",
+      "note": "Page built and brief authored together 2026-09-09, following the paulmress-lab-experiment skill. Hypothesis, Finding, and Status pill (Supported) are all Dr. Paul's own exact chat wording (hypothesis chosen from three Claude-drafted options; finding typed directly). Unlike Experiment 8, an Implication paragraph was freshly requested and granted for this page (same standing exception used for Experiments 4-7) -- Claude-drafted, flagged as such in the brief. This experiment is a Lab write-up about the already-shipped standalone /contrast-checker/ tool (built and deployed the same week, before this write-up) -- the same companion-page relationship as Experiment 6 (/lab/6/) + /cookie/. The underlying build reuses Experiment 8's exact WCAG contrast math (ported from Python to JavaScript) so the internal checker and the public tool can never disagree; see /contrast-checker/'s own content-manifest.json entry for that page's build detail. lab/index.html got a new Entry 9 row (data-status=supported) and lab/8/index.html's Next Question CTA was repointed from a generic placeholder to /lab/9/. Known follow-up, not yet done: the 'Lab — Content' doc's Entry List is missing rows for both Entry 008 and this Entry 009 (Entry 008 was already missing before this session -- pre-existing drift, not introduced here) -- adding entries requires Drive body edits via browser automation, not the read-only Drive connector, so it was left as a flagged follow-up rather than attempted this session."
     }
   ],
   "unmanaged_pages": [
