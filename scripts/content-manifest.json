@@ -176,6 +176,11 @@
       "path": "/breadcrumbs/",
       "file": "breadcrumbs/index.html",
       "reason": "Retired 2026-09-04 — briefly live as the path-tracker's dedicated page before Dr. Paul asked for it to be renamed. Converted to a redirect stub (noindex, follow) pointing to /cookie/, matching the /ask-paul/ and /how-its-built/ retirement precedent. Excluded from sitemap.xml and scripts/audit-site.py's PAGES list, per existing convention for stubs."
+    },
+    {
+      "path": "/contrast-checker/",
+      "file": "contrast-checker/index.html",
+      "reason": "New standalone public tool page, shipped 2026-09-09 as item #2 of Dr. Paul's three-part accessibility-experiment sequencing (#1 was the internal pre-deploy checker, Lab Experiment 8; #3, possibly later, is a color-blindness demo). A live, in-browser WCAG contrast-ratio checker (two color fields synced swatch+hex, a swap button, a live preview, and four AA/AAA pass/fail rows) running the identical relative-luminance math as scripts/accessibility_check.py's contrast_ratio(), in script.js's initContrastChecker(). Deliberately NOT a Lab experiment write-up (no Hypothesis/Finding/Status pill) — confirmed with Dr. Paul via AskUserQuestion before building. Carries the required 'For demo purposes only' disclaimer. No Drive content brief exists yet — intentionally not Drive-managed for now, same as /cookie/ before its brief was backfilled; can be added later if Dr. Paul wants one."
     }
   ],
   "reference_docs": [
