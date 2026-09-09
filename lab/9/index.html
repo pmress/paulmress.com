@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can AI Make WCAG Contrast Rules Understandable to Non-Experts? | Lab | Dr. Paul Ress, DBA</title>
+<meta name="description" content="Experiment 9: A public, live contrast-ratio tool reuses Experiment 8's exact WCAG math, turning a formula almost nobody outside accessibility work knows into an instant, plain-language pass or fail.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com/lab/9/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Can AI Make WCAG Contrast Rules Understandable to Non-Experts? | Lab | Dr. Paul Ress, DBA">
+<meta property="og:description" content="Experiment 9: A public, live contrast-ratio tool reuses Experiment 8's exact WCAG math, turning a formula almost nobody outside accessibility work knows into an instant, plain-language pass or fail.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paulmress.com/lab/9/">
+<meta property="og:site_name" content="Paul Ress">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paulmress.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Can AI Make WCAG Contrast Rules Understandable to Non-Experts? | Lab | Dr. Paul Ress, DBA">
+<meta name="twitter:description" content="Experiment 9: The same WCAG math from Experiment 8, now live and public &mdash; instant plain-language pass/fail for any two colors.">
+<meta name="twitter:image" content="https://paulmress.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Favicon -->
+<link rel="icon" href="../../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"></noscript>
+
+<link rel="stylesheet" href="../../styles.css">
+
+<style>
+  main > section { padding: var(--space-9) 0; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Can AI Make WCAG Contrast Rules Understandable to Non-Experts? | Lab | Dr. Paul Ress, DBA",
+  "url": "https://paulmress.com/lab/9/",
+  "description": "Experiment 9: A public, live contrast-ratio tool reuses Experiment 8's exact WCAG math, turning a formula almost nobody outside accessibility work knows into an instant, plain-language pass or fail.",
+  "author": { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+  "creator": [
+    { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+    { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com/", "description": "Claude, the AI pair-programmer that drafted this page's language and code under Dr. Paul Ress's direction." }
+  ],
+  "accountablePerson": { "@type": "Person", "name": "Dr. Paul Ress" },
+  "digitalSourceType": "https://schema.org/CompositeWithTrainedAlgorithmicMediaDigitalSource"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true" inert>
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/lab/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">01</span>Lab</a>
+    <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/about/" class="nav-panel-link"><span class="nav-panel-num">03</span>About</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- QUESTION -->
+  <section class="about-intro intro-network">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="page-back-bar">
+        <button type="button" class="back-link" onclick="if (window.history.length > 1) { history.back(); } else { window.location.href = '/'; }">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+      </div>
+      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; 9</p>
+      <h1 class="about-title" data-reveal>Can AI make WCAG contrast rules understandable to non-experts?</h1>
+      <p class="section-lede" data-reveal>Experiment 8 built an internal checker that enforces WCAG contrast automatically, before anything ships. This one asks a different question &mdash; take that same math out of the pre-deploy gate and put it directly in front of a visitor. Can AI turn a formula almost nobody outside accessibility work knows into something anyone can just try?</p>
+      <div class="lab-meta" data-reveal>
+        <span class="pill pill--supported">Supported</span>
+        <span class="lab-meta-facts">Updated Sept. 9, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPOTHESIS + FINDING -->
+  <section>
+    <div class="wrap">
+      <div class="hyp-result" data-reveal>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Hypothesis</p>
+          <p class="hyp-result-text">Can AI make WCAG contrast rules understandable to non-experts?</p>
+        </div>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Finding</p>
+          <p class="hyp-result-text">The contrast checker works! It&rsquo;s interesting to use it and discover what works and what doesn&rsquo;t work.</p>
+        </div>
+      </div>
+      <p class="hyp-result-limitations" data-reveal>Tested by building a live, public tool that runs the exact same WCAG contrast math as Experiment 8&rsquo;s internal checker, then actually using it against real color pairs &mdash; not a formal usability study, and not tested with people who&rsquo;d never heard of WCAG before.</p>
+    </div>
+  </section>
+
+  <!-- METHOD (workflow-compare centerpiece) -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Method</p>
+
+      <div class="workflow-compare" data-reveal>
+        <div class="workflow-compare-row">
+          <span class="workflow-compare-label">Traditional</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Look up the WCAG formula by hand</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Guess at what &ldquo;AA&rdquo; and &ldquo;AAA&rdquo; mean</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Ship a color pair without ever knowing the ratio</span></div>
+        </div>
+        <div class="workflow-compare-row workflow-compare-row--current">
+          <span class="workflow-compare-label">Experiment</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Reuse Experiment 8&rsquo;s proven contrast math</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Build a live, public tool</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Enter any two colors</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">See pass/fail in plain language, instantly</span></div>
+        </div>
+      </div>
+
+      <div class="flow-row" style="margin-top:var(--space-8);" data-reveal>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </span>
+          <h3>Reuse</h3>
+          <p>Ported Experiment 8&rsquo;s exact contrast math &mdash; relative luminance, gamma correction, the WCAG ratio formula &mdash; from Python into JavaScript so the two never quietly disagree.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </span>
+          <h3>Build</h3>
+          <p>Built swatch pickers and hex inputs for foreground and background, a one-click swap control, and a live text preview at both sizes.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <h3>Translate</h3>
+          <p>Turned the four WCAG thresholds &mdash; AA and AAA, at Normal and Large text &mdash; into plain pass/fail language instead of a bare ratio number.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step card--current">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <h3>Ship</h3>
+          <p>Deployed the tool live at <code style="font-family:var(--font-mono);">/contrast-checker/</code> for anyone to try, and documented it in the design system.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-7);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
+        <div class="pipeline" style="margin-bottom:0;">
+          <span class="pill">Claude</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">WCAG 2.1</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE EXPERIMENT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The experiment</p>
+      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>One live tool, four WCAG thresholds checked at once, and the same math Experiment 8 already proved against the real site.</p>
+
+      <div class="compare-grid" data-reveal>
+        <div class="card">
+          <p class="chapter-range">AI handled</p>
+          <ul class="plain-list">
+            <li>Porting the exact relative-luminance and contrast-ratio math from Experiment 8&rsquo;s Python checker into JavaScript so the two implementations can never drift apart</li>
+            <li>Building the swatch-plus-hex-input pair for foreground and background, a swap control, and a live text preview at Large and Normal size</li>
+            <li>Translating all four WCAG thresholds &mdash; AA/AAA at Normal/Large text &mdash; into a results panel that reads as a plain pass or fail, not just a raw ratio</li>
+            <li>Documenting the tool as a new organism in the design system and adding it to the site&rsquo;s own accessibility audit script</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="chapter-range">Dr. Paul handled</p>
+          <ul class="plain-list">
+            <li>Setting the hypothesis</li>
+            <li>Choosing to ship it as a standalone public tool rather than only folding the write-up into the Lab</li>
+            <li>Giving explicit go-ahead to push the full tool live</li>
+            <li>Confirming the finding and status in his own words</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>4 WCAG thresholds checked at once &middot; 1 contrast formula shared by two implementations (Python + JavaScript) &middot; 4 deploy commits &middot; 0 new accessibility regressions introduced</p>
+
+      <div class="worked-list" style="margin-top:var(--space-5);" data-reveal>
+        <div class="worked-item is-good">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <p><strong>Worked:</strong> The exact math Experiment 8 already proved against the live site now runs instantly in the browser for any two colors &mdash; turning a formula almost nobody outside accessibility work knows into something anyone can just try, and see fail or pass in plain language.</p>
+        </div>
+        <div class="worked-item is-bad">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <p><strong>Constraint:</strong> The tool checks contrast in isolation. It doesn&rsquo;t, and can&rsquo;t, tell anyone whether a color pair actually reads well in context &mdash; font weight, real-world size, and the surrounding design still need a human&rsquo;s eye.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDING -> IMPLICATION -->
+  <section>
+    <div class="wrap">
+      <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">The contrast checker works! It&rsquo;s interesting to use it and discover what works and what doesn&rsquo;t work.</p>
+        <p class="statement-support">Built on the exact same relative-luminance and contrast-ratio math Experiment 8 already proved against the live site &mdash; the public tool and the internal checker can never quietly disagree.</p>
+        <p class="statement-support" style="margin-top:var(--space-3);">Checks all four WCAG thresholds &mdash; AA and AAA, at both Normal and Large text &mdash; the moment two colors are entered.</p>
+      </div>
+
+      <div style="max-width:620px; margin-top:var(--space-8);" data-reveal>
+        <p class="kicker">Implication</p>
+        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">Experiment 8 proved AI could enforce WCAG contrast automatically, quietly, before anything ships. This experiment asked what happens when that same math stops being a gate and becomes something a person can actually touch. The difference turned out to matter: reading a pass/fail report is not the same experience as picking two colors yourself and watching the number move. Dr. Paul&rsquo;s own reaction &mdash; that it&rsquo;s interesting to use and discover what works and what doesn&rsquo;t &mdash; is itself the finding. An enforcement tool tells you that you were wrong. An exploration tool lets you find out why, on your own terms, at your own pace. Both are legitimate uses of the same formula; they just serve different moments. The rule didn&rsquo;t change between Experiment 8 and this one. What changed was who it was built for.</p>
+      </div>
+
+      <div class="card card--current" style="max-width:720px; margin-top:var(--space-6);" data-reveal>
+        <p style="margin:0; font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">The same formula that silently gates a deploy can also become something people want to sit and play with.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT QUESTION -->
+  <section>
+    <div class="wrap">
+      <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
+        <p class="kicker">Next Question &middot; 10</p>
+        <h2 class="section-title">What&rsquo;s next is still open.</h2>
+        <p class="section-lede">Not decided yet &mdash; check back.</p>
+        <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="page-provenance">
+  <div class="wrap">
+    <details class="provenance provenance--collaborative footer-provenance">
+      <summary class="provenance-mark">
+        <span class="provenance-dot" aria-hidden="true"></span>
+        <span class="provenance-tier">AI-Collaborative Creation</span>
+        <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
+      </summary>
+      <div class="provenance-detail">
+        <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links-groups">
+      <div class="footer-links footer-links--primary">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/thinking/">Thinking</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer-links footer-links--meta">
+        <a href="/story/">Story</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/design-system/">Design System</a>
+      </div>
+      <div class="footer-links footer-links--legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      </div>
+    </div>
+    <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
+    <p>&copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>
