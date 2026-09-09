@@ -1013,6 +1013,59 @@
       </div>
 
       <div class="ds-group">
+        <p class="ds-group-title">Contrast checker &middot; .contrast-tool (on <a href="/contrast-checker/">/contrast-checker/</a>, Experiment 8 companion)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          A live, in-browser WCAG contrast-ratio tool &mdash; two color fields (each an
+          <code class="ds-code">input[type=color]</code> swatch synced to a hex text input),
+          a swap button, a live text-on-background preview, and four
+          <code class="ds-code">.pill.pill--supported</code> / <code class="ds-code">.pill--rejected</code>
+          Pass/Fail rows (AA/AAA &times; normal/large text) &mdash; reusing the existing pill
+          component rather than a new badge. Runs the identical relative-luminance math as
+          <code class="ds-code">scripts/accessibility_check.py</code>&rsquo;s <code class="ds-code">contrast_ratio()</code>,
+          in <code class="ds-code">script.js</code>&rsquo;s <code class="ds-code">initContrastChecker()</code>,
+          so the live page and the internal pre-deploy checker always agree. For demonstration
+          purposes only &mdash; not a certified accessibility auditor.
+        </p>
+        <div class="ds-frame">
+          <div class="contrast-tool" style="max-width:480px; margin:0 auto;">
+            <div class="contrast-tool-fields">
+              <div class="contrast-field">
+                <span class="contrast-field-label">Foreground</span>
+                <div class="contrast-field-row">
+                  <span class="contrast-swatch" style="background:#17181c; display:inline-block;" aria-hidden="true"></span>
+                  <span class="contrast-hex-input" style="display:inline-flex; align-items:center;">#17181c</span>
+                </div>
+              </div>
+              <span class="contrast-swap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10 3 14l4 4"/><path d="M3 14h13a4 4 0 0 0 4-4"/><path d="M17 14l4-4-4-4"/><path d="M21 10H8a4 4 0 0 0-4 4"/></svg>
+              </span>
+              <div class="contrast-field">
+                <span class="contrast-field-label">Background</span>
+                <div class="contrast-field-row">
+                  <span class="contrast-swatch" style="background:#faf8f4; display:inline-block;" aria-hidden="true"></span>
+                  <span class="contrast-hex-input" style="display:inline-flex; align-items:center;">#faf8f4</span>
+                </div>
+              </div>
+            </div>
+            <div class="contrast-ratio">
+              <span class="contrast-ratio-value">16.72 : 1</span>
+              <span class="contrast-ratio-label">Contrast ratio</span>
+            </div>
+            <div class="contrast-results">
+              <div class="contrast-result-row">
+                <span class="contrast-result-label">AA &middot; Normal (4.5:1)</span>
+                <span class="pill pill--supported">Pass</span>
+              </div>
+              <div class="contrast-result-row">
+                <span class="contrast-result-label">AAA &middot; Normal (7:1)</span>
+                <span class="pill pill--supported">Pass</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
         <p class="ds-group-title">Worked / didn&rsquo;t &middot; .worked-item (used on every Lab entry)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           Two-column honest ledger. <code class="ds-code">.is-good</code> gets a filled accent-soft
