@@ -2247,11 +2247,18 @@ main > section.legal-body {
   color: var(--color-ink-soft);
   text-decoration: underline;
   text-underline-offset: 2px;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
   /* Text-only box is 18px tall — padding + matching negative margin
      brings the real, clickable box up to the WCAG 2.5.8 AA 24×24px
-     minimum without shifting the widget's layout. */
-  padding: 4px 0;
-  margin: -4px 0;
+     minimum without shifting the widget's layout. The opaque background
+     matters because this widget is position:fixed: whatever page content
+     happens to sit underneath it (e.g. the homepage hero's CTA row and
+     note on a mobile viewport short enough that it hasn't been scrolled
+     past yet) would otherwise bleed through the bare text and look like
+     ghosted, overlapping copy. */
+  padding: 4px 6px;
+  margin: -4px -6px;
 }
 
 .path-tracker-privacy:hover {
