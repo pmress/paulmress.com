@@ -2256,9 +2256,14 @@ main > section.legal-body {
      happens to sit underneath it (e.g. the homepage hero's CTA row and
      note on a mobile viewport short enough that it hasn't been scrolled
      past yet) would otherwise bleed through the bare text and look like
-     ghosted, overlapping copy. */
+     ghosted, overlapping copy. Right margin is 0, not -6px like the other
+     sides: .path-tracker-pre right-aligns its children (align-items:
+     flex-end), so a negative right margin let this link's visual box
+     bleed 6px past the toggle pill's right edge above it. Keeping the
+     right edge flush with the flex item's own edge lines it up with the
+     pill instead. */
   padding: 4px 6px;
-  margin: -4px -6px;
+  margin: -4px 0 -4px -6px;
 }
 
 .path-tracker-privacy:hover {
