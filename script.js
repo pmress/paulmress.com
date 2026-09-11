@@ -344,26 +344,29 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
     // gives "Scroll for more" a moment to actually be readable, instead of
     // being replaced within the same frame it appears.
     //
-    // IntersectionObserver only fires on a threshold *crossing* (not
-    // intersecting -> intersecting), not on every frame the target stays
-    // in view. Near the bottom of a short list, revealing one batch often
-    // doesn't push the sentinel back out of the viewport -- especially
-    // once the page is close to its max scroll position -- so it never
-    // crosses back out and back in, and the single "isIntersecting" event
-    // this fires is the only reveal that ever happens: the list silently
-    // stalls partway through, "Scroll for more" stays put, and nothing a
-    // person does short of scrolling away and back gets it moving again.
-    // continueWhileInView() re-checks actual geometry after each reveal
-    // and keeps revealing on the same timer as long as the sentinel is
-    // still visibly in the viewport, instead of waiting for another
-    // IntersectionObserver crossing that may never come.
+    // IntersectionObserver only fires on a threshold *crossing* (not on
+    // every frame the target stays in view). Near the bottom of a short
+    // list, revealing one batch often doesn't reliably push the sentinel
+    // back out of the viewport and back in -- especially once the page is
+    // close to its max scroll position -- so no further crossing ever
+    // happens and the list silently stalls partway through, "Scroll for
+    // more" stuck on screen. A same-frame geometry re-check after each
+    // reveal helps but isn't enough on its own: right after the DOM
+    // mutation, before the browser has settled the new layout, that
+    // re-check can itself read a stale position and stop one batch early.
+    // tryReveal() is the single entry point (observer, post-reveal
+    // recheck via requestAnimationFrame so layout has actually settled,
+    // and a real scroll/resize listener as an unconditional backstop) --
+    // so *any* moment the sentinel is genuinely visible and not already
+    // mid-reveal gets a chance to continue, instead of depending on one
+    // specific event firing at the right time.
     let isRevealing = false;
     function sentinelInViewport() {
       const rect = sentinel.getBoundingClientRect();
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
       return rect.top < viewportHeight && rect.bottom > 0;
     }
-    function continueWhileInView() {
+    function tryReveal() {
       if (isRevealing || revealCount >= items.length) return;
       if (!sentinelInViewport()) return;
       isRevealing = true;
@@ -371,16 +374,18 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
         revealCount += batchSize;
         apply();
         isRevealing = false;
-        continueWhileInView();
+        requestAnimationFrame(tryReveal);
       }, 350);
     }
     const revealObserver = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) continueWhileInView();
+        if (entries[0].isIntersecting) tryReveal();
       },
       { rootMargin: "0px" }
     );
     revealObserver.observe(sentinel);
+    window.addEventListener("scroll", tryReveal, { passive: true });
+    window.addEventListener("resize", tryReveal);
   } else {
     revealCount = items.length; // no IntersectionObserver: just show everything
   }
