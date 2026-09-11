@@ -2249,6 +2249,7 @@ main > section.legal-body {
   text-underline-offset: 2px;
   background: var(--color-bg);
   border-radius: var(--radius-sm);
+  box-shadow: 0 6px 20px rgba(20, 18, 12, 0.1);
   /* Text-only box is 18px tall — padding + matching negative margin
      brings the real, clickable box up to the WCAG 2.5.8 AA 24×24px
      minimum without shifting the widget's layout. The opaque background
@@ -2256,7 +2257,13 @@ main > section.legal-body {
      happens to sit underneath it (e.g. the homepage hero's CTA row and
      note on a mobile viewport short enough that it hasn't been scrolled
      past yet) would otherwise bleed through the bare text and look like
-     ghosted, overlapping copy. */
+     ghosted, overlapping copy. The same box-shadow as .path-tracker-toggle
+     matters too: without it, --color-bg read as a flat, hard-edged patch
+     of the wrong shade whenever the widget floated over a section using
+     --color-bg-alt (or anything else) instead — which is its own "cut
+     off" looking artifact. The shadow makes both pieces read as one
+     consistent set of small floating cards regardless of what's under
+     them. */
   padding: 4px 6px;
   margin: -4px -6px;
 }
