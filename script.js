@@ -345,41 +345,61 @@ document.querySelectorAll(".content-toolbar").forEach((toolbar) => {
     // being replaced within the same frame it appears.
     //
     // IntersectionObserver only fires on a threshold *crossing* (not on
-    // every frame the target stays in view). Near the bottom of a short
-    // list, revealing one batch often doesn't reliably push the sentinel
-    // back out of the viewport and back in -- especially once the page is
-    // close to its max scroll position -- so no further crossing ever
-    // happens and the list silently stalls partway through, "Scroll for
-    // more" stuck on screen. A same-frame geometry re-check after each
-    // reveal helps but isn't enough on its own: right after the DOM
-    // mutation, before the browser has settled the new layout, that
-    // re-check can itself read a stale position and stop one batch early.
-    // tryReveal() is the single entry point (observer, post-reveal
-    // recheck via requestAnimationFrame so layout has actually settled,
-    // and a real scroll/resize listener as an unconditional backstop) --
-    // so *any* moment the sentinel is genuinely visible and not already
-    // mid-reveal gets a chance to continue, instead of depending on one
-    // specific event firing at the right time.
+    // every frame the target stays in view), and a plain scroll/resize
+    // listener depends on one of those events actually firing again --
+    // neither happens once the page is pinned at its exact max scroll
+    // position with more items still to reveal: nothing further can
+    // scroll, so no new scroll event ever fires, and a same-frame or
+    // next-frame geometry re-check right after the DOM mutation isn't
+    // reliably enough later than the browser's own layout settling
+    // either. Confirmed live, twice, with both of those approaches: the
+    // list stalled one batch short of the end and only a manual
+    // scroll-away-and-back nudged it the rest of the way.
+    // A short poll while the sentinel is visible and more remains to
+    // reveal sidesteps all of that -- it doesn't wait for any specific
+    // event, it just checks again a few times a second. Cheap (single
+    // sentinel, self-cancelling the moment everything is shown or the
+    // sentinel leaves view) and, unlike the event-driven approaches,
+    // not dependent on the browser producing an event that this exact
+    // situation may never produce.
     let isRevealing = false;
+    let pollId = null;
     function sentinelInViewport() {
       const rect = sentinel.getBoundingClientRect();
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
       return rect.top < viewportHeight && rect.bottom > 0;
     }
+    function stopPolling() {
+      if (pollId !== null) {
+        clearInterval(pollId);
+        pollId = null;
+      }
+    }
     function tryReveal() {
-      if (isRevealing || revealCount >= items.length) return;
+      if (revealCount >= items.length) {
+        stopPolling();
+        return;
+      }
+      if (isRevealing) return;
       if (!sentinelInViewport()) return;
       isRevealing = true;
       setTimeout(() => {
         revealCount += batchSize;
         apply();
         isRevealing = false;
-        requestAnimationFrame(tryReveal);
+        if (revealCount >= items.length) stopPolling();
       }, 350);
+    }
+    function startPolling() {
+      if (pollId !== null) return;
+      pollId = setInterval(tryReveal, 400);
     }
     const revealObserver = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) tryReveal();
+        if (entries[0].isIntersecting) {
+          tryReveal();
+          startPolling();
+        }
       },
       { rootMargin: "0px" }
     );
