@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can AI Catch Its Own Mistakes Automatically? | Lab | Dr. Paul Ress, DBA</title>
+<meta name="description" content="Experiment 10: A retake on Experiment 3. This time, a check that runs on its own after every deployment found two real mistakes nobody had noticed, on its very first real run.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4C3AE3">
+<link rel="canonical" href="https://paulmress.com/lab/10/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Can AI Catch Its Own Mistakes Automatically? | Lab | Dr. Paul Ress, DBA">
+<meta property="og:description" content="Experiment 10: A retake on Experiment 3. This time, a check that runs on its own after every deployment found two real mistakes nobody had noticed, on its very first real run.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paulmress.com/lab/10/">
+<meta property="og:site_name" content="Paul Ress">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paulmress.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Can AI Catch Its Own Mistakes Automatically? | Lab | Dr. Paul Ress, DBA">
+<meta name="twitter:description" content="Experiment 10: a retake on Experiment 3 &mdash; a check that runs on its own found two real mistakes nobody had noticed, the first time it ran for real.">
+<meta name="twitter:image" content="https://paulmress.com/images/og-image.png">
+<meta name="twitter:image:alt" content="Dr. Paul Ress, DBA, Director of Marketing AI Strategy, Enablement and Governance">
+
+<!-- Favicon -->
+<link rel="icon" href="../../images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../../images/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"></noscript>
+
+<link rel="stylesheet" href="../../styles.css">
+
+<style>
+  main > section { padding: var(--space-9) 0; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Can AI Catch Its Own Mistakes Automatically? | Lab | Dr. Paul Ress, DBA",
+  "url": "https://paulmress.com/lab/10/",
+  "description": "Experiment 10: A retake on Experiment 3. This time, a check that runs on its own after every deployment found two real mistakes nobody had noticed, on its very first real run.",
+  "author": { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+  "creator": [
+    { "@type": "Person", "name": "Dr. Paul Ress", "url": "https://paulmress.com/" },
+    { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com/", "description": "Claude, the AI pair-programmer that drafted this page's language and code under Dr. Paul Ress's direction." }
+  ],
+  "accountablePerson": { "@type": "Person", "name": "Dr. Paul Ress" },
+  "digitalSourceType": "https://schema.org/CompositeWithTrainedAlgorithmicMediaDigitalSource"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">Paul M. Ress</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim"></div>
+<div class="nav-panel" id="nav-panel" aria-hidden="true" inert>
+  <canvas class="nav-panel-canvas" id="nav-panel-canvas" aria-hidden="true"></canvas>
+  <p class="nav-panel-kicker">Menu</p>
+  <nav class="nav-panel-links" aria-label="Primary">
+    <a href="/lab/" class="nav-panel-link" aria-current="page"><span class="nav-panel-num">01</span>Lab</a>
+    <a href="/thinking/" class="nav-panel-link"><span class="nav-panel-num">02</span>Thinking</a>
+    <a href="/about/" class="nav-panel-link"><span class="nav-panel-num">03</span>About</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- QUESTION -->
+  <section class="about-intro intro-network">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="page-back-bar">
+        <button type="button" class="back-link" onclick="if (window.history.length > 1) { history.back(); } else { window.location.href = '/'; }">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+      </div>
+      <p class="kicker" data-reveal><a href="/lab/" style="color:inherit;">Lab</a> &middot; 10</p>
+      <h1 class="about-title" data-reveal>Can AI catch its own mistakes automatically, instead of waiting to be told?</h1>
+      <p class="section-lede" data-reveal>Experiment 3 found that AI could fix a mistake on the website &mdash; but only once someone found it first and pointed it out. This experiment asks the same question again, with one change: instead of AI fixing what it&rsquo;s told to fix, we built something that checks the website on its own, every time it changes, without anyone having to ask.</p>
+      <div class="lab-meta" data-reveal>
+        <span class="pill pill--supported">Supported</span>
+        <span class="lab-meta-facts">Updated Sept. 11, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPOTHESIS + FINDING -->
+  <section>
+    <div class="wrap">
+      <div class="hyp-result" data-reveal>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Hypothesis</p>
+          <p class="hyp-result-text">Can a check that runs on its own &mdash; automatically, every time the site changes &mdash; succeed where Experiment 3&rsquo;s one-time fix couldn&rsquo;t?</p>
+        </div>
+        <div class="hyp-result-col">
+          <p class="hyp-result-label">Finding</p>
+          <p class="hyp-result-text">A process that checks itself found a mistake Experiment 3&rsquo;s one-time fix never could.</p>
+        </div>
+      </div>
+      <p class="hyp-result-limitations" data-reveal>This has only run for real once, on one page. It&rsquo;s not a controlled study, and it isn&rsquo;t proof that every check on the site should work this way &mdash; other candidates for the same treatment (checking the rest of the site&rsquo;s pages, not just this one) haven&rsquo;t been tried yet.</p>
+    </div>
+  </section>
+
+  <!-- METHOD (workflow-compare centerpiece) -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>Method</p>
+
+      <div class="workflow-compare" data-reveal>
+        <div class="workflow-compare-row">
+          <span class="workflow-compare-label">Traditional</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Someone notices something is wrong</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">They tell AI exactly what to fix</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">AI fixes that one thing</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Nothing keeps watching after that</span></div>
+        </div>
+        <div class="workflow-compare-row workflow-compare-row--current">
+          <span class="workflow-compare-label">Experiment</span>
+          <div class="pipeline" style="margin-bottom:0;"><span class="pill">Every claim the page makes gets checked automatically</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Each check runs on its own</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">Anything that looks wrong gets double-checked</span><span class="pipeline-arrow" aria-hidden="true">&rarr;</span><span class="pill">A person only steps in for the unclear calls</span></div>
+        </div>
+      </div>
+
+      <div class="flow-row" style="margin-top:var(--space-8);" data-reveal>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M15 2v5h5"/><path d="M8 12h8M8 16h5"/></svg>
+          </span>
+          <h3>Checklist</h3>
+          <p>Instead of waiting for someone to notice a problem, we listed every claim one page makes about the rest of the site &mdash; which pages use which features, how many experiments exist, and so on.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </span>
+          <h3>Automatic</h3>
+          <p>Turned that checklist into a standing process that runs every time the site changes, instead of something someone has to remember to ask for.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <h3>Test</h3>
+          <p>The first real run happened right after two new experiments went live, before anyone had manually checked whether the page&rsquo;s claims still matched.</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">&rarr;</span>
+        <div class="flow-step card--current">
+          <span class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <h3>Double-check</h3>
+          <p>Anything flagged got checked a second time before it was trusted. Two real mistakes were confirmed and fixed. One case wasn&rsquo;t clear-cut, so it was handed to Dr. Paul instead of guessed at.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-7);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-3);">Tech</p>
+        <div class="pipeline" style="margin-bottom:0;">
+          <span class="pill">Claude</span>
+          <span class="pill">Automatic checks</span>
+          <span class="pill">GitHub</span>
+          <span class="pill">Python</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE EXPERIMENT -->
+  <section>
+    <div class="wrap">
+      <p class="kicker" data-reveal>The experiment</p>
+      <p class="section-lede" style="margin-bottom:var(--space-6);" data-reveal>Same question as Experiment 3 &mdash; tested with a different approach this time.</p>
+
+      <div class="compare-grid" data-reveal>
+        <div class="card">
+          <p class="chapter-range">AI handled</p>
+          <ul class="plain-list">
+            <li>Building the automatic check and turning it into a standing process that runs on its own</li>
+            <li>Running it for real, right after two new experiments shipped without a follow-up check</li>
+            <li>Finding two real mistakes and one unclear case</li>
+            <li>Fixing the two real mistakes and flagging the unclear one instead of guessing at it</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="chapter-range">Dr. Paul handled</p>
+          <ul class="plain-list">
+            <li>Picking this idea, from a larger plan, to actually test</li>
+            <li>Deciding what to do with the one unclear case</li>
+            <li>Approving the fix before it went live</li>
+            <li>Asking for this check to keep running automatically from now on, and for this write-up to be simplified until it was easy to follow</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="lab-meta-facts" style="margin-top:var(--space-6);" data-reveal>2 real mistakes found the first time it ran &middot; 1 unclear case flagged instead of guessed &middot; 1 fix shipped &middot; 0 changes made without a &ldquo;yes&rdquo;</p>
+
+      <div class="worked-list" style="margin-top:var(--space-5);" data-reveal>
+        <div class="worked-item is-good">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <p><strong>Worked:</strong> The process found two real mistakes nobody had noticed, the very first time it ran for real &mdash; without anyone pointing AI at a specific problem first.</p>
+        </div>
+        <div class="worked-item is-bad">
+          <span class="worked-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <p><strong>Constraint:</strong> This only checks one page so far. The rest of the site isn&rsquo;t covered yet. And it still needed a person to make the one genuinely unclear call &mdash; the process finds and sorts problems, but it doesn&rsquo;t decide the hard ones on its own.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDING -> IMPLICATION -->
+  <section>
+    <div class="wrap">
+      <div class="hmw" style="text-align:center; max-width:720px; margin:0 auto; padding:var(--space-9) var(--space-8);" data-reveal>
+        <p class="kicker" style="margin-bottom:var(--space-4);">Finding</p>
+        <p class="statement" style="font-size:var(--text-heading-lg); margin-bottom:var(--space-4);">A process that checks itself found a mistake Experiment 3&rsquo;s one-time fix never could.</p>
+        <p class="statement-support">Experiment 3 could only fix what a person had already found and pointed at; this process found a mistake nobody had noticed.</p>
+        <p class="statement-support" style="margin-top:var(--space-3);">It also knew its own limits &mdash; it double-checked anything it flagged, and asked a person instead of guessing on the one case that wasn&rsquo;t clear-cut.</p>
+      </div>
+
+      <div style="max-width:620px; margin-top:var(--space-8);" data-reveal>
+        <p class="kicker">Implication</p>
+        <p style="margin:0; font-size:var(--text-lg); color:var(--color-ink-soft);">Experiment 3 ended by wondering if a smarter AI model might eventually solve this on its own. It turned out that wasn&rsquo;t the answer. Nothing about the AI itself changed between these two experiments. What changed was building a better system around it &mdash; one that checks automatically instead of waiting to be asked, and still checks with a person before making an uncertain call. The lesson here isn&rsquo;t that AI got smarter. It&rsquo;s that a better process, built once, can keep working long after the person who built it stops thinking about it.</p>
+      </div>
+
+      <div class="card card--current" style="max-width:720px; margin-top:var(--space-6);" data-reveal>
+        <p style="margin:0; font-size:var(--text-lg); font-weight:600; color:var(--color-ink);">A better system, not a smarter AI, is what actually worked.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT QUESTION -->
+  <section>
+    <div class="wrap">
+      <div class="about-cta" style="padding-top:var(--space-8); border-top:1px solid var(--color-line);" data-reveal>
+        <p class="kicker">Next Question &middot; 11</p>
+        <h2 class="section-title">What&rsquo;s next is still open.</h2>
+        <p class="section-lede">A few ideas already on the table: checking the rest of the site&rsquo;s pages the same automatic way, not just this one.</p>
+        <a class="btn btn-primary" href="/lab/">Back to the Lab</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="page-provenance">
+  <div class="wrap">
+    <details class="provenance provenance--collaborative footer-provenance">
+      <summary class="provenance-mark">
+        <span class="provenance-dot" aria-hidden="true"></span>
+        <span class="provenance-tier">AI-Collaborative Creation</span>
+        <span class="provenance-chevron" aria-hidden="true">&#9662;</span>
+      </summary>
+      <div class="provenance-detail">
+        <p>AI materially drafted the artifact under <a href="/about/" class="provenance-author">Dr. Paul</a>&rsquo;s direction and judgment.</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links-groups">
+      <div class="footer-links footer-links--primary">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/thinking/">Thinking</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer-links footer-links--meta">
+        <a href="/story/">Story</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/design-system/">Design System</a>
+      </div>
+      <div class="footer-links footer-links--legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <span class="footer-links-sep" aria-hidden="true">|</span>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      </div>
+    </div>
+    <p class="footer-disclaimer">Disclaimer: Dr. Paul (Paul M. Ress)&rsquo;s results are atypical and may not be representative of what others can achieve, nor should the results be generalized. paulmress.com is a live experiment intended for learning, exploration, and demonstration. Your results may vary.</p>
+    <p>&copy; <span id="year"></span> Paul Ress. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>
