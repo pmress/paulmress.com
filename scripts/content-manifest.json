@@ -194,12 +194,7 @@
     {
       "path": "/lab/10/",
       "file": "lab/10/index.html",
-      "reason": "Gap found 2026-09-16: this page is live (shipped 2026-09-11, per project-notes.md) but was never added to this manifest by whatever session built it — no drive_doc_id on record here even though a Drive brief may exist. Flagged for backfill, not fixed this session (out of scope for the Experiment 11 deploy this entry accompanies)."
-    },
-    {
-      "path": "/lab/11/",
-      "file": "lab/11/index.html",
-      "reason": "Experiment 11, shipped 2026-09-16 — \"Can AI deploy more efficiently through the browser than through a local command line?\" Hypothesis is Dr. Paul's own exact wording. Status shipped as Ongoing, Finding and Implication both explicitly TBD, same pattern as Experiments 5 and 6's original launches — not to be backfilled by Claude. No Drive content brief exists yet; intentionally not Drive-managed for now, same as /cookie/ and /contrast-checker/ before their briefs were backfilled."
+      "reason": "Gap found 2026-09-16: this page is live (shipped 2026-09-11, per project-notes.md) but was never added to this manifest by whatever session built it — no drive_doc_id on record here even though a Drive brief may exist. Flagged for backfill, not fixed this session."
     }
   ],
   "reference_docs": [
