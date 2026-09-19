@@ -2963,9 +2963,15 @@ main > section.legal-body {
    per-page markup), same pattern as the path tracker above. */
 .a11y-widget {
   position: fixed;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
+  right: var(--space-5);
+  /* Stacked above the path-tracker widget (Experiment 6), which has two
+     states of very different heights: the collapsed opt-in pill (~66px
+     including its Privacy Policy link) and, once someone opts in, the
+     expanded tracking panel (~94px, measured). This offset is sized off
+     the taller of the two -- its own 20px bottom inset, its measured
+     94px height, plus a full 20px gap -- so the two widgets never touch
+     or overlap in either state, not just the one visible by default. */
+  bottom: calc(var(--space-5) + 94px + var(--space-5));
   z-index: 400;
   font-family: var(--font-body);
 }
@@ -2978,9 +2984,8 @@ main > section.legal-body {
   justify-content: center;
   background: var(--color-bg-alt);
   border: 1px solid var(--color-line);
-  border-right: none;
-  border-radius: var(--radius) 0 0 var(--radius);
-  box-shadow: -2px 0 10px rgba(20, 18, 12, 0.08);
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 20px rgba(20, 18, 12, 0.1);
   cursor: pointer;
   color: var(--color-accent);
   transition: background var(--duration-fast) var(--ease-out);
@@ -2996,9 +3001,8 @@ main > section.legal-body {
 
 .a11y-panel {
   position: absolute;
-  top: 50%;
-  right: var(--space-9);
-  transform: translateY(-50%);
+  bottom: 0;
+  right: calc(var(--space-9) + var(--space-3));
   width: min(296px, calc(100vw - var(--space-9) - var(--space-6)));
   background: var(--color-bg-alt);
   border: 1px solid var(--color-line);
