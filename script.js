@@ -2,6 +2,18 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // ---------------------------------------------------------------
+// Reduce-motion check shared by anything driven by rAF: true if the OS
+// preference is set OR the accessibility widget's toggle is on. Checked
+// live (not cached) so both sources can stop motion without a reload.
+// ---------------------------------------------------------------
+function pmMotionReduced() {
+  return (
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    document.documentElement.classList.contains("a11y-motion-reduce")
+  );
+}
+
+// ---------------------------------------------------------------
 // Nav toggle: hamburger opens a slide-in panel
 // ---------------------------------------------------------------
 (function initNavToggle() {
@@ -65,7 +77,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // ---------------------------------------------------------------
 function createNodeNetwork(canvas, boundsEl, opts) {
   const ctx = canvas.getContext("2d");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const LINK_DIST = opts.linkDist || 140;
   const NODE_COLOR = opts.color || "76, 58, 227";
@@ -137,7 +148,8 @@ function createNodeNetwork(canvas, boundsEl, opts) {
       ctx.fill();
     });
 
-    if (running && !reduceMotion) rafId = requestAnimationFrame(step);
+    if (running && !pmMotionReduced()) rafId = requestAnimationFrame(step);
+    else rafId = null;
   }
 
   function start() {
@@ -145,6 +157,7 @@ function createNodeNetwork(canvas, boundsEl, opts) {
     sizeCanvas();
     makeNodes();
     if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
     step();
   }
 
@@ -154,6 +167,23 @@ function createNodeNetwork(canvas, boundsEl, opts) {
     rafId = null;
   }
 
+  // Reacts to the a11y widget's toggle and to the OS-level preference,
+  // so motion can be frozen or resumed live without restarting the canvas.
+  function sync() {
+    if (pmMotionReduced()) {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+      if (running) step(); // one static frame; step() won't reschedule while reduced
+    } else if (running && !rafId) {
+      step();
+    }
+  }
+
+  document.addEventListener("pm-a11y-change", sync);
+  const motionMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (motionMQ.addEventListener) motionMQ.addEventListener("change", sync);
+  else if (motionMQ.addListener) motionMQ.addListener(sync);
+
   return { start, stop };
 }
 
@@ -162,7 +192,6 @@ function createNodeNetwork(canvas, boundsEl, opts) {
   // giving its canvas the .hero-canvas class — not just the homepage hero.
   const canvases = document.querySelectorAll(".hero-canvas");
   if (!canvases.length) return;
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   canvases.forEach((canvas) => {
     const bounds = canvas.parentElement;
@@ -184,7 +213,7 @@ function createNodeNetwork(canvas, boundsEl, opts) {
 
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) net.stop();
-      else if (!reduceMotion) net.start();
+      else if (!pmMotionReduced()) net.start();
     });
 
     net.start();
@@ -893,6 +922,7 @@ function pmApplyA11yPrefs(prefs) {
   root.classList.toggle("a11y-contrast", !!prefs.contrast);
   root.classList.toggle("a11y-motion-reduce", !!prefs.reduceMotion);
   root.classList.toggle("a11y-underline-links", !!prefs.underlineLinks);
+  document.dispatchEvent(new CustomEvent("pm-a11y-change", { detail: prefs }));
 }
 
 // Apply any saved prefs immediately, before the widget itself is
