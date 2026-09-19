@@ -2955,3 +2955,277 @@ main > section.legal-body {
   .contrast-swap { justify-self: center; }
   .contrast-results { grid-template-columns: 1fr; }
 }
+
+/* ---------- Accessibility widget (opt-in reading/display controls) ---------- */
+/* Text size, higher contrast, reduced motion, underlined links -- a
+   rendering preference stored in localStorage on this browser only.
+   Fixed-position widget, injected by script.js on every page (not
+   per-page markup), same pattern as the path tracker above. */
+.a11y-widget {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 400;
+  font-family: var(--font-body);
+}
+
+.a11y-tab {
+  width: var(--space-9);
+  height: 208px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-line);
+  border-right: none;
+  border-radius: var(--radius) 0 0 var(--radius);
+  box-shadow: -2px 0 10px rgba(20, 18, 12, 0.08);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.a11y-tab:hover { background: var(--color-line); }
+.a11y-tab:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+
+.a11y-tab span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.a11y-panel {
+  position: absolute;
+  top: 50%;
+  right: var(--space-9);
+  transform: translateY(-50%);
+  width: min(296px, calc(100vw - var(--space-9) - var(--space-6)));
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  box-shadow: -4px 4px 24px rgba(20, 18, 12, 0.1);
+}
+
+.a11y-panel[hidden] { display: none; }
+
+.a11y-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+}
+
+.a11y-panel-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--text-lg);
+  color: var(--color-ink);
+}
+
+.a11y-close {
+  width: var(--space-9);
+  height: var(--space-9);
+  margin-right: calc(var(--space-2) * -1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  color: var(--color-ink-soft);
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.a11y-close:hover { color: var(--color-ink); }
+
+.a11y-hr {
+  border-top: 1px solid var(--color-line);
+  margin: var(--space-4) 0;
+}
+
+.a11y-hr--tight { margin-bottom: var(--space-3); }
+
+.a11y-section-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-2);
+}
+
+.a11y-size-row {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.a11y-size-btn {
+  width: var(--space-9);
+  height: var(--space-9);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-line);
+  background: var(--color-bg-alt);
+  color: var(--color-ink-soft);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.a11y-size-btn:hover { border-color: var(--color-ink-soft); }
+.a11y-size-btn--sm { font-size: 12px; }
+.a11y-size-btn--md { font-size: 15px; }
+.a11y-size-btn--lg { font-size: 18px; }
+
+.a11y-size-btn.is-active {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.a11y-size-btn.is-active:hover { border-color: var(--color-accent); }
+
+.a11y-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+}
+
+.a11y-toggle-row--last { padding-bottom: var(--space-4); }
+
+.a11y-toggle-row span {
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+}
+
+.a11y-switch {
+  width: var(--space-9);
+  height: var(--space-9);
+  margin-right: calc(var(--space-2) * -1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.a11y-track {
+  width: 34px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  position: relative;
+  display: block;
+  transition: border-color var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out);
+}
+
+.a11y-switch:hover .a11y-track { border-color: var(--color-ink-soft); }
+
+.a11y-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-ink-soft);
+  transition: left var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out);
+}
+
+.a11y-switch.is-on .a11y-track {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.a11y-switch.is-on:hover .a11y-track { border-color: var(--color-accent); }
+
+.a11y-switch.is-on .a11y-knob {
+  left: 16px;
+  background: var(--color-accent);
+}
+
+.a11y-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.a11y-footer-note {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-ink-soft);
+}
+
+.a11y-reset {
+  display: inline-block;
+  border: none;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  text-decoration: underline;
+  padding: var(--space-2) var(--space-1);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.a11y-reset:hover { color: var(--color-ink); }
+
+@media (max-width: 560px) {
+  .a11y-tab { height: 176px; }
+}
+
+/* Higher contrast: retint the shared tokens themselves rather than
+   overriding individual elements, since the whole site already reads
+   its colors from these custom properties -- one rule recolors
+   everything consistently, including this widget's own panel. Links
+   also get underlined so meaning never rests on color alone. */
+html.a11y-contrast {
+  --color-ink: #000000;
+  --color-ink-soft: #000000;
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #FFFFFF;
+  --color-line: #000000;
+}
+
+html.a11y-contrast a { text-decoration: underline; }
+
+/* Reduce motion: a blanket override alongside the site's existing
+   per-component @media (prefers-reduced-motion: reduce) blocks, so
+   the manual toggle guarantees the same result as the OS-level
+   setting without having to touch every animated selector by hand. */
+html.a11y-motion-reduce *,
+html.a11y-motion-reduce *::before,
+html.a11y-motion-reduce *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Underline links: scoped to inline links inside body copy (every
+   real instance of one on the site lives inside a <p>), not button
+   CTAs (.btn), nav, footer or card links, which are already visually
+   distinct by their own chrome rather than color alone. */
+html.a11y-underline-links p a { text-decoration: underline; text-underline-offset: 2px; }
+
+/* Text size: the whole type scale is rem-based, so scaling the root
+   font-size scales every token (headings included) consistently. */
+html.a11y-text-lg { font-size: 112.5%; }
+html.a11y-text-xl { font-size: 125%; }

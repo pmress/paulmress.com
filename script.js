@@ -852,3 +852,156 @@ function pmClearPathTrackerCookie() {
 
   render();
 })();
+
+// ---------------------------------------------------------------
+// Accessibility widget -- opt-in reading/display controls (text
+// size, higher contrast, reduced motion, underlined links). Purely
+// a rendering preference: stored in localStorage on this browser
+// only, never transmitted anywhere, so unlike the path-tracker
+// cookie above it needs no privacy disclosure. Injected here rather
+// than living in per-page markup, so no page's HTML has to change to
+// carry it and no new page needs to remember to include it -- same
+// reasoning as the path-tracker widget.
+// ---------------------------------------------------------------
+const PM_A11Y_STORAGE_KEY = "pmA11yPrefs";
+const PM_A11Y_DEFAULTS = { textSize: "base", contrast: false, reduceMotion: false, underlineLinks: false };
+
+function pmReadA11yPrefs() {
+  try {
+    const raw = localStorage.getItem(PM_A11Y_STORAGE_KEY);
+    if (!raw) return Object.assign({}, PM_A11Y_DEFAULTS);
+    return Object.assign({}, PM_A11Y_DEFAULTS, JSON.parse(raw));
+  } catch (e) {
+    return Object.assign({}, PM_A11Y_DEFAULTS);
+  }
+}
+
+function pmWriteA11yPrefs(prefs) {
+  try {
+    localStorage.setItem(PM_A11Y_STORAGE_KEY, JSON.stringify(prefs));
+  } catch (e) {
+    // Private mode / storage full / disabled -- the controls still
+    // work for this page view, they just won't persist to the next.
+  }
+}
+
+function pmApplyA11yPrefs(prefs) {
+  const root = document.documentElement;
+  root.classList.remove("a11y-text-lg", "a11y-text-xl");
+  if (prefs.textSize === "lg") root.classList.add("a11y-text-lg");
+  if (prefs.textSize === "xl") root.classList.add("a11y-text-xl");
+  root.classList.toggle("a11y-contrast", !!prefs.contrast);
+  root.classList.toggle("a11y-motion-reduce", !!prefs.reduceMotion);
+  root.classList.toggle("a11y-underline-links", !!prefs.underlineLinks);
+}
+
+// Apply any saved prefs immediately, before the widget itself is
+// built, so a returning visitor never sees an unstyled flash.
+pmApplyA11yPrefs(pmReadA11yPrefs());
+
+(function initA11yWidget() {
+  let prefs = pmReadA11yPrefs();
+
+  const root = document.createElement("div");
+  root.className = "a11y-widget";
+  root.innerHTML =
+    '<button type="button" class="a11y-tab" aria-expanded="false" aria-controls="a11y-panel">' +
+      "<span>Accessibility</span>" +
+    "</button>" +
+    '<div id="a11y-panel" class="a11y-panel" role="region" aria-label="Reading and display settings" hidden>' +
+      '<div class="a11y-panel-head">' +
+        '<span class="a11y-panel-title">Read it your way</span>' +
+        '<button type="button" class="a11y-close" aria-label="Close accessibility settings">&times;</button>' +
+      "</div>" +
+      '<div class="a11y-hr"></div>' +
+      '<div class="a11y-section-label">Text size</div>' +
+      '<div class="a11y-size-row">' +
+        '<button type="button" class="a11y-size-btn a11y-size-btn--sm" data-size="base" aria-pressed="false">A</button>' +
+        '<button type="button" class="a11y-size-btn a11y-size-btn--md" data-size="lg" aria-pressed="false">A</button>' +
+        '<button type="button" class="a11y-size-btn a11y-size-btn--lg" data-size="xl" aria-pressed="false">A</button>' +
+      "</div>" +
+      '<div class="a11y-toggle-row">' +
+        "<span>Higher contrast</span>" +
+        '<button type="button" class="a11y-switch" data-pref="contrast" role="switch" aria-checked="false" aria-label="Higher contrast"><span class="a11y-track"><span class="a11y-knob"></span></span></button>' +
+      "</div>" +
+      '<div class="a11y-toggle-row">' +
+        "<span>Reduce motion</span>" +
+        '<button type="button" class="a11y-switch" data-pref="reduceMotion" role="switch" aria-checked="false" aria-label="Reduce motion"><span class="a11y-track"><span class="a11y-knob"></span></span></button>' +
+      "</div>" +
+      '<div class="a11y-toggle-row a11y-toggle-row--last">' +
+        "<span>Underline links</span>" +
+        '<button type="button" class="a11y-switch" data-pref="underlineLinks" role="switch" aria-checked="false" aria-label="Underline links"><span class="a11y-track"><span class="a11y-knob"></span></span></button>' +
+      "</div>" +
+      '<div class="a11y-hr a11y-hr--tight"></div>' +
+      '<div class="a11y-footer-row">' +
+        '<span class="a11y-footer-note">Applies instantly</span>' +
+        '<button type="button" class="a11y-reset">Reset</button>' +
+      "</div>" +
+    "</div>";
+  document.body.appendChild(root);
+
+  const tab = root.querySelector(".a11y-tab");
+  const panel = root.querySelector(".a11y-panel");
+  const closeBtn = root.querySelector(".a11y-close");
+  const sizeBtns = root.querySelectorAll(".a11y-size-btn");
+  const switches = root.querySelectorAll(".a11y-switch");
+  const resetBtn = root.querySelector(".a11y-reset");
+
+  function render() {
+    sizeBtns.forEach((btn) => {
+      const isActive = btn.dataset.size === prefs.textSize;
+      btn.classList.toggle("is-active", isActive);
+      btn.setAttribute("aria-pressed", String(isActive));
+    });
+    switches.forEach((btn) => {
+      const isOn = !!prefs[btn.dataset.pref];
+      btn.classList.toggle("is-on", isOn);
+      btn.setAttribute("aria-checked", String(isOn));
+    });
+    pmApplyA11yPrefs(prefs);
+    pmWriteA11yPrefs(prefs);
+  }
+
+  function openPanel() {
+    panel.hidden = false;
+    tab.setAttribute("aria-expanded", "true");
+  }
+
+  function closePanel() {
+    panel.hidden = true;
+    tab.setAttribute("aria-expanded", "false");
+    tab.focus();
+  }
+
+  tab.addEventListener("click", () => {
+    if (panel.hidden) openPanel();
+    else closePanel();
+  });
+  closeBtn.addEventListener("click", closePanel);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !panel.hidden) closePanel();
+  });
+
+  sizeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      prefs.textSize = btn.dataset.size;
+      render();
+    });
+  });
+
+  switches.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.pref;
+      prefs[key] = !prefs[key];
+      render();
+    });
+  });
+
+  resetBtn.addEventListener("click", () => {
+    prefs = Object.assign({}, PM_A11Y_DEFAULTS);
+    render();
+  });
+
+  render();
+})();
