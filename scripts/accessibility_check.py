@@ -19,6 +19,25 @@ Design choices worth knowing before this gets wired into the real repo:
   guard. A proper parser with a stacked walk avoids that whole class of
   mistake, which is why this version is written this way instead of porting
   the regex approach.
+- The reduced-motion check reads CSS from both inline <style> tags AND
+  local stylesheets referenced via <link rel="stylesheet" href="...">.
+  Root-relative hrefs ("/styles.css") resolve against the repo root
+  (two directories up from this script); relative hrefs resolve against
+  the HTML file's own directory. "?v=..." cache-busting query strings are
+  stripped before resolving. External stylesheets (http(s):, protocol-
+  relative "//...", data:) are skipped — there's nothing local to read.
+- The reduced-motion check is selector-level, not just "does a guard exist
+  somewhere". It collects every selector that declares a non-"none"
+  `animation`/`animation-name`, and every selector inside an
+  `@media (prefers-reduced-motion: reduce) { ... }` block that sets that
+  property to `none`, then reports by name any animated selector with no
+  matching (or parent-scoped) guard. This is regex-based selector-text
+  matching, not a real CSS selector engine: it recognizes an exact selector
+  match, a match after stripping pseudo-classes/elements (e.g.
+  `.foo:nth-child(2)` vs. a guard on `.foo`), or a guard on the leading
+  compound of a descendant selector (e.g. a guard on `.foo` covers
+  `.foo .bar`). It does not evaluate `@import`, CSS custom properties used
+  as animation names, or specificity/cascade order across files.
 - Two checks — contrast ratio against ACTUAL rendered colors, and
   touch-target size against ACTUAL rendered layout — are NOT included here.
   Neither is knowable from static HTML/CSS text alone; both need a real
@@ -35,9 +54,12 @@ Exit code is 1 if any FAIL-level issue is found in any file (so this can
 gate a deploy), 0 otherwise. WARN-level issues never fail the run.
 """
 
+import os
 import sys
 import re
 from html.parser import HTMLParser
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 VOID_TAGS = {"area", "base", "br", "col", "embed", "hr", "img", "input",
              "link", "meta", "param", "source", "track", "wbr"}
@@ -101,6 +123,7 @@ class A11yParser(HTMLParser):
         self.style_chunks = []
         self._in_style = False
         self.aria_hidden_focusable = []  # list of (tag, attrs)
+        self.stylesheet_hrefs = []  # hrefs from <link rel="stylesheet">'s
 
         self._in_label_depth = 0
 
@@ -144,6 +167,12 @@ class A11yParser(HTMLParser):
 
         if tag == "style":
             self._in_style = True
+
+        if tag == "link":
+            rel = attrs.get("rel", "").lower().split()
+            href = attrs.get("href")
+            if "stylesheet" in rel and href:
+                self.stylesheet_hrefs.append(href)
 
         if tag in FOCUSABLE_TAGS and self.aria_hidden_depth > 0:
             tabindex = attrs.get("tabindex", "0")
@@ -246,17 +275,152 @@ def check_link_text(p):
     return issues
 
 
-def check_reduced_motion(p):
+_RULE_RE = re.compile(r"([^{}]+)\{([^{}]*)\}")
+_MEDIA_REDUCE_RE = re.compile(
+    r"@media\s*\([^)]*prefers-reduced-motion\s*:\s*reduce[^)]*\)\s*\{", re.I)
+_ANIM_PROP_RE = re.compile(r"animation(?:-name)?\s*:\s*([^;{}]+)", re.I)
+_PSEUDO_RE = re.compile(r":{1,2}[a-zA-Z-]+(?:\([^)]*\))?")
+
+
+def _resolve_stylesheet_path(href, html_path):
+    href = href.split("#", 1)[0].split("?", 1)[0]
+    if not href:
+        return None
+    if re.match(r"^([a-z][a-z0-9+.-]*:)?//", href, re.I) or href.lower().startswith("data:"):
+        return None  # external — nothing local to read
+    if href.startswith("/"):
+        path = os.path.join(REPO_ROOT, href.lstrip("/"))
+    else:
+        base_dir = os.path.dirname(html_path) if html_path else REPO_ROOT
+        path = os.path.join(base_dir, href)
+    return os.path.normpath(path)
+
+
+def _collect_css_text(p, html_path):
+    chunks = list(p.style_chunks)
+    missing = []
+    for href in p.stylesheet_hrefs:
+        path = _resolve_stylesheet_path(href, html_path)
+        if path is None:
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                chunks.append(f.read())
+        except OSError:
+            missing.append(href)
+    return "".join(chunks), missing
+
+
+def _normalize_selector(sel):
+    return re.sub(r"\s+", " ", sel).strip()
+
+
+def _strip_pseudo(sel):
+    return re.sub(r"\s+", " ", _PSEUDO_RE.sub("", sel)).strip()
+
+
+def _extract_rules(css_chunk):
+    """Flat (selector, declarations) pairs. Because the regex requires no
+    nested braces, it naturally skips over `@media (...) {` / `@supports
+    (...) {` wrapper lines (they never find a matching `}` immediately
+    after their own content) and lands on the innermost real rules —
+    good enough for this codebase without a full CSS parser."""
+    rules = []
+    for m in _RULE_RE.finditer(css_chunk):
+        selector_text = m.group(1).strip()
+        if not selector_text or selector_text.startswith("@"):
+            continue
+        rules.append((selector_text, m.group(2)))
+    return rules
+
+
+def _find_reduce_guard_blocks(css_no_comments):
+    blocks = []
+    for m in _MEDIA_REDUCE_RE.finditer(css_no_comments):
+        depth = 1
+        i = m.end()
+        while i < len(css_no_comments) and depth > 0:
+            if css_no_comments[i] == "{":
+                depth += 1
+            elif css_no_comments[i] == "}":
+                depth -= 1
+            i += 1
+        blocks.append(css_no_comments[m.end():i - 1])
+    return blocks
+
+
+def _last_animation_value(decl_text):
+    values = _ANIM_PROP_RE.findall(decl_text)
+    return values[-1].strip() if values else None
+
+
+def _is_selector_covered(selector, guarded_norms, guarded_bases):
+    norm = _normalize_selector(selector)
+    base = _strip_pseudo(norm)
+    if norm in guarded_norms or base in guarded_bases:
+        return True
+    parts = base.split(" ")
+    # parent-scoped equivalent: a guard on the leading compound of a
+    # descendant selector (e.g. guard on ".foo" covers ".foo .bar")
+    return len(parts) > 1 and parts[0] in guarded_bases
+
+
+def check_reduced_motion(p, html_path=None):
     issues = []
-    style_text = "".join(p.style_chunks)
+    css_text, missing = _collect_css_text(p, html_path)
+    for href in missing:
+        issues.append(Issue("warn", "reduced-motion",
+            f'Linked stylesheet "{href}" could not be read for reduced-motion analysis'))
+
     # strip comments first — a comment mentioning the phrase should never
     # count as an actual guard (this bit the regex-only version earlier)
-    style_text_no_comments = re.sub(r"/\*.*?\*/", "", style_text, flags=re.DOTALL)
-    has_animation = re.search(r"@keyframes|animation(-name)?\s*:", style_text_no_comments, re.I)
-    has_guard = re.search(r"prefers-reduced-motion", style_text_no_comments, re.I)
-    if has_animation and not has_guard:
-        issues.append(Issue("fail", "reduced-motion",
-            "CSS animation found with no @media (prefers-reduced-motion) guard anywhere in <style>"))
+    css_no_comments = re.sub(r"/\*.*?\*/", "", css_text, flags=re.DOTALL)
+    guard_blocks = _find_reduce_guard_blocks(css_no_comments)
+
+    if not guard_blocks:
+        has_animation = re.search(r"@keyframes|animation(-name)?\s*:", css_no_comments, re.I)
+        if has_animation:
+            issues.append(Issue("fail", "reduced-motion",
+                "CSS animation found with no @media (prefers-reduced-motion: reduce) "
+                "block anywhere in <style> or linked stylesheets"))
+        return issues
+
+    guarded_norms = set()
+    guarded_bases = set()
+    for block in guard_blocks:
+        for selector_text, decl_text in _extract_rules(block):
+            value = _last_animation_value(decl_text)
+            if value is None or value.split()[0].lower() != "none":
+                continue
+            for sel in selector_text.split(","):
+                sel = sel.strip()
+                if not sel:
+                    continue
+                guarded_norms.add(_normalize_selector(sel))
+                guarded_bases.add(_strip_pseudo(_normalize_selector(sel)))
+
+    # drop guard-block text so its own "animation: none" rules can't be
+    # mistaken for animated selectors that still need covering
+    css_outside_guards = css_no_comments
+    for block in guard_blocks:
+        css_outside_guards = css_outside_guards.replace(block, "", 1)
+
+    reported = set()
+    for selector_text, decl_text in _extract_rules(css_outside_guards):
+        value = _last_animation_value(decl_text)
+        if value is None or value.split()[0].lower() == "none":
+            continue
+        for sel in selector_text.split(","):
+            sel = sel.strip()
+            if not sel or _is_selector_covered(sel, guarded_norms, guarded_bases):
+                continue
+            norm = _normalize_selector(sel)
+            if norm in reported:
+                continue
+            reported.add(norm)
+            issues.append(Issue("fail", "reduced-motion",
+                f'"{sel}" declares an animation with no prefers-reduced-motion: '
+                f'reduce block overriding it'))
     return issues
 
 
@@ -278,11 +442,14 @@ ALL_CHECKS = [
 ]
 
 
-def run(html_text):
+def run(html_text, html_path=None):
     p = parse(html_text)
     issues = []
     for check in ALL_CHECKS:
-        issues.extend(check(p))
+        if check is check_reduced_motion:
+            issues.extend(check(p, html_path))
+        else:
+            issues.extend(check(p))
     return issues
 
 
@@ -294,7 +461,7 @@ def main(argv):
     for path in argv:
         with open(path, encoding="utf-8") as f:
             html_text = f.read()
-        issues = run(html_text)
+        issues = run(html_text, html_path=path)
         fails = [i for i in issues if i.level == "fail"]
         warns = [i for i in issues if i.level == "warn"]
         print(f"\n{path}: {len(fails)} failure(s), {len(warns)} warning(s)")

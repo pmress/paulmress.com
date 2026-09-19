@@ -148,14 +148,18 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
-  .timeline-pulse, .steps-pulse { animation: none; opacity: 0.5; top: 50%; }
-  .frontier-node-glow, .frontier-node-core { animation: none; }
-  .thinking-pulse-glow { animation: none; }
+  .timeline-pulse, .steps-pulse { animation: none !important; opacity: 0.5 !important; top: 50% !important; }
+  .frontier-node-glow, .frontier-node-core { animation: none !important; }
+  .thinking-pulse-glow { animation: none !important; }
+  .scroll-cue span { animation: none !important; top: 6px !important; opacity: 1 !important; }
+  .thought-nodes-pulse { animation: none !important; opacity: 0.5 !important; top: 50% !important; }
+  .path-tracker-dot--live { animation: none !important; opacity: 1 !important; }
+  .path-map-node--current .path-map-node-dot { animation: none !important; opacity: 1 !important; }
   .hero h1 {
-    animation: none;
-    background-image: none;
-    color: var(--color-ink);
-    -webkit-text-fill-color: currentColor;
+    animation: none !important;
+    background-image: none !important;
+    color: var(--color-ink) !important;
+    -webkit-text-fill-color: currentColor !important;
   }
 }
 
