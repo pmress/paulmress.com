@@ -905,8 +905,8 @@ pmApplyA11yPrefs(pmReadA11yPrefs());
   const root = document.createElement("div");
   root.className = "a11y-widget";
   root.innerHTML =
-    '<button type="button" class="a11y-tab" aria-expanded="false" aria-controls="a11y-panel">' +
-      "<span>Accessibility</span>" +
+    '<button type="button" class="a11y-tab" aria-expanded="false" aria-controls="a11y-panel" aria-label="Accessibility settings">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7.6" r="1.7" fill="currentColor" stroke="none"/><path d="M6.8 10.8 L17.2 10.8 M12 10.8 L12 15 M12 15 L9 19 M12 15 L15 19"/></svg>' +
     "</button>" +
     '<div id="a11y-panel" class="a11y-panel" role="region" aria-label="Reading and display settings" hidden>' +
       '<div class="a11y-panel-head">' +

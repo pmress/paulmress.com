@@ -2972,7 +2972,7 @@ main > section.legal-body {
 
 .a11y-tab {
   width: var(--space-9);
-  height: 208px;
+  height: var(--space-9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2982,20 +2982,16 @@ main > section.legal-body {
   border-radius: var(--radius) 0 0 var(--radius);
   box-shadow: -2px 0 10px rgba(20, 18, 12, 0.08);
   cursor: pointer;
+  color: var(--color-accent);
   transition: background var(--duration-fast) var(--ease-out);
 }
 
 .a11y-tab:hover { background: var(--color-line); }
 .a11y-tab:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
 
-.a11y-tab span {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
+.a11y-tab svg {
+  width: 22px;
+  height: 22px;
 }
 
 .a11y-panel {
@@ -3186,10 +3182,6 @@ main > section.legal-body {
 }
 
 .a11y-reset:hover { color: var(--color-ink); }
-
-@media (max-width: 560px) {
-  .a11y-tab { height: 176px; }
-}
 
 /* Higher contrast: retint the shared tokens themselves rather than
    overriding individual elements, since the whole site already reads
