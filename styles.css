@@ -2963,9 +2963,8 @@ main > section.legal-body {
    per-page markup), same pattern as the path tracker above. */
 .a11y-widget {
   position: fixed;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
+  right: var(--space-5);
+  bottom: calc(var(--space-5) + 48px + var(--space-3));
   z-index: 400;
   font-family: var(--font-body);
 }
@@ -2978,9 +2977,8 @@ main > section.legal-body {
   justify-content: center;
   background: var(--color-bg-alt);
   border: 1px solid var(--color-line);
-  border-right: none;
-  border-radius: var(--radius) 0 0 var(--radius);
-  box-shadow: -2px 0 10px rgba(20, 18, 12, 0.08);
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 20px rgba(20, 18, 12, 0.1);
   cursor: pointer;
   color: var(--color-accent);
   transition: background var(--duration-fast) var(--ease-out);
@@ -2996,9 +2994,8 @@ main > section.legal-body {
 
 .a11y-panel {
   position: absolute;
-  top: 50%;
-  right: var(--space-9);
-  transform: translateY(-50%);
+  bottom: 0;
+  right: calc(var(--space-9) + var(--space-3));
   width: min(296px, calc(100vw - var(--space-9) - var(--space-6)));
   background: var(--color-bg-alt);
   border: 1px solid var(--color-line);
