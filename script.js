@@ -545,7 +545,7 @@ function pmClearPathTrackerCookie() {
   root.innerHTML =
     '<div class="path-tracker-pre">' +
       '<button type="button" class="path-tracker-toggle">' +
-        '<span class="path-tracker-dot" aria-hidden="true"></span>Opt in to track my path' +
+        '<span class="path-tracker-dot" aria-hidden="true"></span>Opt in to track my path 🍪' +
       "</button>" +
       '<a href="/privacy-policy/" class="path-tracker-privacy">Privacy policy</a>' +
     "</div>" +
