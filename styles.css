@@ -183,6 +183,11 @@ img { max-width: 100%; display: block; }
   padding-bottom: var(--space-4);
 }
 
+/* keeps in-page #hash targets from landing under the sticky header */
+.ds-section {
+  scroll-margin-top: 88px;
+}
+
 .logo {
   font-family: var(--font-display);
   font-size: 1.1rem;
