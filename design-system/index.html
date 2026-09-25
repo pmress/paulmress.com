@@ -1016,6 +1016,68 @@
       </div>
 
       <div class="ds-group">
+        <p class="ds-group-title">Accessibility widget &middot; .a11y-widget (injected sitewide via <code class="ds-code">script.js</code>)</p>
+        <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
+          Opt-in reading and display controls &mdash; not markup on any individual page.
+          <code class="ds-code">script.js</code>&rsquo;s <code class="ds-code">initA11yWidget()</code>
+          injects it into every page on load, same pattern as the path tracker above, stacked just
+          above it in the corner. Collapsed, it&rsquo;s a single round <code class="ds-code">.a11y-tab</code>;
+          opening it shows an <code class="ds-code">.a11y-panel</code> with three
+          <code class="ds-code">.a11y-size-btn</code> text sizes and three <code class="ds-code">.a11y-switch</code>
+          toggles (higher contrast, reduce motion, underline links). Each choice sets a class on
+          <code class="ds-code">&lt;html&gt;</code> (<code class="ds-code">.a11y-text-lg</code>,
+          <code class="ds-code">.a11y-text-xl</code>, <code class="ds-code">.a11y-contrast</code>,
+          <code class="ds-code">.a11y-motion-reduce</code>, <code class="ds-code">.a11y-underline-links</code>)
+          and is saved under the <code class="ds-code">pmA11yPrefs</code> localStorage key on this
+          browser only &mdash; never transmitted anywhere. The two static frames below show both
+          states; the real widget in the corner is the live one.
+        </p>
+        <div class="ds-frame" style="display:flex; gap:var(--space-6); flex-wrap:wrap; align-items:flex-start;">
+          <div>
+            <p class="filter-group-label" style="margin-bottom:var(--space-3);">Collapsed (default)</p>
+            <div class="a11y-widget" style="position:static;">
+              <button type="button" class="a11y-tab" aria-expanded="false" aria-label="Accessibility settings (demo)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7.6" r="1.7" fill="currentColor" stroke="none"/><path d="M6.8 10.8 L17.2 10.8 M12 10.8 L12 15 M12 15 L9 19 M12 15 L15 19"/></svg></button>
+            </div>
+          </div>
+          <div>
+            <p class="filter-group-label" style="margin-bottom:var(--space-3);">Open</p>
+            <div class="a11y-widget" style="position:static;">
+              <div class="a11y-panel" style="position:static;">
+                <div class="a11y-panel-head">
+                  <span class="a11y-panel-title">Read it your way</span>
+                  <button type="button" class="a11y-close" aria-label="Close accessibility settings (demo)">&times;</button>
+                </div>
+                <div class="a11y-hr"></div>
+                <div class="a11y-section-label">Text size</div>
+                <div class="a11y-size-row">
+                  <button type="button" class="a11y-size-btn a11y-size-btn--sm is-active" aria-pressed="true">A</button>
+                  <button type="button" class="a11y-size-btn a11y-size-btn--md" aria-pressed="false">A</button>
+                  <button type="button" class="a11y-size-btn a11y-size-btn--lg" aria-pressed="false">A</button>
+                </div>
+                <div class="a11y-toggle-row">
+                  <span>Higher contrast</span>
+                  <button type="button" class="a11y-switch is-on" role="switch" aria-checked="true" aria-label="Higher contrast (demo)"><span class="a11y-track"><span class="a11y-knob"></span></span></button>
+                </div>
+                <div class="a11y-toggle-row">
+                  <span>Reduce motion</span>
+                  <button type="button" class="a11y-switch" role="switch" aria-checked="false" aria-label="Reduce motion (demo)"><span class="a11y-track"><span class="a11y-knob"></span></span></button>
+                </div>
+                <div class="a11y-toggle-row a11y-toggle-row--last">
+                  <span>Underline links</span>
+                  <button type="button" class="a11y-switch" role="switch" aria-checked="false" aria-label="Underline links (demo)"><span class="a11y-track"><span class="a11y-knob"></span></span></button>
+                </div>
+                <div class="a11y-hr a11y-hr--tight"></div>
+                <div class="a11y-footer-row">
+                  <span class="a11y-footer-note">Applies instantly</span>
+                  <button type="button" class="a11y-reset">Reset</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
         <p class="ds-group-title">Contrast checker &middot; .contrast-tool (on <a href="/contrast-checker/">/contrast-checker/</a>, Experiment 8 companion)</p>
         <p style="color:var(--color-ink-soft); font-size:var(--text-base); margin:0 0 var(--space-5);">
           A live, in-browser WCAG contrast-ratio tool &mdash; two color fields (each an
