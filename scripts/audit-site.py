@@ -131,7 +131,14 @@ def main():
             print(f"  .{c}  (in {', '.join(pages)})")
         print()
 
-    dead = sorted(defined - used)
+    # Accessibility widget prefs — script.js toggles these on <html> itself
+    # (html.a11y-*), so no page markup can carry them without actually
+    # switching the pref on. Documented in /design-system/ Organisms instead.
+    js_root_classes = {
+        "a11y-contrast", "a11y-motion-reduce", "a11y-underline-links",
+        "a11y-text-lg", "a11y-text-xl",
+    }
+    dead = sorted(defined - used - js_root_classes)
     if dead:
         print("CSS CLASSES DEFINED BUT NOT USED ON ANY CURRENT PAGE (candidates for removal):")
         for c in dead:
