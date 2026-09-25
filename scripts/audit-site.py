@@ -54,6 +54,10 @@ CSS_FILES = [
 CLASS_RE = re.compile(r'class="([^"]*)"')
 CSS_CLASS_RE = re.compile(r'\.[a-zA-Z][a-zA-Z0-9_-]*')
 CSS_COMMENT_RE = re.compile(r'/\*.*?\*/', re.S)
+# url(...) bodies and quoted strings aren't selectors — without stripping them,
+# data-URI SVGs leak fake "classes" like .org/.w3 out of xmlns URLs.
+CSS_URL_RE = re.compile(r'url\(\s*(?:"[^"]*"|\'[^\']*\'|[^)]*)\s*\)', re.S)
+CSS_STRING_RE = re.compile(r'"(?:[^"\\\n]|\\.)*"|\'(?:[^\'\\\n]|\\.)*\'')
 
 
 def html_classes():
@@ -79,6 +83,8 @@ def css_classes():
         if not path.exists():
             continue
         text = CSS_COMMENT_RE.sub("", path.read_text(encoding="utf-8"))
+        text = CSS_URL_RE.sub("url()", text)
+        text = CSS_STRING_RE.sub('""', text)
         for m in CSS_CLASS_RE.finditer(text):
             defined.add(m.group(0)[1:])
     return defined
@@ -111,7 +117,7 @@ def main():
     # confirmed during the Aug 2026 audit, not bugs. Re-check before adding
     # to this list; it should stay short.
     known_unstyled_ok = {
-        "chat-section", "footer-links--primary", "hero-copy", "values",
+        "footer-links--primary", "hero-copy", "values",
         # Content Toolbar (Experiment 4) JS hooks — pure selectors for
         # script.js's shared filter/sort/search logic, deliberately
         # unstyled (the visual atoms are .search-field/.filter-chip/etc.).
