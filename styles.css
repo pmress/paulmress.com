@@ -1217,34 +1217,6 @@ section { padding: var(--space-11) 0; }
   max-width: 720px;
 }
 
-/* Lab index: stacked entry cards (grows one at a time, never looks sparse) */
-.lab-entry-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-}
-
-.lab-entry-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-.lab-entry-card .lab-meta { margin-top: var(--space-3); }
-
-.lab-entry-card h3 {
-  font-size: var(--text-2xl);
-  margin: var(--space-4) 0 var(--space-3);
-}
-
-.lab-entry-card p {
-  color: var(--color-ink-soft);
-  font-size: var(--text-base);
-  margin-bottom: 0;
-}
-
-.lab-entry-card .promo-link { margin-top: var(--space-5); }
-
 /* Receipts: a real input / output / outcome trail */
 .receipt-block {
   border: 1px solid var(--color-line);
@@ -1404,61 +1376,6 @@ section { padding: var(--space-11) 0; }
   .flow-arrow { transform: rotate(90deg); align-self: center; padding: var(--space-1) 0; }
 }
 
-/* ---------- Spec table (key/value results row, e.g. Lab experiment results) ----------
-   AUDIT NOTE (Aug 2026): not referenced by any current page's HTML. Left in place in
-   case a future Lab entry wants it; if it's still unused next time this file gets a
-   pass, it's a real candidate for deletion rather than something to re-document. ---------- */
-.spec-table {
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--color-bg);
-}
-
-.spec-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding: var(--space-4) var(--space-6);
-  border-bottom: 1px solid var(--color-line);
-}
-.spec-row:last-child { border-bottom: none; }
-.spec-row:nth-child(even) { background: var(--color-bg-alt); }
-
-.spec-label {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-ink-soft);
-  letter-spacing: 0.02em;
-}
-
-.spec-value {
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--color-ink);
-  text-align: right;
-}
-
-@media (max-width: 720px) {
-  .spec-row { padding: var(--space-3) var(--space-5); }
-}
-
-/* ---------- Setup grid (compact cards: Question / Hypothesis, e.g. /lab/experiment-1/) ----------
-   AUDIT NOTE (Aug 2026): not referenced by any current page's HTML. Left in place in
-   case a future Lab entry wants it; if it's still unused next time this file gets a
-   pass, it's a real candidate for deletion rather than something to re-document. ---------- */
-.setup-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-5);
-}
-
-@media (max-width: 720px) {
-  .setup-grid { grid-template-columns: 1fr; }
-}
-
 /* ---------- Status pill modifiers (Lab result vocabulary: Supported /
    Rejected / Inconclusive / Ongoing). Same .pill shape site-wide; these just
    tint it so status reads at a glance in a scannable list of many entries.
@@ -1521,8 +1438,6 @@ section { padding: var(--space-11) 0; }
   color: var(--color-ink-soft);
   margin: 0 0 var(--space-4);
 }
-
-.hyp-result-status { margin: 0 0 var(--space-4); }
 
 .hyp-result-text {
   font-family: var(--font-display);
@@ -1935,13 +1850,6 @@ details.thought-node-card[open] .thought-node-chevron {
   margin: var(--space-5) 0 0;
   padding-left: var(--space-5);
   border-left: 2px solid var(--color-accent);
-}
-
-.thought-node-meta {
-  margin-top: var(--space-4);
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  color: var(--color-ink-soft);
 }
 
 /* ---------- Timeline background: node-network spine ---------- */
